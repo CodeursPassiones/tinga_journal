@@ -1,1 +1,1 @@
-# tinje_journal
+# tinga_journal
