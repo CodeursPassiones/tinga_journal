@@ -17,7 +17,12 @@ class FileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'mime_type' => $this->faker->mimeType(),
+            'path' => $this->faker->filePath(),
+            'url' => $this->faker->url(),
+            'name' => $this->faker->filePath(),
+            'description' => $this->faker->text(),
+            'article_id' => 1,
         ];
     }
 }

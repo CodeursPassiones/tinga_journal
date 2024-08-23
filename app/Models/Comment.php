@@ -23,6 +23,6 @@ class Comment extends Model
 
     public function article(): BelongsTO
     {
-        return $this->belongsTo(Articles::class);
+        return $this->belongsTo(Article::class);
     }
 }

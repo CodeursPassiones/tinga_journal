@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('abstract');
             $table->text('content');
-            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITED']);
+            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITED', 'REJECTED']);
             $table->string('image_url');
             $table->date('publication_date')->default(now());
             $table->foreignIdFor(Issue::class);

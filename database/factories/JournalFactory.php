@@ -17,7 +17,10 @@ class JournalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->word(),
+            'description' => $this->faker->text(),
+            'issn' => $this->faker->word(),
+            'logo_path' => $this->faker->filePath(),
         ];
     }
 }

@@ -17,7 +17,9 @@ class IssueFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'number' => $this->faker->unique->number(),
+            'publication_date' => $this->faker->date(),
+            'volume_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }

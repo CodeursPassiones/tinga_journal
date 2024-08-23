@@ -17,7 +17,8 @@ class ArticleAuthorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, 6),
+            'article_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }
