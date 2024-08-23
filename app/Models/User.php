@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -12,7 +12,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
     use HasRoles;
 
     /**
@@ -24,16 +26,18 @@ class User extends Authenticatable
         // 'name',
         'email',
         'password',
-        'first_name',
-        'last_name',
-        'nom_pere',
-        'nom_mere',
-        'pays',
-        'ville',
+        'firstnam',
+        'lastname',
+        'address1',
+        'address2',
+        'country',
+        'city',
+        'state',
+        'username',
 
-        'contact',
-        'sexe',
-        'date_naissance',
+        'phone',
+        'gender',
+        'birthdate',
     ];
 
     /**
@@ -55,19 +59,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-     /**
+    /**
      * The storage format of the model's date columns.
      *
      * @var string
      */
     protected $dateFormat = 'Y-m-d H:i:sO';
-    public function membre(): HasOne
+
+    public function comments(): HasMany
     {
-        return $this->hasOne(Membre::class);
+        return $this->hasMany(Comment::class);
     }
 
-    public function tresorier(): HasOne
+    public function articleAuthor(): HasMany
     {
-        return $this->hasOne(Tresorier::class);
+        return $this->hasMany(ArticleAuthor::class);
     }
 }
