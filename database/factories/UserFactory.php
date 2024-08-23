@@ -30,15 +30,19 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
 
             // mes attributs
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
-            'sexe' => $this->faker->randomElement(['Féminin', 'Masculin']),
-            'date_naissance' => $this->faker->date(),
-            'nom_pere' => $this->faker->firstNameMale(),
-            'nom_mere' => $this->faker->firstNameFemale(),
-            // 'adresse' => $this->faker->city(),
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'username' => $this->faker->unique()->username(),
+            'gender' => $this->faker->randomElement(['Female', 'Male']),
+            'birthdate' => $this->faker->date(),
 
-            'contact' => $this->faker->phoneNumber(),
+            'adresse1' => $this->faker->city(),
+            'adresse2' => $this->faker->city(),
+            'city' => $this->faker->city(),
+            'country' => $this->faker->city(),
+            'state' => $this->faker->city(),
+
+            'phone' => $this->faker->phoneNumber(),
         ];
     }
 

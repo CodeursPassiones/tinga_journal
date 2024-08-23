@@ -12,21 +12,22 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->date('date_naissance');
-            $table->enum('sexe', ['Masculin', 'Féminin']);
-            $table->string('nom_pere');
-            $table->string('nom_mere');
-            $table->string('pays')->default('Togo');
-            $table->string('ville')->default('Sokodé');
-            $table->string('quartier')->default('quartier');
+            $table->string('firstname');
+            $table->string('lastnaùe');
+            $table->string('username');
+            $table->date('birthdate');
+            $table->enum('gender', ['Male', 'Female']);
+            $table->string('country')->default('Togo');
+            $table->string('city')->default('Sokodé');
+            $table->string('address1')->default('quartier');
+            $table->string('address2')->default('quartier');
+            $table->string('state')->default('quartier');
 
-            $table->string('contact')->nullable();
+            $table->string('phone')->nullable();
+
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default(Hash::make('secret'));
-            $table->unique(['first_name', 'last_name', 'date_naissance', 'sexe']);
             $table->rememberToken();
             $table->timestamps();
         });
