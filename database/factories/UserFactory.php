@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -36,8 +36,8 @@ class UserFactory extends Factory
             'gender' => $this->faker->randomElement(['Female', 'Male']),
             'birthdate' => $this->faker->date(),
 
-            'adresse1' => $this->faker->city(),
-            'adresse2' => $this->faker->city(),
+            'address1' => $this->faker->city(),
+            'address2' => $this->faker->city(),
             'city' => $this->faker->city(),
             'country' => $this->faker->city(),
             'state' => $this->faker->city(),

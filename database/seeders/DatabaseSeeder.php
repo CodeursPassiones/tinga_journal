@@ -3,16 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Carbon\Carbon;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Database\Seeders\RoleSeeder;
-use Database\Seeders\MembreSeeder;
-use Database\Seeders\NatureSeeder;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
-use Database\Seeders\TresorierSeeder;
-use Database\Seeders\CotisationSeeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,28 +16,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(5)->create();
 
-        $tresorier = User::create([
-            'first_name' => "",
-            'last_name' => "",
-            'date_naissance' => Carbon::now(),
-            'sexe' => "Féminin",
-            'nom_pere' => "",
-            'nom_mere' => "",
+        $admin = User::create([
+            'firstname' => 'Admin',
+            'lastname' => 'Admin',
+            'birthdate' => Carbon::now(),
+            'gender' => 'Male',
             'email' => 'test@example.com',
             'password' => Hash::make('secret'),
         ]);
 
         $this->call([
             RoleSeeder::class,
-            NatureSeeder::class,
-            TresorierSeeder::class,
-            MembreSeeder::class,
-            CotisationSeeder::class,
+            JournalSeeder::class,
+            VolumeSeeder::class,
+            IssueSeeder::class,
+            DisciplineSeeder::class,
+            ArticleSeeder::class,
+            ArticleAuthorSeeder::class,
         ]);
 
-        $tresor = Role::where('name', 'Tresorier')->first();
-        $tresorier->assignRole([$tresor->id]);
+        $admin_role = Role::where('name', 'admin')->first();
+        $admin->assignRole([$admin_role->id]);
     }
 }

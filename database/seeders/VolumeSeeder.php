@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Volume;
 use Illuminate\Database\Seeder;
 
 class VolumeSeeder extends Seeder
@@ -12,6 +12,6 @@ class VolumeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Volume::factory()->count(6)->create();
     }
 }

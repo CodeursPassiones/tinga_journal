@@ -22,9 +22,9 @@ class ArticleFactory extends Factory
             'title' => $this->faker->word(),
             'abstract' => $this->faker->text(),
             'content' => $this->faker->text(),
-            'status' => $this->faker->randomElements(['IN_REVIEW', 'PUBLISHED', 'SUBMITED', 'REJECTED']),
-            'iùage_url' => $this->faker->url(),
-            'publivation_date' => $this->faker->date(),
+            'status' => $this->faker->randomElement(['IN_REVIEW', 'PUBLISHED', 'SUBMITED', 'REJECTED']),
+            'image_url' => $this->faker->url(),
+            'publication_date' => $this->faker->date(),
         ];
     }
 }

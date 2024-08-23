@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Discipline;
 use Illuminate\Database\Seeder;
 
 class DisciplineSeeder extends Seeder
@@ -12,6 +12,6 @@ class DisciplineSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Discipline::factory()->count(6)->create();
     }
 }

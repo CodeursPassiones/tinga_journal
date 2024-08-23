@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Journal;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration {
     /**
@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('year');
 
             $table->foreignIdFor(Journal::class);
-            $table->unique(['journal_id', 'year']);
+            // $table->unique(['journal_id', 'year']);
             $table->timestamps();
         });
     }

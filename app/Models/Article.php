@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTO;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTO;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -16,8 +16,8 @@ class Article extends Model
         'abstract',
         'content',
         'status',
-        'iùage_url',
-        'publivation_date',
+        'image_url',
+        'publication_date',
         'issue_id',
         'discipline_id',
     ];

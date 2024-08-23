@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ArticleAuthor;
 use Illuminate\Database\Seeder;
 
 class ArticleAuthorSeeder extends Seeder
@@ -12,6 +12,6 @@ class ArticleAuthorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        ArticleAuthor::factory()->count(6)->create();
     }
 }

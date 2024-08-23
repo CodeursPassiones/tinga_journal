@@ -17,7 +17,7 @@ class DisciplineFactory extends Factory
     public function definition(): array
     {
         return [
-            'journal_id' => $this->faker->numberBetween(1, 6),
+            'journal_id' => 1,
 
             'name' => $this->faker->colorName(),
             'description' => $this->faker->text(),
