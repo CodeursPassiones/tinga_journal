@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
 {
-    public function loginFormGet()
+    public function login()
     {
-
-        return view('pages.auth.sign-in.login');
-
+        return view('pages.auth.login.index');
     }
 
-    public function login(Request $request)
+    public function logUser(Request $request)
     {
         try {
             $attributes = request()->validate([
@@ -29,7 +27,6 @@ class AuthController extends Controller
             if (Auth::attempt($attributes, $request->input('remember'))) {
                 session()->regenerate();
 
-
                 return response()->json(['ok' => true, 'message' => 'Vous êtes connecté.']);
             } else {
                 // return back()->withErrors(['email' => '']);
@@ -38,6 +35,7 @@ class AuthController extends Controller
             }
         } catch (\Exception $e) {
             return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+
             return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
@@ -45,10 +43,9 @@ class AuthController extends Controller
     public function logout()
     {
         try {
-
             Auth::logout();
 
-            return redirect('/login')->with(['success' => 'Vous êtes déconnecté.']);
+            return back()->with(['success' => 'Vous êtes déconnecté.']);
         } catch (\Exception $e) {
             // Gérez l'erreur ici, vous pouvez la logger ou retourner une réponse adaptée à l'erreur.
             return back()->with(['error' => 'Une erreur s\'est produite. Veuillez réessayer.']);
@@ -72,8 +69,6 @@ class AuthController extends Controller
                 $request->only('email')
             );
             if ($status === Password::RESET_LINK_SENT) {
-           
-
                 return response()->json(['message' => __(' Nous vous avons envoyé par email le lien de réinitialisation du mot de passe ! Le lien expirera dans 15 minutes.'), 'ok' => true]);
             } else {
                 return response()->json(['error' => __('Une erreur est survenue'), 'ok' => true], 422);
@@ -108,7 +103,6 @@ class AuthController extends Controller
 
                     $user->save();
                     session()->regenerate();
-
 
                     event(new PasswordReset($user));
                     Auth::logoutOtherDevices($password);

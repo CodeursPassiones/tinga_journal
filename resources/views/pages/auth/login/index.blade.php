@@ -1,8 +1,8 @@
 @extends('pages.auth.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                             Inner Banner Start
-                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                             Inner Banner End
-                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
@@ -36,7 +36,7 @@
                             <div class="sj-widget sj-widgetlogin">
 
                                 <div class="sj-widgetcontent">
-                                    <form class="sj-formtheme sj-formlogin">
+                                    <form class="sj-formtheme sj-formlogin" id="loginForm">
                                         <fieldset>
                                             <div class="form-group">
                                                 <input type="email" name="email" class="form-control"
@@ -55,7 +55,18 @@
                                                     ?</a>
                                             </div>
                                             <div class="sj-btnarea">
-                                                <a class="sj-btn sj-btnactive" href="javascript:void(0);">Connexion</a>
+                                                {{-- <a class="sj-btn sj-btnactive" href="javascript:void(0);">Connexion</a> --}}
+                                                <button class="sj-btn sj-btnactive" type="submit" id="submitBtn">
+                                                    <span class="normal-status">
+                                                        Se
+                                                        connester
+                                                    </span>
+                                                    <span class="indicateur d-none">
+                                                        <span><i class="fa fa-spinner text-secondary"></i>
+                                                            Loading...
+                                                        </span>
+
+                                                </button>
                                             </div>
                                         </fieldset>
                                     </form>
@@ -86,3 +97,6 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script src="{{ asset('app-js/auth/login.js') }}"></script>
+@endpush

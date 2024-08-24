@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $admin = User::create([
             'firstname' => 'Admin',
             'lastname' => 'Admin',
+            'username' => 'Admin',
             'birthdate' => Carbon::now(),
             'gender' => 'Male',
             'email' => 'test@example.com',

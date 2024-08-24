@@ -26,14 +26,14 @@
     <link rel="stylesheet" href={{ asset('assets/css/owl.carousel.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/chartist.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/main.css') }}>
-    {{-- @auth --}}
-    <link rel="stylesheet" href={{ asset('assets/css/dashboard.css') }}>
-
-    {{-- @endauth --}}
+    @yield('style')
     <link rel="stylesheet" href={{ asset('assets/css/color.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/transitions.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/responsive.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/custom.css') }}>
+
     <script src={{ asset('assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}></script>
+
 </head>
 
 <body class="sj-home @auth sj-userlogin @endauth">
@@ -56,23 +56,7 @@
      Main Start
    *************************************-->
             <main id="sj-main" class="sj-main sj-haslayout sj-sectionspace">
-                @auth
-                    <div class="container">
-                        <div class="row">
-                            <div id="sj-twocolumns" class="sj-twocolumns">
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 float-left">
-                                    @include('partials.aside')
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 float-right">
-                                    @yield('admin-content')
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                @endauth
 
                 @yield('web-content')
 
@@ -111,6 +95,10 @@
     <script src={{ asset('assets/js/countdown.js') }}></script>
     <script src={{ asset('assets/js/appear.js') }}></script>
     <script src={{ asset('assets/js/main.js') }}></script>
+    <script src="{{ asset('assets/js/custom/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/axios.min.js') }}"></script>
+    <script src="{{ asset('app-js/modules.js') }}"></script>
+    @stack('js')
 </body>
 
 </html>

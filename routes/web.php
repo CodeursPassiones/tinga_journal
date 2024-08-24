@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,19 +28,30 @@ Route::group(['middleware' => 'guest'], function () {
     /*
      * Auth
      */
-    Route::get('/login', function () {
-        return view('pages.auth.login.index');
-    })->name('login');
-    Route::get('/register', function () {
-        return view('pages.auth.register.index');
-    })->name('register');
+    Route::get('/login', [AuthController::class, 'login']
+    )->name('login');
+    Route::post('/login', [AuthController::class, 'logUser']
+    );
+    // Route::get('/register', function () {
+    //     return view('pages.auth.register.index');
+    // })->name('register');
 });
 Route::group(['middleware' => 'auth'], function () {
+    /*
+     * Admin
+     */
     Route::prefix('/admin')->group(function () {
+        /*
+         * Articles
+         */
         Route::prefix('/articles')->group(function () {
             Route::get('/list', function () {
                 return view('pages.admin.articles.index');
             })->name('admin.articles.list');
         });
     });
+    /*
+     * Logout
+     */
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

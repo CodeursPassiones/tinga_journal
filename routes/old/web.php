@@ -82,11 +82,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/get-attribute-value/{attribute?}/', [PdfController::class, 'get_attribute_values'])->name('pdf.get_attribute_values');
         Route::get('/cotisations/{nature?}', [PdfController::class, 'cotisations'])->name('pdf.cotisations');
     });
-
-    /*
-     * Logout
-     */
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::group(['middleware' => 'guest'], function () {
