@@ -1,5 +1,5 @@
 /*==============================================
-			Dashboard Widget Style				
+			Dashboard Widget Style
 ==============================================*/
 .sj-asidebar{
 	float: left;
@@ -20,7 +20,7 @@
 .sj-widgetprofile .sj-widgetcontent{
 	float: left;
 	width: 100%;
-	padding:30px; 
+	padding:30px;
 	text-align:center;
 }
 .sj-widgetprofile .sj-widgetcontent figure{
@@ -50,7 +50,7 @@
 	line-height:30px;
 	position:absolute;
 	border-radius: 50px;
-	background: #5dc560;
+	background: #bababa
 }
 .sj-admininfo{
 	width:100%;
@@ -103,7 +103,7 @@
 	display:inline-block;
 }
 .sj-dashboardnav > ul > li > a > span,
-.sj-dashboardnav > ul > li > a > i{color:#636c77;}
+.sj-dashboardnav > ul > li > a > i{color:#535027;}
 .sj-dashboardnav > ul > li > a{
 	display:block;
 	padding:15px 20px;
@@ -156,7 +156,7 @@
 .sj-sortupdown{
 	float: left;
 	width: auto;
-	margin:11px 20px 11px 0; 
+	margin:11px 20px 11px 0;
 }
 .sj-sortupdown a{
 	float: left;
@@ -172,7 +172,7 @@
 }
 .sj-articledetails > li{
 	width: 100%;
-	float: left; 
+	float: left;
 	padding:30px;
 	min-height: 96px;
 	position: relative;
@@ -197,7 +197,7 @@
 }
 .sj-detailstime span{
 	color: #767676;
-	margin:0 0 7px; 
+	margin:0 0 7px;
 	font-size: 13px;
 	line-height: 16px;
 	position: relative;
@@ -209,7 +209,7 @@
 .sj-detailstime span + span:before{
 	left: 0;
 	top: 50%;
-	content:'|'; 
+	content:'|';
 	position:absolute;
 	margin: -8px 0 0;
 }
@@ -228,7 +228,7 @@
 	width: auto;
 	background: #fff;
 	position: absolute;
-	border-left:1px solid #ddd; 
+	border-left:1px solid #ddd;
 	padding:17px 20px 17px 20px;
 }
 .sj-articleheader{cursor: pointer;}
@@ -241,11 +241,11 @@
 }
 .sj-nameandmail span{
 	display: block;
-	margin:0 0 8px; 
+	margin:0 0 8px;
 	font-size: 14px;
 	line-height: 14px;
 }
-.sj-mailinfo{ 
+.sj-mailinfo{
 	display: block;
 	font-size: 16px;
 	line-height: 14px;
@@ -253,7 +253,7 @@
 .sj-nameandmail span.sj-mailinfo{margin:0;}
 .sj-articleheader{overflow: hidden;}
 /* =============================================
-			Theme Pagination Style				
+			Theme Pagination Style
 ============================================= */
 .sj-pagination {
 	width:100%;
@@ -300,7 +300,7 @@
 .sj-addarticleholdcontent .sj-pagination{padding:30px;}
 .sj-addarticleholdvtwo .sj-pagination{padding:0 !important;}
 /* =============================================
-			User Style				
+			User Style
 ============================================= */
 .sj-articledetailsvtwo .sj-userinfohold{padding:0;}
 .sj-articledetailsvtwo li{padding:0 30px;}
@@ -330,10 +330,10 @@
 .sj-userinfoname{
 	float: left;
 	width: auto;
-	padding:15px 0; 
+	padding:15px 0;
 }
 .sj-userinfoname h3{
-	margin:0; 
+	margin:0;
 	color: #222;
 	font-size: 16px;
 	line-height: 16px;
@@ -343,7 +343,7 @@
 	color: #767676;
 	font-size: 14px;
 	line-height: 16px;
-	margin-bottom:8px; 
+	margin-bottom:8px;
 }
 .sj-userbtnarea{
 	width: auto;
@@ -386,7 +386,7 @@
 }
 .sj-downloadheader .sj-title h3{
 	margin:0;
-	color: #222;	
+	color: #222;
 	font-size: 16px;
 	line-height:16px;
 	display: inline-block;
@@ -394,12 +394,12 @@
 }
 .sj-downloadheader .sj-title a{
 	float: right;
-	margin:6px 0; 
+	margin:6px 0;
 	font-size: 14px;
 	line-height: 16px;
 }
 .sj-downloadheader .sj-title a i{
-	margin-right:10px; 
+	margin-right:10px;
 }
 .sj-docdetails{
 	float: left;
@@ -408,7 +408,7 @@
 .sj-docimg{
 	margin:0;
 	float: left;
-	width: auto; 
+	width: auto;
 	margin-right: 10px;
 }
 .sj-docimg img{
@@ -416,7 +416,7 @@
 	display: block;
 }
 .sj-docdescription{
-	padding:3px 0; 
+	padding:3px 0;
 	overflow: hidden;
 }
 .sj-docdescription h4{
@@ -436,10 +436,10 @@
 	width: 100%;
 	background: #fff;
 	border-top: 1px solid #ddd;
-	padding:26px 20px 26px 120px; 
+	padding:26px 20px 26px 120px;
 }
 .sj-feedbacktitle h2{
-	margin:0; 
+	margin:0;
 	font-size: 24px;
 	line-height: 24px;
 }
@@ -458,7 +458,7 @@
 }
 .sj-statusheader{overflow: hidden;}
 .sj-statusimg{
-	margin:0; 
+	margin:0;
 	width: 40px;
 	float: left;
 	height: 40px;
@@ -478,7 +478,7 @@
 	display: block;
 	font-size: 14px;
 	line-height:14px;
-	margin-bottom:8px; 
+	margin-bottom:8px;
 }
 .sj-statusasidetitle h4{
 	margin:0;
@@ -494,20 +494,20 @@
 	float: left;
 	width: 100%;
 	background: #fff;
-	padding:12px 30px 20px 180px; 
+	padding:12px 30px 20px 180px;
 }
 .sj-statusdescription .sj-description p{margin:0;}
 .sj-statusdescriptionpoints{
-	margin:0; 
+	margin:0;
 	width: 100%;
 	float: left;
-	margin:23px 0; 
+	margin:23px 0;
 	list-style: none;
 	line-height: 16px;
 }
 .sj-statusdescriptionpoints li{
-	width: 100%; 
-	padding:0; 
+	width: 100%;
+	padding:0;
 	float: left;
 	line-height: inherit;
 	list-style-type:none;
@@ -523,13 +523,13 @@
 	left: 0;
 	top: 5px;
 	font-size:8px;
-	color: #fc5c65; 
+	color: #fc5c65;
 	content: "\f00c";
 	font-family: 'FontAwesome';
 	position: absolute;
 }
 /* =============================================
-			Popup Style				
+			Popup Style
 ============================================= */
 .sj-modalboxarea .modal-dialog{
 	width: 470px;
@@ -549,7 +549,7 @@
 	float: left;
 	width: 100%;
 	position: relative;
-	padding:15px 20px; 
+	padding:15px 20px;
 	border-bottom: 1px solid #ddd;
 }
 .sj-popuptitle h2{
@@ -559,7 +559,7 @@
 	line-height: 20px;
 }
 .modal-body{
-	padding:0; 
+	padding:0;
 }
 .modal-body .sj-formsearchvtwo,
 .modal-body .sj-formsearchvtwo fieldset{
@@ -584,7 +584,7 @@
 .sj-formaddnewfield .form-group .sj-radio label span,
 .sj-formaddnewfield .form-group .sj-checkbox label span{
 	font-size: 16px;
-	color: #636c77;
+	color: #535027;
 	line-height: 22px;
 }
 .sj-formaddnewfield .form-group .sj-radio input[type=radio]:checked + label,
@@ -619,7 +619,7 @@
 	width: 100%;
 	padding:20px 0;
 	min-height: 85px;
-	background: #f7f7f7; 
+	background: #f7f7f7;
 	text-align: center;
 	border-top: 1px solid #ddd;
 }
@@ -632,7 +632,7 @@
 	position: relative;
 }
 .mCSB_inside > .mCSB_container{margin:0 !important;}
-.mCSB_scrollTools .mCSB_dragger, .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar	{background: #5e9cea !important;	}
+.mCSB_scrollTools .mCSB_dragger, .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar	{background: #bab250 !important;	}
 .mCSB_scrollTools{width: 6px;}
 .mCSB_scrollTools .mCSB_draggerRail{
 	width: 6px !important;
@@ -650,7 +650,7 @@
 }
 .sj-modalboxareavtwo.sj-modalboxarea .modal-dialog{
 	width: 830px;
-	max-width: 830px;	
+	max-width: 830px;
 }
 .sj-formsearchvthree .form-group{margin:0;}
 .sj-formsearchvthree .sj-firstformgroup{
@@ -666,7 +666,7 @@
 }
 .sj-replyaction{
 	color: #fc5c65;
-	padding:10px 0; 
+	padding:10px 0;
 	font-size: 16px;
 	line-height: 20px;
 	display: inline-block;
@@ -680,7 +680,7 @@
 	padding:16px 20px;
 }
 .sj-popupsubtitle h3{
-	margin:0; 
+	margin:0;
 	color: #000;
 	font-size:16px;
 	font-weight: 500;
@@ -691,11 +691,11 @@
 	margin:-5px;
 	float: none;
 	width: auto;
-	overflow: hidden; 
+	overflow: hidden;
 }
 .sj-formregistervtwo .form-group{
 	margin:0;
-	padding:5px; 
+	padding:5px;
 }
 .sj-formregistervtwo .sj-selectgroup{padding:10px;}
 .sj-formregistervtwo .sj-selectgroup .sj-radio{width: auto;}
@@ -706,12 +706,12 @@
 }
 .sj-formaddprojectvtwo fieldset{padding:20px;}
 /* =============================================
-			Manage Editions Style				
+			Manage Editions Style
 ============================================= */
 .sj-manageallsession{
 	float: left;
 	width: 100%;
-	padding:30px; 
+	padding:30px;
 }
 .sj-managesessionform fieldset .form-group{
 	margin: 0;
@@ -873,10 +873,10 @@
 }
 .sj-addarticleholdvtwo + .sj-addarticleholdvtwo{margin-top:30px; }
 /* ================================================================
-					Manage Users Style				
+					Manage Users Style
 ================================================================= */
 /* =============================================
-			Categorys Form Style				
+			Categorys Form Style
 ============================================= */
 .sj-categorysformvtwo fieldset .form-group:first-child{width: 75%;}
 .sj-categorysformvtwo fieldset .form-group:nth-child(2){width: 25%;}
@@ -887,10 +887,10 @@
 }
 .sj-assignedinfo{cursor: pointer;}
 /* ================================================================
-				Account Setting Page Style				
+				Account Setting Page Style
 ================================================================= */
 /* =============================================
-			Account Setting Style				
+			Account Setting Style
 ============================================= */
 .sj-acsettingthold{
 	float: left;
@@ -932,7 +932,7 @@
 .sj-btncancel{
 	color:#999;
 	font-size: 14px;
-	font-weight:500; 
+	font-weight:500;
 	line-height: 16px;
 	margin: 0 0 0 26px;
 	display: inline-block;
@@ -982,7 +982,7 @@
 	line-height:inherit;
 	padding:10px 20px;
 	list-style-type: none;
-	border-top:1px solid #d0d1d1; 
+	border-top:1px solid #d0d1d1;
 }
 .sj-attachmentdetails li:first-child{border-top: 0;}
 .sj-attachmentdetails li span{
@@ -1006,7 +1006,7 @@
 	color:#767676;
 	font-size: 12px;
 	font-style:italic;
-	line-height:inherit;  
+	line-height:inherit;
 }
 .sj-attachmentdetails li em a{
 	float: right;
@@ -1018,7 +1018,7 @@
 }
 .sj-formaddtemplates fieldset .form-group.sj-btnarea{padding: 0;}
 /* =============================================
-			On Off Button Style		
+			On Off Button Style
 ============================================= */
 .sj-on-off label {
 	width: 42px;
@@ -1077,7 +1077,7 @@
     overflow: hidden;
 }
 .sj-formpassword .form-group{
-	margin:0; 
+	margin:0;
 	padding:5px;
 	width: 33.33%;
 }
@@ -1099,10 +1099,10 @@
 .sj-formaddtemplates fieldset{
 	margin:-5px;
 	width: auto;
-	float: none; 
+	float: none;
 }
 .sj-formaddtemplates fieldset .form-group{
-	margin:0; 
+	margin:0;
 	padding: 5px;
 }
 .sj-formaddtemplates fieldset .form-group textarea{height: 500px;}

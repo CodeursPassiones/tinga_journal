@@ -1,5 +1,5 @@
 /*==========================================================================================
-								Primery Theme Colors										
+								Primery Theme Colors
 ==========================================================================================*/
 /*=============================================
 			Theme Text Color
@@ -44,10 +44,10 @@ a:active,
 .sj-formaddnewfield .form-group .sj-radio input[type=radio] + label:before,
 .sj-formaddnewfield .form-group .sj-checkbox input[type=checkbox] + label:before
 
-{ color: #5e9cea; }
+{ color: #bab250; }
 .sj-assignedinfo
-{ color: #5e9cea !important;}
-.sj-viewchart .ct-bar:hover {stroke: #5e9cea;}
+{ color: #bab250 !important;}
+.sj-viewchart .ct-bar:hover {stroke: #bab250;}
 /*=============================================
 			Theme Background Color
 =============================================*/
@@ -74,7 +74,7 @@ a:active,
 .sj-formaddnewfield .form-group .sj-checkbox input[type=checkbox] + label:after,
 .chosen-container .chosen-results li.highlighted
 
-{ background:#5e9cea;}
+{ background:#bab250;}
 /*=============================================
 			Theme Border Color
 =============================================*/
@@ -89,4 +89,4 @@ input:focus,
 .children,
 .sj-tagnew:before
 
-{ border-color: #5e9cea; }
+{ border-color: #bab250; }

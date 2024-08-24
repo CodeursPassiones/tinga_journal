@@ -2,7 +2,7 @@
     <div class="sj-widgetprofile">
         <div class="sj-widgetcontent">
             <figure>
-                <img src="images/thumbnails/img-02.png" alt="image description">
+                <img src={{ asset('assets/images/thumbnails/img-02.png') }} alt="image description">
                 <a class="sj-btnedite" href="javascript:void(0);"><i class="lnr lnr-pencil"></i></a>
             </figure>
             <div class="sj-admininfo">
