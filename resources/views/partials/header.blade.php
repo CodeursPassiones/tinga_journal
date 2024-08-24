@@ -19,8 +19,8 @@
                                <div class="sj-languagelogin">
                                    <div class="sj-loginarea">
                                        <ul class="sj-loging">
-                                           <li><a href="javascript:void(0);">Login</a></li>
-                                           <li><a href="javascript:void(0);">Register</a></li>
+                                           <li><a href={{ route('login') }}>Login</a></li>
+                                           <li><a href={{ route('register') }}>Register</a></li>
                                        </ul>
                                    </div>
                                    <div class="sj-userloginarea">
