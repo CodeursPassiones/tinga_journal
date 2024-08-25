@@ -15,11 +15,27 @@
     <div class="sj-widgetdashboard">
         <nav id="sj-dashboardnav" class="sj-dashboardnav">
             <ul>
-                <li class="  {{ Request::is('admin/articles/list') ? 'sj-active' : '' }}"><a
-                        href={{ route('admin.articles.list') }}><i class="lnr lnr-sync"></i>
+                <li class="  {{ Request::is('admin/articles/list') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.articles.list') }}><i class="lnr lnr-sync"></i>
                         <span>Liste
                             Articles
-                        </span></a></li>
+                        </span>
+                    </a>
+                </li>
+                <li class="  {{ Request::is('admin/users/list') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.users.list') }}><i class="lnr lnr-users"></i>
+                        <span>Gestion Utilisateurs
+
+                        </span>
+                    </a>
+                </li>
+                <li class="  {{ Request::is('admin/account/settings') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.account.settings') }}><i class="lnr lnr-lock"></i>
+                        <span>Paramettres Compte
+
+                        </span>
+                    </a>
+                </li>
 
                 <li><a href={{ route('logout') }}><i class="lnr lnr-exit"></i> <span>Déconnexon</span></a>
                 </li>

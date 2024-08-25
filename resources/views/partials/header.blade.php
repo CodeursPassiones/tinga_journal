@@ -33,7 +33,7 @@
                                </div>
                            </div>
                            <div class="sj-navigationarea">
-                               <strong class="sj-logo"><a href="index.html"><img
+                               <strong class="sj-logo"><a href={{ route('home') }}><img
                                            src={{ asset('assets/images/logo.png') }} alt="Tinga Logo"></a></strong>
                                <div class="sj-rightarea">
                                    <nav id="sj-nav" class="sj-nav navbar-expand-lg">

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Web\ArticleWebController;
+use App\Http\Controllers\Web\IssueWebController;
+use App\Http\Controllers\Web\WebsiteWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,21 +19,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.web.home.index');
-})->name('home');
+Route::get('/', [WebsiteWebController::class, 'home'])->name('home');
 
 Route::prefix('/web')->group(function () {
-    Route::get('/about', function () {
-        return view('pages.web.home.index');
-    })->name('web.about');
+    Route::get('/about', [WebsiteWebController::class, 'aboutUs'])->name('web.about');
 
     /*
      * Articles
      */
     Route::prefix('/articles')->group(function () {
-        Route::get('/liste', [ArticleWebController::class, 'index']
-        )->name('web.article.liste');
+        Route::get('/list', [ArticleWebController::class, 'index']
+        )->name('web.articles.list');
+    });
+
+    /*
+     * Issues
+     */
+    Route::prefix('/issues')->group(function () {
+        Route::get('/list', [IssueWebController::class, 'index']
+        )->name('web.issues.list');
     });
 });
 
@@ -58,6 +65,21 @@ Route::group(['middleware' => 'auth'], function () {
         Route::prefix('/articles')->group(function () {
             Route::get('/list', [ArticleAdminController::class, 'index'])->name('admin.articles.list');
             Route::get('/create', [ArticleAdminController::class, 'create'])->name('admin.articles.create');
+        });
+        /*
+         * Users
+         */
+
+        Route::prefix('/users')->group(function () {
+            Route::get('/list', [UserAdminController::class,  'index'])->name('admin.users.list');
+        });
+        /*
+         * Account
+         */
+        Route::prefix('/account')->group(function () {
+            Route::get('/settings', function () {
+                return view('pages.admin.account.settings');
+            })->name('admin.account.settings');
         });
     });
     /*

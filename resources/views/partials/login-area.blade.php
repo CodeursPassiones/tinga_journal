@@ -25,8 +25,7 @@
             </li>
             <li><a href="emailtemplates.html"><i class="lnr lnr-envelope"></i><span>Email
                         Templates</span></a></li>
-            <li><a href="accountsettings.html"><i class="lnr lnr-lock"></i><span>Paramettres</span></a>
-            </li>
+
             <li><a href={{ route('logout') }}><i class="lnr lnr-exit"></i><span>Déxonnexion</span></a></li>
         </ul>
     </nav>

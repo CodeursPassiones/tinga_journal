@@ -3,19 +3,22 @@
         <li class="current-menu-item menu-item-has-children page_item_has_children">
             <a href="javascript:void(0);"><i class="lnr lnr-home"></i></a>
             <ul class="sub-menu">
-                <li><a href="index.html">Home V One</a></li>
+                <li><a href={{ route('home') }}>Accueil</a></li>
             </ul>
         </li>
         <li>
-            <a href="aboutus.html">About us</a>
+            <a href={{ route('web.about') }}>A propos</a>
         </li>
         <li class="menu-item-has-children page_item_has_children">
             <a href="javascript:void(0);">Articles</a>
             <ul class="sub-menu">
 
-                <li><a href={{ route('web.article.liste') }}>Liste</a></li>
+                <li><a href={{ route('web.article.list') }}>Liste</a></li>
+                @auth
+                    <li><a href={{ route('admin.articles.create') }}>Créer un article</a></li>
 
-                <li><a href={{ route('admin.articles.create') }}>Créer un article</a></li>
+                @endauth
+
             </ul>
         </li>
         <li class="menu-item-has-children page_item_has_children">
