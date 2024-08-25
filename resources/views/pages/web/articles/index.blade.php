@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -165,9 +165,16 @@
                                         </figure>
                                         <div class="sj-postcontent">
                                             <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">
-                                                        {{ $article->user->firstname . ' ' . $article->user->lastname }}
-                                                    </a></span>
+                                                <span class="article-head">
+                                                    <time datetime="2018-12-12"
+                                                        class="sj-posttimedate">@formatDate($article->publication_date)</time>
+                                                    <span class="sj-username"><a href="javascript:void(0);">
+                                                            {{ $article->user->firstname . ' ' . $article->user->lastname }}
+                                                        </a>
+                                                    </span>
+                                                </span>
+
+
                                                 <h3><a href="javascript:void(0);">{{ $article->title }}</a></h3>
                                             </div>
                                             <div class="sj-description">

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Article extends Model
 {
@@ -21,6 +21,9 @@ class Article extends Model
         'issue_id',
         'discipline_id',
         'user_id',
+    ];
+    protected $casts = [
+        'publication_date' => 'datetime',
     ];
 
     public function issue(): BelongsTo
@@ -50,6 +53,21 @@ class Article extends Model
 
     public function articleAuthor(): HasMany
     {
-        return $this->hasMany(ArticleAuthor::class);
+        return $this->hasMany(ArticleUser::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            // Obtenir le plus grand ID actuel dans la table
+            $maxId = static::max('id');
+
+            // Incrémenter cet ID pour obtenir le prochain ID disponible
+            $nextId = $maxId + 1;
+
+            $model->matricule = 'TINGA'.$model->issue_id.$nextId;
+        });
     }
 }

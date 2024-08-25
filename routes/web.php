@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ArticleAdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Web\ArticleWebController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::prefix('/web')->group(function () {
      * Articles
      */
     Route::prefix('/articles')->group(function () {
-        Route::get('/liste', [ArticleController::class, 'index']
+        Route::get('/liste', [ArticleWebController::class, 'index']
         )->name('web.article.liste');
     });
 });
@@ -53,10 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
         /*
          * Articles
          */
+
         Route::prefix('/articles')->group(function () {
-            Route::get('/list', function () {
-                return view('pages.admin.articles.index');
-            })->name('admin.articles.list');
+            Route::get('/list', [ArticleAdminController::class, 'index'])->name('admin.articles.list');
+            Route::get('/create', [ArticleAdminController::class, 'create'])->name('admin.articles.create');
         });
     });
     /*

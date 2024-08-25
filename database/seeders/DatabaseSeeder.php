@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Carbon\Carbon;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(7)->create();
-
         $admin = User::create([
             'firstname' => 'Admin',
             'lastname' => 'Admin',
@@ -27,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('secret'),
         ]);
+        User::factory(7)->create();
 
         $this->call([
             RoleSeeder::class,
@@ -35,7 +34,7 @@ class DatabaseSeeder extends Seeder
             IssueSeeder::class,
             DisciplineSeeder::class,
             ArticleSeeder::class,
-            ArticleAuthorSeeder::class,
+            ArticleUserSeeder::class,
         ]);
 
         $admin_role = Role::where('name', 'admin')->first();

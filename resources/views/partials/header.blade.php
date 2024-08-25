@@ -48,7 +48,8 @@
                                            class="lnr lnr-magnifier"></i></a>
 
                                    @auth
-                                       <a class="sj-btn sj-btnactive" href="javascript:void(0);">Publier un article</a>
+                                       <a class="sj-btn sj-btnactive" href={{ route('admin.articles.create') }}>Publier un
+                                           article</a>
                                    </div>
                                @endauth
                            </div>

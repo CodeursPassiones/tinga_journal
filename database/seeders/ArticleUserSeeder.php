@@ -2,16 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\ArticleAuthor;
+use App\Models\ArticleUser;
 use Illuminate\Database\Seeder;
 
-class ArticleAuthorSeeder extends Seeder
+class ArticleUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        ArticleAuthor::factory()->count(6)->create();
+        ArticleUser::factory()->count(6)->create();
     }
 }

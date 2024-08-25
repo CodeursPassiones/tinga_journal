@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ArticleAuthor extends Model
+class ArticleUser extends Model
 {
     use HasFactory;
     protected $fillable = [
         'article_id',
         'user_id',
+        'role',
     ];
 
     public function user(): BelongsTo

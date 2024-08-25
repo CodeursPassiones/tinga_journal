@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     /**
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('address1')->default('quartier')->nullable();
             $table->string('address2')->default('quartier')->nullable();
             $table->string('state')->default('quartier')->nullable();
-
+            $table->string('profile_picture')->default('assets/images/user-img.jpg');
             $table->string('phone')->nullable()->nullable();
 
             $table->string('email')->nullable();

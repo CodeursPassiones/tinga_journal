@@ -15,7 +15,7 @@
 
                 <li><a href={{ route('web.article.liste') }}>Liste</a></li>
 
-                <li><a href="submitarticle.html">Submit Article</a></li>
+                <li><a href={{ route('admin.articles.create') }}>Créer un article</a></li>
             </ul>
         </li>
         <li class="menu-item-has-children page_item_has_children">

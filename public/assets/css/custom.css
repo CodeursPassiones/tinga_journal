@@ -3,3 +3,14 @@ i.fa-spinner{
 		-webkit-animation: fa-spin 3s infinite linear;
 	animation: fa-spin 3s infinite linear;
 }
+
+.article-head{
+    display: flex;
+
+}
+.article-head *{
+    display: flex;
+    padding-right: 10px;
+
+}
+

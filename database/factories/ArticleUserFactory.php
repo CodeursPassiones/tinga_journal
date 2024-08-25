@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ArticleAuthor>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ArticleUser>
  */
-class ArticleAuthorFactory extends Factory
+class ArticleUserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,6 +19,7 @@ class ArticleAuthorFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween(1, 6),
             'article_id' => $this->faker->numberBetween(1, 6),
+            'role' => $this->faker->randomElement(['reviwer', 'editor']),
         ];
     }
 }

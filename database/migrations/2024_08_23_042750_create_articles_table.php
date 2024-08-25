@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\User;
-use App\Models\Issue;
 use App\Models\Discipline;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Issue;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     /**
@@ -18,9 +18,10 @@ return new class extends Migration {
             $table->string('title');
             $table->text('abstract');
             $table->text('content');
+            $table->string('matricule')->unique();
             $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITED', 'REJECTED']);
-            $table->string('image_url')->default('assets/images/editorchoice/img-09.jpg');
-            $table->date('publication_date')->default(now());
+            $table->string('image_url')->default('assets/images/thumbnails/img-02.jpg');
+            $table->dateTime('publication_date')->default(now());
             $table->foreignIdFor(Issue::class);
             $table->foreignIdFor(Discipline::class);
             $table->foreignIdFor(User::class);

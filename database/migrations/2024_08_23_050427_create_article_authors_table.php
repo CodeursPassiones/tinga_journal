@@ -12,8 +12,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('article_authors', function (Blueprint $table) {
+        Schema::create('article_users', function (Blueprint $table) {
             $table->id();
+            $table->string('role');
             $table->foreignIdFor(Article::class);
             $table->foreignIdFor(User::class);
             $table->timestamps();
