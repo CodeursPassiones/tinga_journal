@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTO;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ArticleAuthor extends Model
 {
@@ -14,12 +14,12 @@ class ArticleAuthor extends Model
         'user_id',
     ];
 
-    public function user(): BelongsTO
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function article(): BelongsTO
+    public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
     }

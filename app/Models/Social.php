@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTO;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Social extends Model
 {
@@ -16,7 +16,7 @@ class Social extends Model
         'website_id',
     ];
 
-    public function website(): BelongsTO
+    public function website(): BelongsTo
     {
         return $this->belongsTo(Journal::class);
     }

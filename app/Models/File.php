@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTO;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class File extends Model
 {
@@ -19,7 +19,7 @@ class File extends Model
         'article_id',
     ];
 
-    public function article(): BelongsTO
+    public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
     }

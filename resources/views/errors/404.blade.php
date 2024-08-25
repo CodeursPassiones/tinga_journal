@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-             Inner Banner Start
-           *************************************-->
+                 Inner Banner Start
+               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-             Inner Banner End
-           *************************************-->
+                 Inner Banner End
+               *************************************-->
 @endsection
 @section('web-content')
     <div class="sj-404error">
@@ -36,7 +36,7 @@
                             <p>Consectetur adipisicing elied dotaem eiusmod incididunt ulabore etoimisi dolore magna aliqua
                                 aenimalie admie veniam aistrud exrcittion ullamco laboris.</p>
                         </div>
-                        <span class="sj-gobackhome">Go back to <a href="javascript:void(0);">Hompage</a></span>
+                        <span class="sj-gobackhome">Go back to <a href={{ route('home') }}>Hompage</a></span>
                     </div>
                 </div>
             </div>

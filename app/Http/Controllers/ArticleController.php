@@ -2,9 +2,89 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Discipline;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    //
+    public function index(Request $request)
+    {
+        try {
+            // Calculer le nombre d'articles pour chaque période
+            $counts = [
+                'all' => Article::count(),
+                'today' => Article::whereDate('created_at', Carbon::today())->count(),
+                'this_week' => Article::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count(),
+                'this_month' => Article::whereMonth('created_at', Carbon::now()->month)->count(),
+                'this_year' => Article::whereYear('created_at', Carbon::now()->year)->count(),
+                'last_year' => Article::whereYear('created_at', Carbon::now()->subYear()->year)->count(),
+                'last_10_years' => Article::whereYear('created_at', '>=', Carbon::now()->subYears(10)->year)->count(),
+            ];
+            // Récupération des filtres depuis la requête
+            $filterDiscipline = $request->input('discipline');
+            $filterPeriod = $request->input('period');
+            $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
+            $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
+            $limit = $request->input('limit', 5); // Par défaut 6 articles par page
+
+            // Initialisation de la requête de base pour les articles
+            $query = Article::with(['user', 'discipline']);
+
+            // Filtrer par catégorie
+            if (!empty($filterDiscipline) && !in_array('', $filterDiscipline)) {
+                $query->whereHas('discipline', function ($q) use ($filterDiscipline) {
+                    $q->where('name', $filterDiscipline);
+                });
+            }
+
+            // Filtrer par plusieurs périodes
+            if (!empty($filterPeriods) && !in_array('', $filterPeriods)) {
+                $query->where(function ($q) use ($filterPeriods) {
+                    foreach ($filterPeriods as $period) {
+                        switch ($period) {
+                            case 'today':
+                                $q->orWhereDate('created_at', Carbon::today());
+                                break;
+                            case 'this_week':
+                                $q->orWhereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+                                break;
+                            case 'this_month':
+                                $q->orWhereMonth('created_at', Carbon::now()->month);
+                                break;
+                            case 'this_year':
+                                $q->orWhereYear('created_at', Carbon::now()->year);
+                                break;
+                            case 'last_year':
+                                $q->orWhereYear('created_at', Carbon::now()->subYear()->year);
+                                break;
+                            case 'last_10_years':
+                                $q->orWhereYear('created_at', '>=', Carbon::now()->subYears(10)->year);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+            }
+
+            // Application du tri
+            $query->orderBy($sortBy, $sortOrder);
+
+            // Paginer les résultats
+            $articles = $query->paginate($limit);
+
+            // Récupération des catégories pour le filtre
+
+            // Récupération de toutes les disciplines pour le filtre
+            $disciplines = Discipline::orderBy('name')->get();
+
+            return view('pages.web.articles.index', compact('articles', 'disciplines', 'counts'));
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+
+            return view('errors.500');
+        }
+    }
 }

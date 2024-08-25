@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTO;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Volume extends Model
@@ -17,7 +17,7 @@ class Volume extends Model
         'journal_id',
     ];
 
-    public function journal(): BelongsTO
+    public function journal(): BelongsTo
     {
         return $this->belongsTo(Journal::class);
     }

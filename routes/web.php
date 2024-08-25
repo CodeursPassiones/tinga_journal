@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,14 @@ Route::prefix('/web')->group(function () {
     Route::get('/about', function () {
         return view('pages.web.home.index');
     })->name('web.about');
+
+    /*
+     * Articles
+     */
+    Route::prefix('/articles')->group(function () {
+        Route::get('/liste', [ArticleController::class, 'index']
+        )->name('web.article.liste');
+    });
 });
 
 Route::group(['middleware' => 'guest'], function () {

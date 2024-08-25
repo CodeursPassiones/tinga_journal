@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTO;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
@@ -20,14 +20,20 @@ class Article extends Model
         'publication_date',
         'issue_id',
         'discipline_id',
+        'user_id',
     ];
 
-    public function issue(): BelongsTO
+    public function issue(): BelongsTo
     {
         return $this->belongsTo(Issue::class);
     }
 
-    public function discipline(): BelongsTO
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function discipline(): BelongsTo
     {
         return $this->belongsTo(Discipline::class);
     }

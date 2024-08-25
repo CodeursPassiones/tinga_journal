@@ -34,7 +34,7 @@ class AuthController extends Controller
                 return response()->json(['ok' => false, 'message' => 'Email ou password invalide.']);
             }
         } catch (\Exception $e) {
-            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => $e->getMessage()]);
 
             return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
