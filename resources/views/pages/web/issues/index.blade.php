@@ -1,17 +1,17 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="sj-innerbannercontent">
-                        <h1>Liste Articles</h1>
+                        <h1>Numéros du Volume {{ $volume->year }}</h1>
                         <ol class="sj-breadcrumb">
                             <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Article/Liste</a></li>
+                            <li><a href="javascript:void(0);">Numéros/{{ $volume->year }}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,293 +19,48 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
-                    <aside id="sj-sidebarvtwo" class="sj-sidebar">
-                        <div class="sj-widget sj-widgetvolissue">
-                            <div class="sj-widgetheading">
-                                <h3>By Volume and Issue</h3>
-                            </div>
-                            <div class="sj-widgetcontent">
-                                <form class="sj-formtheme sj-formissuevol">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <input type="text" name="volissue" class="form-control"
-                                                placeholder="Vol no.">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="issuenumber" class="form-control"
-                                                placeholder="Issue no.">
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="sj-widget sj-widgetsearchdate">
-                            <div class="sj-widgetheading">
-                                <h3>By Date</h3>
-                            </div>
-                            <div class="sj-widgetcontent">
-                                <form class="sj-formtheme sj-formsearchbydate">
-                                    <fieldset>
-                                        <div class="form-group sj-inputwithicon">
-                                            <i class="fab fa-calendar"></i>
-                                            <input type="text" name="date" class="form-control"
-                                                placeholder="YYYY - MM - DD">
-                                        </div>
-                                        <div class="sj-filterbtns">
-                                            <a class="sj-btn" href="javascript:void(0)">Apply Filter</a>
-                                            <a class="sj-btn" href="javascript:void(0)">Reset All</a>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="sj-widget sj-widgetrecentissues">
-                            <div class="sj-widgetheading">
-                                <h3>Recent Issues</h3>
-                            </div>
-                            <div class="sj-widgetcontent">
-                                <ul>
-                                    <li><a href="javascript:void(0);"><span>View All</span><em>(216)</em></a></li>
-                                    <li><a href="javascript:void(0);"><span>Current Issue</span><em>(37)</em></a></li>
-                                    <li><a href="javascript:void(0);"><span>December 28, 2017</span><em>(27)</em></a></li>
-                                    <li><a href="javascript:void(0);"><span>December 21, 2017</span><em>(23)</em></a></li>
-                                    <li><a href="javascript:void(0);"><span>December 14, 2017</span><em>(22)</em></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-                <div class="col-12 col-sm-12 col-md-7 col-lg-4 col-xl-6">
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9">
                     <div id="sj-content" class="sj-content">
-                        <div class="sj-uploadarticle">
-                            <figure class="sj-uploadarticleimg">
-                                <img src="images/upload-articlebg.jpg" alt="image description">
-                                <figcaption>
-                                    <div class="sj-uploadcontent">
-                                        <span>Do You Want To Upload Your Article?</span>
-                                        <h3>Submit Now &amp; Make Your Online Presence</h3>
-                                        <a class="sj-btn" href="javascript:void(0);">Submit Now</a>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                        </div>
+
                         <div class="sj-issuesweeks">
                             <div class="sj-borderheading">
-                                <h3>Issues for 2015</h3>
+                                <h3>Numéros du Volume {{ $volume->year }}</h3>
                             </div>
                             <div id="sj-accordion" class="sj-accordion" role="tablist" aria-multiselectable="true">
-                                <div class="sj-panel">
-                                    <h4>January<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
+                                @if ($result->isEmpty())
+                                    <p>
+
+                                        Ce volume ne contient pas encore de numéro :)
+                                    </p>
+                                @else
+                                    @foreach ($result as $month => $issues)
+                                        <div class="sj-panel">
+                                            <h4>{{ $month }}<i class="fa fa-angle-down"></i></h4>
+                                            <div class="sj-panelcontent">
+                                                <div class="sj-recordholder">
+                                                    @foreach ($issues as $issue)
+                                                        <a class="sj-btnrecord"
+                                                            href="javascript:void(0);"><span>N.{{ $issue->number }}</span><i
+                                                                class="fa fa-angle-right"></i></a>
+                                                    @endforeach
+
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>February<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>March<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>April<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>May<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>June<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>July<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>August<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>September<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>October<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>November<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sj-panel">
-                                    <h4>December<i class="fa fa-angle-down"></i></h4>
-                                    <div class="sj-panelcontent">
-                                        <div class="sj-recordholder">
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 01</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 02</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 03</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 04</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <a class="sj-btnrecord" href="javascript:void(0);"><span>Week 05</span><i
-                                                    class="fa fa-angle-right"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @endif
+
+
+
                             </div>
                         </div>
                     </div>
@@ -346,8 +101,8 @@
                         <div class="sj-widget sj-widgetadd">
                             <span class="sj-headtitle">Advertisment 270 x270</span>
                             <div class="sj-widgetcontent">
-                                <figure class="sj-addimage"><a href="javascript:void(0);"><img
-                                            src="images/widget-add.jpg" alt="image description"></a></figure>
+                                <figure class="sj-addimage"><a href="javascript:void(0);"><img src="images/widget-add.jpg"
+                                            alt="image description"></a></figure>
                             </div>
                         </div>
                         <div class="sj-widget sj-widgetquestions">
@@ -385,8 +140,8 @@
                         </div>
                         <div class="sj-widget sj-widgetadd">
                             <div class="sj-widgetcontent">
-                                <figure class="sj-addimage"><a href="javascript:void(0);"><img
-                                            src="images/widget-add2.jpg" alt="image description"></a></figure>
+                                <figure class="sj-addimage"><a href="javascript:void(0);"><img src="images/widget-add2.jpg"
+                                            alt="image description"></a></figure>
                             </div>
                         </div>
                     </aside>

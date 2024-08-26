@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Issue;
 use App\Models\Volume;
+use Carbon\Carbon;
 
 class IssueWebController extends Controller
 {
@@ -36,14 +36,24 @@ class IssueWebController extends Controller
     public function index($volume_id)
     {
         try {
-            $issues = Issue::where('volume_id', $volume_id)->get();
+            // Récupérer le volume avec ses issues triées par date de publication
+            $volume = Volume::with(['issues' => function ($query) {
+                // Trier les issues par date de publication en ordre croissant
+                $query->orderBy('publication_date', 'asc');
+            }])->find($volume_id);
+            // Regrouper les issues par mois (avec mois en lettres)
+            $result = $volume->issues->groupBy(function ($issue) {
+                // Convertir la date en une chaîne formatée avec le mois en lettres et l'année
+                return Carbon::parse($issue->publication_date)->translatedFormat('F Y');
+            });
+            // dd($volume_id, $volume);
 
-            return view('pages.web.issues.index', compact('issues'));
+            return view('pages.web.issues.index', compact('result', 'volume'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
+            // Afficher l'erreur en mode débogage
             dd($th->getMessage());
 
+            // Retourner une vue d'erreur si nécessaire
             return view('errors.500');
         }
     }
