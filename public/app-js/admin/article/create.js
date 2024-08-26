@@ -1,7 +1,7 @@
 "use strict";
 
 let AppAdminArticleCreation = (function () {
-    let initSummerNote = () => {
+    const initSummerNote = () => {
         jQuery("#content").summernote({
             height: 300, // set editor height
             minHeight: null, // set minimum height of editor
@@ -9,9 +9,15 @@ let AppAdminArticleCreation = (function () {
             lang: "fr-FR",
         });
     };
+    const initSelect2 = () => {
+        jQuery(".authors-select").select2({
+            placeholder: "Choisissez les",
+        });
+    };
     return {
         init: () => {
             initSummerNote();
+            initSelect2();
         },
     };
 })();

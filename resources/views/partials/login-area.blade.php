@@ -9,24 +9,30 @@
     </a>
     <nav class="sj-usernav">
         <ul>
-            <li><a href="underreview.html"><i class="lnr lnr-sync"></i><span>Articles
-                        Under
-                        Review</span></a></li>
-            <li><a href="addtemplates.html"><i class="lnr lnr-briefcase"></i><span>Add Templates</span></a>
+            <li class="  {{ Request::is('admin/articles/list') ? 'sj-active' : '' }}">
+                <a href={{ route('admin.articles.list') }}><i class="lnr lnr-sync"></i>
+                    <span>Liste
+                        Articles
+                    </span>
+                </a>
             </li>
-            <li><a href="aticle-list.html"><i class="lnr lnr-sync"></i><span>Aticle
-                        List</span></a></li>
-            <li><a href="generalsettings.html"><i class="lnr lnr-layers"></i><span>General Settings</span></a>
-            </li>
-            <li><a href="manageuser.html"><i class="lnr lnr-users"></i><span>Manage
-                        Users</span></a></li>
-            <li><a href="manageeditions.html"><i class="lnr lnr-tag"></i><span>Manage
-                        Editions</span></a>
-            </li>
-            <li><a href="emailtemplates.html"><i class="lnr lnr-envelope"></i><span>Email
-                        Templates</span></a></li>
+            <li class="  {{ Request::is('admin/users/list') ? 'sj-active' : '' }}">
+                <a href={{ route('admin.users.list') }}><i class="lnr lnr-users"></i>
+                    <span>Gestion Utilisateurs
 
-            <li><a href={{ route('logout') }}><i class="lnr lnr-exit"></i><span>Déxonnexion</span></a></li>
+                    </span>
+                </a>
+            </li>
+            <li class="  {{ Request::is('admin/account/settings') ? 'sj-active' : '' }}">
+                <a href={{ route('admin.account.settings') }}><i class="lnr lnr-lock"></i>
+                    <span>Paramettres Compte
+
+                    </span>
+                </a>
+            </li>
+
+            <li><a href={{ route('logout') }}><i class="lnr lnr-exit"></i> <span>Déconnexon</span></a>
+            </li>
         </ul>
     </nav>
 </div>

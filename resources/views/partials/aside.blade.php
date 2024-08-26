@@ -3,7 +3,8 @@
         <div class="sj-widgetcontent">
             <figure>
                 <img src={{ asset(auth()->user()->profile_picture) }} alt="image description">
-                <a class="sj-btnedite" href="javascript:void(0);"><i class="lnr lnr-pencil"></i></a>
+
+
             </figure>
             <div class="sj-admininfo">
 

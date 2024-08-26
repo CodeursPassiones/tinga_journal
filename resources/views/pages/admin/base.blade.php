@@ -2,6 +2,7 @@
 @section('style')
     @auth
         <link rel="stylesheet" href={{ asset('assets/css/dashboard.css') }}>
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
     @endauth
 @endsection
@@ -24,3 +25,7 @@
 
     @endauth
 @endsection
+@push('js')
+    <script src={{ asset('assets/plugins/filepond/dist/filepond.min.css') }}></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+@endpush

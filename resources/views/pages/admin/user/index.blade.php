@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -67,7 +67,7 @@
                                 <img src={{ asset($user->profile_picture) }} alt="img">
                             </figure>
                             <div class="sj-title">
-                                <h3>{{ $user->firstnam . ' ' . $user->lastname }} <span class="sj-assignedinfo"
+                                <h3>{{ $user->firstname . ' ' . $user->lastname }} <span class="sj-assignedinfo"
                                         data-toggle="modal" data-target="#feedbackmodal">( {{ $user->articles->count() }}
                                         Articles publiées )</span>
                                 </h3>

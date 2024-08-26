@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Discipline;
+use App\Http\Controllers\Controller;
 
 class ArticleAdminController extends Controller
 {
@@ -27,8 +28,13 @@ class ArticleAdminController extends Controller
     {
         try {
             $disciplines = Discipline::orderBy('name', 'asc')->get();
+            $authors = User::whereHas('roles', function ($query) {
+                $query->where('name', 'author');
+            })
+                ->orderBy('lastname', 'ASC')
+                ->get();
 
-            return view('pages.admin.articles.create', compact('disciplines'));
+            return view('pages.admin.articles.create', compact('disciplines', 'authors'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;
