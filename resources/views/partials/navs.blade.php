@@ -21,8 +21,8 @@
 
             </ul>
         </li>
-        <li class="  {{ Request::is('web/issues/list') ? 'current-menu-item' : '' }}">
-            <a href={{ route('web.issues.list') }}>Numéros</a>
+        <li class="  {{ Request::is('web/volumes/list') ? 'current-menu-item' : '' }}">
+            <a href={{ route('web.volumes.list') }}>Volumes</a>
         </li>
     </ul>
 </div>

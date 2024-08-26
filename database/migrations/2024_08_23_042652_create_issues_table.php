@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('number');
+            $table->string('number');
             $table->date('publication_date')->default(now());
             $table->foreignIdFor(Volume::class);
             $table->timestamps();

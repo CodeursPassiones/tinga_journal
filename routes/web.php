@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Web\IssueWebController;
-use App\Http\Controllers\Web\ArticleWebController;
-use App\Http\Controllers\Web\WebsiteWebController;
-use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\ArticleAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\ArticleWebController;
+use App\Http\Controllers\Web\IssueWebController;
+use App\Http\Controllers\Web\WebsiteWebController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +33,17 @@ Route::prefix('/web')->group(function () {
     });
 
     /*
+     * Volumes
+     */
+    Route::prefix('/volumes')->group(function () {
+        Route::get('/list', [IssueWebController::class, 'volumes']
+        )->name('web.volumes.list');
+    });
+    /*
      * Issues
      */
     Route::prefix('/issues')->group(function () {
-        Route::get('/list', [IssueWebController::class, 'index']
+        Route::get('/list/{volumeID}', [IssueWebController::class, 'index']
         )->name('web.issues.list');
     });
 });

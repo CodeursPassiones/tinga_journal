@@ -25,4 +25,20 @@ class Issue extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            // Obtenir le plus grand ID actuel dans la table
+            $maxId = static::max('id');
+
+            // Incrémenter cet ID pour obtenir le prochain ID disponible
+            $nextId = $maxId + 1;
+
+            // Utiliser le nouvel ID pour l'insertion
+            $model->number = $nextId;
+        });
+    }
 }
