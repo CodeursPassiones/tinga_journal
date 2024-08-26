@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Discipline;
 
 class ArticleAdminController extends Controller
 {
@@ -25,7 +26,9 @@ class ArticleAdminController extends Controller
     public function create()
     {
         try {
-            return view('pages.admin.articles.create');
+            $disciplines = Discipline::orderBy('name', 'asc')->get();
+
+            return view('pages.admin.articles.create', compact('disciplines'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;

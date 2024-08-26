@@ -17,6 +17,8 @@
 
 
     <link rel="icon" href={{ asset('assets/images/favicon.png') }} type="image/x-icon">
+
+
     <link rel="stylesheet" href={{ asset('assets/css/bootstrap.min.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/normalize.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/fontawesome/fontawesome-all.css') }}>
@@ -87,6 +89,7 @@
     @include('partials.search')
     <script src={{ asset('assets/js/vendor/jquery-3.3.1.js') }}></script>
     <script src={{ asset('assets/js/vendor/jquery-library.js') }}></script>
+    <script src={{ asset('assets/js/custom/popper.js') }}></script>
     <script src={{ asset('assets/js/vendor/bootstrap.min.js') }}></script>
     <script src={{ asset('assets/js/owl.carousel.min.js') }}></script>
     <script src={{ asset('assets/js/circle-progress.js') }}></script>
@@ -97,8 +100,7 @@
     <script src={{ asset('assets/js/main.js') }}></script>
     <script src="{{ asset('assets/js/custom/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/axios.min.js') }}"></script>
-    <script src="{{ asset('app-js/modules.js') }}"></script>
-    @stack('js')
+
 </body>
 
 </html>

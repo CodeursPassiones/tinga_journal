@@ -1,8 +1,18 @@
 @extends('base')
+@section('style')
+    <!-- include summernote css/js -->
+    <link href={{ asset('assets/plugins/summernote/summernote-bs4.min.css') }} rel="stylesheet">
+
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script> --}}
+@endsection
 @section('banner')
     <!--************************************
-                                                                         Inner Banner Start
-                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +29,8 @@
         </div>
     </div>
     <!--************************************
-                                                                         Inner Banner End
-                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('web-content')
     @auth
@@ -30,22 +40,22 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 float-right">
                         <div id="sj-content" class="sj-content sj-addarticleholdcontent">
                             <div class="sj-dashboardboxtitle">
-                                <h2>Add A New Article</h2>
+                                <h2>Ajouter un Nouvel Article</h2>
                             </div>
                             <div class="sj-addarticlehold">
                                 <form class="sj-formtheme sj-formarticle">
                                     <fieldset>
                                         <div class="form-group">
-                                            <input type="text" name="Title" class="form-control"
+                                            <input type="text" name="title" class="form-control"
                                                 placeholder="Title of Article *">
                                         </div>
                                         <div class="form-group">
                                             <span class="sj-select">
-                                                <select>
-                                                    <option>Select Category (Optional)</option>
-                                                    <option>Name 2</option>
-                                                    <option>Name 3</option>
-                                                    <option>Name 4</option>
+                                                <select name="discipline">
+                                                    <option>Choirsir la catégorie (Optional)</option>
+                                                    @foreach ($disciplines as $discipline)
+                                                        <option value={{ $discipline->id }}> {{ $discipline->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </span>
                                         </div>
@@ -101,42 +111,16 @@
                                                 placeholder="Corresponding Author Title Here">
                                         </div>
                                         <div class="form-group">
-                                            <textarea placeholder="Add Your Abstract"></textarea>
+                                            <textarea id="abstract" name="abstract" placeholder="Résumé"></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea id="content" name="content" placeholder="Contenu"></textarea>
+
                                         </div>
                                     </fieldset>
                                 </form>
-                                <form class="sj-formtheme sj-formaddproject">
-                                    <fieldset class="sj-dragdropimg">
-                                        <div class="sj-inputtyfile">
-                                            <div class="sj-title">
-                                                <h3>Upload Powerpoint</h3>
-                                            </div>
-                                            <label for="sj-uploadimgvtwo">
-                                                <span>Upload Your File Here</span>
-                                                <span><i class="ti-upload"></i></span>
-                                                <input type="file" name="uploadimgvtwo" id="sj-uploadimgvtwo">
-                                            </label>
-                                            <div class="sj-filedetails">
-                                                <span>File should be max 500kb </span>
-                                                <em>Not Uploaded Yet</em>
-                                            </div>
-                                        </div>
-                                        <div class="sj-inputtyfile sj-uploading">
-                                            <div class="sj-title">
-                                                <h3>Upload Handout</h3>
-                                            </div>
-                                            <label for="sj-uploadimgvtwoa">
-                                                <span>Final_handout_2019.pdf</span>
-                                                <span><i class="ti-close"></i></span>
-                                                <input type="file" name="uploadimgvtwo" id="sj-uploadimgvtwoa">
-                                            </label>
-                                            <div class="sj-filedetails">
-                                                <span>File should be max 500kb </span>
-                                                <em>File Uploaded</em>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -176,3 +160,16 @@
         </div>
     @endauth
 @endsection
+@push('js')
+    {{-- <script src={{ asset('assets/plugins/summernote/summernote-lite.min.js') }}></script> --}}
+    <script src={{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}></script>
+    <script src={{ asset('assets/plugins/summernote/lang/summernote-fr-FR.min.js') }}></script>
+
+    <script src={{ asset('app-js/admin/article/create.js') }}></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+@endpush
