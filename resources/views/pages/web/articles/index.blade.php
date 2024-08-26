@@ -1,14 +1,18 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="sj-innerbannercontent">
-                        <h1>Liste Articles</h1>
+                        <h1>Liste Articles @if ($issue)
+                                du Numéro : {{ $issue->number }}.
+                            @endif
+                        </h1>
+
                         <ol class="sj-breadcrumb">
                             <li><a href="javascript:void(0);">Accueil</a></li>
                             <li><a href="javascript:void(0);">Article/Liste</a></li>
@@ -19,8 +23,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -39,6 +43,64 @@
                                 </form>
                             </div>
                         </div>
+                        <div class="sj-widget sj-widgetvolissue">
+
+                            <div class="sj-widgetheading">
+                                <h3>Par Volume et Numéro</h3>
+                            </div>
+                            <div class="sj-widgetcontent">
+                                <form class="sj-formtheme sj-formissuevol">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input type="text" name="volissue" class="form-control"
+                                                placeholder="Vol no.">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="issuenumber" class="form-control"
+                                                placeholder="Issue no.">
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="sj-widget sj-widgetrecentissues">
+                            <div class="sj-widgetheading">
+                                <h3>Numéros Récent</h3>
+                            </div>
+                            <div class="sj-widgetcontent">
+                                <ul>
+                                    <li>
+                                        <a href={{ route('web.articles.list') }}>
+                                            <span>
+
+                                                Voir Tout
+                                            </span>
+                                            <em>({{ $counts['all'] }})</em>
+                                        </a>
+                                    </li>
+                                    @foreach ($latestIssues as $index => $latestIssue)
+                                        <li>
+                                            <a href={{ route('web.articles.list', ['issue_id' => $latestIssue->id]) }}>
+                                                <span>
+
+                                                    @if ($index === 0)
+                                                        Numéro Courant
+                                                    @else
+                                                        @formatDateOnly($latestIssue->publication_date)
+                                                    @endif
+                                                </span>
+                                                <em>({{ $latestIssue->articles->count() }})</em>
+                                            </a>
+                                        </li>
+                                    @endforeach
+
+
+                                </ul>
+                            </div>
+                        </div>
                         <div class="sj-widget sj-widgetspeciality">
                             <div class="sj-widgetheading">
                                 <h3>Par Disciplines</h3>
@@ -52,10 +114,10 @@
 
                                     @foreach ($disciplines as $discipline)
                                         <span class="sj-checkbox">
-                                            <input id="sj-{{ $discipline->name }}" type="checkbox" name="discipline[]"
+                                            <input id="sj-{{ $discipline->id }}" type="checkbox" name="discipline[]"
                                                 value="{{ $discipline->name }}">
                                             <label
-                                                for="sj-{{ $discipline->name }}">{{ $discipline->name }}<em>({{ $discipline->articles->count() }})</em></label>
+                                                for="sj-{{ $discipline->id }}">{{ $discipline->name }}<em>({{ $discipline->articles->count() }})</em></label>
                                         </span>
                                     @endforeach
                                 </div>
@@ -100,7 +162,8 @@
 
                                     <span class="sj-checkbox">
                                         <input id="sj-last10years" type="checkbox" name="period[]" value="last_10_years">
-                                        <label for="sj-last10years">10 Dernières années<em>( {{ $counts['last_10_years'] }}
+                                        <label for="sj-last10years">10 Dernières années<em>(
+                                                {{ $counts['last_10_years'] }}
                                                 )</em></label>
                                     </span>
 
@@ -116,11 +179,29 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
                     <div id="sj-content" class="sj-content">
+
                         <span class="sj-showitems">
                             Affichage de <em>{{ $articles->firstItem() }}</em> à <em>{{ $articles->lastItem() }}</em> de
                             <em>{{ $articles->total() }}</em> Articles
                         </span>
+                        @if ($issue)
+                            @auth
 
+                                <div class="sj-uploadarticle">
+                                    <figure class="sj-uploadarticleimg">
+                                        <img src={{ asset('assets/images/upload-articlebg.jpg') }} alt="image description">
+                                        <figcaption>
+                                            <div class="sj-uploadcontent">
+                                                <span>Voulez vous publier un article pour ce numéro ?</span>
+
+                                                <a class="sj-btn" href="javascript:void(0);">Publier maintenant </a>
+                                            </div>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+
+                            @endauth
+                        @endif
                         <div class="sj-articles">
                             <form class="sj-formtheme sj-formsortitems">
                                 <fieldset>

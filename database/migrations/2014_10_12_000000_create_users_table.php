@@ -23,7 +23,9 @@ return new class extends Migration {
             $table->string('address2')->default('quartier')->nullable();
             $table->string('state')->default('quartier')->nullable();
             $table->string('profile_picture')->default('assets/images/user-img.jpg');
-            $table->string('phone')->nullable()->nullable();
+            $table->string('phone')->nullable();
+            $table->string('bio')->nullable();
+            $table->string('salutation')->nullable();
 
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();

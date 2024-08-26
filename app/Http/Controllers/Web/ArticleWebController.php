@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Discipline;
+use App\Models\Issue;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class ArticleWebController extends Controller
             ];
             // Récupération des filtres depuis la requête
             $filterDiscipline = $request->input('discipline');
-            $filterPeriod = $request->input('period');
+            $issue_id = $request->input('issue_id');
+            $filterPeriods = $request->input('period');
             $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
             $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
             $limit = $request->input('limit', 5); // Par défaut 6 articles par page
@@ -69,6 +71,12 @@ class ArticleWebController extends Controller
                     }
                 });
             }
+            // dd($issue_id);
+            $issue = null;
+            if ($issue_id) {
+                $query->where('issue_id', $issue_id);
+                $issue = Issue::find($issue_id);
+            }
 
             // Application du tri
             $query->orderBy($sortBy, $sortOrder);
@@ -80,8 +88,9 @@ class ArticleWebController extends Controller
 
             // Récupération de toutes les disciplines pour le filtre
             $disciplines = Discipline::orderBy('name')->get();
+            $latestIssues = Issue::orderBy('publication_date', 'desc')->take(4)->get();
 
-            return view('pages.web.articles.index', compact('articles', 'disciplines', 'counts'));
+            return view('pages.web.articles.index', compact('articles', 'disciplines', 'counts', 'latestIssues', 'issue'));
         } catch (\Throwable $th) {
             dd($th->getMessage());
 
