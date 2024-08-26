@@ -8,7 +8,7 @@ let AppLogin = (function () {
         submitBtn.addEventListener("click", (e) => {
             e.preventDefault();
             const formData = new FormData(loginForm);
-            AppModules.sunmitFromBtn(
+            AppModules.submitFromBtn(
                 submitBtn,
                 formData,
                 submitUrl,
@@ -27,7 +27,7 @@ let AppLogin = (function () {
             loginForm = document.querySelector("#loginForm");
             submitBtn = document.querySelector("#submitBtn");
             if (!loginForm || !submitBtn) {
-                console.error("sommething went wrong !!!");
+                console.error("something went wrong !!!");
                 return;
             }
             submitUrl = "/login";

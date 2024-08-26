@@ -71,7 +71,7 @@ const AppModules = (function () {
             });
         },
 
-        sunmitFromBtn: (btn, formData, url, callback) => {
+        submitFromBtn: (btn, formData, url, callback) => {
             if (btn == null || !formData || !url) {
                 return "somthing is not get";
             }

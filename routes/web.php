@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\ArticleAdminController;
-use App\Http\Controllers\Admin\UserAdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Web\ArticleWebController;
-use App\Http\Controllers\Web\IssueWebController;
-use App\Http\Controllers\Web\WebsiteWebController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\IssueWebController;
+use App\Http\Controllers\Web\ArticleWebController;
+use App\Http\Controllers\Web\WebsiteWebController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\ArticleAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,9 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
          * Account
          */
         Route::prefix('/account')->group(function () {
-            Route::get('/settings', function () {
-                return view('pages.admin.account.settings');
-            })->name('admin.account.settings');
+            Route::get('/settings', [UserAdminController::class, 'settings'])->name('admin.account.settings');
+            Route::post('/password/update', [UserAdminController::class, 'updatePassword'])->name('admin.account.update.password');
         });
     });
     /*
