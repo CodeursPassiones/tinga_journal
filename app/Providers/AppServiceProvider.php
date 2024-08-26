@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::useBootstrapFive();
+        Paginator::defaultView('vendor.pagination.custom');
         Blade::directive('formatDate', function ($expression) {
             return "<?php echo Carbon\Carbon::parse($expression)->locale(app()->getLocale())->isoFormat('DD MMM YYYY HH:mm '); ?>";
         });

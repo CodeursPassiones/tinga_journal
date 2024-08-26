@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -90,23 +90,8 @@
 
             </ul>
             <!-- Liens de pagination -->
-            <div class="sj-pagination">
-                {{-- {{ $articles->links() }} --}}
-                {!! $users->withQueryString()->links('pagination::bootstrap-5') !!}
-            </div>
-            <nav class="sj-pagination">
-                <ul>
-                    <li class="sj-prevpage"><a href="#"><i class="fa fa-angle-left"></i>
-                            Previous</a></li>
-                    <li class="sj-active"><a href="#">01</a></li>
-                    <li><a href="#">02</a></li>
-                    <li><a href="#">03</a></li>
-                    <li><a href="#">04</a></li>
-                    <li><a href="#">05</a></li>
-                    <li class="sj-nextpage"><a href="#">Next <i class="fa fa-angle-right"></i></a>
-                    </li>
-                </ul>
-            </nav>
+
+            {!! $users->withQueryString()->links() !!}
         </div>
     </div>
     @include('pages.admin.user.create')

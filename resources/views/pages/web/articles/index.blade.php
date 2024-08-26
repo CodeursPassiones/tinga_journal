@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -186,17 +186,14 @@
                                 @endforeach
 
                                 <!-- Liens de pagination -->
-                                <div class="sj-pagination">
-                                    {{-- {{ $articles->links() }} --}}
-                                    {!! $articles->withQueryString()->links('pagination::bootstrap-5') !!}
-                                </div>
+                                {!! $articles->withQueryString()->links() !!}
                             @endif
                         </div>
                     </div>
 
 
 
-                    {{-- {{ $articles->links() }} --}}
+
                 </div>
 
             </div>
