@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -80,8 +80,14 @@
 
                                     @tempsEcoule($article->publication_date)
                                 </span>
-                                <h3>{{ $article->user->firstname . ' ' . $article->user->lastname }}
-                                    {{ $article->user_id === auth()->user()->id ? '(Vous)' : '' }}</h3>
+                                <h3>
+                                    @foreach ($article->articleUsers as $author)
+                                        {{ $author->user->firstname . ' ' . $author->user->lastnmae }}
+                                        {{ $author->user_id === auth()->user()->id ? '(Vous)' : '' }}
+                                        |
+                                    @endforeach
+
+                                </h3>
                             </div>
                             <div class="sj-userbtnarea">
 
