@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Issue;
 use App\Models\Article;
 use App\Models\Discipline;
-use App\Models\Issue;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ArticleWebController extends Controller
 {
@@ -26,6 +26,7 @@ class ArticleWebController extends Controller
             ];
             // Récupération des filtres depuis la requête
             $filterDiscipline = $request->input('discipline');
+            $search = $request->input('search');
             $issue_id = $request->input('issue_id');
             $filterPeriods = $request->input('period');
             $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
@@ -76,6 +77,12 @@ class ArticleWebController extends Controller
             if ($issue_id) {
                 $query->where('issue_id', $issue_id);
                 $issue = Issue::find($issue_id);
+            }
+            if ($search) {
+                // dd($search);
+                $query->where('title', 'LIKE', '%'.$search.'%');
+                $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
+                $query->orWhere('content', 'LIKE', '%'.$search.'%');
             }
 
             // Application du tri
