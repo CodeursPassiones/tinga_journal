@@ -20,11 +20,11 @@
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                     <div id="sj-content" class="sj-content">
                         <div class="sj-aboutus">
                             <figure class="sj-aboutusimg">
-                                <img src="{{ asset('assets/images/A propos/normes.jpg') }}" style="height: 500px;"
+                                <img src="{{ asset('assets/images/A propos/normes.jpg') }}" style="height: 350px;"
                                     alt="image description">
                             </figure>
 
@@ -251,7 +251,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-4  ">
+                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ml-auto ">
                     @include('partials.right-aside')
                 </div>
             </div>

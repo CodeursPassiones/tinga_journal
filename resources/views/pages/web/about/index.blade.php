@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                             Inner Banner Start
-                                                           *************************************-->
+                                                                                             Inner Banner Start
+                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,18 +19,18 @@
         </div>
     </div>
     <!--************************************
-                                                             Inner Banner End
-                                                           *************************************-->
+                                                                                             Inner Banner End
+                                                                                           *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                     <div id="sj-content" class="sj-content">
                         <div class="sj-aboutus">
                             <figure class="sj-aboutusimg">
-                                <img src="{{ asset('assets/images/A propos/A propos 1.jpg') }}" style="height: 500px;"
+                                <img src="{{ asset('assets/images/A propos/A propos 1.jpg') }}" style="height: 350px;"
                                     alt="image description">
                             </figure>
 
@@ -108,7 +108,7 @@
                                         <figure class="sj-alignleft">
                                             <img src="{{ asset('assets/images/A propos/A propos 1.jpg') }}"
                                                 alt="image description"
-                                                style="width: 500px; height: 500px; border-radius: 5px;">
+                                                style="width: 200px; height: 200px; border-radius: 5px;">
                                         </figure>
 
 
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ">
+                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ml-auto ">
                     @include('partials.right-aside')
                 </div>
             </div>

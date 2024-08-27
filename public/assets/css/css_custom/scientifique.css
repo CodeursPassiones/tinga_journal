@@ -67,37 +67,37 @@
 
 .animated-container li:nth-child(2),
 .animated-container li:nth-child(2) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -1s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -10s);
 }
 
 .animated-container li:nth-child(3),
 .animated-container li:nth-child(3) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -2s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -20s);
 }
 
 .animated-container li:nth-child(4),
 .animated-container li:nth-child(4) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -3s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -30s);
 }
 
 .animated-container li:nth-child(5),
 .animated-container li:nth-child(5) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -4s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -40s);
 }
 
 .animated-container li:nth-child(6),
 .animated-container li:nth-child(6) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -5s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -50s);
 }
 
 .animated-container li:nth-child(7),
 .animated-container li:nth-child(7) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -6s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -60s);
 }
 
 .animated-container li:nth-child(8),
 .animated-container li:nth-child(8) .card {
-    animation-delay: calc((var(--rotate-speed)/var(--count)) * -7s);
+    animation-delay: calc((var(--rotate-speed)/var(--count)) * -70s);
 }
 
 @keyframes rotateCW {

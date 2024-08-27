@@ -1,18 +1,16 @@
 <aside id="sj-sidebar" class="sj-sidebar">
-
-
     <div class="sj-widget sj-widgetimpactfector">
         <div class="sj-widgetcontent">
             <ul>
                 <li>
-                    <h3>Impact Factor<span>2.125</span></h3>
-                    <h3>5 Year Impact Factor<span>2.853</span></h3>
+                    <h3>Volume en cours<span> : 001 Année 2024</span></h3>
+                    <h3>N° courant <span> : 001 </span></h3>
                 </li>
                 <li>
-                    <h3>Dr. Desmond Bratton</h3>
+                    <h3 style="text-align: center">Le Code ISSN de la revue</h3>
                     <div class="sj-description">
-                        <p>Consectetur adipisicing elit sedo amod tempor incididunt. <a href="javascript:void(0)">Read
-                                More</a></p>
+                        <p>En attente. <a href="javascript:void(0)">
+                                lire plus</a></p>
                     </div>
                 </li>
             </ul>
@@ -20,28 +18,34 @@
     </div>
     <div class="sj-widget sj-widgetnoticeboard">
         <div class="sj-widgetheading">
-            <h3>Notice Board</h3>
+            <h3> Ethique </h3>
         </div>
         <div class="sj-widgetcontent">
             <ul>
-                <li><a href="javascript:void(0);">Adipisicing elitaium sed dotas eiusm tempor
-                        incididunt utae labore etiate dolore magna aliqua enim.</a></li>
-                <li><a href="javascript:void(0);">Labore etiat dolore magna aliquaen ad minim
-                        veniam.</a></li>
-                <li><a href="javascript:void(0);">Duis aute irure dolor in reprehender</a></li>
+                <li><a href="javascript:void(0);">Les articles doivent répondre au critère d’originalité et n’avoir été
+                        publié dans aucune revue antérieurement. </a></li>
+                <li><a href="javascript:void(0);">Les articles sont soumis avant publication au logiciel
+                        antiplagiat.</a></li>
+                <li><a href="javascript:void(0);">Aucun article contenant des éléments contrevenant à la loi ne peut
+                        être publié par la revue tɩ́ɩ́ŋa.</a></li>
             </ul>
         </div>
     </div>
     <div class="sj-widget sj-widgetadd">
-        <span class="sj-headtitle">Advertisment 270 x270</span>
+        <span class="sj-headtitle">Initiateur</span>
         <div class="sj-widgetcontent">
-            <figure class="sj-addimage"><a href="javascript:void(0);"><img src="images/widget-add.jpg"
-                        alt="image description"></a></figure>
+            <figure class="sj-addimage">
+                <a href="#">
+                    <img src="{{ asset('assets/images/labo.jpg') }}" alt="image description"
+                        style="width:400px; height: 100px">
+                </a>
+            </figure>
+
         </div>
     </div>
     <div class="sj-widget sj-widgetquestions">
         <div class="sj-widgetheading">
-            <h3>Question Of The Week</h3>
+            <h3>Conditions générales d’utilisation </h3>
         </div>
         <div class="sj-widgetcontent">
             <div class="sj-description">
@@ -67,7 +71,7 @@
                         <label for="sj-qfour">Pleural fluid cytology</label>
                     </span>
                 </div>
-                <a class="sj-btn" href="javascript:void(0);">Submit Now</a>
+                <a class="sj-btn" href="javascript:void(0);">Lire</a>
             </div>
         </div>
     </div>
@@ -75,8 +79,12 @@
 
     <div class="sj-widget sj-widgetadd">
         <div class="sj-widgetcontent">
-            <figure class="sj-addimage"><a href="javascript:void(0);"><img src="images/widget-add2.jpg"
-                        alt="image description"></a></figure>
+            <figure class="sj-addimage">
+                <a href="#">
+                    <img src="{{ asset('assets/images/aside.jpg') }}" alt="image description"
+                        style="width:400px; height: 150px">
+                </a>
+            </figure>
         </div>
     </div>
 </aside>
