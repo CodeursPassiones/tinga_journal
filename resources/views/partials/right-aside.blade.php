@@ -47,7 +47,7 @@
         <div class="sj-widgetheading">
             <h3>Conditions générales d’utilisation </h3>
         </div>
-        <div class="sj-widgetcontent">
+        {{-- <div class="sj-widgetcontent">
             <div class="sj-description">
                 <p>Consectetur adipisicing elit, sed aeiuse tempor incididunt ut labore etamiudon magna
                     aliqua enim ad minim?</p>
@@ -73,7 +73,7 @@
                 </div>
                 <a class="sj-btn" href="javascript:void(0);">Lire</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 

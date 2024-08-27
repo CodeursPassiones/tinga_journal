@@ -22,14 +22,15 @@ i.fa-spinner{
 
 .tinga::after{
     content: "Tɩ́ɩ́ŋá";
-    font-size: 30px;
+    font-size: 50px;
+    background-color: #3d7751; /* Couleur de fond */
+
 
 }
 
 .tinga {
     color: #E8D15B; /* Couleur du texte */
-    background-color: #3d7751; /* Couleur de fond */
-    padding: 5px; /* Ajout de l'espace autour du texte (optionnel) */
+    padding: 10px; /* Ajout de l'espace autour du texte (optionnel) */
     border-radius: 5px; /* Bords arrondis (optionnel) */
     font-family: Arial, sans-serif; /* Choix de la police (optionnel) */
 }

@@ -34,7 +34,7 @@ class ArticleWebController extends Controller
             $limit = $request->input('limit', 5); // Par défaut 6 articles par page
 
             // Initialisation de la requête de base pour les articles
-            $query = Article::with(['user', 'discipline']);
+            $query = Article::with(['user', 'discipline'])->where('status', 'PUBLISHED');
 
             // Filtrer par catégorie
             if (!empty($filterDiscipline) && !in_array('', $filterDiscipline)) {

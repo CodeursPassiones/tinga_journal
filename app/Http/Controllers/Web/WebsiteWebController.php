@@ -11,11 +11,13 @@ class WebsiteWebController extends Controller
     public function home()
     {
         try {
-            $lastArticle = Article::orderBy('publication_date', 'desc')->first();
+            $lastArticle = Article::orderBy('publication_date', 'desc')->where('status', 'PUBLISHED')->first();
             $latestIssues = Issue::with(['articles' => function ($query) {
                 $query->orderBy('publication_date', 'desc');
             }])
-            ->whereHas('articles')
+            ->whereHas('articles', function ($query) {
+                $query->where('status', 'PUBLISHED');
+            })
             ->orderBy('publication_date', 'desc')
             ->take(6)
             ->get();
@@ -32,7 +34,7 @@ class WebsiteWebController extends Controller
                 return $issue->publication_date->format('Y'); // Grouper par année
             });
             $threeLatest = Article::orderBy('publication_date', 'desc')->take(3)->get();
-            $latestArticles = Article::orderBy('publication_date', 'desc')->take(6)->get()->chunk(3);
+            $latestArticles = Article::orderBy('publication_date', 'desc')->where('status', 'PUBLISHED')->take(6)->get()->chunk(3);
             // Regrouper les volumes par décennie
 
             return view('pages.web.home.index', compact('lastArticle', 'latestIssues', 'threeLatest', 'latestArticles', 'groupedIssues'));

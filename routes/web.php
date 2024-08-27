@@ -92,6 +92,10 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [ArticleAdminController::class, 'index'])->name('admin.articles.list');
             Route::get('/create', [ArticleAdminController::class, 'create'])->name('admin.articles.create');
             Route::post('/store', [ArticleAdminController::class, 'store'])->name('admin.articles.store');
+            Route::get('/edit/{articleId}', [ArticleAdminController::class, 'edit'])->name('admin.articles.edit');
+            Route::post('/update/{articleId}', [ArticleAdminController::class, 'update'])->name('admin.articles.update');
+            Route::get('/publish/{articleId}', [ArticleAdminController::class, 'publish'])->name('admin.articles.publish');
+            Route::get('/hide/{articleId}', [ArticleAdminController::class, 'hide'])->name('admin.articles.hide');
         });
         /*
          * Users
