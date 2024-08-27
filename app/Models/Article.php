@@ -16,7 +16,7 @@ class Article extends Model
         'abstract',
         'content',
         'status',
-        'image_url',
+        'image_path',
         'publication_date',
         'issue_id',
         'discipline_id',

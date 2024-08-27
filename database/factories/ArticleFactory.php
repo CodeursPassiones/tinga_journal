@@ -24,7 +24,7 @@ class ArticleFactory extends Factory
             'abstract' => $this->faker->text(),
             'content' => $this->faker->text(),
             'status' => $this->faker->randomElement(['IN_REVIEW', 'PUBLISHED', 'SUBMITED', 'REJECTED']),
-            // 'image_url' => $this->faker->url(),
+            // 'image_path' => $this->faker->url(),
             'publication_date' => $this->faker->date(),
         ];
     }

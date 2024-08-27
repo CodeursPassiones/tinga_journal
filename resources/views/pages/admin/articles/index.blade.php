@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -62,7 +62,7 @@
                         aria-labelledby="heading{{ $article->id }}" data-parent="#accordion">
                         <div class="sj-userinfoimgname">
                             <figure class="sj-userinfimg">
-                                <img src={{ asset($article->image_url) }} alt="img description">
+                                <img src={{ asset($article->image_path) }} alt="img description">
                             </figure>
                             <div class="sj-userinfoname">
                                 <span>04 days ago on Monday at 14:49

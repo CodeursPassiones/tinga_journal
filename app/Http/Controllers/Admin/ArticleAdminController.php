@@ -73,6 +73,7 @@ class ArticleAdminController extends Controller
 
             'abstract' => 'required|string',
             'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         try {
@@ -85,7 +86,20 @@ class ArticleAdminController extends Controller
                 'content' => $validatedData['content'],
                 'user_id' => auth()->user()->id,
             ]);
+            // Gestion de l'upload de l'image (optionnelle)
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $imageName = time().'.'.$image->getClientOriginalExtension();
 
+                // Stockez l'image dans le répertoire storage/app/public/images
+                $image->storeAs('public/images', $imageName);
+
+                // Enregistrez le chemin relatif de l'image dans la base de données
+                $chemin = 'storage/images/'.$imageName;
+
+                $article->image_path = $chemin;
+                $article->save();
+            }
             // Associer les auteurs à l'article
             foreach ($validatedData['authors'] as $value) {
                 // code...
