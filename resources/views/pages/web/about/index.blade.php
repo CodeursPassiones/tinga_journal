@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                     Inner Banner Start
-                                                   *************************************-->
+                                                             Inner Banner Start
+                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,14 +19,14 @@
         </div>
     </div>
     <!--************************************
-                                                     Inner Banner End
-                                                   *************************************-->
+                                                             Inner Banner End
+                                                           *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                     <div id="sj-content" class="sj-content">
                         <div class="sj-aboutus">
                             <figure class="sj-aboutusimg">
@@ -83,7 +83,7 @@
                             </div>
                             <div class="sj-ourhistory sj-sectioninnerspace">
                                 <div class="sj-borderheading">
-                                    <h3>Les disciplines couvertes par la revue  </h3>
+                                    <h3>Les disciplines couvertes par la revue </h3>
                                 </div>
                                 <div class="sj-description">
                                     <section class="disciplines">
@@ -101,27 +101,35 @@
                             </div>
                             <div class="sj-ouraims sj-sectioninnerspace">
                                 <div class="sj-borderheading">
-                                    <h3>Nos  parutions</h3>
+                                    <h3>Nos parutions</h3>
                                 </div>
                                 <div class="sj-ouraim">
                                     <div class="sj-description">
                                         <figure class="sj-alignleft">
-                                            <img src="{{ asset('assets/images/A propos/A propos 1.jpg') }}" alt="image description" style="width: 500px; height: 500px; border-radius: 5px;">
+                                            <img src="{{ asset('assets/images/A propos/A propos 1.jpg') }}"
+                                                alt="image description"
+                                                style="width: 500px; height: 500px; border-radius: 5px;">
                                         </figure>
 
 
                                         <p class="sj-firstletter">L</p>
-                                        <p>parutions sont semestrielles, soit deux numéros par an, notamment ceux de juin et décembre de chaque année.
-                                            Avant d’être publié, tout article est préalablement soumis au logiciel anti-plagiat. A cet effet, aucun article ne peut être publié si son taux de plagiat est supérieur à 20%.
-                                            Les publications de la revue Tɩ́ɩ́ŋá sont conformes aux dispositions du CAMES en la matière, notamment les normes éditoriales adoptées à Bamako en 2016
-                                            </p>
+                                        <p>parutions sont semestrielles, soit deux numéros par an, notamment ceux de juin et
+                                            décembre de chaque année.
+                                            Avant d’être publié, tout article est préalablement soumis au logiciel
+                                            anti-plagiat. A cet effet, aucun article ne peut être publié si son taux de
+                                            plagiat est supérieur à 20%.
+                                            Les publications de la revue Tɩ́ɩ́ŋá sont conformes aux dispositions du CAMES
+                                            en la matière, notamment les normes éditoriales adoptées à Bamako en 2016
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ">
+                    @include('partials.right-aside')
+                </div>
             </div>
         </div>
     </div>

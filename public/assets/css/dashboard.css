@@ -50,7 +50,7 @@
 	line-height:30px;
 	position:absolute;
 	border-radius: 50px;
-	background: #bababa
+	background: #ea4335
 }
 .sj-admininfo{
 	width:100%;
@@ -103,7 +103,7 @@
 	display:inline-block;
 }
 .sj-dashboardnav > ul > li > a > span,
-.sj-dashboardnav > ul > li > a > i{color:#535027;}
+.sj-dashboardnav > ul > li > a > i{color:#000001ff;}
 .sj-dashboardnav > ul > li > a{
 	display:block;
 	padding:15px 20px;
@@ -584,7 +584,7 @@
 .sj-formaddnewfield .form-group .sj-radio label span,
 .sj-formaddnewfield .form-group .sj-checkbox label span{
 	font-size: 16px;
-	color: #535027;
+	color: #000001ff;
 	line-height: 22px;
 }
 .sj-formaddnewfield .form-group .sj-radio input[type=radio]:checked + label,
@@ -632,7 +632,7 @@
 	position: relative;
 }
 .mCSB_inside > .mCSB_container{margin:0 !important;}
-.mCSB_scrollTools .mCSB_dragger, .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar	{background: #bab250 !important;	}
+.mCSB_scrollTools .mCSB_dragger, .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar	{background: linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff) !important;	}
 .mCSB_scrollTools{width: 6px;}
 .mCSB_scrollTools .mCSB_draggerRail{
 	width: 6px !important;

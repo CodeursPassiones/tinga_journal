@@ -1,20 +1,21 @@
 <section class="sj-haslayout sj-sectioninnerspace">
     <div class="sj-borderheading">
         <h3>Les Tout derniers</h3>
-        <a class="sj-btnview" href={{ route('web.articles.list') }}>Voir Tout {{ $latestArticles->count() }}</a>
+        <a class="sj-btnview" href={{ route('web.articles.list') }}>Voir Tout </a>
     </div>
+    <style>
+        .figureLatestThree {
+            width: 270px;
+            height: 170px;
+            min-width: 270px;
+            max-width: 270px;
+            min-height: 170px;
+            max-height: 170px;
+            object-fit: scale-down !important;
+        }
+    </style>
     <div id="sj-editorchoiceslider" class="sj-editorchoiceslider sj-editorschoice owl-carousel">
-        <style>
-            .figureLatestThree {
-                width: 270px;
-                height: 170px;
-                min-width: 270px;
-                max-width: 270px;
-                min-height: 170px;
-                max-height: 170px;
-                object-fit: scale-down !important;
-            }
-        </style>
+
         @foreach ($latestArticles as $articleGroup)
             <div class="item">
                 @foreach ($articleGroup as $article)

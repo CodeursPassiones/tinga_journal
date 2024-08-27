@@ -33,8 +33,8 @@
                                </div>
                            </div>
                            <div class="sj-navigationarea">
-                               <strong class="sj-logo"><a href={{ route('home') }}><img
-                                           src={{ asset('assets/images/logo.png') }} alt="Tinga Logo"></a></strong>
+                               <strong class="sj-logo"><a href={{ route('home') }}> <a href="{{ route('home') }}"
+                                           class="tinga"></a></a></strong>
                                <div class="sj-rightarea">
                                    <nav id="sj-nav" class="sj-nav navbar-expand-lg">
                                        <button class="navbar-toggler" type="button" data-toggle="collapse"

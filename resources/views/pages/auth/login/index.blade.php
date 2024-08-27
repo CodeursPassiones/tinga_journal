@@ -1,8 +1,8 @@
 @extends('pages.auth.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
@@ -73,22 +73,25 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Section d'informations sur la page de connexion -->
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                             <div class="sj-howtoregister">
-                                <h3>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit.</h3>
+                                <h3>Bienvenue sur notre plateforme de connexion</h3>
                                 <div class="sj-description">
-                                    <p>Quis nostrud exercitation ullamcoaris nisiuate aliquip ex ea commodo
-                                        consequat aute irure dolor atem reprehenderit in esse.</p>
+                                    <p>Nous vous invitons à vous connecter pour accéder à vos fonctionnalités
+                                        personnalisées. Si vous n'avez pas encore de compte, vous pouvez contacter le
+                                        support pour en avoir.</p>
                                 </div>
                                 <ul class="sj-liststyle">
-                                    <li><span>Proident sunt in culpa qui officia</span></li>
-                                    <li><span>Deserunt mollit anim idestorum</span></li>
-                                    <li><span>Sedutana perspiciatis</span></li>
-                                    <li><span>Aunde omnis iste natus voluptatem</span></li>
-                                    <li><span>Cullamcoaris nisiutia aliquip</span></li>
+                                    <li><span>Publier des arcticles</span></li>
+
+                                    <li><span>Gérez vos préférences</span></li>
+                                    <li><span>Contactez notre support</span></li>
+                                    <li><span>Accédez à vos documents</span></li>
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

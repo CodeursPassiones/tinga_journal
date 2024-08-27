@@ -23,7 +23,7 @@
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                     <div id="sj-content" class="sj-content">
                         <div class="sj-aboutus">
                             <figure class="sj-aboutusimg">
@@ -108,6 +108,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-5 col-lg-4  ">
+                    @include('partials.right-aside')
                 </div>
             </div>
         </div>

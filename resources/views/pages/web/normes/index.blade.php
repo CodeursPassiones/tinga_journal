@@ -251,7 +251,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-12 col-sm-12 col-md-5 col-lg-4  ">
+                    @include('partials.right-aside')
+                </div>
             </div>
         </div>
     </div>

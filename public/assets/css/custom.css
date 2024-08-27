@@ -1,3 +1,9 @@
+p{
+    text-align: justify;
+}
+td{
+    text-align: start !important;
+}
 i.fa-spinner{
 	color:#222;
 		-webkit-animation: fa-spin 3s infinite linear;
@@ -12,5 +18,19 @@ i.fa-spinner{
     display: flex;
     padding-right: 10px;
 
+}
+
+.tinga::after{
+    content: "Tɩ́ɩ́ŋá";
+    font-size: 30px;
+
+}
+
+.tinga {
+    color: #E8D15B; /* Couleur du texte */
+    background-color: #3d7751; /* Couleur de fond */
+    padding: 5px; /* Ajout de l'espace autour du texte (optionnel) */
+    border-radius: 5px; /* Bords arrondis (optionnel) */
+    font-family: Arial, sans-serif; /* Choix de la police (optionnel) */
 }
 

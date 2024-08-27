@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -37,7 +37,17 @@
             </form>
         </div>
         <ul id="accordion" class="sj-articledetails sj-articledetailsvtwo">
-
+            <style>
+                .userArticleListAdminImg {
+                    width: 70px;
+                    height: 70px;
+                    min-width: 70px;
+                    max-width: 70px;
+                    min-height: 70px;
+                    max-height: 70px;
+                    object-fit: fill !important;
+                }
+            </style>
             @if ($articles->isEmpty())
                 <h3>Aucun article trouvé :(</h3>
             @else
@@ -62,7 +72,8 @@
                         aria-labelledby="heading{{ $article->id }}" data-parent="#accordion">
                         <div class="sj-userinfoimgname">
                             <figure class="sj-userinfimg">
-                                <img src={{ asset($article->image_path) }} alt="img description">
+                                <img src={{ asset($article->image_path) }} alt="img description"
+                                    class="userArticleListAdminImg">
                             </figure>
                             <div class="sj-userinfoname">
                                 <span>04 days ago on Monday at 14:49

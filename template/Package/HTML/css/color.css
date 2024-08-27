@@ -44,10 +44,10 @@ a:active,
 .sj-formaddnewfield .form-group .sj-radio input[type=radio] + label:before,
 .sj-formaddnewfield .form-group .sj-checkbox input[type=checkbox] + label:before
 
-{ color: #bab250; }
+{ color: linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff); }
 .sj-assignedinfo
-{ color: #bab250 !important;}
-.sj-viewchart .ct-bar:hover {stroke: #bab250;}
+{ color: linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff) !important;}
+.sj-viewchart .ct-bar:hover {stroke: linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff);}
 /*=============================================
 			Theme Background Color
 =============================================*/
@@ -74,7 +74,7 @@ a:active,
 .sj-formaddnewfield .form-group .sj-checkbox input[type=checkbox] + label:after,
 .chosen-container .chosen-results li.highlighted
 
-{ background:#bab250;}
+{ background:linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff);}
 /*=============================================
 			Theme Border Color
 =============================================*/
@@ -89,4 +89,4 @@ input:focus,
 .children,
 .sj-tagnew:before
 
-{ border-color: #bab250; }
+{ border-color: linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff); }

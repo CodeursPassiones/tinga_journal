@@ -9,20 +9,9 @@
 
                         <div class="sj-widget sj-widgetsinginwith">
                             <div class="sj-widgetcontent">
-                                <ul>
-                                    <li class="sj-logingoogle"><a href="javascript:void(0);"><i
-                                                class="fab fa-google-plus-g"></i><span>Sign in
-                                                with<em>“Google”</em></span></a></li>
-                                    <li class="sj-loginfb"><a href="javascript:void(0);"><i
-                                                class="fab fa-facebook-f"></i><span>Sign in
-                                                with<em>“Facebook”</em></span></a></li>
-                                    <li class="sj-loginlinkdin"><a href="javascript:void(0);"><i
-                                                class="fab fa-linkedin-in"></i><span>Sign in
-                                                with<em>“Linkedin”</em></span></a></li>
-                                    <li class="sj-logintwitter"><a href="javascript:void(0);"><i
-                                                class="fab fa-twitter"></i><span>Sign in with<em>“Twitter”</em></span></a>
-                                    </li>
-                                </ul>
+                                <strong class="sj-logo"><a href={{ route('home') }}><img
+                                            src={{ asset('assets/images/logo-templates/logo.png') }}
+                                            alt="Tinga Logo"></a></strong>
                             </div>
                         </div>
                     </aside>
