@@ -12,10 +12,19 @@ use App\Http\Controllers\Controller;
 
 class ArticleAdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $articles = Article::with(['discipline', 'issue'])->orderBy('created_at', 'desc')->paginate(5);
+            $search = $request->input('search');
+            // $sortOrder = $request->input('sort_order', 'asc');
+
+            $query = Article::with(['discipline', 'issue'])->orderBy('created_at', 'desc');
+            if ($search) {
+                $query->where('title', 'LIKE', '%'.$search.'%');
+                $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
+                $query->orWhere('content', 'LIKE', '%'.$search.'%');
+            }
+            $articles = $query->paginate(5);
 
             return view('pages.admin.articles.index', compact('articles'));
         } catch (\Throwable $th) {
