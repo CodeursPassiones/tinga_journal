@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-lg btn-block btn-primary w-100" type="submit" id="submitBtn">
-                                    <span class="normal-status"> Se connester
+                                    <span class="normal-status"> Se connecter
                                     </span>
                                     <span class="indicateur d-none">
                                         <span class="spinner-border spinner-border-sm me-1" role="status"

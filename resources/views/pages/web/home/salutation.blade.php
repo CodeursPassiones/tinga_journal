@@ -21,8 +21,8 @@
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7 sj-verticalmiddle">
                     <div class="sj-welcomecontent">
                         <div class="sj-welcomehead">
-                            <span>Bienvenue</span>
-                            <h2>Découvrez les Dernières Recherches</h2>
+                            <h2>Bienvenue sur la Revue Langues, Littératures, Arts et Culture (2LAC)</h2>
+                            <span style="margin-top: 6px">Découvrez les Dernières Recherches</span>
                         </div>
                         <div class="sj-description">
                             <p>Nous vous invitons à explorer les recherches les plus récentes. Nos publications offrent

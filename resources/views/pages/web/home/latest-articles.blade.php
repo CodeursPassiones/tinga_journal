@@ -1,6 +1,6 @@
 <section class="sj-haslayout sj-sectioninnerspace">
     <div class="sj-borderheading">
-        <h3>Les Tout derniers</h3>
+        <h3>Publiés récemment</h3>
         <a class="sj-btnview" href={{ route('web.articles.list') }}>Voir Tout </a>
     </div>
     <style>

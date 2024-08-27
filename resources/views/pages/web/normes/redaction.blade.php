@@ -223,7 +223,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-4  ">
+                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ml-auto ">
                     @include('partials.right-aside')
                 </div>
             </div>
