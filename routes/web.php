@@ -79,6 +79,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::prefix('/users')->group(function () {
             Route::get('/list', [UserAdminController::class,  'index'])->name('admin.users.list');
+            Route::post('/store', [UserAdminController::class,  'store'])->name('admin.users.store');
+            Route::post('/update', [UserAdminController::class,  'update'])->name('admin.users.update');
         });
         /*
          * Account

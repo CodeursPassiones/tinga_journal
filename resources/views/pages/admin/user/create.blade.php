@@ -10,7 +10,7 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo" id="userAddForm">
                      <fieldset>
                          <div class="form-group">
                              <input type="text" name="lastname" class="form-control" placeholder="Nom*">
@@ -25,21 +25,33 @@
                              <input type="password" name="password" class="form-control" placeholder="Mot De Passe*">
                          </div>
                          <div class="form-group">
-                             <input type="password" name="passwordConfirmation" class="form-control"
+                             <input type="password" name="password_confirmation" class="form-control"
                                  placeholder="Confirmer Mot De Passe*">
                          </div>
                          <div class="sj-selectgroup">
                              @foreach ($roles as $role)
                                  <span class="sj-radio">
-                                     <input id="sj-{{ $role->id }}" type="radio" name="role"
-                                         value="{{ $role->id }}">
-                                     <label for="sj-{{ $role->id }}">{{ $role->name }}</label>
+                                     <input id="sj-a{{ $role->id }}" type="radio" name="role"
+                                         value="{{ $role->name }}" />
+                                     <label for="sj-a{{ $role->id }}">
+                                         {{ $role->name }}
+
+                                     </label>
                                  </span>
                              @endforeach
                          </div>
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button type="submit" class="sj-btn sj-btnactive">Soumettre</button>
+                         <button class="sj-btn sj-btnactive" type="submit" id="userAddBtn">
+                             <span class="normal-status">
+                                 Mettre à jour
+                             </span>
+                             <span class="indicateur d-none">
+                                 <span><i class="fa fa-spinner text-secondary"></i>
+                                     Chargement...
+                                 </span>
+
+                         </button>
                      </div>
                  </form>
 

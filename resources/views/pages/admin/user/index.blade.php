@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -77,7 +77,7 @@
                                 <div class="sj-addremove">
                                     <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                         data-target="#UpdateUserModal{{ $user->id }}"><i class="ti-pencil"></i></a>
-                                    <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a>
+                                    {{-- <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a> --}}
                                 </div>
                             </div>
                         </li>
@@ -96,3 +96,7 @@
     </div>
     @include('pages.admin.user.create')
 @endsection
+@push('js')
+    <script src={{ asset('app-js/admin/user/add.js') }}></script>
+    <script src={{ asset('app-js/admin/user/update.js') }}></script>
+@endpush

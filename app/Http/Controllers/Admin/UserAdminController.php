@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Spatie\Permission\Models\Role;
 
 class UserAdminController extends Controller
 {
@@ -16,7 +18,7 @@ class UserAdminController extends Controller
     public function index()
     {
         try {
-            $users = User::with(['roles'])->orderBy('lastname', 'ASC')->paginate(5);
+            $users = User::with(['roles'])->orderBy('firstname', 'ASC')->paginate(5);
             $roles = Role::all();
 
             return view('pages.admin.user.index', compact('users', 'roles'));
@@ -79,6 +81,41 @@ class UserAdminController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $this->validate($request, [
+                'role' => 'required',
+
+                'lastname' => 'required|max:20',
+                'firstname' => 'required|max:20',
+
+                'email' => 'email|unique:users,email',
+                'password' => 'required|min:8|confirmed']);
+
+            $user = User::create([
+                'lastname' => $request->input('lastname'),
+                'firstname' => $request->input('firstname'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+
+            $user->syncRoles([$request->input('role')]);
+            // $currentUser = Auth::user();
+
+            // Envoyer le lien de réinitialisation du mot de passe
+            // $status = Password::sendResetLink(
+            //     $request->only('email')
+            // );
+            // if ($status === Password::RESET_LINK_SENT) {
+            //     return response()->json(['message' => __("Le compte à été créé et un lien est envoyé à l'utilisateur pour qu'il change de mode de passe"), 'ok' => true]);
+            // } else {
+            //     return response()->json(['message' => __('Une erreur est survenue'), 'ok' => false]);
+            // }
+
+            return response()->json(['ok' => true, 'message' => 'Utilisateur créé avec succès !'], 200);
+        } catch (\Exception $e) {
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -98,8 +135,43 @@ class UserAdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
+        try {
+            $this->validate($request, [
+                'role' => 'required',
+
+                'lastname' => 'required|max:20',
+                'firstname' => 'required|max:20',
+
+                'email' => 'email|unique:users,email',
+                'id' => $request->input('id'),
+            ]);
+            $user = User::find($request->input('id'));
+            $user->update([
+                'lastname' => $request->input('lastname'),
+                'firstname' => $request->input('firstname'),
+                'email' => $request->input('email'),
+            ]);
+
+            $user->syncRoles([$request->input('role')]);
+            // $currentUser = Auth::user();
+
+            // Envoyer le lien de réinitialisation du mot de passe
+            // $status = Password::sendResetLink(
+            //     $request->only('email')
+            // );
+            // if ($status === Password::RESET_LINK_SENT) {
+            //     return response()->json(['message' => __("Le compte à été créé et un lien est envoyé à l'utilisateur pour qu'il change de mode de passe"), 'ok' => true]);
+            // } else {
+            //     return response()->json(['message' => __('Une erreur est survenue'), 'ok' => false]);
+            // }
+
+            return response()->json(['ok' => true, 'message' => 'Utilisateur Mis à jour avec succès !'], 200);
+        } catch (\Exception $e) {
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     /**

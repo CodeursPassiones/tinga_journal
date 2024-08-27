@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('lastname');
             $table->string('username')->nullable();
             $table->date('birthdate')->nullable();
-            $table->enum('gender', ['Male', 'Female']);
+            $table->enum('gender', ['Male', 'Female'])->nullable();
             $table->string('country')->default('Togo')->nullable();
             $table->string('city')->default('Sokodé')->nullable();
             $table->string('address1')->default('quartier')->nullable();
