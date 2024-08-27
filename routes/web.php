@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleAdminController;
+use App\Http\Controllers\Admin\DisciplineAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Web\ArticleWebController;
@@ -81,6 +82,16 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [UserAdminController::class,  'index'])->name('admin.users.list');
             Route::post('/store', [UserAdminController::class,  'store'])->name('admin.users.store');
             Route::post('/update', [UserAdminController::class,  'update'])->name('admin.users.update');
+        });
+
+        /*
+         * Discipline
+         */
+
+        Route::prefix('/disciplines')->group(function () {
+            Route::get('/list', [DisciplineAdminController::class,  'index'])->name('admin.disciplines.list');
+            Route::post('/store', [DisciplineAdminController::class,  'store'])->name('admin.disciplines.store');
+            Route::post('/update', [DisciplineAdminController::class,  'update'])->name('admin.disciplines.update');
         });
         /*
          * Account

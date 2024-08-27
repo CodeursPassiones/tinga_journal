@@ -30,6 +30,13 @@
                         </span>
                     </a>
                 </li>
+                <li class="  {{ Request::is('admin/disciplines/list') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.disciplines.list') }}><i class="lnr lnr-layers"></i>
+                        <span>Gestion Disciplines
+
+                        </span>
+                    </a>
+                </li>
                 <li class="  {{ Request::is('admin/account/settings') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.account.settings') }}><i class="lnr lnr-lock"></i>
                         <span>Paramettres Compte

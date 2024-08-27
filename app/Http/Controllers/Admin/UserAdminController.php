@@ -52,7 +52,7 @@ class UserAdminController extends Controller
         } catch (\Exception $e) {
             return response()->json(['ok' => false, 'message' => $e->getMessage()]);
 
-            return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 
