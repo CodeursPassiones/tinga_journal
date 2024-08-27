@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Spatie\Permission\Models\Role;
 
 class UserAdminController extends Controller
 {
@@ -140,14 +141,17 @@ class UserAdminController extends Controller
         try {
             $this->validate($request, [
                 'role' => 'required',
-
                 'lastname' => 'required|max:20',
                 'firstname' => 'required|max:20',
-
-                'email' => 'email|unique:users,email',
-                'id' => $request->input('id'),
+                'email' => [
+                    'email',
+                    Rule::unique('users', 'email')->ignore($request->input('user_id')),
+                ],
+                'user_id' => 'required',
             ]);
-            $user = User::find($request->input('id'));
+
+            return response()->json(['ok' => true, 'message' => 'Utilisateur Mis à jour avec succès !'], 200);
+            $user = User::find($request->input('user_id'));
             $user->update([
                 'lastname' => $request->input('lastname'),
                 'firstname' => $request->input('firstname'),

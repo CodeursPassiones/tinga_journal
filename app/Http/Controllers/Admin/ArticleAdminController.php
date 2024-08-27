@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Issue;
 use App\Models\Article;
 use App\Models\Discipline;
+use App\Models\ArticleUser;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ArticleAdminController extends Controller
@@ -24,23 +27,80 @@ class ArticleAdminController extends Controller
         }
     }
 
-    public function create()
+    public function create(Request $request)
     {
         try {
+            // Récupérer l'issue_id de la requête
+            $issue_id = $request->input('issue_id');
+
+            // Vérifier si un issue_id est fourni et récupérer l'issue correspondante
+            if ($issue_id) {
+                $issue = Issue::find($issue_id);
+            }
+
+            // Si aucun issue_id n'est fourni ou si l'issue correspondante n'existe pas
+            if (!isset($issue) || !$issue) {
+                $issue = Issue::orderBy('number', 'desc')->first();
+            }
+
+            // Récupérer les disciplines et auteurs
             $disciplines = Discipline::orderBy('name', 'asc')->get();
             $authors = User::whereHas('roles', function ($query) {
                 $query->where('name', 'author');
             })
-                ->orderBy('lastname', 'ASC')
-                ->get();
+            ->orderBy('lastname', 'ASC')
+            ->get();
 
-            return view('pages.admin.articles.create', compact('disciplines', 'authors'));
+            // Retourner la vue avec les données
+            return view('pages.admin.articles.create', compact('disciplines', 'authors', 'issue'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
+            // En cas d'erreur, afficher le message et la page d'erreur 500
             dd($th->getMessage());
 
             return view('errors.500');
+        }
+    }
+
+    public function store(Request $request)
+    {
+        // Validation des données du formulaire
+        $validatedData = $request->validate([
+            'issue_id' => 'required|exists:issues,id',
+            'title' => 'required|string|max:255',
+            'discipline' => 'required|exists:disciplines,id',
+            'authors' => 'required|array',
+            'authors.*' => 'exists:users,id',
+
+            'abstract' => 'required|string',
+            'content' => 'required|string',
+        ]);
+
+        try {
+            // Création de l'article
+            $article = Article::create([
+                'issue_id' => $validatedData['issue_id'],
+                'title' => $validatedData['title'],
+                'discipline_id' => $validatedData['discipline'],
+                'abstract' => $validatedData['abstract'],
+                'content' => $validatedData['content'],
+                'user_id' => auth()->user()->id,
+            ]);
+
+            // Associer les auteurs à l'article
+            foreach ($validatedData['authors'] as $value) {
+                // code...
+                ArticleUser::create([
+                    'user_id' => $value,
+                    'article_id' => $article->id,
+                    'role' => 'author',
+                ]);
+            }
+
+            // Redirection avec message de succès
+            return response()->json(['message' => 'Article créé avec succès.', 'ok' => true, 'article_id' => $article->id]);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 }

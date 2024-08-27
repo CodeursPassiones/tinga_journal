@@ -1,6 +1,8 @@
 "use strict";
 
 let AppAdminArticleCreation = (function () {
+    let articleAddForm;
+    let articleAddBtn;
     const initSummerNote = () => {
         jQuery("#content").summernote({
             height: 300, // set editor height
@@ -14,10 +16,36 @@ let AppAdminArticleCreation = (function () {
             placeholder: "Choisissez les",
         });
     };
+    const addArticleUrl = "/admin/articles/store";
+
+    const handleSubmit = () => {
+        articleAddBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(articleAddForm);
+            AppModules.submitFromBtn(
+                articleAddBtn,
+                formData,
+                addArticleUrl,
+                addNatureCallback
+            );
+        });
+    };
+    let addNatureCallback = () => {
+        window.location.href = "/admin/articles/list";
+    };
     return {
         init: () => {
+            articleAddForm = document.querySelector("#articleAddForm");
+
+            if (!articleAddForm) {
+                return;
+            }
+
+            articleAddBtn = articleAddForm.querySelector("#articleAddBtn");
+
             initSummerNote();
             initSelect2();
+            handleSubmit();
         },
     };
 })();

@@ -11,7 +11,7 @@
              </div>
              <div class="modal-body">
                  <form class="sj-formtheme sj-formregister sj-formregistervtwo userUpdateForm">
-                     <input type="hidden" name="id" value={{ $user->id }}>
+                     <input type="hidden" name="user_id" value={{ $user->id }}>
                      <fieldset>
                          <div class="form-group">
                              <input type="text" name="lastname" class="form-control" placeholder="Nom"

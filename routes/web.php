@@ -28,22 +28,22 @@ Route::prefix('/web')->group(function () {
      * About et normes
      */
     Route::get('/about', [WebsiteWebController::class, 'aboutUs'])->name('web.about');
-    Route::get('/normes', function () { return view('pages.web.normes.index');})->name('web.normes');
+    Route::get('/normes', function () { return view('pages.web.normes.index'); })->name('web.normes');
 
     /*
      * Instructions
      */
     Route::prefix('/instructions')->group(function () {
-        Route::get('/rapporteurs', function () { return view('pages.web.normes.rapporteurs');})->name('instructions.rapporteurs');
-        Route::get('/auteurs', function () {return redirect()->route('web.normes');})->name('instructions.auteurs');
+        Route::get('/rapporteurs', function () { return view('pages.web.normes.rapporteurs'); })->name('instructions.rapporteurs');
+        Route::get('/auteurs', function () {return redirect()->route('web.normes'); })->name('instructions.auteurs');
     });
     /*
      * Administration
      */
     Route::prefix('/administration')->group(function () {
-        Route::get('/redaction', function () { return view('pages.web.normes.redaction');})->name('administration.redaction');
-        Route::get('/gestion', function () {return view('pages.web.normes.gestion');})->name('administration.gestion');
-        Route::get('/scientifique', function () {return view('pages.web.normes.scientifique');})->name('administration.scientifique');
+        Route::get('/redaction', function () { return view('pages.web.normes.redaction'); })->name('administration.redaction');
+        Route::get('/gestion', function () {return view('pages.web.normes.gestion'); })->name('administration.gestion');
+        Route::get('/scientifique', function () {return view('pages.web.normes.scientifique'); })->name('administration.scientifique');
     });
     /*
      * Articles
@@ -95,6 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::prefix('/articles')->group(function () {
             Route::get('/list', [ArticleAdminController::class, 'index'])->name('admin.articles.list');
             Route::get('/create', [ArticleAdminController::class, 'create'])->name('admin.articles.create');
+            Route::post('/store', [ArticleAdminController::class, 'store'])->name('admin.articles.store');
         });
         /*
          * Users

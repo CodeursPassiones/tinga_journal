@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Discipline;
 use App\Models\Issue;
 use App\Models\Journal;
+use App\Models\Discipline;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DisciplineAdminController extends Controller
 {
@@ -47,7 +47,7 @@ class DisciplineAdminController extends Controller
             $this->validate($request, [
                 'name' => 'required|max:20',
 
-                'journal_id' => 'required',
+                'journal_id' => 'required|exists:journals,id',
             ]);
 
             $discipline = Discipline::create([

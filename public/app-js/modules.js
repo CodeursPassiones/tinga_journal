@@ -95,8 +95,8 @@ const AppModules = (function () {
                             "success"
                         ).then(function (result) {
                             if (result.isDismissed || result.isConfirmed) {
-                                if (callback == null) {
-                                    location.href = "/";
+                                if (callback == null || callback == undefined) {
+                                    return response;
                                 } else {
                                     callback();
                                 }

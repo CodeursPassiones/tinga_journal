@@ -11,7 +11,7 @@ let AppDisciplineAdd = (function () {
     const addIssueUrl = "/admin/issues/store";
 
     let handleDisciplineAdd = () => {
-        disciplineAddBtn.addEventListener("click", (e) => {
+        disciplineAddBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             const formData = new FormData(addDisciplineForm);
             AppModules.submitFromBtn(
