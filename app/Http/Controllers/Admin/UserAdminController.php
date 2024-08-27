@@ -150,7 +150,6 @@ class UserAdminController extends Controller
                 'user_id' => 'required',
             ]);
 
-            return response()->json(['ok' => true, 'message' => 'Utilisateur Mis à jour avec succès !'], 200);
             $user = User::find($request->input('user_id'));
             $user->update([
                 'lastname' => $request->input('lastname'),
