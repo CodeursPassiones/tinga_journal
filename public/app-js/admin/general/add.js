@@ -3,17 +3,34 @@ let AppDisciplineAdd = (function () {
     let addDisciplineForm;
 
     let disciplineAddBtn;
+    let addIssueForm;
 
-    const addNatureUrl = "/admin/disciplines/store";
+    let issueAddBtn;
 
-    let handleUserAdd = () => {
+    const addDissciplineUrl = "/admin/disciplines/store";
+    const addIssueUrl = "/admin/issues/store";
+
+    let handleDisciplineAdd = () => {
         disciplineAddBtn.addEventListener("click", (e) => {
             e.preventDefault();
             const formData = new FormData(addDisciplineForm);
             AppModules.submitFromBtn(
                 disciplineAddBtn,
                 formData,
-                addNatureUrl,
+                addDissciplineUrl,
+                addNatureCallback
+            );
+        });
+    };
+
+    let handleIssueAdd = () => {
+        issueAddBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const formData = new FormData(addIssueForm);
+            AppModules.submitFromBtn(
+                issueAddBtn,
+                formData,
+                addIssueUrl,
                 addNatureCallback
             );
         });
@@ -25,14 +42,17 @@ let AppDisciplineAdd = (function () {
     return {
         init: () => {
             addDisciplineForm = document.querySelector("#disciplineAddForm");
-            if (!addDisciplineForm) {
+            addIssueForm = document.querySelector("#issueAddForm");
+            if (!addDisciplineForm || !addIssueForm) {
                 return;
             }
 
             disciplineAddBtn =
                 addDisciplineForm.querySelector("#disciplineAddBtn");
+            issueAddBtn = addIssueForm.querySelector("#issueAddBtn");
 
-            handleUserAdd();
+            handleDisciplineAdd();
+            handleIssueAdd();
         },
     };
 })();

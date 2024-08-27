@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Discipline;
+use App\Models\Issue;
 use App\Models\Journal;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,12 @@ class DisciplineAdminController extends Controller
     public function index()
     {
         try {
+            $issues = Issue::paginate(6);
+
             $disciplines = Discipline::paginate(6);
             $journal = Journal::first();
 
-            return view('pages.admin.disciplines.index', compact('disciplines', 'journal'));
+            return view('pages.admin.general.index', compact('disciplines', 'journal', 'issues'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;
@@ -56,8 +59,8 @@ class DisciplineAdminController extends Controller
 
             return response()->json(['message' => "La discipline {$discipline->name} a été ajouter avec succès", 'ok' => true]);
         } catch (\Exception $e) {
-            // return response()->json(['ok' => false, 'message' => $e->getMessage()]);
-            return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 
