@@ -26,13 +26,13 @@
     <div id="sj-content" class="sj-content">
         <div class="sj-addarticleholdcontent">
             <div class="sj-dashboardboxtitle">
-                <h2>Paramettres Compte</h2>
+                <h2>Parametres Compte</h2>
             </div>
 
         </div>
         <div class="sj-addarticleholdcontent">
             <div class="sj-dashboardboxtitle">
-                <h2>Changer Password</h2>
+                <h2>Changer Mot de passe</h2>
             </div>
             <div class="sj-acsettingthold">
                 <form class="sj-formtheme sj-formpassword" id="passUpForm">
