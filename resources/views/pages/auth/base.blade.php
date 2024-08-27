@@ -9,9 +9,10 @@
 
                         <div class="sj-widget sj-widgetsinginwith">
                             <div class="sj-widgetcontent">
-                                <strong class="sj-logo"><a href={{ route('home') }}><img
+                                {{-- <strong class="sj-logo"><a href={{ route('home') }}><img
                                             src={{ asset('assets/images/logo-templates/logo.png') }}
-                                            alt="Tinga Logo"></a></strong>
+                                            alt="Tinga Logo"></a></strong> --}}
+                                <a href="" class="tinga"></a>
                             </div>
                         </div>
                     </aside>
