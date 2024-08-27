@@ -826,7 +826,8 @@
     vertical-align: top;
 }
 .sj-categorysrightarea a:last-child{margin-right: 0;}
-.sj-categorysrightarea a.sj-pencilbtn{color:#999;}
+.sj-categorysrightarea a.sj-pencilbtn {color:#999;}
+.sj-categorysrightarea a.sj-eyebtn {color:#555408;}
 .sj-categorysrightarea a.sj-trashbtn{color: #ca5e58;}
 .sj-allcategorys > li.sj-deleteuser{
 	padding:10px 30px;

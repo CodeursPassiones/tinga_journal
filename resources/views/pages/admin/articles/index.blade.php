@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -86,21 +86,39 @@
                             <div class="sj-userbtnarea">
 
                                 <div class="sj-categorysrightarea">
-                                    <a href="javascript:void(0);" class="sj-pencilbtn"><i class="ti-pencil"></i></a>
-                                    <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a>
-                                </div>
-                            </div>
-                            <div class="sj-description">
-                                <p>>{{ Str::limit($article->abstract, 100) }}...</p>
-                            </div>
+                                    @switch($article->status)
+                                        @case('DRAFT')
+                                            <a href={{ route('admin.articles.publish', $article->id) }}><i class="fa fa-share"
+                                                    id="shareArticle"></i></a>
+                                        @break
 
-                        </div>
+                                        @case('PUBLISHED')
+                                            <a href={{ route('admin.articles.hide', $article->id) }}><i class="fa fa-eye-slash"
+                                                    id="hideArticle"></i></a>
+                                        @break
 
-                    </li>
-                @endforeach
-            @endif
+                                        @default
+                            <li><a href="#"><i class="fa fa-share" id="hideArticle"></i><span>Cacher</span></a>
+                            </li>
+                    @endswitch
+                    <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn" target="_blank"><i
+                            class="ti-eye"></i></a>
+                    <a href={{ route('admin.articles.edit', $article->id) }} class="sj-pencilbtn"><i
+                            class="ti-pencil"></i></a>
+                    <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a>
+    </div>
+    </div>
+    <div class="sj-description">
+        <p>>{{ Str::limit($article->abstract, 100) }}...</p>
+    </div>
 
-        </ul>
-        {!! $articles->withQueryString()->links() !!}
+    </div>
+
+    </li>
+    @endforeach
+    @endif
+
+    </ul>
+    {!! $articles->withQueryString()->links() !!}
     </div>
 @endsection

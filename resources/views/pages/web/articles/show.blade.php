@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -21,8 +21,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -33,8 +33,31 @@
                         <div class="sj-articledetail">
                             <ul class="sj-downloadprint">
                                 <li><a href="javascript:void(0);"><i class="fa fa-print"></i><span>Print Now</span></a></li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-envelope"></i><span>Email Us</span></a>
-                                </li>
+
+                                @auth
+                                    <li><a href={{ route('admin.articles.edit', $article->id) }}><i
+                                                class="fa fa-pencil"></i><span>Modifier</span></a>
+                                    </li>
+                                    @switch($article->status)
+                                        @case('DRAFT')
+                                            <li><a href={{ route('admin.articles.publish', $article->id) }}><i class="fa fa-share"
+                                                        id="shareArticle"></i><span>Publier</span></a>
+                                            </li>
+                                        @break
+
+                                        @case('PUBLISHED')
+                                            <li><a href={{ route('admin.articles.hide', $article->id) }}><i class="fa fa-eye-slash"
+                                                        id="hideArticle"></i><span>Cacher</span></a>
+                                            </li>
+                                        @break
+
+                                        @default
+                                            <li><a href="#"><i class="fa fa-share" id="hideArticle"></i><span>Cacher</span></a>
+                                            </li>
+                                    @endswitch
+
+
+                                @endauth
                                 <li><a href="javascript:void(0);"><i class="fa fa-download"></i><span>Download</span></a>
                                 </li>
                             </ul>
