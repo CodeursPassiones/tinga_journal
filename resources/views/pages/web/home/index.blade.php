@@ -1,19 +1,30 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                     Home Banner Start
-                                   *************************************-->
+                                                                                                 Home Banner Start
+                                                                                               *************************************-->
     <div id="sj-homebanner" class="sj-homebanner">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="sj-postbook">
                         <figure class="sj-featureimg">
-                            <a class="sj-btnvideo" href="javascript:void(0);"><i class="lnr lnr-film-play"></i><span>Watch
-                                    Video Documentary</span></a>
+                            <a class="sj-btnvideo" href="javascript:void(0);"><i class="lnr lnr-film-play"></i><span>Dernière
+                                    publivation</span></a>
                             <div class="sj-bookimg">
-                                <div class="sj-frontcover"><img src={{ asset('assets/images/slider/fronimg.png') }}
-                                        alt="image description">
+                                <div class="sj-frontcover"><img src={{ asset($lastArticle->image_url) }}
+                                        alt="image description" id="bannerImgArt">
+                                    <style>
+                                        #bannerImgArt {
+                                            width: 443px;
+                                            height: 552px;
+                                            min-width: 443px;
+                                            max-width: 443px;
+                                            min-height: 552px;
+                                            max-height: 552px;
+                                            object-fit: contain !important;
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </figure>
@@ -21,10 +32,11 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="sj-bannercontent">
-                        <h1><span>We Welcome Latest</span>Research Articles in<span>Field of Science</span></h1>
+                        <h1>{{ $lastArticle->title }}</h1>
                         <div class="sj-description">
-                            <p>Consectetur adipisicing elit sedaui sedaui labore quis nostrud exercitation... <a
-                                    href="javascript:void(0);">Read more</a></p>
+                            <p>{{ $lastArticle->abstract }}... <a
+                                    href={{ route('web.articles.show', $lastArticle->id) }}>Lire
+                                    Plus</a></p>
                         </div>
                     </div>
                 </div>
@@ -32,247 +44,26 @@
         </div>
     </div>
     <!--************************************
-                                     Home Banner End
-                                   *************************************-->
+                                                                                                 Home Banner End
+                                                                                               *************************************-->
 @endsection
 @section('web-content')
-    <div class="sj-haslayout">
-        <div class="container">
-            <div class="row">
-                <div class="sj-welcomegreeting">
-                    <div class="col-12 col-sm-12 col-md-5 col-lg-5 sj-verticalmiddle">
-                        <div id="sj-welcomeimgslider" class="sj-welcomeimgslider sj-welcomeslider owl-carousel">
-                            <figure class="sj-welcomeimg item">
-                                <img src="images/welcomeimg/img-01.jpg" alt="welcome Image">
-                            </figure>
-                            <figure class="sj-welcomeimg item">
-                                <img src="images/welcomeimg/img-02.jpg" alt="welcome Image">
-                            </figure>
-                            <figure class="sj-welcomeimg item">
-                                <img src="images/welcomeimg/img-03.jpg" alt="welcome Image">
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-7 col-lg-7 sj-verticalmiddle">
-                        <div class="sj-welcomecontent">
-                            <div class="sj-welcomehead">
-                                <span>Greetings &amp; Welcome</span>
-                                <h2>Explore Latest Researches</h2>
-                            </div>
-                            <div class="sj-description">
-                                <p>Consectetur adipisicing elied dotaem eiusmod incididunt ulabore etoimisi dolore magna
-                                    aliqua aenimalie admie veniam aistrud exrcittion ullamco laboris utaliquip commodouis
-                                    aute irure dolorendries in voluptate velit esse cillum dolore.</p>
-                            </div>
-                            <div class="sj-btnarea">
-                                <a class="sj-btn" href="javascript:void(0);">Read More</a>
-                                <a class="sj-btn sj-btnactive" href="javascript:void(0);">Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('pages.web.home.salutation')
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div id="sj-content" class="sj-content">
                         <!--************************************
-                                                    Editor's Pick Start
-                                            *************************************-->
-                        <section class="sj-haslayout sj-sectioninnerspace">
-                            <div class="sj-borderheading">
-                                <h3>Editor’s Pick</h3>
-                                <a class="sj-btnview" href="javascript:void(0);">View All</a>
-                            </div>
-                            <div id="sj-editorchoiceslider" class="sj-editorchoiceslider sj-editorschoice owl-carousel">
-                                <div class="item">
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-01.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Hillary
-                                                        Farnham</a></span>
-                                                <h3><a href="javascript:void(0);">Toward Better-Quality Compounded Drugs —
-                                                        An Update form</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-02.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Coleman
-                                                        Hoff</a></span>
-                                                <h3><a href="javascript:void(0);">Toward Better-Quality Compounded Drugs</a>
-                                                </h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-03.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Frederica
-                                                        Kinnaird</a></span>
-                                                <h3><a href="javascript:void(0);">A Milestone for CART Cells &amp;
-                                                        Treatment</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="item">
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-01.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Hillary
-                                                        Farnham</a></span>
-                                                <h3><a href="javascript:void(0);">Toward Better-Quality Compounded Drugs —
-                                                        An Update form</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-02.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Coleman
-                                                        Hoff</a></span>
-                                                <h3><a href="javascript:void(0);">Toward Better-Quality Compounded
-                                                        Drugs</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-03.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Frederica
-                                                        Kinnaird</a></span>
-                                                <h3><a href="javascript:void(0);">A Milestone for CART Cells &amp;
-                                                        Treatment</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="item">
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-01.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Hillary
-                                                        Farnham</a></span>
-                                                <h3><a href="javascript:void(0);">Toward Better-Quality Compounded Drugs —
-                                                        An Update form</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-02.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Coleman
-                                                        Hoff</a></span>
-                                                <h3><a href="javascript:void(0);">Toward Better-Quality Compounded
-                                                        Drugs</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                    <article class="sj-post sj-editorchoice">
-                                        <figure class="sj-postimg">
-                                            <img src="images/editorchoice/img-03.jpg" alt="image description">
-                                        </figure>
-                                        <div class="sj-postcontent">
-                                            <div class="sj-head">
-                                                <span class="sj-username"><a href="javascript:void(0);">Frederica
-                                                        Kinnaird</a></span>
-                                                <h3><a href="javascript:void(0);">A Milestone for CART Cells &amp;
-                                                        Treatment</a></h3>
-                                            </div>
-                                            <div class="sj-description">
-                                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                                    et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                                    ullamco...</p>
-                                            </div>
-                                            <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                        </section>
+                                                                                                                Editor's Pick Start
+                                                                                                        *************************************-->
+                        @include('pages.web.home.latest-articles')
                         <!--************************************
-                                                    Editor's Pick End
-                                            *************************************-->
+                                                                                                                Editor's Pick End
+                                                                                                        *************************************-->
                         <!--************************************
-                                                    Previous Posts Start
-                                            *************************************-->
+                                                                                                                Previous Posts Start
+                                                                                                        *************************************-->
                         <section class="sj-haslayout sj-sectioninnerspace">
                             <div class="sj-borderheading">
                                 <h3>Previous Issues</h3>
@@ -286,18 +77,18 @@
                                             <span>2018</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#2017"
-                                            role="tab" aria-controls="2017" aria-selected="false">Issues From:
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#2017" role="tab"
+                                            aria-controls="2017" aria-selected="false">Issues From:
                                             <span>2017</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#2016"
-                                            role="tab" aria-controls="2016" aria-selected="false">Issues From:
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#2016" role="tab"
+                                            aria-controls="2016" aria-selected="false">Issues From:
                                             <span>2016</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="home-tabb" data-toggle="tab" href="#2015"
-                                            role="tab" aria-controls="2015" aria-selected="true">Issues From:
+                                        <a class="nav-link" id="home-tabb" data-toggle="tab" href="#2015" role="tab"
+                                            aria-controls="2015" aria-selected="true">Issues From:
                                             <span>2015</span></a>
                                     </li>
                                     <li class="nav-item">
@@ -323,8 +114,8 @@
                                                     </figure>
                                                     <div class="sj-postcontent">
                                                         <div class="sj-head">
-                                                            <span class="sj-username"><a
-                                                                    href="javascript:void(0);">Coleman Hoff</a></span>
+                                                            <span class="sj-username"><a href="javascript:void(0);">Coleman
+                                                                    Hoff</a></span>
                                                             <h3><a href="javascript:void(0);">Toward Better-Quality
                                                                     Compounded Drugs</a></h3>
                                                         </div>
@@ -1324,8 +1115,8 @@
                             </div>
                         </section>
                         <!--************************************
-                                                    Previous Posts End
-                                            *************************************-->
+                                                                                                                Previous Posts End
+                                                                                                        *************************************-->
 
                     </div>
                 </div>

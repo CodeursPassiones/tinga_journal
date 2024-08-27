@@ -58,7 +58,7 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function articleAuthor(): HasMany
+    public function articleUsers(): HasMany
     {
         return $this->hasMany(ArticleUser::class);
     }

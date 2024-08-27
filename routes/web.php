@@ -1,14 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\IssueWebController;
+use App\Http\Controllers\Web\ArticleWebController;
+use App\Http\Controllers\Web\WebsiteWebController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\IssueAdminController;
 use App\Http\Controllers\Admin\ArticleAdminController;
 use App\Http\Controllers\Admin\DisciplineAdminController;
-use App\Http\Controllers\Admin\IssueAdminController;
-use App\Http\Controllers\Admin\UserAdminController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Web\ArticleWebController;
-use App\Http\Controllers\Web\IssueWebController;
-use App\Http\Controllers\Web\WebsiteWebController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,8 @@ Route::prefix('/web')->group(function () {
     Route::prefix('/articles')->group(function () {
         Route::get('/list', [ArticleWebController::class, 'index']
         )->name('web.articles.list');
+        Route::get('/détails/{articleId}', [ArticleWebController::class, 'show']
+        )->name('web.articles.show');
     });
 
     /*
