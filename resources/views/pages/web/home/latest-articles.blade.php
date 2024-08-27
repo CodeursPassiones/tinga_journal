@@ -1,35 +1,53 @@
 <section class="sj-haslayout sj-sectioninnerspace">
     <div class="sj-borderheading">
         <h3>Les Tout derniers</h3>
-        <a class="sj-btnview" href={{ route('web.articles.list') }}>Voir Tout</a>
+        <a class="sj-btnview" href={{ route('web.articles.list') }}>Voir Tout {{ $latestArticles->count() }}</a>
     </div>
     <div id="sj-editorchoiceslider" class="sj-editorchoiceslider sj-editorschoice owl-carousel">
-
-        @for ($i = 0; $i < 3; $i++)
+        <style>
+            .figureLatestThree {
+                width: 270px;
+                height: 170px;
+                min-width: 270px;
+                max-width: 270px;
+                min-height: 170px;
+                max-height: 170px;
+                object-fit: scale-down !important;
+            }
+        </style>
+        @foreach ($latestArticles as $articleGroup)
             <div class="item">
-                @foreach ($latestArticles as $article)
+                @foreach ($articleGroup as $article)
+                    <article class="sj-post sj-editorchoice">
+
+                        <figure class="sj-postimg">
+                            <img src="{{ asset($article->image_path) }}" alt="image description"
+                                class="figureLatestThree">
+                        </figure>
+                        <div class="sj-postcontent">
+                            <div class="sj-head">
+                                <span class="sj-username">
+                                    <a href={{ route('web.articles.show', $article->id) }}>
+                                        @foreach ($article->articleUsers as $author)
+                                            {{ $author->user->firstname . ' ' . $author->user->lastnmae }} |
+                                        @endforeach
+                                    </a>
+                                </span>
+                                <h3>
+                                    <a href={{ route('web.articles.show', $article->id) }}>{{ $article->title }}</a>
+                                </h3>
+                            </div>
+                            <div class="sj-description">
+                                <p>{{ Str::limit($article->abstract, 100) }}...</p>
+                            </div>
+                            <a class="sj-btn" href={{ route('web.articles.show', $article->id) }}>Voir l'Article
+                                Complet</a>
+                        </div>
+                    </article>
                 @endforeach
-                <article class="sj-post sj-editorchoice">
-                    <figure class="sj-postimg">
-                        <img src="images/editorchoice/img-01.jpg" alt="image description">
-                    </figure>
-                    <div class="sj-postcontent">
-                        <div class="sj-head">
-                            <span class="sj-username"><a href="javascript:void(0);">Hillary
-                                    Farnham</a></span>
-                            <h3><a href="javascript:void(0);">Toward Better-Quality Compounded Drugs —
-                                    An Update form</a></h3>
-                        </div>
-                        <div class="sj-description">
-                            <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation
-                                ullamco...</p>
-                        </div>
-                        <a class="sj-btn" href="javascript:void(0);">View Full Article</a>
-                    </div>
-                </article>
 
             </div>
-        @endfor
+        @endforeach
+
     </div>
 </section>

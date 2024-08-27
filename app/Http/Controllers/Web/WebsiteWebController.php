@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
-use App\Models\Article;
 use App\Models\Issue;
+use App\Models\Article;
+use App\Http\Controllers\Controller;
 
 class WebsiteWebController extends Controller
 {
@@ -14,7 +14,7 @@ class WebsiteWebController extends Controller
             $lastArticle = Article::orderBy('publication_date', 'desc')->first();
             $latestIssues = Issue::with(['articles'])->whereHas('articles')->orderBy('publication_date', 'desc')->take(6)->get();
             $threeLatest = Article::orderBy('publication_date', 'desc')->take(3)->get();
-            $latestArticles = Article::orderBy('publication_date', 'desc')->take(9)->get();
+            $latestArticles = Article::orderBy('publication_date', 'desc')->take(6)->get()->chunk(3);
             // Regrouper les volumes par décennie
 
             return view('pages.web.home.index', compact('lastArticle', 'latestIssues', 'threeLatest', 'latestArticles'));

@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                     Home Banner Start
-                                                                                                   *************************************-->
+                                                                                                                 Home Banner Start
+                                                                                                               *************************************-->
     <div id="sj-homebanner" class="sj-homebanner">
         <div class="container">
             <div class="row">
@@ -34,7 +34,7 @@
                     <div class="sj-bannercontent">
                         <h1>{{ $lastArticle->title }}</h1>
                         <div class="sj-description">
-                            <p>{{ $lastArticle->abstract }}... <a
+                            <p>>{{ Str::limit($lastArticle->abstract, 100) }}... <a
                                     href={{ route('web.articles.show', $lastArticle->id) }}>Lire
                                     Plus</a></p>
                         </div>
@@ -44,8 +44,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                     Home Banner End
-                                                                                                   *************************************-->
+                                                                                                                 Home Banner End
+                                                                                                               *************************************-->
 @endsection
 @section('web-content')
     @include('pages.web.home.salutation')
@@ -55,15 +55,15 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div id="sj-content" class="sj-content">
                         <!--************************************
-                                                                                                                    Editor's Pick Start
-                                                                                                            *************************************-->
+                                                                                                                                Editor's Pick Start
+                                                                                                                        *************************************-->
                         @include('pages.web.home.latest-articles')
                         <!--************************************
-                                                                                                                    Editor's Pick End
-                                                                                                            *************************************-->
+                                                                                                                                Editor's Pick End
+                                                                                                                        *************************************-->
                         <!--************************************
-                                                                                                                    Previous Posts Start
-                                                                                                            *************************************-->
+                                                                                                                                Previous Posts Start
+                                                                                                                        *************************************-->
                         <section class="sj-haslayout sj-sectioninnerspace">
                             <div class="sj-borderheading">
                                 <h3>Previous Issues</h3>
@@ -1115,8 +1115,8 @@
                             </div>
                         </section>
                         <!--************************************
-                                                                                                                    Previous Posts End
-                                                                                                            *************************************-->
+                                                                                                                                Previous Posts End
+                                                                                                                        *************************************-->
 
                     </div>
                 </div>
