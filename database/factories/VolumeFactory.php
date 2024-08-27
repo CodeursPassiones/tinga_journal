@@ -20,7 +20,8 @@ class VolumeFactory extends Factory
             'title' => $this->faker->word(),
             'description' => $this->faker->text(),
 
-            'year' => $this->faker->year(),
+            'year' => 2024,
+
             'journal_id' => 1,
         ];
     }

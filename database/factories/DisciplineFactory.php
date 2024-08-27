@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -16,10 +15,21 @@ class DisciplineFactory extends Factory
      */
     public function definition(): array
     {
+        // Liste de disciplines fixes
+        $disciplines = [
+            'Littérature',
+            'Arts',
+            'Chimie',
+            'Biologie',
+            'Histoire',
+            'Géographie',
+            'Anglais',
+            'Français',
+        ];
+
         return [
             'journal_id' => 1,
-
-            'name' => $this->faker->colorName(),
+            'name' => $this->faker->randomElement($disciplines), // Choisir un nom au hasard parmi les disciplines
             'description' => $this->faker->text(),
         ];
     }

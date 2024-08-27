@@ -12,6 +12,6 @@ class VolumeSeeder extends Seeder
      */
     public function run(): void
     {
-        Volume::factory()->count(6)->create();
+        Volume::factory()->count(1)->create();
     }
 }
