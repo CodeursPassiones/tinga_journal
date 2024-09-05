@@ -15,10 +15,10 @@ return new class extends Migration {
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('abstract');
-            $table->text('content');
-            $table->string('matricule')->unique();
+            $table->string('title')->nullable();
+            $table->text('abstract')->nullable();
+            $table->text('content')->nullable();
+            $table->string('matricule')->unique()->nullable();
             $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED'])->default('DRAFT');
             $table->string('image_path')->default('assets/images/thumbnails/img-02.jpg');
             $table->dateTime('publication_date')->default(now());
@@ -29,7 +29,7 @@ return new class extends Migration {
             $table->string('doi')->unique()->nullable();
             $table->text('comment')->nullable();
             $table->foreignIdFor(Issue::class);
-            $table->foreignIdFor(Discipline::class);
+            $table->foreignIdFor(Discipline::class)->nullable();
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

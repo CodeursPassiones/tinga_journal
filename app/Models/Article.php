@@ -27,6 +27,7 @@ class Article extends Model
         'prefix',
         'comment',
         'doi',
+        'matricule',
     ];
     protected $casts = [
         'publication_date' => 'datetime',
@@ -73,7 +74,7 @@ class Article extends Model
     {
         parent::boot();
 
-        static::creating(function ($model) {
+        static::created(function ($model) {
             // Obtenir le plus grand ID actuel dans la table
             $maxId = static::max('id');
 

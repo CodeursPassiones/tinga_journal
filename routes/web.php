@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Web\IssueWebController;
-use App\Http\Controllers\Web\ArticleWebController;
-use App\Http\Controllers\Web\WebsiteWebController;
-use App\Http\Controllers\Admin\UserAdminController;
-use App\Http\Controllers\Admin\IssueAdminController;
 use App\Http\Controllers\Admin\ArticleAdminController;
 use App\Http\Controllers\Admin\DisciplineAdminController;
+use App\Http\Controllers\Admin\IssueAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\ArticleWebController;
+use App\Http\Controllers\Web\IssueWebController;
+use App\Http\Controllers\Web\WebsiteWebController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,12 +90,18 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::prefix('/articles')->group(function () {
             Route::get('/list', [ArticleAdminController::class, 'index'])->name('admin.articles.list');
-            Route::get('/create', [ArticleAdminController::class, 'create'])->name('admin.articles.create');
+
             Route::post('/store', [ArticleAdminController::class, 'store'])->name('admin.articles.store');
             Route::get('/edit/{articleId}', [ArticleAdminController::class, 'edit'])->name('admin.articles.edit');
             Route::post('/update/{articleId}', [ArticleAdminController::class, 'update'])->name('admin.articles.update');
             Route::get('/publish/{articleId}', [ArticleAdminController::class, 'publish'])->name('admin.articles.publish');
             Route::get('/hide/{articleId}', [ArticleAdminController::class, 'hide'])->name('admin.articles.hide');
+
+            Route::prefix('/view')->group(function () {
+                Route::get('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.files');
+                Route::get('/authors/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.authors');
+                Route::get('/metadata/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.metadata');
+            });
         });
         /*
          * Users
