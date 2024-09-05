@@ -109,7 +109,12 @@ class ArticleAdminController extends Controller
 
             // Création de l'article
             $article = $article->update([
-                $validatedData,
+                'title' => $request->input('title'),
+                'abstract' => $request->input('abstract'),
+                'prefix' => $request->input('prefix'),
+                'subtitle' => $request->input('subtitle'),
+                'keywords' => $request->input('keywords'),
+                'discipline_id' => $request->input('discipline'),
             ]);
             // dd($article);
 
