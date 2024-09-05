@@ -14,20 +14,25 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
+            // auto
             $table->id();
+            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED'])->default('DRAFT');
+            $table->string('image_path')->default('assets/images/thumbnails/img-02.jpg');
+            // Metadata
+
             $table->string('title')->nullable();
             $table->text('abstract')->nullable();
             $table->text('content')->nullable();
-            $table->string('matricule')->unique()->nullable();
-            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED'])->default('DRAFT');
-            $table->string('image_path')->default('assets/images/thumbnails/img-02.jpg');
-            $table->dateTime('publication_date')->default(now());
             $table->string('keywords')->nullable();
             $table->string('subtitle')->nullable();
             $table->text('references')->nullable();
             $table->string('prefix')->nullable();
             $table->string('doi')->unique()->nullable();
             $table->text('comment')->nullable();
+            $table->string('matricule')->unique()->nullable();
+
+            $table->dateTime('publication_date')->default(now());
+            // Foreign
             $table->foreignIdFor(Issue::class);
             $table->foreignIdFor(Discipline::class)->nullable();
             $table->foreignIdFor(User::class);

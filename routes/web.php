@@ -102,6 +102,11 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/authors/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.authors');
                 Route::get('/metadata/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.metadata');
             });
+            Route::prefix('/store')->group(function () {
+                Route::post('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.store.files');
+                Route::post('/authors/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.store.authors');
+                Route::post('/metadata', [ArticleAdminController::class, 'storeMetadata'])->name('admin.articles.store.metadata');
+            });
         });
         /*
          * Users

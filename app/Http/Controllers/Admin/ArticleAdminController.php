@@ -91,6 +91,36 @@ class ArticleAdminController extends Controller
         }
     }
 
+    public function storeMetadata(Request $request)
+    {
+        try {
+            // Validation des données du formulaire
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:100',
+                'discipline' => 'required|exists:disciplines,id',
+
+                'abstract' => 'required|string|max:255',
+                // 'prefix' => 'string|max:7',
+                // 'subtitle' => 'string|max:40',
+                // 'keywords' => 'string|max:100',
+                'article_id' => 'required|int',
+            ]);
+            $article = Article::find($validatedData['article_id']);
+
+            // Création de l'article
+            $article = $article->update([
+                $validatedData,
+            ]);
+            // dd($article);
+
+            // Redirection avec message de succès
+            return response()->json(['message' => 'Article créé avec succès.', 'ok' => true]);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
     public function store(Request $request)
     {
         // Validation des données du formulaire

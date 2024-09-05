@@ -4,7 +4,7 @@ let AppAdminArticleCreation = (function () {
     let articleAddForm;
     let articleAddBtn;
     const initSummerNote = () => {
-        jQuery("#content").summernote({
+        jQuery("#abstract").summernote({
             height: 300, // set editor height
             minHeight: null, // set minimum height of editor
             maxHeight: null, // set maximum height of editor
@@ -16,12 +16,14 @@ let AppAdminArticleCreation = (function () {
             placeholder: "Choisissez les",
         });
     };
-    const addArticleUrl = "/admin/articles/store";
+    const addArticleUrl = "/admin/articles/store/metadata";
 
     const handleSubmit = () => {
         articleAddBtn.addEventListener("click", async (e) => {
             e.preventDefault();
             const formData = new FormData(articleAddForm);
+            console.log(formData);
+            
             AppModules.submitFromBtn(
                 articleAddBtn,
                 formData,
@@ -31,17 +33,17 @@ let AppAdminArticleCreation = (function () {
         });
     };
     let addNatureCallback = () => {
-        window.location.href = "/admin/articles/list";
+        window.location.href = "/admin/articles/view/files/"+window.articleMtl;
     };
     return {
         init: () => {
-            articleAddForm = document.querySelector("#articleAddForm");
+            articleAddForm = document.querySelector("#articleMetadataForm");
 
             if (!articleAddForm) {
                 return;
             }
 
-            articleAddBtn = articleAddForm.querySelector("#articleAddBtn");
+            articleAddBtn = articleAddForm.querySelector("#articleMetadataBtn");
 
             initSummerNote();
             initSelect2();

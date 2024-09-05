@@ -1,9 +1,8 @@
 @extends('base')
 @section('style')
-    <!-- include summernote css/js -->
-    <link href={{ asset('assets/plugins/summernote/summernote-lite.min.css') }} rel="stylesheet">
-    <link href={{ asset('assets/plugins/select2/css/select2.min.css') }} rel="stylesheet">
+    @yield('form-style')
 
+    <link href={{ asset('assets/plugins/select2/css/select2.min.css') }} rel="stylesheet">
     @auth
         <link rel="stylesheet" href={{ asset('assets/css/dashboard.css') }}>
 
@@ -11,8 +10,8 @@
 @endsection
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -29,8 +28,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('web-content')
     @auth
@@ -49,8 +48,5 @@
     @endauth
 @endsection
 @push('js')
-    <script src={{ asset('assets/plugins/summernote/summernote-lite.min.js') }}></script>
-    <script src={{ asset('assets/plugins/summernote/lang/summernote-fr-FR.min.js') }}></script>
     <script src={{ asset('assets/plugins/select2/js/select2.min.js') }}></script>
-    <script src={{ asset('app-js/admin/article/create.js') }}></script>
 @endpush
