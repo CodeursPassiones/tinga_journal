@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -63,9 +63,12 @@
                             <h4>{{ $article->title }}</h4>
                         </div>
                         <div class="sj-nameandmail">
-                            <span>Auteur</span>
-                            <h4>{{ $article->user->firstname . ' ' . $article->user->lastname }}</h4>
-                            <span class="sj-mailinfo">{{ $article->user->email }}</span>
+                            <span>Auteurs</span>
+                            @foreach ($article->articleUsers as $author)
+                                <h4>{{ $author->user->firstname . ' ' . $author->user->lastname }}</h4>
+                                <span class="sj-mailinfo">{{ $author->user->email }}</span>
+                            @endforeach
+
                         </div>
                     </li>
                     <li id="collapse{{ $article->id }}" class="collapse sj-active sj-userinfohold"

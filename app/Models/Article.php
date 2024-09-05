@@ -21,6 +21,12 @@ class Article extends Model
         'issue_id',
         'discipline_id',
         'user_id',
+        'subtitle',
+        'references',
+        'keywords',
+        'prefix',
+        'comment',
+        'doi',
     ];
     protected $casts = [
         'publication_date' => 'datetime',

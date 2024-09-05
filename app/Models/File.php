@@ -17,10 +17,16 @@ class File extends Model
         'name',
         'description',
         'article_id',
+        'category_file_id',
     ];
 
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
+    }
+
+    public function categoryFile(): BelongsTo
+    {
+        return $this->belongsTo(CategoryFile::class);
     }
 }
