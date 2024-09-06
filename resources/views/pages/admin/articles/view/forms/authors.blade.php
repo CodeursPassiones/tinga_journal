@@ -3,6 +3,7 @@
     <link href={{ asset('assets/plugins/select2/css/select2.min.css') }} rel="stylesheet">
 @endsection
 @section('article-form')
+
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
         <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
             <div class="sj-dashboardboxtitle sj-titlewithform">

@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -52,9 +52,12 @@
                 <h3>Aucun article trouvé :(</h3>
             @else
                 @foreach ($articles as $article)
-                    <li id="heading{{ $article->id }}" class="sj-articleheader" data-toggle="collapse"
-                        data-target="#collapse{{ $article->id }}" aria-expanded="true"
-                        aria-controls="collapse{{ $article->id }}">
+                    @php
+                        $article_id = Illuminate\Support\Facades\Crypt::encryptString($article->id);
+                    @endphp
+                    <li id="heading{{ $article_id }}" class="sj-articleheader" data-toggle="collapse"
+                        data-target="#collapse{{ $article_id }}" aria-expanded="true"
+                        aria-controls="collapse{{ $article_id }}">
                         <div class="sj-detailstime">
                             <span><i class="ti-calendar"></i>@formatDate($article->publication_date)</span>
                             <span><i
@@ -78,8 +81,8 @@
 
                         </div>
                     </li>
-                    <li id="collapse{{ $article->id }}" class="collapse sj-active sj-userinfohold"
-                        aria-labelledby="heading{{ $article->id }}" data-parent="#accordion">
+                    <li id="collapse{{ $article_id }}" class="collapse sj-active sj-userinfohold"
+                        aria-labelledby="heading{{ $article_id }}" data-parent="#accordion">
                         <div class="sj-userinfoimgname">
                             <figure class="sj-userinfimg">
                                 <img src={{ asset($article->image_path) }} alt="img description"
@@ -112,7 +115,7 @@
                                 <div class="sj-categorysrightarea">
                                     @switch($article->status)
                                         @case('SUBMITTED')
-                                            <a href={{ route('admin.articles.publish', $article->id) }}>
+                                            <a href={{ route('admin.articles.publish', $article_id) }}>
                                                 <i class="fa fa-share" id="shareArticle"></i>
                                             </a>
                                             <a href={{ route('admin.articles.view.metadata', $article->matricule) }}
@@ -120,7 +123,7 @@
                                                 <i class="ti-pencil"></i>
                                             </a>
 
-                                            <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
+                                            <a href={{ route('web.articles.show', $article_id) }} class="sj-eyebtn"
                                                 target="_blank">
                                                 <i class="ti-eye"></i>
                                             </a>
@@ -129,10 +132,10 @@
                                         @break
 
                                         @case('PUBLISHED')
-                                            <a href={{ route('admin.articles.hide', $article->id) }}>
+                                            <a href={{ route('admin.articles.hide', $article_id) }}>
                                                 <i class="fa fa-lock" id="hideArticle"></i>
                                             </a>
-                                            <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
+                                            <a href={{ route('web.articles.show', $article_id) }} class="sj-eyebtn"
                                                 target="_blank">
                                                 <i class="ti-eye"></i>
                                             </a>
