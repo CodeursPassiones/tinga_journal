@@ -92,8 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list/{status?}', [ArticleAdminController::class, 'index'])->name('admin.articles.list');
 
             Route::post('/store', [ArticleAdminController::class, 'store'])->name('admin.articles.store');
-            Route::get('/edit/{articleId}', [ArticleAdminController::class, 'edit'])->name('admin.articles.edit');
-            Route::post('/update/{articleId}', [ArticleAdminController::class, 'update'])->name('admin.articles.update');
+
             Route::get('/publish/{articleId}', [ArticleAdminController::class, 'publish'])->name('admin.articles.publish');
             Route::get('/hide/{articleId}', [ArticleAdminController::class, 'hide'])->name('admin.articles.hide');
             Route::post('/submit', [ArticleAdminController::class, 'submit'])->name('admin.articles.submit');
