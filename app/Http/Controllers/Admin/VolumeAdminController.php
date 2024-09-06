@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Issue;
 use App\Models\Journal;
 use App\Models\Volume;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VolumeAdminController extends Controller
@@ -32,20 +30,19 @@ class VolumeAdminController extends Controller
     {
         try {
             $this->validate($request, [
-                'publication_date' => 'required|date',
-            ]);
-            $date = Carbon::parse($request->input('publication_date'));
-            $volume_year = $date->year;
+                'title' => 'required|max:20',
+                'year' => 'required|max:4',
 
-            $volume = Volume::where('year', $volume_year)->first();
-            $volume = Volume::first();
-
-            $issue = Issue::create([
-                'publication_date' => $request->input('publication_date'),
-                'volume_id' => $volume->id,
+                'journal_id' => 'required|exists:journals,id',
             ]);
 
-            return response()->json(['message' => "Le numéro du {$issue->publication_date} a été ajouter avec succès", 'ok' => true]);
+            $volume = Volume::create([
+                'title' => $request->input('title'),
+                'year' => $request->input('year'),
+                'journal_id' => $request->input('journal_id'),
+            ]);
+
+            return response()->json(['message' => "Le volume du {$volume->year} a été ajouter avec succès", 'ok' => true]);
         } catch (\Exception $e) {
             return response()->json(['ok' => false, 'message' => $e->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);

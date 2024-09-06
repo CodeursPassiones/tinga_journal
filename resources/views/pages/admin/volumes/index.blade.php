@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -37,25 +37,28 @@
             </form>
         </div>
         <div class="sj-manageallsession">
-
+            <form class="sj-formtheme sj-managesessionform">
+                <fieldset>
+                    <div class="form-group">
+                        <button type="button" class="sj-btn sj-btnactive" data-toggle="modal"
+                            data-target="#addVolumeModal">Créer</button>
+                    </div>
+                    <div class="form-group sj-inputwithicon float-right">
+                        <i class="lnr lnr-sync"></i>
+                        <span class="sj-select">
+                            <select data-placeholder="All" name="locations" disabled>
+                                <option value="">Ordonner</option>
+                                <option value="aberdeen">Sort By1</option>
+                                <option value="aldershot">Sort By2</option>
+                                <option value="altrincham">Sort By</option>
+                                <option value="aylesbury">Sort By4</option>
+                            </select>
+                        </span>
+                    </div>
+                </fieldset>
+            </form>
             <ul class="sj-allcategorys">
-                <li class="sj-addcategorys">
-                    <form class="sj-formtheme sj-categorysform">
-                        <fieldset>
-                            <div class="form-group">
-                                <input type="text" name="title" class="form-control" placeholder="Titre du volume">
-                            </div>
 
-                            <div class="form-group">
-                                <input type="text" name="year" class="form-control" placeholder="YYYY">
-                            </div>
-                            <div class="form-group sj-categorysbtn">
-                                <a href="javascript:void(0);" class="sj-checkbtn"><i class="ti-check"></i></a>
-                                <a href="javascript:void(0);" class="sj-btndecline">Annuler</a>
-                            </div>
-                        </fieldset>
-                    </form>
-                </li>
                 @if ($volumes->isEmpty())
                     <p>Auccun Volumes trouvé :)</p>
                 @else
@@ -86,7 +89,7 @@
             </nav>
         </div>
     </div>
-
+    @include('pages.admin.volumes.create')
 @endsection
 @push('js')
     {{-- <script src={{ asset('app-js/admin/general/add.js') }}></script> --}}
