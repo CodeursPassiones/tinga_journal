@@ -12,6 +12,7 @@
             <div class="sj-addarticlehold">
 
                 <form class="sj-formtheme sj-formarticle" id="articleMetadataForm">
+                    @csrf
                     <input type="hidden" name="article_id" value={{ $article->id }}>
                     <fieldset>
 

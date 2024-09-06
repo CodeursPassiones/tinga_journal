@@ -1,5 +1,8 @@
 @extends('pages.admin.articles.view.base')
-
+@section('form-style')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    {{-- <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" /> --}}
+@endsection
 @section('article-form')
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
         <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -12,19 +15,7 @@
 
                     <fieldset class="">
                         <div class="">
-                            <div class="sj-title">
-                                <h3>Charger l'image de l'article</h3>
-                            </div>
-                            <label for="imageUpload">
-                                <span>Charger ici</span>
-                                <span><i class="ti-upload"></i></span>
-                                <input type="file" name="image" id="imageUpload"
-                                    accept="image/png, image/jpeg, image/gif">
-                            </label>
-                            <div class="sj-filedetails">
-                                <span>Le fichier doit avoir une taille maximale de 500 Ko</span>
-                                <em>Pas encore téléchargé</em>
-                            </div>
+                            <input type="file" name="image" id="imageUpload" accept="image/png, image/jpeg, image/gif">
                         </div>
                     </fieldset>
 
@@ -47,3 +38,9 @@
         </div>
     </div>
 @endsection
+@push('js')
+    {{-- <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script> --}}
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src={{ asset('app-js/admin/article/files.js') }}></script>
+@endpush

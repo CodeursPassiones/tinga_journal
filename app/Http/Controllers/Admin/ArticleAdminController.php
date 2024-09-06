@@ -61,7 +61,8 @@ class ArticleAdminController extends Controller
             $article = Article::firstOrCreate(
                 [
                     'matricule' => $matricule,
-                ], [
+                ],
+                [
                     'issue_id' => $issue->id,
                     'user_id' => $auth_user->id,
                 ]
@@ -121,15 +122,23 @@ class ArticleAdminController extends Controller
             $article = Article::find($validatedData['article_id']);
 
             // Création de l'article
-            $article = $article->update([
-                'title' => $request->input('title'),
-                'abstract' => $request->input('abstract'),
-                'prefix' => $request->input('prefix'),
-                'subtitle' => $request->input('subtitle'),
-                'keywords' => $request->input('keywords'),
-                'discipline_id' => $request->input('discipline'),
+            $article->update([
+               'title' => $request->input('title'),
+               'abstract' => $request->input('abstract'),
+               'prefix' => $request->input('prefix'),
+               'subtitle' => $request->input('subtitle'),
+               'keywords' => $request->input('keywords'),
+               'discipline_id' => $request->input('discipline'),
             ]);
-            // dd($article);
+            if ($article->title !== null && $article->abstract !== null && !($article->files->isEmpty()) && !($article->articleUsers->isEmpty())) {
+                // Mise à jour de l'état de l'article si les conditions sont remplies
+                $article->update([
+                    'state' => "VALID",
+                ]);
+            }
+
+
+
 
             // Redirection avec message de succès
             return response()->json(['message' => 'Article créé avec succès.', 'ok' => true]);

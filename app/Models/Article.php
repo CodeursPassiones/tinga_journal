@@ -28,6 +28,7 @@ class Article extends Model
         'comment',
         'doi',
         'matricule',
+        "state"
     ];
     protected $casts = [
         'publication_date' => 'datetime',

@@ -37,6 +37,9 @@ let AppAdminArticleCreation = (function () {
     };
     return {
         init: () => {
+
+            initSummerNote();
+            initSelect2();
             articleAddForm = document.querySelector("#articleMetadataForm");
 
             if (!articleAddForm) {
@@ -45,8 +48,6 @@ let AppAdminArticleCreation = (function () {
 
             articleAddBtn = articleAddForm.querySelector("#articleMetadataBtn");
 
-            initSummerNote();
-            initSelect2();
             handleSubmit();
         },
     };
