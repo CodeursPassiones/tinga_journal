@@ -315,7 +315,7 @@ class ArticleAdminController extends Controller
 
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
-            return view('pages.web.articles.list', compact('article', 'similors'));
+            return to_route('admin.articles.list', 'SUBMITTED');
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
@@ -328,7 +328,7 @@ class ArticleAdminController extends Controller
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
-                'status' => 'DRAFT',
+                'status' => 'SUBMITTED',
             ]);
 
             // Redirection avec message de succès

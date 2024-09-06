@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -31,8 +31,8 @@
                     <a href="javascript:void(0);"><i class="fa fa-sort-amount-up"></i></a>
                 </div>
                 <fieldset>
-                    <input type="search" name="search" class="form-control" placeholder="Search here">
-                    <button type="submit" class="sj-btnsearch"><i class="lnr lnr-magnifier"></i></button>
+                    <input type="search" name="search" class="form-control" placeholder="Rechercher" disabled>
+                    <button type="submit" class="sj-btnsearch" disabled><i class="lnr lnr-magnifier"></i></button>
                 </fieldset>
             </form>
         </div>
@@ -46,8 +46,8 @@
                     <div class="form-group sj-inputwithicon float-right">
                         <i class="lnr lnr-sync"></i>
                         <span class="sj-select">
-                            <select data-placeholder="All" name="locations">
-                                <option value="">Sort By</option>
+                            <select data-placeholder="All" name="locations" disabled>
+                                <option value="">Ordonner</option>
                                 <option value="aberdeen">Sort By1</option>
                                 <option value="aldershot">Sort By2</option>
                                 <option value="altrincham">Sort By</option>

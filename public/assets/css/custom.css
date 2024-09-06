@@ -51,7 +51,7 @@ i.fa-spinner {
 
 .sj-btn.sj-btnactive:disabled,
 .sj-btn.sj-btnactive:disabled::before,
-
+.sj-btnsearch,
 button:disabled {
     background: linear-gradient(225deg, gray, rgb(167, 176, 170), rgb(109, 123, 113), #000001ff, #2F4BAAff);
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-let AppAdminArticleMetadataMAnager = (function () {
+let AppAdminArticleSubmitMAnager = (function () {
     let submitArticleForm;
     let submitArticleBtn;
 
@@ -41,5 +41,5 @@ let AppAdminArticleMetadataMAnager = (function () {
     };
 })();
 document.addEventListener("DOMContentLoaded", (e) => {
-    AppAdminArticleMetadataMAnager.init();
+    AppAdminArticleSubmitMAnager.init();
 });
