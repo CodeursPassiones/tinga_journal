@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\ArticleUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -186,17 +188,27 @@ class UserAdminController extends Controller
         try {
             $currentUser = Auth::user();
 
+            // Vérifier si l'utilisateur tente de supprimer son propre compte
             if ($currentUser->id == $id) {
                 return response()->json(['ok' => false, 'message' => 'Vous ne pouvez pas supprimer votre propre compte.']);
             }
+
+            // Vérifier si l'utilisateur est associé à un article
+            $userHasArticle = Article::where('user_id', $id)->exists();
+            // Vérifier si l'utilisateur est associé à un articleUser
+            $userHasArticleUser = ArticleUser::where('user_id', $id)->exists();
+
+            // Si l'utilisateur est associé à un article ou articleUser, refuser la suppression
+            if ($userHasArticle || $userHasArticleUser) {
+                return response()->json(['ok' => false, 'message' => 'L\'utilisateur est associé à un article en tant qu\auteur ou a en a publié et ne peut pas être supprimé.']);
+            }
+
+            // Supprimer l'utilisateur s'il n'est pas lié à un article ou à un articleUser
             DB::table('users')->where('id', $id)->delete();
 
-            return response()->json(['ok' => true, 'message' => 'l\'utilisateur a été supprimé avec succès.']);
+            return response()->json(['ok' => true, 'message' => 'L\'utilisateur a été supprimé avec succès.']);
         } catch (\Throwable $th) {
-            // throw $th;
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-
-            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 }

@@ -34,8 +34,8 @@ return new class extends Migration {
 
             $table->dateTime('publication_date')->default(now());
             // Foreign
-            $table->foreignIdFor(Issue::class);
-            $table->foreignIdFor(Discipline::class)->nullable();
+            $table->foreignIdFor(Issue::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Discipline::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

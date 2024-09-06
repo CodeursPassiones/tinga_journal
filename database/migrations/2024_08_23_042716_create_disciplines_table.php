@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->foreignIdFor(Journal::class);
+            $table->foreignIdFor(Journal::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

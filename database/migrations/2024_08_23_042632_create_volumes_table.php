@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->string('year');
 
-            $table->foreignIdFor(Journal::class);
+            $table->foreignIdFor(Journal::class)->constrained()->cascadeOnDelete();
             // $table->unique(['journal_id', 'year']);
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ return new class extends Migration {
 
             $table->string('number');
             $table->date('publication_date')->default(now());
-            $table->foreignIdFor(Volume::class);
+            $table->foreignIdFor(Volume::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
