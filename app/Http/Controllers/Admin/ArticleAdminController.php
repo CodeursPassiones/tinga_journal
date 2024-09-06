@@ -10,6 +10,7 @@ use App\Models\Discipline;
 use App\Models\Issue;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ArticleAdminController extends Controller
 {
@@ -123,28 +124,74 @@ class ArticleAdminController extends Controller
 
             // Création de l'article
             $article->update([
-               'title' => $request->input('title'),
-               'abstract' => $request->input('abstract'),
-               'prefix' => $request->input('prefix'),
-               'subtitle' => $request->input('subtitle'),
-               'keywords' => $request->input('keywords'),
-               'discipline_id' => $request->input('discipline'),
+                'title' => $request->input('title'),
+                'abstract' => $request->input('abstract'),
+                'prefix' => $request->input('prefix'),
+                'subtitle' => $request->input('subtitle'),
+                'keywords' => $request->input('keywords'),
+                'discipline_id' => $request->input('discipline'),
             ]);
-            if ($article->title !== null && $article->abstract !== null && !($article->files->isEmpty()) && !($article->articleUsers->isEmpty())) {
+            if ($article->title !== null && $article->abstract !== null && !$article->files->isEmpty() && !$article->articleUsers->isEmpty()) {
                 // Mise à jour de l'état de l'article si les conditions sont remplies
                 $article->update([
-                    'state' => "VALID",
+                    'state' => 'VALID',
                 ]);
             }
-
-
-
 
             // Redirection avec message de succès
             return response()->json(['message' => 'Article créé avec succès.', 'ok' => true]);
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
+    public function syncAuthor($article_id, $author_id)
+    {
+        try {
+            ArticleUser::create([
+                'user_id' => $author_id,
+                'article_id' => $article_id,
+                'role' => 'author',
+            ]);
+
+            // Redirection avec message de succès
+            return response()->json(['message' => 'Auteur associé avec succès.', 'ok' => true]);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
+    public function createAndSyncAuthor(Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'lastname' => 'required|max:20',
+                'firstname' => 'required|max:20',
+                'article_id' => 'required|max:20',
+                'email' => 'email|unique:users,email',
+            ]);
+
+            $user = User::create([
+                'lastname' => $request->input('lastname'),
+                'firstname' => $request->input('firstname'),
+                'email' => $request->input('email'),
+                'orcid' => $request->input('orcid'),
+                'password' => Hash::make($request->input('secret')),
+            ]);
+
+            $user->syncRoles(['author']);
+            ArticleUser::create([
+                'user_id' => $user->id,
+                'article_id' => $request->input('article_id'),
+                'role' => 'author',
+            ]);
+
+            return response()->json(['ok' => true, 'message' => 'Auteur créé et associé avec succès !'], 200);
+        } catch (\Exception $e) {
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
         }
     }
 

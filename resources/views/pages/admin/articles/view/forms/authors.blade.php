@@ -1,76 +1,89 @@
 @extends('pages.admin.articles.view.base')
-
+@section('form-style')
+    <link href={{ asset('assets/plugins/select2/css/select2.min.css') }} rel="stylesheet">
+@endsection
 @section('article-form')
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
-        <div id="sj-content" class="sj-content sj-addarticleholdcontent">
-            <div class="sj-dashboardboxtitle">
-                <h2>Auteurs </h2>
+        <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
+            <div class="sj-dashboardboxtitle sj-titlewithform">
+                <h2>Auteurs</h2>
+                <form class="sj-formtheme sj-formsearchvtwo">
+                    <div class="sj-sortupdown">
+                        <a href="javascript:void(0);"><i class="fa fa-sort-amount-up"></i></a>
+                    </div>
+                    <fieldset>
+                        <input type="search" name="search" class="form-control" placeholder="Search here">
+                        <button type="submit" class="sj-btnsearch"><i class="lnr lnr-magnifier"></i></button>
+                    </fieldset>
+                </form>
             </div>
-            <div class="sj-addarticlehold">
-                <form class="sj-formtheme sj-formarticle" id="articleAddForm" enctype="multipart/form-data">
-                    <input type="hidden" name="issue_id" value={{ $issue->id }}>
+            <div class="sj-manageallsession">
+                <form class="sj-formtheme sj-managesessionform">
                     <fieldset>
                         <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Titre de l'article*">
+                            <button type="button" class="sj-btn sj-btnactive" data-toggle="modal"
+                                data-target="#addAuthorModal">Ajouter Un Auteur</button>
                         </div>
-
-                        <div class="form-group">
+                        <div class="form-group sj-inputwithicon float-right">
+                            <i class="lnr lnr-sync"></i>
                             <span class="sj-select">
+                                <label for="authors">
 
-                                <select class="authors-select" name="authors[]" multiple="multiple" id="authors"
-                                    aria-placeholder="Auteurs">
-                                    @foreach ($authors as $author)
-                                        <option value={{ $author->id }}>
-                                            {{ $author->firstname . ' ' . $author->lastname }}</option>
-                                    @endforeach
-                                </select>
+                                    <select class="authors-select" name="author" id="authors">
+                                        <option></option>
+                                        @foreach ($authors as $author)
+                                            <option value={{ $author->id }}>
+                                                {{ $author->firstname . ' ' . $author->lastname }}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
                             </span>
                         </div>
-
-
-                        <div class="form-group">
-                            <textarea id="abstract" name="abstract" placeholder="Résumé" rows="1"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="content" name="content" placeholder="Contenu"></textarea>
-
-                        </div>
                     </fieldset>
-
-                    <fieldset class="">
-                        <div class="">
-                            <div class="sj-title">
-                                <h3>Charger l'image de l'article</h3>
-                            </div>
-                            <label for="imageUpload">
-                                <span>Charger ici</span>
-                                <span><i class="ti-upload"></i></span>
-                                <input type="file" name="image" id="imageUpload"
-                                    accept="image/png, image/jpeg, image/gif">
-                            </label>
-                            <div class="sj-filedetails">
-                                <span>Le fichier doit avoir une taille maximale de 500 Ko</span>
-                                <em>Pas encore téléchargé</em>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <div class="sj-submitdetails">
-
-                        <button class="sj-btn sj-btnactive " id="articleAddBtn" type="submit">
-                            <span class="normal-status">
-                                Publier
-                            </span>
-                            <span class="indicateur d-none">
-                                <span><i class="fa fa-spinner text-secondary"></i>
-                                    Chargement...
-                                </span>
-
-                        </button>
-                    </div>
                 </form>
+                <ul class="sj-allcategorys sj-allcategorysvtwo">
+                    @if ($article->articleUsers->isEmpty())
+                        <p>Aucun auteur ajouté :(</p>
+                    @else
+                        @foreach ($article->articleUsers as $articleUsers)
+                            <li class="sj-categorysinfo">
+                                <figure class="sj-assignuserimg">
+                                    <img src={{ asset($articleUsers->user->profile_picture) }} alt="img">
+                                </figure>
+                                <div class="sj-title">
+                                    <h3>{{ $articleUsers->user->firstname . ' ' . $articleUsers->user->lastname }}
+                                        <span class="sj-assignedinfo" data-toggle="modal" data-target="#feedbackmodal">(
+                                            {{ $articleUsers->user->articles->count() }}
+                                            Articles publiées )</span>
+                                    </h3>
+                                </div>
+                                <div class="sj-categorysrightarea">
+
+                                    <div class="sj-addremove">
+                                        <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
+                                            data-target="#updateAuthorModal{{ $articleUsers->user->id }}"><i
+                                                class="ti-pencil"></i></a>
+                                        <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                            @include('pages.admin.articles.view.forms.update-author')
+                        @endforeach
+                    @endif
+
+
+
+
+                </ul>
+                <!-- Liens de pagination -->
+
 
             </div>
         </div>
     </div>
+    @include('pages.admin.articles.view.forms.create-author')
 @endsection
+@push('js')
+    <script src={{ asset('assets/plugins/select2/js/select2.min.js') }}></script>
+    <script src={{ asset('app-js/admin/article/authors.js') }}></script>
+@endpush

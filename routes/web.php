@@ -104,7 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
             });
             Route::prefix('/store')->group(function () {
                 Route::post('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.store.files');
-                Route::post('/authors/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.store.authors');
+                Route::post('/author/sync', [ArticleAdminController::class, 'syncAuthor'])->name('admin.articles.store.author.sync');
+                Route::post('/author/create-and-sync', [ArticleAdminController::class, 'createAndSyncAuthor'])->name('admin.articles.store.author.createSync');
                 Route::post('/metadata', [ArticleAdminController::class, 'storeMetadata'])->name('admin.articles.store.metadata');
             });
         });

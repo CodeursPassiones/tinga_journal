@@ -1,6 +1,6 @@
 "use strict";
 
-let AppAdminArticleCreation = (function () {
+let AppAdminArticleMetadataMAnager = (function () {
     let articleAddForm;
     let articleAddBtn;
     const initSummerNote = () => {
@@ -53,5 +53,5 @@ let AppAdminArticleCreation = (function () {
     };
 })();
 document.addEventListener("DOMContentLoaded", (e) => {
-    AppAdminArticleCreation.init();
+    AppAdminArticleMetadataMAnager.init();
 });

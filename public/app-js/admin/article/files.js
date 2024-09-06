@@ -1,11 +1,11 @@
 "use strict";
 
-let AppAdminArticleCreation = (function () {
+let AppAdminArticleFileMAnager = (function () {
     let articleAddForm;
     let articleAddBtn;
     const initFilePond = () => {
     // Get a reference to the file input element
-    const inputElement = document.querySelector('input[type="file"]');
+    const inputElements = document.querySelectorAll('input[type="file"]');
     const labelOptions ={
         labelIdle: `Glissez-déposez le document de l'article ou <span class="filepond--label-action"> Parcourez </span>`,
         labelInvalidField: 'Le champ contient des fichiers non valides',
@@ -33,17 +33,20 @@ let AppAdminArticleCreation = (function () {
         filevalidatetypelabelexpectedtypes: 'Seuls les fichiers PDF sont autoris%C3%A9s.'
     }
     FilePond.registerPlugin(
-        // FilePondPluginFileValidateType,
-        // FilePondPluginImagePreview,
+        FilePondPluginFileValidateType,
+        FilePondPluginImagePreview,
         
       );
-    // Create a FilePond instance
-    const pond =   FilePond.create(inputElement, {
-      ...labelOptions,
-      acceptedFileTypes: ['application/pdf'],  // Limiter aux fichiers PDF
-      server: '/upload',
-      fileValidateTypeLabelExpectedTypesMap :{"application/pdf":".pdf"}
-    });
+      inputElements.forEach((inputElement)=>{
+        // Create a FilePond instance
+        const pond =   FilePond.create(inputElement, {
+            ...labelOptions,
+            acceptedFileTypes: ['application/pdf'],  // Limiter aux fichiers PDF
+            server: '/upload',
+            fileValidateTypeLabelExpectedTypesMap :{"application/pdf":".pdf"}
+        });
+      })
+
     };
 
     const addArticleUrl = "/admin/articles/store/metadata";
@@ -82,5 +85,5 @@ let AppAdminArticleCreation = (function () {
     };
 })();
 document.addEventListener("DOMContentLoaded", (e) => {
-    AppAdminArticleCreation.init();
+    AppAdminArticleFileMAnager.init();
 });
