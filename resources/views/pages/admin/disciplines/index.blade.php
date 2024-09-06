@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
 
@@ -86,7 +86,8 @@
                                 <h3 class="discipline">{{ $discipline->name }}</h3>
                             </div>
                             <div class="sj-categorysrightarea">
-                                <a href="javascript:void(0);" class="sj-pencilbtn"><i class="ti-pencil"></i></a>
+                                <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
+                                    data-target="#UpdateDisciplineModal{{ $discipline_id }}"><i class="ti-pencil"></i></a>
                                 <a class="sj-trashbtn disciplineDeleteBtn" href="#" id="{{ $discipline_id }}"><i
                                         class="ti-trash normal-status"></i>
                                     </span>
@@ -98,6 +99,7 @@
                                 </a>
                             </div>
                         </li>
+                        @include('pages.admin.disciplines.update')
                     @endforeach
                 @endif
 
@@ -111,5 +113,6 @@
 @endsection
 @push('js')
     <script src={{ asset('app-js/admin/discipline/add.js') }}></script>
+    <script src={{ asset('app-js/admin/discipline/update.js') }}></script>
     <script src={{ asset('app-js/admin/discipline/delete.js') }}></script>
 @endpush

@@ -87,14 +87,12 @@ class DisciplineAdminController extends Controller
             $this->validate($request, [
                 'name' => 'required|max:20',
 
-                'journal_id' => 'required',
-                'id' => 'required',
+                'discipline_id' => 'required',
             ]);
-            $discipline = Discipline::find($request->input('id'));
+            $discipline_id = Crypt::decryptString($request->input('discipline_id'));
+            $discipline = Discipline::find($discipline_id);
             $discipline->update([
                 'name' => $request->input('name'),
-                'journal_id' => $request->input('journal_id'),
-
                 'description' => $request->input('description', ''),
             ]);
 

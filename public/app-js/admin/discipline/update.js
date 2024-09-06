@@ -1,21 +1,21 @@
 "use strict";
-let AppAdminUserUpdate = (function () {
-    let userUpdateForms;
+let AppAdminDisciplineUpdate = (function () {
+    let disciplineUpdateForms;
 
-    const addNatureUrl = "/admin/users/update";
+    const updateDisciplineUrl = "/admin/disciplines/update";
 
     let handleUserUpdate = () => {
-        userUpdateForms.forEach((userUpdateForm) => {
-            const userUpdateBtn =
-                userUpdateForm.querySelector(".userUpdateBtn");
+        disciplineUpdateForms.forEach((userUpdateForm) => {
+            const disciplineUpdateBtn =
+                userUpdateForm.querySelector(".disciplineUpdateBtn");
 
-            userUpdateBtn.addEventListener("click", (e) => {
+            disciplineUpdateBtn.addEventListener("click", (e) => {
                 e.preventDefault();
                 const formData = new FormData(userUpdateForm);
                 AppModules.submitFromBtn(
-                    userUpdateBtn,
+                    disciplineUpdateBtn,
                     formData,
-                    addNatureUrl,
+                    updateDisciplineUrl,
                     addNatureCallback
                 );
             });
@@ -27,8 +27,8 @@ let AppAdminUserUpdate = (function () {
     };
     return {
         init: () => {
-            userUpdateForms = document.querySelectorAll(".userUpdateForm");
-            if (!userUpdateForms) {
+            disciplineUpdateForms = document.querySelectorAll(".disciplineUpdateForm");
+            if (!disciplineUpdateForms) {
                 return;
             }
 
@@ -37,5 +37,5 @@ let AppAdminUserUpdate = (function () {
     };
 })();
 document.addEventListener("DOMContentLoaded", (e) => {
-    AppAdminUserUpdate.init();
+    AppAdminDisciplineUpdate.init();
 });
