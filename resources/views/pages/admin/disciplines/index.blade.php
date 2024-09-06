@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
 
@@ -78,13 +78,24 @@
                     <p>Aucune Disciplines Trouvée :)</p>
                 @else
                     @foreach ($disciplines as $discipline)
-                        <li class="sj-categorysinfo">
+                        @php
+                            $discipline_id = Illuminate\Support\Facades\Crypt::encryptString($discipline->id);
+                        @endphp
+                        <li class="sj-categorysinfo parent">
                             <div class="sj-title">
-                                <h3>{{ $discipline->name }}</h3>
+                                <h3 class="discipline">{{ $discipline->name }}</h3>
                             </div>
                             <div class="sj-categorysrightarea">
                                 <a href="javascript:void(0);" class="sj-pencilbtn"><i class="ti-pencil"></i></a>
-                                {{-- <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a> --}}
+                                <a class="sj-trashbtn disciplineDeleteBtn" href="#" id="{{ $discipline_id }}"><i
+                                        class="ti-trash normal-status"></i>
+                                    </span>
+                                    <span class="indicateur d-none">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"
+                                            aria-hidden="true"></span>
+                                        Loading...
+                                    </span>
+                                </a>
                             </div>
                         </li>
                     @endforeach
@@ -99,5 +110,6 @@
     </div>
 @endsection
 @push('js')
-    <script src={{ asset('app-js/admin/general/add.js') }}></script>
+    <script src={{ asset('app-js/admin/discipline/add.js') }}></script>
+    <script src={{ asset('app-js/admin/discipline/delete.js') }}></script>
 @endpush

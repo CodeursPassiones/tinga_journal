@@ -129,6 +129,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [DisciplineAdminController::class,  'index'])->name('admin.disciplines.list');
             Route::post('/store', [DisciplineAdminController::class,  'store'])->name('admin.disciplines.store');
             Route::post('/update', [DisciplineAdminController::class,  'update'])->name('admin.disciplines.update');
+            Route::delete('/delete/{disciplineId}', [DisciplineAdminController::class,  'destroy'])->name('admin.disciplines.delete');
         });
 
         /*

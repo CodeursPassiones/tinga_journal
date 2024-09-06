@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Discipline;
 use App\Models\Journal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class DisciplineAdminController extends Controller
 {
@@ -107,5 +110,20 @@ class DisciplineAdminController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $discipline_id = Crypt::decryptString($id);
+
+            $disciplineHasArticle = Article::where('discipline_id', $discipline_id)->exists();
+
+            if ($disciplineHasArticle) {
+                return response()->json(['ok' => false, 'message' => 'La discipline est associé à des articles et ne peut pas être supprimé.']);
+            }
+
+            DB::table('disciplines')->where('id', $discipline_id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'La discipline a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+        }
     }
 }
