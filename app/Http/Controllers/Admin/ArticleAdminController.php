@@ -42,7 +42,6 @@ class ArticleAdminController extends Controller
         try {
             // Récupérer l'issue_id de la requête
             $issue_id = $request->input('issue_id');
-            // dd($issue_id);
 
             // Vérifier si un issue_id est fourni et récupérer l'issue correspondante
             if ($issue_id) {
@@ -53,14 +52,29 @@ class ArticleAdminController extends Controller
             if (!isset($issue) || !$issue) {
                 $issue = Issue::orderBy('number', 'desc')->first();
             }
-            // dd($matricule);
-            $auth_user = auth()->user();
-            $article = Article::createOrFirst(['matricule' => $matricule, 'issue_id' => $issue->id, 'user_id' => $auth_user->id]);
 
+            // Récupérer l'utilisateur authentifié
+            $auth_user = auth()->user();
+
+            // Créer ou récupérer le premier article basé sur le matricule, l'issue_id et l'user_id
+            // dd($matricule);
+            $article = Article::firstOrCreate(
+                [
+                    'matricule' => $matricule,
+                ], [
+                    'issue_id' => $issue->id,
+                    'user_id' => $auth_user->id,
+                ]
+            );
+
+            // Débugger si nécessaire
+            // dd($article);
+
+            // Récupérer les segments de l'URL
             $segments = $request->segments();
-            // dd($segments);
             $segment_before_id = count($segments) >= 2 ? ($matricule ? $segments[count($segments) - 2] : $segments[count($segments) - 1]) : null;
-            // dd($segment_before_id);
+
+            // Gestion des différentes vues selon le segment avant l'ID
             switch ($segment_before_id) {
                 case 'metadata':
                     $disciplines = Discipline::orderBy('name', 'asc')->get();
@@ -70,21 +84,20 @@ class ArticleAdminController extends Controller
                 case 'authors':
                     $authors = User::whereHas('roles', function ($query) {
                         $query->where('name', 'author');
-                    })
-                    ->orderBy('lastname', 'ASC')
-                    ->get();
+                    })->orderBy('lastname', 'ASC')->get();
 
                     return view('pages.admin.articles.view.forms.authors', compact('authors', 'article', 'issue'));
+
                 case 'files':
                     $category_files = CategoryFile::orderBy('name', 'asc')->get();
 
                     return view('pages.admin.articles.view.forms.files', compact('article', 'category_files', 'issue'));
 
                 default:
-                    abort(404); // Handle invalid URIs
+                    abort(404); // Gestion des URI invalides
             }
         } catch (\Throwable $th) {
-            // throw $th;
+            // En cas d'exception, afficher un message d'erreur pour le débogage
             dd($th->getMessage(), $th->getLine());
 
             return view('errors.500');

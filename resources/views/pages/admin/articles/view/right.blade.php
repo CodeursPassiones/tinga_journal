@@ -22,9 +22,16 @@
                 <li class="sj-profilecompleted"><i class="ti-check"></i><span>Upload Document(s)</span></li>
             </ul>
             <div class="sj-submitdetails">
-                <span>I accept all the submiting article’s<a href="javascript:void(0);">Terms &amp;
-                        Conditions</a></span>
-                <a href="javascript:void(0);" class="sj-btn sj-btnactive">Submit Now</a>
+
+                @if ($article->state === 'VALID')
+                    <span>J'accepte tous les <a href="javascript:void(0);">Termes et Conditions</a> de soumission de
+                        l'article</span>
+                @endif
+
+                <button href="javascript:void(0);" class="sj-btn sj-btnactive"
+                    {{ $article->state == 'INVALID' ? 'disabled' : '' }}>
+                    {{ $article->state == 'INVALID' ? '-' : 'Soumettre' . $article->state }}</button>
+
             </div>
 
         </div>

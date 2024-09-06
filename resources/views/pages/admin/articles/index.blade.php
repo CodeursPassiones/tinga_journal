@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -57,9 +57,11 @@
                         aria-controls="collapse{{ $article->id }}">
                         <div class="sj-detailstime">
                             <span><i class="ti-calendar"></i>@formatDate($article->publication_date)</span>
-                            <span><i class="ti-layers"></i>{{ $status === 'DRAFT' ? '' : $article->discipline->name }}</span>
+                            <span><i
+                                    class="ti-layers"></i>{{ $status === 'DRAFT' ? '' : $article->discipline->name }}</span>
                             <span><i class="ti-bookmark"></i>ID: {{ $article->matricule }}</span>
-                            <span><i class="ti-bookmark-alt"></i>Edition</span>
+                            <span><i
+                                    class="ti-bookmark-alt"></i>{{ $article->user->lastname . ' ' . $article->user->firstname }}</span>
                             <h4>{{ $article->title }}</h4>
                         </div>
                         <div class="sj-nameandmail">
@@ -99,7 +101,7 @@
 
                                 <div class="sj-categorysrightarea">
                                     @switch($article->status)
-                                        @case('DRAFT')
+                                        @case('SUBMITED')
                                             <a href={{ route('admin.articles.publish', $article->id) }}><i class="fa fa-share"
                                                     id="shareArticle"></i></a>
                                         @break

@@ -74,7 +74,7 @@ class Article extends Model
     {
         parent::boot();
 
-        static::created(function ($model) {
+        static::creating(function ($model) {
             // Obtenir le plus grand ID actuel dans la table
             $maxId = static::max('id');
 

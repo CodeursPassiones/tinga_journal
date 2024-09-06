@@ -47,3 +47,11 @@ i.fa-spinner {
     content: '*';
     color: red;
 }
+
+
+.sj-btn.sj-btnactive:disabled,
+.sj-btn.sj-btnactive:disabled::before,
+
+button:disabled {
+    background: linear-gradient(225deg, gray, rgb(167, 176, 170), rgb(109, 123, 113), #000001ff, #2F4BAAff);
+}
