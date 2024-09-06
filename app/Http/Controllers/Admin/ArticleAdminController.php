@@ -41,6 +41,11 @@ class ArticleAdminController extends Controller
                 $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
                 $query->orWhere('content', 'LIKE', '%'.$search.'%');
             }
+            if ($status !== 'DRAFT') {
+                $query->Where('state', '=', 'VALID');
+            } else {
+                $query->orWhere('state', '=', 'INVALID');
+            }
             $articles = $query->paginate(5);
 
             return view('pages.admin.articles.index', compact('articles', 'status'));
@@ -310,7 +315,7 @@ class ArticleAdminController extends Controller
 
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
-            return view('pages.web.articles.show', compact('article', 'similors'));
+            return view('pages.web.articles.list', compact('article', 'similors'));
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
@@ -331,7 +336,7 @@ class ArticleAdminController extends Controller
 
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
-            return view('pages.web.articles.show', compact('article', 'similors'));
+            return to_route('admin.articles.list', 'PUBLISHED');
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);

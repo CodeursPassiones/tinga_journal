@@ -35,7 +35,7 @@
                                 <li><a href="javascript:void(0);"><i class="fa fa-print"></i><span>Print Now</span></a></li>
 
                                 @auth
-                                    <li><a href={{ route('admin.articles.edit', $article->id) }}><i
+                                    <li><a href={{ route('admin.articles.view.metadata', $article->matricule) }}><i
                                                 class="fa fa-pencil"></i><span>Modifier</span></a>
                                     </li>
                                     @switch($article->status)
