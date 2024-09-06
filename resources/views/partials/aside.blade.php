@@ -37,14 +37,21 @@
                 </li>
                 <li class="  {{ Request::is('admin/users/list') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.users.list') }}><i class="lnr lnr-users"></i>
-                        <span>Gestion Utilisateurs
+                        <span> Utilisateurs
 
                         </span>
                     </a>
                 </li>
                 <li class="  {{ Request::is('admin/disciplines/list') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.disciplines.list') }}><i class="lnr lnr-layers"></i>
-                        <span>Paramètres général
+                        <span>Disciplines
+
+                        </span>
+                    </a>
+                </li>
+                <li class="  {{ Request::is('admin/volumes/list') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.volumes.list') }}><i class="lnr lnr-briefcase"></i>
+                        <span>Volumes
 
                         </span>
                     </a>

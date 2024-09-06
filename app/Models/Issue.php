@@ -13,7 +13,9 @@ class Issue extends Model
     protected $fillable = [
         'number',
         'publication_date',
+        'title',
         'volume_id',
+        'description',
     ];
     /**
      * The attributes that should be cast.

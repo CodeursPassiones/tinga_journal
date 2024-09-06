@@ -13,8 +13,20 @@ class IssueAdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($volume_id)
     {
+        try {
+            $volume = Volume::find($volume_id);
+            $issues = Issue::where('volume_id', '=', $volume_id)->paginate(6);
+
+            return view('pages.admin.issues.index', compact('issues', 'volume'));
+        } catch (\Throwable $th) {
+            // throw $th;
+            // throw $th;
+            dd($th->getMessage());
+
+            return view('errors.500');
+        }
     }
 
     /**

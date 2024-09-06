@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleAdminController;
 use App\Http\Controllers\Admin\DisciplineAdminController;
 use App\Http\Controllers\Admin\IssueAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\VolumeAdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Web\ArticleWebController;
 use App\Http\Controllers\Web\IssueWebController;
@@ -130,13 +131,23 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         /*
-         * Discipline
+         * Issues
          */
 
         Route::prefix('/issues')->group(function () {
-            Route::get('/list', [IssueAdminController::class,  'index'])->name('admin.issues.list');
+            Route::get('/list/{volumeID}', [IssueAdminController::class,  'index'])->name('admin.issues.list');
             Route::post('/store', [IssueAdminController::class,  'store'])->name('admin.issues.store');
             Route::post('/update', [IssueAdminController::class,  'update'])->name('admin.issues.update');
+        });
+
+        /*
+         * Volumes
+         */
+
+        Route::prefix('/volumes')->group(function () {
+            Route::get('/list', [VolumeAdminController::class,  'index'])->name('admin.volumes.list');
+            Route::post('/store', [VolumeAdminController::class,  'store'])->name('admin.volumes.store');
+            Route::post('/update', [VolumeAdminController::class,  'update'])->name('admin.volumes.update');
         });
         /*
          * Account
