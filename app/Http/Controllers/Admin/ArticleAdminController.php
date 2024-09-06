@@ -13,21 +13,21 @@ use Illuminate\Http\Request;
 
 class ArticleAdminController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $status = 'DRAFT')
     {
         try {
             $search = $request->input('search');
             // $sortOrder = $request->input('sort_order', 'asc');
 
-            $query = Article::with(['discipline', 'issue'])->orderBy('created_at', 'desc');
+            $query = Article::with(['discipline', 'issue'])->orderBy('created_at', 'desc')->where('status', $status);
             if ($search) {
-                $query->where('title', 'LIKE', '%'.$search.'%');
+                $query->orWhere('title', 'LIKE', '%'.$search.'%');
                 $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
                 $query->orWhere('content', 'LIKE', '%'.$search.'%');
             }
             $articles = $query->paginate(5);
 
-            return view('pages.admin.articles.index', compact('articles'));
+            return view('pages.admin.articles.index', compact('articles', 'status'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;

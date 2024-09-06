@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -57,7 +57,7 @@
                         aria-controls="collapse{{ $article->id }}">
                         <div class="sj-detailstime">
                             <span><i class="ti-calendar"></i>@formatDate($article->publication_date)</span>
-                            <span><i class="ti-layers"></i>{{ $article->discipline->name }}</span>
+                            <span><i class="ti-layers"></i>{{ $status === 'DRAFT' ? '' : $article->discipline->name }}</span>
                             <span><i class="ti-bookmark"></i>ID: {{ $article->matricule }}</span>
                             <span><i class="ti-bookmark-alt"></i>Edition</span>
                             <h4>{{ $article->title }}</h4>
@@ -79,18 +79,21 @@
                                     class="userArticleListAdminImg">
                             </figure>
                             <div class="sj-userinfoname">
-                                <span>04 days ago on Monday at 14:49
+                                <span>
 
                                     @tempsEcoule($article->publication_date)
                                 </span>
-                                <h3>
-                                    @foreach ($article->articleUsers as $author)
-                                        {{ $author->user->firstname . ' ' . $author->user->lastnmae }}
-                                        {{ $author->user_id === auth()->user()->id ? '(Vous)' : '' }}
-                                        |
-                                    @endforeach
+                                @if ($status != 'DRAFT')
+                                    <h3>
+                                        @foreach ($article->articleUsers as $author)
+                                            {{ $author->user->firstname . ' ' . $author->user->lastnmae }}
+                                            {{ $author->user_id === auth()->user()->id ? '(Vous)' : '' }}
+                                            |
+                                        @endforeach
 
-                                </h3>
+                                    </h3>
+                                @endif
+
                             </div>
                             <div class="sj-userbtnarea">
 

@@ -16,10 +16,22 @@
     <div class="sj-widgetdashboard">
         <nav id="sj-dashboardnav" class="sj-dashboardnav">
             <ul>
+                <li class="  {{ Request::is('admin/articles/list/SUBMITTED') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.articles.list', 'SUBMITTED') }}><i class="lnr lnr-sync"></i>
+                        <span>Articles En attentes
+                        </span>
+                    </a>
+                </li>
                 <li class="  {{ Request::is('admin/articles/list') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.articles.list') }}><i class="lnr lnr-sync"></i>
+                        <span>Brouillons
+                        </span>
+                    </a>
+                </li>
+                <li class="  {{ Request::is('admin/articles/list/PUBLISHED') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.articles.list', 'PUBLISHED') }}><i class="lnr lnr-sync"></i>
                         <span>Liste
-                            Articles
+                            Publiés
                         </span>
                     </a>
                 </li>
