@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
 
@@ -38,42 +38,28 @@
             </form>
         </div>
         <div class="sj-manageallsession">
-
+            <form class="sj-formtheme sj-managesessionform">
+                <fieldset>
+                    <div class="form-group">
+                        <button type="button" class="sj-btn sj-btnactive" data-toggle="modal"
+                            data-target="#addDisciplineModal">Créer</button>
+                    </div>
+                    <div class="form-group sj-inputwithicon float-right">
+                        <i class="lnr lnr-sync"></i>
+                        <span class="sj-select">
+                            <select data-placeholder="All" name="locations" disabled>
+                                <option value="">Ordonner</option>
+                                <option value="aberdeen">Sort By1</option>
+                                <option value="aldershot">Sort By2</option>
+                                <option value="altrincham">Sort By</option>
+                                <option value="aylesbury">Sort By4</option>
+                            </select>
+                        </span>
+                    </div>
+                </fieldset>
+            </form>
             <ul class="sj-allcategorys">
-                <li class="sj-addcategorys">
-                    <form class="sj-formtheme sj-categorysform" id="disciplineAddForm">
-                        <input type="hidden" name="journal_id" value={{ $journal->id }}>
-                        <fieldset>
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control"
-                                    placeholder="Ajouter une Disciple">
-                            </div>
 
-
-                            <div class="form-group sj-categorysbtn">
-                                <button class="sj-btn sj-checkbtn" type="submit" id="disciplineAddBtn">
-                                    <span class="normal-status">
-                                        <i class="ti-check"></i>
-                                    </span>
-                                    <span class="indicateur d-none">
-                                        <span><i class="fa fa-spinner text-secondary"></i>
-                                            Chargement...
-                                        </span>
-
-                                </button>
-                                <button class="" type="cancel">
-                                    <span class="sj-btndecline">
-                                        Annuler
-                                    </span>
-
-
-                                </button>
-
-
-                            </div>
-                        </fieldset>
-                    </form>
-                </li>
                 @if ($disciplines->isEmpty())
                     <p>Aucune Disciplines Trouvée :)</p>
                 @else
@@ -110,6 +96,7 @@
             </nav>
         </div>
     </div>
+    @include('pages.admin.disciplines.create')
 @endsection
 @push('js')
     <script src={{ asset('app-js/admin/discipline/add.js') }}></script>

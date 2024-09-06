@@ -49,7 +49,7 @@ class DisciplineAdminController extends Controller
 
                 'journal_id' => 'required|exists:journals,id',
             ]);
-
+            // $journal_id = Crypt::decryptString($request->input('journal_id'));
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'journal_id' => $request->input('journal_id'),
