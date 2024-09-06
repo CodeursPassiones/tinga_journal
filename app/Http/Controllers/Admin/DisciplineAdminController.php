@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Issue;
-use App\Models\Journal;
-use App\Models\Discipline;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Discipline;
+use App\Models\Journal;
+use Illuminate\Http\Request;
 
 class DisciplineAdminController extends Controller
 {
@@ -16,12 +15,10 @@ class DisciplineAdminController extends Controller
     public function index()
     {
         try {
-            $issues = Issue::paginate(6);
-
             $disciplines = Discipline::paginate(6);
             $journal = Journal::first();
 
-            return view('pages.admin.general.index', compact('disciplines', 'journal', 'issues'));
+            return view('pages.admin.disciplines.index', compact('disciplines', 'journal'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;

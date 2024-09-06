@@ -26,6 +26,7 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->string('bio')->nullable();
             $table->string('salutation')->nullable();
+            $table->string('orcid')->unique()->nullable();
 
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();

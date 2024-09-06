@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -57,15 +57,25 @@
                         aria-controls="collapse{{ $article->id }}">
                         <div class="sj-detailstime">
                             <span><i class="ti-calendar"></i>@formatDate($article->publication_date)</span>
-                            <span><i class="ti-layers"></i>{{ $article->discipline->name }}</span>
+                            <span><i
+                                    class="ti-layers"></i>{{ $status === 'DRAFT' ? '' : $article->discipline->name }}</span>
                             <span><i class="ti-bookmark"></i>ID: {{ $article->matricule }}</span>
-                            <span><i class="ti-bookmark-alt"></i>Edition</span>
+                            <span><i
+                                    class="ti-bookmark-alt"></i>{{ $article->user->lastname . ' ' . $article->user->firstname }}</span>
                             <h4>{{ $article->title }}</h4>
                         </div>
                         <div class="sj-nameandmail">
-                            <span>Auteur</span>
-                            <h4>{{ $article->user->firstname . ' ' . $article->user->lastname }}</h4>
-                            <span class="sj-mailinfo">{{ $article->user->email }}</span>
+                            <span>Auteurs</span>
+                            @if (!$article->articleUsers->isEmpty())
+                                @foreach ($article->articleUsers as $author)
+                                    <h4>{{ $author->user->firstname . ' ' . $author->user->lastname }}</h4>
+                                    <span class="sj-mailinfo">{{ $author->user->email }}</span>
+                                @endforeach
+                            @else
+                                <h4>Néant</h4>
+                            @endif
+
+
                         </div>
                     </li>
                     <li id="collapse{{ $article->id }}" class="collapse sj-active sj-userinfohold"
@@ -76,49 +86,80 @@
                                     class="userArticleListAdminImg">
                             </figure>
                             <div class="sj-userinfoname">
-                                <span>04 days ago on Monday at 14:49
+                                <span>
 
                                     @tempsEcoule($article->publication_date)
                                 </span>
-                                <h3>{{ $article->user->firstname . ' ' . $article->user->lastname }}
-                                    {{ $article->user_id === auth()->user()->id ? '(Vous)' : '' }}</h3>
+                                @if (!$article->articleUsers->isEmpty())
+                                    <h3>
+                                        @foreach ($article->articleUsers as $author)
+                                            {{ $author->user->firstname . ' ' . $author->user->lastnmae }}
+                                            {{ $author->user_id === auth()->user()->id ? '(Vous)' : '' }}
+                                            |
+                                        @endforeach
+
+                                    </h3>
+                                @else
+                                    <h3>
+                                        Pas d'auteurs associés
+
+                                    </h3>
+                                @endif
+
                             </div>
                             <div class="sj-userbtnarea">
 
                                 <div class="sj-categorysrightarea">
                                     @switch($article->status)
-                                        @case('DRAFT')
-                                            <a href={{ route('admin.articles.publish', $article->id) }}><i class="fa fa-share"
-                                                    id="shareArticle"></i></a>
+                                        @case('SUBMITTED')
+                                            <a href={{ route('admin.articles.publish', $article->id) }}>
+                                                <i class="fa fa-share" id="shareArticle"></i>
+                                            </a>
+                                            <a href={{ route('admin.articles.view.metadata', $article->matricule) }}
+                                                class="sj-pencilbtn">
+                                                <i class="ti-pencil"></i>
+                                            </a>
+
+                                            <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
+                                                target="_blank">
+                                                <i class="ti-eye"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i>
+                                            </a>
                                         @break
 
                                         @case('PUBLISHED')
-                                            <a href={{ route('admin.articles.hide', $article->id) }}><i class="fa fa-eye-slash"
-                                                    id="hideArticle"></i></a>
+                                            <a href={{ route('admin.articles.hide', $article->id) }}>
+                                                <i class="fa fa-lock" id="hideArticle"></i>
+                                            </a>
+                                            <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
+                                                target="_blank">
+                                                <i class="ti-eye"></i>
+                                            </a>
                                         @break
 
                                         @default
-                            <li><a href="#"><i class="fa fa-share" id="hideArticle"></i><span>Cacher</span></a>
-                            </li>
-                    @endswitch
-                    <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn" target="_blank"><i
-                            class="ti-eye"></i></a>
-                    <a href={{ route('admin.articles.edit', $article->id) }} class="sj-pencilbtn"><i
-                            class="ti-pencil"></i></a>
-                    <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a>
-    </div>
-    </div>
-    <div class="sj-description">
-        <p>>{{ Str::limit($article->abstract, 100) }}...</p>
-    </div>
+                                            <a href={{ route('admin.articles.view.metadata', $article->matricule) }}><i
+                                                    class="fa fa-pencil" id="hideArticle"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i>
+                                            </a>
+                                    @endswitch
 
-    </div>
 
-    </li>
-    @endforeach
-    @endif
+                                </div>
+                            </div>
+                            <div class="sj-description">
+                                <p>>{!! Str::limit($article->abstract, 100) !!}...</p>
+                            </div>
 
-    </ul>
-    {!! $articles->withQueryString()->links() !!}
+                        </div>
+
+                    </li>
+                @endforeach
+            @endif
+
+        </ul>
+        {!! $articles->withQueryString()->links() !!}
     </div>
 @endsection

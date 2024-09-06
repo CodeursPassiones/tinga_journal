@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Article;
+use App\Models\CategoryFile;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,12 +14,13 @@ return new class extends Migration {
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('mime_type');
+            $table->string('mime_type')->default('application/pdf');
             $table->string('path');
             $table->string('url');
             $table->string('name');
             $table->text('description');
             $table->foreignIdFor(Article::class);
+            $table->foreignIdFor(CategoryFile::class)->nullable();
 
             $table->timestamps();
         });

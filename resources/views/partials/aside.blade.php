@@ -16,23 +16,42 @@
     <div class="sj-widgetdashboard">
         <nav id="sj-dashboardnav" class="sj-dashboardnav">
             <ul>
+                <li class="  {{ Request::is('admin/articles/list/SUBMITTED') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.articles.list', 'SUBMITTED') }}><i class="lnr lnr-sync"></i>
+                        <span>Articles En attentes
+                        </span>
+                    </a>
+                </li>
                 <li class="  {{ Request::is('admin/articles/list') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.articles.list') }}><i class="lnr lnr-sync"></i>
+                        <span>Brouillons
+                        </span>
+                    </a>
+                </li>
+                <li class="  {{ Request::is('admin/articles/list/PUBLISHED') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.articles.list', 'PUBLISHED') }}><i class="lnr lnr-sync"></i>
                         <span>Liste
-                            Articles
+                            Publiés
                         </span>
                     </a>
                 </li>
                 <li class="  {{ Request::is('admin/users/list') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.users.list') }}><i class="lnr lnr-users"></i>
-                        <span>Gestion Utilisateurs
+                        <span> Utilisateurs
 
                         </span>
                     </a>
                 </li>
                 <li class="  {{ Request::is('admin/disciplines/list') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.disciplines.list') }}><i class="lnr lnr-layers"></i>
-                        <span>Paramètres général
+                        <span>Disciplines
+
+                        </span>
+                    </a>
+                </li>
+                <li class="  {{ Request::is('admin/volumes/list') ? 'sj-active' : '' }}">
+                    <a href={{ route('admin.volumes.list') }}><i class="lnr lnr-briefcase"></i>
+                        <span>Volumes
 
                         </span>
                     </a>

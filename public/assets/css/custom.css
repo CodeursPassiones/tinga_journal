@@ -1,37 +1,57 @@
-p{
+p {
     text-align: justify;
 }
-td{
+
+td {
     text-align: start !important;
 }
-i.fa-spinner{
-	color:#222;
-		-webkit-animation: fa-spin 3s infinite linear;
-	animation: fa-spin 3s infinite linear;
+
+i.fa-spinner {
+    color: #222;
+    -webkit-animation: fa-spin 3s infinite linear;
+    animation: fa-spin 3s infinite linear;
 }
 
-.article-head{
+.article-head {
     display: flex;
 
 }
-.article-head *{
+
+.article-head * {
     display: flex;
     padding-right: 10px;
 
 }
 
-.tinga::after{
+.tinga::after {
     content: "Tɩ́ɩ́ŋá";
     font-size: 50px;
-    background-color: #3d7751; /* Couleur de fond */
+    background-color: #3d7751;
+    /* Couleur de fond */
 
 
 }
 
 .tinga {
-    color: #E8D15B; /* Couleur du texte */
-    padding: 10px; /* Ajout de l'espace autour du texte (optionnel) */
-    border-radius: 5px; /* Bords arrondis (optionnel) */
-    font-family: Arial, sans-serif; /* Choix de la police (optionnel) */
+    color: #E8D15B;
+    /* Couleur du texte */
+    padding: 10px;
+    /* Ajout de l'espace autour du texte (optionnel) */
+    border-radius: 5px;
+    /* Bords arrondis (optionnel) */
+    font-family: Arial, sans-serif;
+    /* Choix de la police (optionnel) */
 }
 
+.required::after {
+    content: '*';
+    color: red;
+}
+
+
+.sj-btn.sj-btnactive:disabled,
+.sj-btn.sj-btnactive:disabled::before,
+.sj-btnsearch,
+button:disabled {
+    background: linear-gradient(225deg, gray, rgb(167, 176, 170), rgb(109, 123, 113), #000001ff, #2F4BAAff);
+}

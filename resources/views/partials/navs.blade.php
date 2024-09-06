@@ -23,7 +23,7 @@
 
                 <li><a href={{ route('web.articles.list') }}>Liste</a></li>
                 @auth
-                    <li><a href={{ route('admin.articles.create') }}>Créer Un Article</a></li>
+                    <li><a href={{ route('admin.articles.view.metadata') }}>Créer Un Article</a></li>
 
                 @endauth
 

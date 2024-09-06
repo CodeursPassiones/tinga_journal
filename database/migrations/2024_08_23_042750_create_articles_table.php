@@ -14,16 +14,28 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
+            // auto
             $table->id();
-            $table->string('title');
-            $table->text('abstract');
-            $table->text('content');
-            $table->string('matricule')->unique();
-            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITED', 'REJECTED', 'DRAFT'])->default('DRAFT');
+            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED'])->default('DRAFT');
+            $table->enum('state', ['INVALID', 'VALID'])->default('INVALID');
             $table->string('image_path')->default('assets/images/thumbnails/img-02.jpg');
+            // Metadata
+
+            $table->string('title')->nullable();
+            $table->text('abstract')->nullable();
+            $table->text('content')->nullable();
+            $table->string('keywords')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->text('references')->nullable();
+            $table->string('prefix')->nullable();
+            $table->string('doi')->unique()->nullable();
+            $table->text('comment')->nullable();
+            $table->string('matricule')->unique()->nullable();
+
             $table->dateTime('publication_date')->default(now());
+            // Foreign
             $table->foreignIdFor(Issue::class);
-            $table->foreignIdFor(Discipline::class);
+            $table->foreignIdFor(Discipline::class)->nullable();
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });
