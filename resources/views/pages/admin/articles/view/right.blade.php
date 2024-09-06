@@ -51,18 +51,32 @@
                         chargés</span>
                 </li>
             </ul>
+            <form action="" id="submitArticleForm">
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                <div class="sj-headerhold">
+                    @if ($article->state === 'VALID' && $article->status === 'DRAFT')
+                        <input type="checkbox" name="agree">
+                        <span>J'accepte tous les <a href="javascript:void(0);">Termes et Conditions</a> de soumission de
+                            l'article</span>
+                    @endif
 
-            <div class="sj-submitdetails">
-                @if ($article->state === 'VALID')
-                    <span>J'accepte tous les <a href="javascript:void(0);">Termes et Conditions</a> de soumission de
-                        l'article</span>
-                @endif
 
-                <button href="javascript:void(0);" class="sj-btn sj-btnactive"
-                    {{ $article->state == 'INVALID' ? 'disabled' : '' }}>
-                    Soumettre
-                </button>
-            </div>
+                </div>
+                <div class="sj-submitdetails">
+
+
+
+                    <button class="sj-btn sj-btnactive {{ $article->status != 'DRAFT' ? 'd-none' : '' }}"
+                        id="submitArticleBtn" type="submit" {{ $article->state == 'INVALID' ? 'disabled' : '' }}>
+                        <span class="normal-status">
+                            Soumettre
+                        </span>
+                        <span class="indicateur d-none">
+                            <span><i class="fa fa-spinner text-secondary"></i> Chargement...</span>
+                        </span>
+                    </button>
+                </div>
+            </form>
         </div>
     </aside>
 </div>

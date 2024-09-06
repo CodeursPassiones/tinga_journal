@@ -9,11 +9,11 @@
                 <h2>Auteurs</h2>
                 <form class="sj-formtheme sj-formsearchvtwo">
                     <div class="sj-sortupdown">
-                        <a href="javascript:void(0);"><i class="fa fa-sort-amount-up"></i></a>
+                        <a href="javascript:void(0);"><i class="fa fa-sort-amount-up" disabled></i></a>
                     </div>
                     <fieldset>
-                        <input type="search" name="search" class="form-control" placeholder="Search here">
-                        <button type="submit" class="sj-btnsearch"><i class="lnr lnr-magnifier"></i></button>
+                        <input type="search" name="search" class="form-control" placeholder="Recherche" disabled>
+                        <button type="submit" class="sj-btnsearch" disabled><i class="lnr lnr-magnifier"></i></button>
                     </fieldset>
                 </form>
             </div>
@@ -24,20 +24,18 @@
                             <button type="button" class="sj-btn sj-btnactive" data-toggle="modal"
                                 data-target="#addAuthorModal">Ajouter Un Auteur</button>
                         </div>
-                        <div class="form-group sj-inputwithicon float-right">
-                            <i class="lnr lnr-sync"></i>
-                            <span class="sj-select">
-                                <label for="authors">
+                        <div class="form-group  float-right">
 
-                                    <select class="authors-select" name="author" id="authors">
-                                        <option></option>
-                                        @foreach ($authors as $author)
-                                            <option value={{ $author->id }}>
-                                                {{ $author->firstname . ' ' . $author->lastname }}</option>
-                                        @endforeach
-                                    </select>
-                                </label>
-                            </span>
+
+
+                            <select class="authors-select" name="author" id="authors" disabled>
+                                <option></option>
+                                @foreach ($authors as $author)
+                                    <option value={{ $author->id }}>
+                                        {{ $author->firstname . ' ' . $author->lastname }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                     </fieldset>
                 </form>

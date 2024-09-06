@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->string('mime_type');
+            $table->string('mime_type')->default('application/pdf');
             $table->string('path');
             $table->string('url');
             $table->string('name');

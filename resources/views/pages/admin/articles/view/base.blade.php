@@ -9,8 +9,8 @@
 @endsection
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -27,8 +27,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('web-content')
     @auth
@@ -46,3 +46,6 @@
         </div>
     @endauth
 @endsection
+@push('js')
+    <script src={{ asset('app-js/admin/article/submit.js') }}></script>
+@endpush

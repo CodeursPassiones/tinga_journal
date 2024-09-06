@@ -11,11 +11,7 @@ let AppAdminArticleMetadataMAnager = (function () {
             lang: "fr-FR",
         });
     };
-    const initSelect2 = () => {
-        jQuery(".authors-select").select2({
-            placeholder: "Choisissez les",
-        });
-    };
+
     const addArticleUrl = "/admin/articles/store/metadata";
 
     const handleSubmit = () => {
@@ -39,7 +35,7 @@ let AppAdminArticleMetadataMAnager = (function () {
         init: () => {
 
             initSummerNote();
-            initSelect2();
+            
             articleAddForm = document.querySelector("#articleMetadataForm");
 
             if (!articleAddForm) {

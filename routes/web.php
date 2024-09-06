@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/update/{articleId}', [ArticleAdminController::class, 'update'])->name('admin.articles.update');
             Route::get('/publish/{articleId}', [ArticleAdminController::class, 'publish'])->name('admin.articles.publish');
             Route::get('/hide/{articleId}', [ArticleAdminController::class, 'hide'])->name('admin.articles.hide');
+            Route::post('/submit', [ArticleAdminController::class, 'submit'])->name('admin.articles.submit');
 
             Route::prefix('/view')->group(function () {
                 Route::get('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.files');
@@ -103,7 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/metadata/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.metadata');
             });
             Route::prefix('/store')->group(function () {
-                Route::post('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.store.files');
+                Route::post('/files', [ArticleAdminController::class, 'storeFiles'])->name('admin.articles.store.files');
                 Route::post('/author/sync', [ArticleAdminController::class, 'syncAuthor'])->name('admin.articles.store.author.sync');
                 Route::post('/author/create-and-sync', [ArticleAdminController::class, 'createAndSyncAuthor'])->name('admin.articles.store.author.createSync');
                 Route::post('/metadata', [ArticleAdminController::class, 'storeMetadata'])->name('admin.articles.store.metadata');
