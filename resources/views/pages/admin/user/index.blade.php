@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -62,13 +62,14 @@
                     <p>Aucun utilisateur trouvé :(</p>
                 @else
                     @foreach ($users as $user)
-                        <li class="sj-categorysinfo">
+                        <li class="sj-categorysinfo parent">
                             <figure class="sj-assignuserimg">
                                 <img src={{ asset($user->profile_picture) }} alt="img">
                             </figure>
                             <div class="sj-title">
-                                <h3>{{ $user->firstname . ' ' . $user->lastname }} <span class="sj-assignedinfo"
-                                        data-toggle="modal" data-target="#feedbackmodal">( {{ $user->articles->count() }}
+                                <h3 class="userItem">{{ $user->firstname . ' ' . $user->lastname }} <span
+                                        class="sj-assignedinfo" data-toggle="modal" data-target="#feedbackmodal">(
+                                        {{ $user->articles->count() }}
                                         Articles publiées )</span>
                                 </h3>
                             </div>
@@ -77,7 +78,16 @@
                                 <div class="sj-addremove">
                                     <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                         data-target="#UpdateUserModal{{ $user->id }}"><i class="ti-pencil"></i></a>
-                                    {{-- <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a> --}}
+
+                                    <a class="sj-trashbtn userDeleteBtn" href="#" id="{{ $user->id }}"><i
+                                            class="ti-trash normal-status"></i>
+                                        </span>
+                                        <span class="indicateur d-none">
+                                            <span class="spinner-border spinner-border-sm me-1" role="status"
+                                                aria-hidden="true"></span>
+                                            Loading...
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         </li>
@@ -99,4 +109,5 @@
 @push('js')
     <script src={{ asset('app-js/admin/user/add.js') }}></script>
     <script src={{ asset('app-js/admin/user/update.js') }}></script>
+    <script src={{ asset('app-js/admin/user/delete.js') }}></script>
 @endpush

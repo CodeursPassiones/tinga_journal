@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class UserAdminController extends Controller
 {
@@ -182,5 +183,20 @@ class UserAdminController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $currentUser = Auth::user();
+
+            if ($currentUser->id == $id) {
+                return response()->json(['ok' => false, 'message' => 'Vous ne pouvez pas supprimer votre propre compte.']);
+            }
+            DB::table('users')->where('id', $id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'l\'utilisateur a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            // throw $th;
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
     }
 }
