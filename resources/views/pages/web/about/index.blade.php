@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                             Inner Banner Start
-                                                                                           *************************************-->
+                                                                                                         Inner Banner Start
+                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                             Inner Banner End
-                                                                                           *************************************-->
+                                                                                                         Inner Banner End
+                                                                                                       *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -36,7 +36,7 @@
 
                             <div class="sj-introduction sj-sectioninnerspace">
 
-                                <h4>Présentation de la revue Tinga</h4>
+                                <h4>Présentation de la revue Tɩ́ɩ́ŋá</h4>
                                 <div class="sj-description">
                                     <p>La revue Tɩ́ɩ́ŋá est le fruit d'une initiative académique portée par le Laboratoire
                                         Langues, Littératures et Développement (LaLD), une structure de recherche de premier

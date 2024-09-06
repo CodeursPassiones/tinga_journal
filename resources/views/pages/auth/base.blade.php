@@ -11,8 +11,8 @@
                             <div class="sj-widgetcontent">
                                 {{-- <strong class="sj-logo"><a href={{ route('home') }}><img
                                             src={{ asset('assets/images/logo-templates/logo.png') }}
-                                            alt="Tinga Logo"></a></strong> --}}
-                                <a href="" class="tinga"></a>
+                                            alt="Tɩ́ɩ́ŋá Logo"></a></strong> --}}
+                                <a href="" class="Tɩ́ɩ́ŋá"></a>
                             </div>
                         </div>
                     </aside>

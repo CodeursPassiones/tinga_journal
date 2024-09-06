@@ -27,6 +27,8 @@
                                 <img src="{{ asset('assets/images/A propos/rapporteurs2.jpg') }}" style="height: 500px;"
                                     alt="image description">
                             </figure>
+                            <a href="{{ asset('storage/normes.pdf') }}" download="normes.pdf">Télécharger le
+                                PDF</a>
 
                             <div class="sj-introduction sj-sectioninnerspace">
                                 <div style="font-family: 'Times New Roman', serif; font-size: 12px; line-height: 1.15;"
