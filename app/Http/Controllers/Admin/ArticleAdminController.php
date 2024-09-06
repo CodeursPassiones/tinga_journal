@@ -11,6 +11,8 @@ use App\Models\File;
 use App\Models\Issue;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ArticleAdminController extends Controller
@@ -62,7 +64,8 @@ class ArticleAdminController extends Controller
     {
         try {
             // Récupérer l'issue_id de la requête
-            $issue_id = $request->input('issue_id');
+            // $issue_id = $request->input('issue_id');
+            $issue_id = Crypt::decryptString($request->input('issue_id'));
 
             // Vérifier si un issue_id est fourni et récupérer l'issue correspondante
             if ($issue_id) {
@@ -140,7 +143,9 @@ class ArticleAdminController extends Controller
                 // 'keywords' => 'string|max:100',
                 'article_id' => 'required|int',
             ]);
-            $article = Article::find($validatedData['article_id']);
+            $article_id = Crypt::decryptString($request->input('article_id'));
+
+            $article = Article::find($article_id);
 
             // Création de l'article
             $article->update([
@@ -170,7 +175,9 @@ class ArticleAdminController extends Controller
             'files.*' => 'mimes:pdf|max:10240', // validation pour les fichiers PDF
         ]);
         // Créer un nouvel article
-        $article = Article::find($request->input('article_id'));
+        $article_id = Crypt::decryptString($request->input('article_id'));
+
+        $article = Article::find($article_id);
         // Suppression de l'image existante si demandé
         if ($request->has('delete_image') && $article->image_path) {
             \Storage::delete($article->image_path); // Supprimer l'image existante
@@ -226,11 +233,15 @@ class ArticleAdminController extends Controller
     public function syncAuthor($article_id, $author_id)
     {
         try {
+            $article_id = Crypt::decryptString($article_id);
+            $author_id = Crypt::decryptString($author_id);
+
             ArticleUser::create([
                 'user_id' => $author_id,
                 'article_id' => $article_id,
                 'role' => 'author',
             ]);
+
             $article = Article::find($article_id);
 
             $this->checkAndUpdateArticleValidity($article);
@@ -262,12 +273,15 @@ class ArticleAdminController extends Controller
             ]);
 
             $user->syncRoles(['author']);
+            $article_id = Crypt::decryptString($request->input('article_id'));
+
+            $article = Article::find($article_id);
             ArticleUser::create([
                 'user_id' => $user->id,
-                'article_id' => $request->input('article_id'),
+                'article_id' => $article_id,
                 'role' => 'author',
             ]);
-            $article = Article::find($request->input('article_id'));
+
             $this->checkAndUpdateArticleValidity($article);
 
             return response()->json(['ok' => true, 'message' => 'Auteur créé et associé avec succès !'], 200);
@@ -289,7 +303,9 @@ class ArticleAdminController extends Controller
         ]);
 
         try {
-            $article = Article::find($request->input('article_id'));
+            $article_id = Crypt::decryptString($request->input('article_id'));
+
+            $article = Article::find($article_id);
             $article->status = 'SUBMITTED';
             $article->save();
 
@@ -304,16 +320,13 @@ class ArticleAdminController extends Controller
     public function publish($article_id)
     {
         try {
+            $article_id = Crypt::decryptString($article_id);
+
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
                 'status' => 'PUBLISHED',
             ]);
-
-            // Redirection avec message de succès
-            // return response()->json(['message' => 'Article publié avec succès.', 'ok' => true, 'article_id' => $article->id]);
-
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return to_route('admin.articles.list', 'SUBMITTED');
         } catch (\Throwable $th) {
@@ -325,6 +338,8 @@ class ArticleAdminController extends Controller
     public function hide($article_id)
     {
         try {
+            $article_id = Crypt::decryptString($article_id);
+
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
@@ -337,6 +352,20 @@ class ArticleAdminController extends Controller
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return to_route('admin.articles.list', 'PUBLISHED');
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            $article_id = Crypt::decryptString($id);
+
+            DB::table('articles')->where('id', $article_id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'L\'article a été supprimé avec succès.']);
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
