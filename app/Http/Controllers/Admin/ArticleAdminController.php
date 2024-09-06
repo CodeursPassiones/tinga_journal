@@ -174,7 +174,7 @@ class ArticleAdminController extends Controller
         // Suppression de l'image existante si demandé
         if ($request->has('delete_image') && $article->image_path) {
             \Storage::delete($article->image_path); // Supprimer l'image existante
-            $article->image_path = 'assets/images/thumbnails/img-02.jpg'; // Mettre à jour le champ dans la base de données
+            $article->image_path = '/assets/images/thumbnails/img-02.jpg'; // Mettre à jour le champ dans la base de données
         }
 
         // Upload de la nouvelle image si fournie
