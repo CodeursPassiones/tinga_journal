@@ -140,6 +140,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list/{volumeID}', [IssueAdminController::class,  'index'])->name('admin.issues.list');
             Route::post('/store', [IssueAdminController::class,  'store'])->name('admin.issues.store');
             Route::post('/update', [IssueAdminController::class,  'update'])->name('admin.issues.update');
+            Route::delete('/delete/{issueId}', [IssueAdminController::class,  'destroy'])->name('admin.issues.delete');
         });
 
         /*

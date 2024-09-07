@@ -65,10 +65,7 @@ class ArticleAdminController extends Controller
         try {
             // Récupérer l'issue_id de la requête
             // $issue_id = $request->input('issue_id');
-            $issue_id = null;
-            if ($request->input('issue_id')) {
-                $issue_id = Crypt::decryptString($request->input('issue_id'));
-            }
+            $issue_id = $request->input('issue_id');
 
             // Vérifier si un issue_id est fourni et récupérer l'issue correspondante
             if ($issue_id) {

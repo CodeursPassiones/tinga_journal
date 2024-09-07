@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Issue;
 use App\Models\Volume;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IssueAdminController extends Controller
 {
@@ -43,17 +44,15 @@ class IssueAdminController extends Controller
     {
         try {
             $this->validate($request, [
+                'title' => 'required',
                 'publication_date' => 'required|date',
+                'volume_id' => 'required|exists:volumes,id',
             ]);
-            $date = Carbon::parse($request->input('publication_date'));
-            $volume_year = $date->year;
-
-            $volume = Volume::where('year', $volume_year)->first();
-            $volume = Volume::first();
 
             $issue = Issue::create([
                 'publication_date' => $request->input('publication_date'),
-                'volume_id' => $volume->id,
+                'volume_id' => $request->input('volume_id'),
+                'title' => $request->input('title'),
             ]);
 
             return response()->json(['message' => "Le numéro du {$issue->publication_date} a été ajouter avec succès", 'ok' => true]);
@@ -80,14 +79,48 @@ class IssueAdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
+        try {
+            $this->validate($request, [
+                'title' => 'required|max:20',
+                'publication_date' => 'required|date',
+
+                'issue_id' => 'required|exists:issues,id',
+            ]);
+            $issue_id = $request->input('issue_id');
+            $issue = Issue::find($issue_id);
+            $issue->update([
+                'publication_date' => $request->input('publication_date'),
+
+                'title' => $request->input('title'),
+            ]);
+
+            return response()->json(['message' => 'Le Numéro  a été mis à jour avec succès', 'ok' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $issue_id)
     {
+        try {
+            $issueHasArticle = Article::where('issue_id', $issue_id)->exists();
+
+            if ($issueHasArticle) {
+                return response()->json(['ok' => false, 'message' => 'Le numéro est associé à des articles et ne peut pas être supprimé.']);
+            }
+
+            DB::table('issues')->where('id', $issue_id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'Le numéro a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+        }
     }
 }
