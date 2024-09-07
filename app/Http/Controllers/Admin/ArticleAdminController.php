@@ -35,22 +35,26 @@ class ArticleAdminController extends Controller
     {
         try {
             $search = $request->input('search');
-            // $sortOrder = $request->input('sort_order', 'asc');
 
-            $query = Article::with(['discipline', 'issue'])->orderBy('created_at', 'desc')->where('status', $status);
+            $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
+            $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
+            $limit = $request->input('limit', 5); // Par défaut 6 articles par page
+            $query = Article::with(['discipline', 'issue'])->where('status', $status);
+            // Application du tri
+            $query->orderBy($sortBy, $sortOrder);
+
             if ($search) {
-                $query->orWhere('title', 'LIKE', '%'.$search.'%');
-                $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
-                $query->orWhere('content', 'LIKE', '%'.$search.'%');
+                $query->Where('title', 'LIKE', '%'.$search.'%');
+                // $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
             }
             if ($status !== 'DRAFT') {
                 $query->Where('state', '=', 'VALID');
             } else {
-                $query->orWhere('state', '=', 'INVALID');
+                $query->Where('state', '=', 'INVALID');
             }
-            $articles = $query->paginate(5);
+            $articles = $query->paginate($limit);
 
-            return view('pages.admin.articles.index', compact('articles', 'status'));
+            return view('pages.admin.articles.index', compact('articles', 'status', 'sortOrder'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;
