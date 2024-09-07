@@ -150,6 +150,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [VolumeAdminController::class,  'index'])->name('admin.volumes.list');
             Route::post('/store', [VolumeAdminController::class,  'store'])->name('admin.volumes.store');
             Route::post('/update', [VolumeAdminController::class,  'update'])->name('admin.volumes.update');
+            Route::delete('/delete/{volumeID}', [VolumeAdminController::class,  'destroy'])->name('admin.volumes.delete');
         });
         /*
          * Account

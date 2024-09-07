@@ -1,48 +1,48 @@
 "use strict";
-let AppDisciplineAdd = (function () {
-    let addDisciplineForm;
+let AppVolumeAddManager = (function () {
+    let addVolumeForm;
 
-    let disciplineAddBtn;
+    let volumeAddBtn;
  
 
-    const addDisciplineUrl = "/admin/disciplines/store";
+    const addVolumeUrl = "/admin/volumes/store";
     
 
-    let handleDisciplineAdd = () => {
-        disciplineAddBtn.addEventListener("click", async (e) => {
+    let handleVolumeAdd = () => {
+        volumeAddBtn.addEventListener("click", async (e) => {
             e.preventDefault();
-            const formData = new FormData(addDisciplineForm);
+            const formData = new FormData(addVolumeForm);
             AppModules.submitFromBtn(
-                disciplineAddBtn,
+                volumeAddBtn,
                 formData,
-                addDisciplineUrl,
-                addNatureCallback
+                addVolumeUrl,
+                addVolumeCallback
             );
         });
     };
 
  
 
-    let addNatureCallback = () => {
+    let addVolumeCallback = () => {
         location.reload();
     };
     return {
         init: () => {
-            addDisciplineForm = document.querySelector("#disciplineAddForm");
+            addVolumeForm = document.querySelector("#volumeAddForm");
             
-            if (!addDisciplineForm ) {
+            if (!addVolumeForm ) {
                 return;
             }
 
-            disciplineAddBtn =
-                addDisciplineForm.querySelector("#disciplineAddBtn");
+            volumeAddBtn =
+                addVolumeForm.querySelector("#volumeAddBtn");
             
 
-            handleDisciplineAdd();
+                handleVolumeAdd();
             
         },
     };
 })();
 document.addEventListener("DOMContentLoaded", (e) => {
-    AppDisciplineAdd.init();
+    AppVolumeAddManager.init();
 });

@@ -1,16 +1,16 @@
 'use strict';
 
-let AppAdminDisciplineDeleteManager = function () {
+let AppAdminVolumeDeleteManager = function () {
     let deleteBtns;
 
-    let handleMembersDelete = () => {
+    let handleVolumeDelete = () => {
         deleteBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                let deleteUrl = "/admin/disciplines/delete/" + btn.id;
+                let deleteUrl = "/admin/volumes/delete/" + btn.id;
                 let parent = e.target.closest('li.parent');
-                let nature = parent.querySelector('.discipline').innerText;
+                let nature = parent.querySelector('.volume').innerText;
                 AppModules.deleteTableItemSubmission(btn, parent, nature, deleteUrl);
 
             })
@@ -19,14 +19,14 @@ let AppAdminDisciplineDeleteManager = function () {
     return {
         init: () => {
 
-            deleteBtns = document.querySelectorAll('.disciplineDeleteBtn');
+            deleteBtns = document.querySelectorAll('.volumeDeleteBtn');
 
 
-            handleMembersDelete();
+            handleVolumeDelete();
             // console.log(445);
         }
     }
 }();
 document.addEventListener('DOMContentLoaded', (e) => {
-    AppAdminDisciplineDeleteManager.init();
+    AppAdminVolumeDeleteManager.init();
 })

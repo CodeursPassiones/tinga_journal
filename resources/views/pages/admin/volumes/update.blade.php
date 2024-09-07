@@ -1,7 +1,7 @@
  <!--************************************
    Add Discipline	Popup Start
  *************************************-->
- <div class="sj-modalboxarea modal fade " tabindex="-1" role="dialog" id="UpdateVilumeModal{{ $volume_id }}">
+ <div class="sj-modalboxarea modal fade " tabindex="-1" role="dialog" id="UpdateVolumeModal{{ $volume_id }}">
      <div class="modal-dialog" role="document">
          <div class="sj-modalcontent modal-content">
              <div class="sj-popuptitle">
@@ -10,25 +10,25 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo disciplineUpdateForm">
-                     <input type="hidden" name="volume_id" value={{ $volume_id }}>
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo volumeUpdateForm">
+                     <input type="hidden" name="volume_id" value={{ $volume->id }}>
                      <fieldset>
                          <div class="form-group">
                              <label for="titlz" class="required">Titre :</label>
                              <input type="text" name="title" id="title" class="form-control"
-                                 placeholder="Titre">
+                                 placeholder="Titre" value="{{ $volume->title }}">
                          </div>
 
                          <div class="form-group">
                              <label for="year">Année :</label>
-                             <input type="text" name="year" id="year" class="form-control"
-                                 placeholder="YYYY">
+                             <input type="text" name="year" id="year" class="form-control" placeholder="YYYY"
+                                 value="{{ $volume->year }}">
                          </div>
 
 
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive disciplineUpdateBtn" type="submit">
+                         <button class="sj-btn sj-btnactive volumeUpdateBtn" type="submit">
                              <span class="normal-status">
                                  Mettre à jour
                              </span>

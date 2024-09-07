@@ -1,21 +1,21 @@
 "use strict";
-let AppAdminDisciplineUpdate = (function () {
-    let disciplineUpdateForms;
+let AppAdminVolumeUpdate = (function () {
+    let volumeUpdateForms;
 
-    const updateDisciplineUrl = "/admin/disciplines/update";
+    const updateVolumeUrl = "/admin/volumes/update";
 
-    let handleUserUpdate = () => {
-        disciplineUpdateForms.forEach((userUpdateForm) => {
+    let handleVolumeUpdate = () => {
+        volumeUpdateForms.forEach((volumeUpdateForm) => {
             const disciplineUpdateBtn =
-                userUpdateForm.querySelector(".disciplineUpdateBtn");
+                volumeUpdateForm.querySelector(".volumeUpdateBtn");
 
             disciplineUpdateBtn.addEventListener("click", (e) => {
                 e.preventDefault();
-                const formData = new FormData(userUpdateForm);
+                const formData = new FormData(volumeUpdateForm);
                 AppModules.submitFromBtn(
                     disciplineUpdateBtn,
                     formData,
-                    updateDisciplineUrl,
+                    updateVolumeUrl,
                     addNatureCallback
                 );
             });
@@ -27,15 +27,15 @@ let AppAdminDisciplineUpdate = (function () {
     };
     return {
         init: () => {
-            disciplineUpdateForms = document.querySelectorAll(".disciplineUpdateForm");
-            if (!disciplineUpdateForms) {
+            volumeUpdateForms = document.querySelectorAll(".volumeUpdateForm");
+            if (!volumeUpdateForms) {
                 return;
             }
 
-            handleUserUpdate();
+            handleVolumeUpdate();
         },
     };
 })();
 document.addEventListener("DOMContentLoaded", (e) => {
-    AppAdminDisciplineUpdate.init();
+    AppAdminVolumeUpdate.init();
 });
