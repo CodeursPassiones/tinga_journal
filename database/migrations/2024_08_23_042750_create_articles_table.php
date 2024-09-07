@@ -32,7 +32,7 @@ return new class extends Migration {
             $table->text('comment')->nullable();
             $table->string('matricule')->unique()->nullable();
 
-            $table->dateTime('publication_date')->default(now());
+            $table->dateTime('publication_date')->useCurrent();
             // Foreign
             $table->foreignIdFor(Issue::class);
             $table->foreignIdFor(Discipline::class)->nullable();

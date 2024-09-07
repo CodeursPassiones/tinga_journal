@@ -62,7 +62,7 @@
 
                         <div class="form-group">
                             <label for="abstract" class="required">Résumé</label>
-                            <textarea id="abstract" name="abstract">{!! $article->abstract !!}</textarea>
+                            <textarea id="abstract" name="abstract" style="text-transform: none">{!! $article->abstract !!}</textarea>
 
                         </div>
                     </fieldset>

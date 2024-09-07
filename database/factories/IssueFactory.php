@@ -18,7 +18,7 @@ class IssueFactory extends Factory
     {
         return [
             'publication_date' => $this->faker->date(),
-            'volume_id' => $this->faker->numberBetween(1,3),
+            'volume_id' => $this->faker->numberBetween(1,2),
         ];
     }
 }

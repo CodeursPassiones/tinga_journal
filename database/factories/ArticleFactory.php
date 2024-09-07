@@ -17,9 +17,9 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'issue_id' => $this->faker->numberBetween(4, 6),
-            'discipline_id' => $this->faker->numberBetween(4, 6),
-            'user_id' => $this->faker->numberBetween(1, 6),
+            'issue_id' => $this->faker->numberBetween(1,2),
+            'discipline_id' => $this->faker->numberBetween(1,2),
+            'user_id' => $this->faker->numberBetween(1,2),
             'title' => $this->faker->word(),
             'abstract' => $this->faker->text(),
             'content' => $this->faker->text(),

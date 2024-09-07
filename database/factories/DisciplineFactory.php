@@ -19,7 +19,6 @@ class DisciplineFactory extends Factory
         $disciplines = [
             'Littérature',
             'Arts',
-            'Chimie',
             'Biologie',
             'Histoire',
             'Géographie',

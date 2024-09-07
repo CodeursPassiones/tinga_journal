@@ -17,8 +17,8 @@ class ArticleUserFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 6),
-            'article_id' => $this->faker->numberBetween(1, 6),
+            'user_id' => $this->faker->numberBetween(1,2),
+            'article_id' => $this->faker->numberBetween(1,2),
             'role' => $this->faker->randomElement(['reviwer', 'editor']),
         ];
     }

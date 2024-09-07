@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class ArticleAdminController extends Controller
 {
@@ -137,8 +138,7 @@ class ArticleAdminController extends Controller
             $validatedData = $request->validate([
                 'title' => 'required|string|max:100',
                 'discipline' => 'required|exists:disciplines,id',
-
-                'abstract' => 'required|string|max:255',
+                'abstract' => 'required|string',
                 // 'prefix' => 'string|max:7',
                 // 'subtitle' => 'string|max:40',
                 // 'keywords' => 'string|max:100',
@@ -320,23 +320,35 @@ class ArticleAdminController extends Controller
         }
     }
 
-    public function publish($article_id)
-    {
-        try {
-            $article_id = Crypt::decryptString($article_id);
+    public function publish($article_id, Request $request)
+{
+    try {
+        // Décryptage de l'ID de l'article
+        $article_id = Crypt::decryptString($article_id);
 
-            $article = Article::find($article_id);
-            // Création de l'article
-            $article->update([
-                'status' => 'PUBLISHED',
-            ]);
+        // Récupération de l'article
+        $article = Article::find($article_id);
 
-            return to_route('admin.articles.list', 'SUBMITTED');
-        } catch (\Throwable $th) {
-            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        // Vérifier si l'article existe
+        if (!$article) {
+            return response()->json(['ok' => false, 'message' => 'Article introuvable.'], 404);
         }
+
+        // Mise à jour de l'article avec le statut "PUBLISHED" et la date de publication
+        $article->update([
+            'status' => 'PUBLISHED',
+            'publication_date' => $request->has('publication_date') ? Carbon::parse($request->publication_date) : now(),
+        ]);
+
+        // Redirection après succès
+        return to_route('admin.articles.list', ['status' => 'SUBMITTED'])
+            ->with('success', 'L\'article a été publié avec succès.');
+    } catch (\Throwable $th) {
+        // Gestion des exceptions
+        return response()->json(['ok' => false, 'message' => $th->getMessage()], 500);
     }
+}
+
 
     public function hide($article_id)
     {
