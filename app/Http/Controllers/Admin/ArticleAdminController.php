@@ -138,9 +138,9 @@ class ArticleAdminController extends Controller
                 // 'prefix' => 'string|max:7',
                 // 'subtitle' => 'string|max:40',
                 // 'keywords' => 'string|max:100',
-                'article_id' => 'required|int',
+                'article_id' => 'required|exists:articles,id',
             ]);
-            $article_id = Crypt::decryptString($request->input('article_id'));
+            $article_id = $request->input('article_id');
 
             $article = Article::find($article_id);
 
@@ -167,12 +167,12 @@ class ArticleAdminController extends Controller
     {
         // Valider les fichiers et l'image
         $request->validate([
-            'article_id' => 'required',
+            'article_id' => 'required|exists:articles,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validation pour l'image
             'files.*' => 'mimes:pdf|max:10240', // validation pour les fichiers PDF
         ]);
         // Créer un nouvel article
-        $article_id = Crypt::decryptString($request->input('article_id'));
+        $article_id = $request->input('article_id');
 
         $article = Article::find($article_id);
         // Suppression de l'image existante si demandé
@@ -227,14 +227,16 @@ class ArticleAdminController extends Controller
         ], 200);
     }
 
-    public function syncAuthor($article_id, $author_id)
+    public function syncAuthor(Request $request)
     {
         try {
-            $article_id = Crypt::decryptString($article_id);
-            $author_id = Crypt::decryptString($author_id);
-
+            $this->validate($request, [
+                'user_id' => 'required',
+                'article_id' => 'required',
+            ]);
+            $article_id = $request->input('article_id');
             ArticleUser::create([
-                'user_id' => $author_id,
+                'user_id' => $request->input('user_id'),
                 'article_id' => $article_id,
                 'role' => 'author',
             ]);
@@ -257,7 +259,7 @@ class ArticleAdminController extends Controller
             $this->validate($request, [
                 'lastname' => 'required|max:20',
                 'firstname' => 'required|max:20',
-                'article_id' => 'required|max:20',
+                'article_id' => 'required|exists:articles,id',
                 'email' => 'email|unique:users,email',
             ]);
 
@@ -270,7 +272,7 @@ class ArticleAdminController extends Controller
             ]);
 
             $user->syncRoles(['author']);
-            $article_id = Crypt::decryptString($request->input('article_id'));
+            $article_id = $request->input('article_id');
 
             $article = Article::find($article_id);
             ArticleUser::create([
@@ -363,6 +365,18 @@ class ArticleAdminController extends Controller
             DB::table('articles')->where('id', $article_id)->delete();
 
             return response()->json(['ok' => true, 'message' => 'L\'article a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
+    public function detachAuthor(string $id)
+    {
+        try {
+            DB::table('article_users')->where('id', $id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'L\'auteur a été retiré avec succès.']);
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);

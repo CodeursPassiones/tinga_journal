@@ -97,7 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/publish/{articleId}', [ArticleAdminController::class, 'publish'])->name('admin.articles.publish');
             Route::get('/hide/{articleId}', [ArticleAdminController::class, 'hide'])->name('admin.articles.hide');
             Route::post('/submit', [ArticleAdminController::class, 'submit'])->name('admin.articles.submit');
-
+            Route::delete('/author/detach/{id}', [ArticleAdminController::class, 'detachAuthor'])->name('admin.articles.author.detach');
+            Route::delete('/delete/{id}', [ArticleAdminController::class, 'destroy'])->name('admin.articles.delete');
             Route::prefix('/view')->group(function () {
                 Route::get('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.files');
                 Route::get('/authors/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.authors');

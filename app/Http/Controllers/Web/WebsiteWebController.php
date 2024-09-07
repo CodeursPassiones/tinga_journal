@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\Issue;
-use App\Models\Article;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Issue;
 
 class WebsiteWebController extends Controller
 {
@@ -23,21 +23,21 @@ class WebsiteWebController extends Controller
             ->get();
 
             // Regrouper les articles par groupes de quatre
-            $groupedIssues = $latestIssues->map(function ($issue) {
-                $issue->groupedArticles = $issue->articles->chunk(4); // Grouper les articles par 4
+            // $groupedIssues = $latestIssues->map(function ($issue) {
+            //     $issue->groupedArticles = $issue->articles->chunk(4); // Grouper les articles par 4
 
-                return $issue;
-            });
+            //     return $issue;
+            // });
 
-            // Regrouper les articles par année pour chaque numéro
-            $groupedIssues = $latestIssues->groupBy(function ($issue) {
-                return $issue->publication_date->format('Y'); // Grouper par année
-            });
+            // // Regrouper les articles par année pour chaque numéro
+            // $groupedIssues = $latestIssues->groupBy(function ($issue) {
+            //     return $issue->publication_date->format('Y'); // Grouper par année
+            // });
             $threeLatest = Article::orderBy('publication_date', 'desc')->take(3)->get();
             $latestArticles = Article::orderBy('publication_date', 'desc')->where('status', 'PUBLISHED')->take(6)->get()->chunk(3);
             // Regrouper les volumes par décennie
 
-            return view('pages.web.home.index', compact('lastArticle', 'latestIssues', 'threeLatest', 'latestArticles', 'groupedIssues'));
+            return view('pages.web.home.index', compact('lastArticle', 'latestIssues', 'threeLatest', 'latestArticles'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;

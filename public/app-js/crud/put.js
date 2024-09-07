@@ -30,6 +30,8 @@ let AppAdminModelUpdateManager = (function () {
     return {
         init: () => {
             modelUpdateForms = document.querySelectorAll(".modelUpdateForm");
+            // console.log(modelUpdateForms);
+
             if (!modelUpdateForms) {
                 return;
             }

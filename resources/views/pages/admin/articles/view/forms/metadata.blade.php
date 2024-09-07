@@ -4,9 +4,6 @@
     <link href={{ asset('assets/plugins/summernote/summernote-lite.min.css') }} rel="stylesheet">
 @endsection
 @section('article-form')
-    @php
-        $article_id = Illuminate\Support\Facades\Crypt::encryptString($article->id);
-    @endphp
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
         <div id="sj-content" class="sj-content sj-addarticleholdcontent">
             <div class="sj-dashboardboxtitle">
@@ -16,7 +13,7 @@
 
                 <form class="sj-formtheme sj-formarticle" id="articleMetadataForm">
                     @csrf
-                    <input type="hidden" name="article_id" value={{ $article_id }}>
+                    <input type="hidden" name="article_id" value={{ $article->id }}>
                     <fieldset>
 
                         <div class="row">

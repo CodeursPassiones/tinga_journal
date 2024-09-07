@@ -4,9 +4,7 @@
     <link href={{ asset('assets/plugins/filepond/plugins/filepond-plugin-image-preview.css') }} rel="stylesheet" />
 @endsection
 @section('article-form')
-    @php
-        $article_id = Illuminate\Support\Facades\Crypt::encryptString($article->id);
-    @endphp
+
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
         <div id="sj-content" class="sj-content sj-addarticleholdcontent">
             <div class="sj-dashboardboxtitle">
@@ -17,7 +15,7 @@
                     @csrf
                     @method('POST') <!-- Pour la mise à jour -->
 
-                    <input type="hidden" name="article_id" value="{{ $article_id }}">
+                    <input type="hidden" name="article_id" value="{{ $article->id }}">
 
                     <!-- Affichage de l'image existante -->
                     @if ($article->image_path && $article->image_path !== 'assets/images/thumbnails/img-02.jpg')

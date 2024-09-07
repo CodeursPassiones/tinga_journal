@@ -41,15 +41,49 @@
                     </fieldset>
                 </form>
                 <ul class="sj-allcategorys sj-allcategorysvtwo">
+                    <li class="sj-addcategorys">
+                        <form class="sj-formtheme sj-categorysform modelUpdateForm" id=""
+                            data-model-update-url="{{ route('admin.articles.store.author.sync') }}">
+                            <input type="hidden" name="article_id" value="{{ $article->id }}">
+                            <fieldset>
+                                <div class="form-group">
+
+                                    <select class="authors-select" name="user_id" id="authors" class="form-control">
+                                        <option></option>
+                                        @foreach ($authors as $author)
+                                            <option value={{ $author->id }}>
+                                                {{ $author->firstname . ' ' . $author->lastname }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group sj-categorysbtn">
+                                    <a href="javascript:void(0);" class="sj-checkbtn modelUpdateBtn" id="">
+
+
+
+
+                                        <i class="ti-check normal-status"></i>
+                                        <span class="indicateur d-none">
+                                            <span><i class="fa fa-spinner text-secondary"></i>
+                                                Chargement...
+                                            </span>
+                                    </a>
+
+
+                                </div>
+                            </fieldset>
+                        </form>
+                    </li>
                     @if ($article->articleUsers->isEmpty())
                         <p>Aucun auteur ajouté :(</p>
                     @else
                         @foreach ($article->articleUsers as $articleUsers)
-                            <li class="sj-categorysinfo">
+                            <li class="sj-categorysinfo parent">
                                 <figure class="sj-assignuserimg">
                                     <img src={{ asset($articleUsers->user->profile_picture) }} alt="img">
                                 </figure>
-                                <div class="sj-title">
+                                <div class="sj-title model-value">
                                     <h3>{{ $articleUsers->user->firstname . ' ' . $articleUsers->user->lastname }}
                                         <span class="sj-assignedinfo" data-toggle="modal" data-target="#feedbackmodal">(
                                             {{ $articleUsers->user->articles->count() }}
@@ -59,10 +93,22 @@
                                 <div class="sj-categorysrightarea">
 
                                     <div class="sj-addremove">
-                                        <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
+                                        {{-- <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                             data-target="#updateAuthorModal{{ $articleUsers->user->id }}"><i
-                                                class="ti-pencil"></i></a>
-                                        <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a>
+                                                class="ti-pencil"></i></a> --}}
+                                        <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
+                                            data-model-action="delete" data-model-parent-selector="li.parent"
+                                            data-model-delete-url="{{ route('admin.articles.author.detach', $articleUsers->id) }}"><i
+                                                class="ti-trash normal-status"></i>
+
+
+
+                                            <span class="indicateur d-none">
+                                                <span><i class="fa fa-spinner text-secondary"></i>
+                                                    Chargement...
+                                                </span>
+
+                                        </a>
                                     </div>
                                 </div>
                             </li>
@@ -85,4 +131,7 @@
 @push('js')
     <script src={{ asset('assets/plugins/select2/js/select2.min.js') }}></script>
     <script src={{ asset('app-js/admin/article/authors.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    <script src={{ asset('app-js/crud/delete.js') }}></script>
 @endpush

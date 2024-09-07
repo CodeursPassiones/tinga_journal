@@ -18,12 +18,15 @@ class Issue extends Model
         'description',
     ];
 
+    // protected $casts = [
+    //     'publication_date' => 'date',
+    // ];
     /**
      * The storage format of the model's date columns.
      *
      * @var string
      */
-    // protected $dateFormat = 'Y-m-d H:i:sO';
+    // protected $dateFormat = 'Y-m-d';
 
     public function volume(): BelongsTo
     {
