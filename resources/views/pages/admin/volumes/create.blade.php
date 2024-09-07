@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo " id="volumeAddForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo " id="modelAddForm"
+                     data-model-add-url="{{ route('admin.volumes.store') }}">
 
                      <input type="hidden" name="journal_id" value={{ $journal->id }}>
                      <fieldset>
@@ -29,7 +30,7 @@
 
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive " type="submit" id="volumeAddBtn">
+                         <button class="sj-btn sj-btnactive " type="submit" id="modelAddBtn">
                              <span class="normal-status">
                                  Créer
                              </span>

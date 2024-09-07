@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -75,7 +75,7 @@
                             $volume_id = Illuminate\Support\Facades\Crypt::encryptString($volume->id);
                         @endphp
                         <li class="sj-categorysinfo parent">
-                            <div class="sj-title volume">
+                            <div class="sj-title model-value">
                                 <h3 class="">Vol. {{ $volume->title . ' ' . $volume->year }} <span
                                         class="sj-assignedinfo">(
                                         {{ $volume->issues->count() }}
@@ -88,7 +88,9 @@
                                         class="ti-eye"></i></a>
                                 <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                     data-target="#UpdateVolumeModal{{ $volume_id }}"><i class="ti-pencil"></i></a>
-                                <a class="sj-trashbtn volumeDeleteBtn" href="#" id="{{ $volume_id }}"><i
+                                <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $volume_id }}"
+                                    data-model-action="delete" data-model-parent-selector="li.parent"
+                                    data-model-delete-url="{{ route('admin.volumes.delete', $volume_id) }}"><i
                                         class="ti-trash normal-status"></i>
                                     </span>
                                     <span class="indicateur d-none">
@@ -113,8 +115,7 @@
 @endsection
 @push('js')
     <script src={{ asset('app-js/filter/filter.js') }}></script>
-
-    <script src={{ asset('app-js/admin/volume/add.js') }}></script>
-    <script src={{ asset('app-js/admin/volume/update.js') }}></script>
-    <script src={{ asset('app-js/admin/volume/delete.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    <script src={{ asset('app-js/crud/delete.js') }}></script>
 @endpush

@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo" id="userAddForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo" id="modelAddForm"
+                     data-model-add-url="{{ route('admin.users.store') }}">
                      <fieldset>
                          <div class="form-group">
                              <input type="text" name="lastname" class="form-control" placeholder="Nom*">
@@ -42,7 +43,7 @@
                          </div>
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive" type="submit" id="userAddBtn">
+                         <button class="sj-btn sj-btnactive" type="submit" id="modelAddBtn">
                              <span class="normal-status">
                                  Mettre à jour
                              </span>

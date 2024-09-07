@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo volumeUpdateForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo modelUpdateForm"
+                     data-model-update-url="{{ route('admin.volumes.update') }}">
                      <input type="hidden" name="volume_id" value={{ $volume->id }}>
                      <fieldset>
                          <div class="form-group">
@@ -28,7 +29,7 @@
 
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive volumeUpdateBtn" type="submit">
+                         <button class="sj-btn sj-btnactive modelUpdateBtn" type="submit">
                              <span class="normal-status">
                                  Mettre à jour
                              </span>

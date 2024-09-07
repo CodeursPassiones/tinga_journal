@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo userUpdateForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo modelUpdateForm"
+                     data-model-update-url="{{ route('admin.users.update') }}">
                      <input type="hidden" name="user_id" value={{ $user->id }}>
                      <fieldset>
                          <div class="form-group">
@@ -41,7 +42,7 @@
                          </div>
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive userUpdateBtn" type="submit">
+                         <button class="sj-btn sj-btnactive modelUpdateBtn" type="submit">
                              <span class="normal-status">
                                  Mettre à jour
                              </span>

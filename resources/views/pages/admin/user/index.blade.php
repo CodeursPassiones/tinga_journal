@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -76,7 +76,7 @@
                                 <img src={{ asset($user->profile_picture) }} alt="img">
                             </figure>
                             <div class="sj-title">
-                                <h3 class="userItem">{{ $user->firstname . ' ' . $user->lastname }} <span
+                                <h3 class="model-value">{{ $user->firstname . ' ' . $user->lastname }} <span
                                         class="sj-assignedinfo" data-toggle="modal" data-target="#feedbackmodal">(
                                         {{ $user->articles->count() }}
                                         Articles publiées )</span>
@@ -88,7 +88,9 @@
                                     <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                         data-target="#UpdateUserModal{{ $user->id }}"><i class="ti-pencil"></i></a>
 
-                                    <a class="sj-trashbtn userDeleteBtn" href="#" id="{{ $user->id }}"><i
+                                    <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $user->id }}"
+                                        data-model-action="delete" data-model-parent-selector="li.parent"
+                                        data-model-delete-url="{{ route('admin.users.delete', $user->id) }}"><i
                                             class="ti-trash normal-status"></i>
                                         </span>
                                         <span class="indicateur d-none">
@@ -117,7 +119,7 @@
 @endsection
 @push('js')
     <script src={{ asset('app-js/filter/filter.js') }}></script>
-    <script src={{ asset('app-js/admin/user/add.js') }}></script>
-    <script src={{ asset('app-js/admin/user/update.js') }}></script>
-    <script src={{ asset('app-js/admin/user/delete.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    <script src={{ asset('app-js/crud/delete.js') }}></script>
 @endpush
