@@ -12,14 +12,31 @@ use Illuminate\Support\Facades\DB;
 
 class VolumeAdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $volumes = Volume::paginate(6);
+            $search = $request->input('search');
+
+            $sortOrder = $request->input('sort_order', 'desc'); // Par défaut ascendant
+            $sortBy = $request->input('sort_by', 'year'); // Par défaut tri par titre
+            $limit = $request->input('limit', 5); // Par défaut 6 articles par page
+            $query = Volume::with(['journal']);
+
+            if ($search) {
+                // dd($search);
+                $query->where('title', 'LIKE', '%'.$search.'%');
+                $query->orWhere('year', 'LIKE', '%'.$search.'%');
+            }
+
+            // Application du tri
+            $query->orderBy($sortBy, $sortOrder);
+
+            // Paginer les résultats
+            $volumes = $query->paginate($limit);
 
             $journal = Journal::first();
 
-            return view('pages.admin.volumes.index', compact('journal', 'volumes'));
+            return view('pages.admin.volumes.index', compact('journal', 'volumes', 'sortOrder'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;

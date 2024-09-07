@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,21 +19,25 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
 
     <div id="sj-contentvtwo" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
         <div class="sj-dashboardboxtitle sj-titlewithform">
             <h2>Manager Diciplines</h2>
-            <form class="sj-formtheme sj-formsearchvtwo">
+            <form class="sj-formtheme sj-formsearchvtwo" id="searchForm"
+                data-model-url="{{ route('admin.disciplines.list') }}">
                 <div class="sj-sortupdown">
-                    <a href="javascript:void(0);"><i class="fa fa-sort-amount-up"></i></a>
+                    <a href="javascript:void(0);" id="sortOrder" data-name="sort_order"
+                        data-sortOrder={{ $sortOrder }}><i
+                            class="fa fa-sort-amount-{{ $sortOrder === 'asc' ? 'down' : 'up' }}"></i></a>
                 </div>
                 <fieldset>
-                    <input type="search" name="search" class="form-control" placeholder="Rechercher" disabled>
-                    <button type="submit" class="sj-btnsearch" disabled><i class="lnr lnr-magnifier"></i></button>
+                    <input type="search" name="search" class="form-control" placeholder="Rechercher"
+                        value="{{ request('search') }}">
+                    <button type="submit" class="sj-btnsearch" id="searchBtn"><i class="lnr lnr-magnifier"></i></button>
                 </fieldset>
             </form>
         </div>
@@ -44,18 +48,7 @@
                         <button type="button" class="sj-btn sj-btnactive" data-toggle="modal"
                             data-target="#addDisciplineModal">Créer</button>
                     </div>
-                    <div class="form-group sj-inputwithicon float-right">
-                        <i class="lnr lnr-sync"></i>
-                        <span class="sj-select">
-                            <select data-placeholder="All" name="locations" disabled>
-                                <option value="">Ordonner</option>
-                                <option value="aberdeen">Sort By1</option>
-                                <option value="aldershot">Sort By2</option>
-                                <option value="altrincham">Sort By</option>
-                                <option value="aylesbury">Sort By4</option>
-                            </select>
-                        </span>
-                    </div>
+
                 </fieldset>
             </form>
             <ul class="sj-allcategorys">
@@ -99,6 +92,7 @@
     @include('pages.admin.disciplines.create')
 @endsection
 @push('js')
+    <script src={{ asset('app-js/filter/filter.js') }}></script>
     <script src={{ asset('app-js/admin/discipline/add.js') }}></script>
     <script src={{ asset('app-js/admin/discipline/update.js') }}></script>
     <script src={{ asset('app-js/admin/discipline/delete.js') }}></script>

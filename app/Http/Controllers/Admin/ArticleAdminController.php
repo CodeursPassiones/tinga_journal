@@ -92,9 +92,6 @@ class ArticleAdminController extends Controller
                 ]
             );
 
-            // Débugger si nécessaire
-            // dd($article);
-
             // Récupérer les segments de l'URL
             $segments = $request->segments();
             $segment_before_id = count($segments) >= 2 ? ($matricule ? $segments[count($segments) - 2] : $segments[count($segments) - 1]) : null;

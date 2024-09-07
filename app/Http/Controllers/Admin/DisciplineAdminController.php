@@ -15,16 +15,26 @@ class DisciplineAdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $disciplines = Discipline::paginate(6);
+            $search = $request->input('search');
+
+            $sortOrder = $request->input('sort_order', 'asc');
+            $sortBy = $request->input('sort_by', 'name');
+            $limit = $request->input('limit', 6);
+            $query = Discipline::with(['journal']);
+            if ($search) {
+                $query->where('name', 'LIKE', '%'.$search.'%');
+            }
+
+            $query->orderBy($sortBy, $sortOrder);
+
+            $disciplines = $query->paginate($limit);
             $journal = Journal::first();
 
-            return view('pages.admin.disciplines.index', compact('disciplines', 'journal'));
+            return view('pages.admin.disciplines.index', compact('disciplines', 'journal', 'sortOrder'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
             dd($th->getMessage());
 
             return view('errors.500');

@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,20 +19,23 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
         <div class="sj-dashboardboxtitle sj-titlewithform">
             <h2>Manage User</h2>
-            <form class="sj-formtheme sj-formsearchvtwo">
+            <form class="sj-formtheme sj-formsearchvtwo" id="searchForm" data-model-url="{{ route('admin.users.list') }}">
                 <div class="sj-sortupdown">
-                    <a href="javascript:void(0);"><i class="fa fa-sort-amount-up"></i></a>
+                    <a href="javascript:void(0);" id="sortOrder" data-name="sort_order"
+                        data-sortOrder={{ $sortOrder }}><i
+                            class="fa fa-sort-amount-{{ $sortOrder === 'asc' ? 'down' : 'up' }}"></i></a>
                 </div>
                 <fieldset>
-                    <input type="search" name="search" class="form-control" placeholder="Rechercher" disabled>
-                    <button type="submit" class="sj-btnsearch" disabled><i class="lnr lnr-magnifier"></i></button>
+                    <input type="search" name="search" class="form-control" placeholder="Rechercher"
+                        value="{{ request('search') }}">
+                    <button type="submit" class="sj-btnsearch" id="searchBtn"><i class="lnr lnr-magnifier"></i></button>
                 </fieldset>
             </form>
         </div>
@@ -44,17 +47,23 @@
                             data-target="#addUserModal">Ajouter Un Utilisateur</button>
                     </div>
                     <div class="form-group sj-inputwithicon float-right">
-                        <i class="lnr lnr-sync"></i>
+                        <a href="#">
+                            <i class="lnr lnr-sync"></i></a>
                         <span class="sj-select">
-                            <select data-placeholder="All" name="locations" disabled>
-                                <option value="">Ordonner</option>
-                                <option value="aberdeen">Sort By1</option>
-                                <option value="aldershot">Sort By2</option>
-                                <option value="altrincham">Sort By</option>
-                                <option value="aylesbury">Sort By4</option>
+                            <select data-placeholder="All" name="sort_by" id="sortBy">
+                                <option value="" disabled>Ordonner</option>
+                                <option value="firstname" {{ request('sort_by') == 'firstname' ? 'selected' : '' }}>
+                                    Prénoms</option>
+                                <option value="lastname" {{ request('sort_by') == 'lastname' ? 'selected' : '' }}>
+                                    Nom</option>
+                                <option value="username" {{ request('sort_by') == 'username' ? 'selected' : '' }}>
+                                    Username</option>
+                                <option value="created_at" {{ request('sort_by') == 'created_at' ? 'selected' : '' }}>
+                                    Date d'intégration</option>
                             </select>
                         </span>
                     </div>
+
                 </fieldset>
             </form>
             <ul class="sj-allcategorys sj-allcategorysvtwo">
@@ -107,6 +116,7 @@
     @include('pages.admin.user.create')
 @endsection
 @push('js')
+    <script src={{ asset('app-js/filter/filter.js') }}></script>
     <script src={{ asset('app-js/admin/user/add.js') }}></script>
     <script src={{ asset('app-js/admin/user/update.js') }}></script>
     <script src={{ asset('app-js/admin/user/delete.js') }}></script>

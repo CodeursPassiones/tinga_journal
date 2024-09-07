@@ -14,13 +14,31 @@ class IssueAdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($volume_id)
+    public function index(Request $request, $volume_id)
     {
         try {
-            $volume = Volume::find($volume_id);
-            $issues = Issue::where('volume_id', '=', $volume_id)->paginate(6);
+            $search = $request->input('search');
 
-            return view('pages.admin.issues.index', compact('issues', 'volume'));
+            $sortOrder = $request->input('sort_order', 'desc'); // Par défaut ascendant
+            $sortBy = $request->input('sort_by', 'publication_date'); // Par défaut tri par titre
+            $limit = $request->input('limit', 6); // Par défaut 6 articles par page
+            $query = Issue::where('volume_id', '=', $volume_id);
+
+            if ($search) {
+                // dd($search);
+                $query->where('number', 'LIKE', '%'.$search.'%');
+                $query->orWhere('title', 'LIKE', '%'.$search.'%');
+            }
+
+            // Application du tri
+            $query->orderBy($sortBy, $sortOrder);
+
+            // Paginer les résultats
+            $issues = $query->paginate($limit);
+
+            $volume = Volume::find($volume_id);
+
+            return view('pages.admin.issues.index', compact('issues', 'volume', 'sortOrder'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;
