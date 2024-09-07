@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo " id="issueAddForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo " id="modelAddForm"
+                     data-model-add-url={{ route('admin.issues.store') }}>
 
                      <input type="hidden" name="volume_id" value={{ $volume->id }}>
                      <fieldset>
@@ -30,7 +31,7 @@
 
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive " type="submit" id="issueAddBtn">
+                         <button class="sj-btn sj-btnactive " type="submit" id="modelAddBtn">
                              <span class="normal-status">
                                  Créer
                              </span>

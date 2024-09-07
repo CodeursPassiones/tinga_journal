@@ -17,20 +17,13 @@ class Issue extends Model
         'volume_id',
         'description',
     ];
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'publication_date' => 'datetime',
-    ];
+
     /**
      * The storage format of the model's date columns.
      *
      * @var string
      */
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    // protected $dateFormat = 'Y-m-d H:i:sO';
 
     public function volume(): BelongsTo
     {

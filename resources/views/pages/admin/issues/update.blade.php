@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo issueUpdateForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo modelUpdateForm"
+                     data-model-update-url="{{ route('admin.issues.update') }}">
                      <input type="hidden" name="issue_id" value={{ $issue->id }}>
                      <fieldset>
                          <div class="form-group">
@@ -22,14 +23,14 @@
                          <div class="form-group">
                              <label for="publication_date">Date de publication :</label>
                              <input type="date" name="publication_date" id="publication_date" class="form-control"
-                                 placeholder="" value="{{ $issue->value }}">
+                                 placeholder="" value="{{ $issue->publication_date }}">
                          </div>
 
 
 
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive issueUpdateBtn" type="submit">
+                         <button class="sj-btn sj-btnactive modelUpdateBtn" type="submit">
                              <span class="normal-status">
                                  Mettre à jour
                              </span>

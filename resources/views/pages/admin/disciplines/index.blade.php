@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
 
@@ -62,13 +62,15 @@
                         @endphp
                         <li class="sj-categorysinfo parent">
                             <div class="sj-title">
-                                <h3 class="discipline">{{ $discipline->name }}</h3>
+                                <h3 class="model-value">{{ $discipline->name }}</h3>
                             </div>
                             <div class="sj-categorysrightarea">
                                 <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                     data-target="#UpdateDisciplineModal{{ $discipline_id }}"><i class="ti-pencil"></i></a>
-                                <a class="sj-trashbtn disciplineDeleteBtn" href="#" id="{{ $discipline_id }}"><i
-                                        class="ti-trash normal-status"></i>
+                                <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $discipline_id }}"
+                                    data-model-action="delete"
+                                    data-model-delete-url="{{ route('admin.disciplines.delete', $discipline_id) }}"
+                                    data-model-parent-selector="li.parent"><i class="ti-trash normal-status"></i>
                                     </span>
                                     <span class="indicateur d-none">
                                         <span class="spinner-border spinner-border-sm me-1" role="status"
@@ -93,7 +95,7 @@
 @endsection
 @push('js')
     <script src={{ asset('app-js/filter/filter.js') }}></script>
-    <script src={{ asset('app-js/admin/discipline/add.js') }}></script>
-    <script src={{ asset('app-js/admin/discipline/update.js') }}></script>
-    <script src={{ asset('app-js/admin/discipline/delete.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    <script src={{ asset('app-js/crud/delete.js') }}></script>
 @endpush

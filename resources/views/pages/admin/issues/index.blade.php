@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -74,7 +74,7 @@
                 @else
                     @foreach ($issues as $issue)
                         <li class="sj-categorysinfo parent">
-                            <div class="sj-title issue">
+                            <div class="sj-title model-value">
 
                                 <h3>No. {{ $issue->number }} <span>( @formatDateOnly($issue->publication_date))</span>
                                 </h3>
@@ -85,8 +85,10 @@
                                         class="ti-eye"></i></a>
                                 <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
                                     data-target="#UpdateIssueModal{{ $issue->id }}"><i class="ti-pencil"></i></a>
-                                <a class="sj-trashbtn issueDeleteBtn" href="#" id="{{ $issue->id }}"><i
-                                        class="ti-trash normal-status"></i>
+                                <a class="sj-trashbtn modelDeleteBtn" data-model-action="delete"
+                                    data-model-parent-selector="li.parent"
+                                    data-model-delete-url="{{ route('admin.issues.delete', $issue->id) }}" href="#"
+                                    id="{{ $issue->id }}"><i class="ti-trash normal-status"></i>
                                     </span>
                                     <span class="indicateur d-none">
                                         <span class="spinner-border spinner-border-sm me-1" role="status"
@@ -110,7 +112,7 @@
 @endsection
 @push('js')
     <script src={{ asset('app-js/filter/filter.js') }}></script>
-    <script src={{ asset('app-js/admin/issue/add.js') }}></script>
-    <script src={{ asset('app-js/admin/issue/update.js') }}></script>
-    <script src={{ asset('app-js/admin/issue/delete.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    <script src={{ asset('app-js/crud/delete.js') }}></script>
 @endpush

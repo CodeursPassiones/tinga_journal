@@ -10,7 +10,8 @@
                          aria-label="Close"></i></a>
              </div>
              <div class="modal-body">
-                 <form class="sj-formtheme sj-formregister sj-formregistervtwo disciplineUpdateForm">
+                 <form class="sj-formtheme sj-formregister sj-formregistervtwo modelUpdateForm"
+                     data-model-update-url={{ route('admin.disciplines.update') }}>
                      <input type="hidden" name="discipline_id" value={{ $discipline_id }}>
                      <fieldset>
                          <div class="form-group">
@@ -27,7 +28,7 @@
 
                      </fieldset>
                      <div class="sj-popupbtn">
-                         <button class="sj-btn sj-btnactive disciplineUpdateBtn" type="submit">
+                         <button class="sj-btn sj-btnactive modelUpdateBtn" type="submit">
                              <span class="normal-status">
                                  Mettre à jour
                              </span>
