@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('label');
             $table->string('target_url');
             $table->string('logo_path');
-            $table->foreignIdFor(Website::class);
+            $table->foreignIdFor(Website::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -2,27 +2,49 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\ArticleUser;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class UserAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $users = User::with(['roles'])->orderBy('firstname', 'ASC')->paginate(5);
+            // Récupération des filtres depuis la requête
+
+            $search = $request->input('search');
+
+            $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
+            $sortBy = $request->input('sort_by', 'firstname'); // Par défaut tri par titre
+            $limit = $request->input('limit', 5); // Par défaut 6 articles par page
+            $query = User::with(['roles']);
+            if ($search) {
+                // dd($search);
+                $query->where('firstname', 'LIKE', '%'.$search.'%');
+                $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
+                $query->orWhere('email', 'LIKE', '%'.$search.'%');
+            }
+
+            // Application du tri
+            $query->orderBy($sortBy, $sortOrder);
+
+            // Paginer les résultats
+            $users = $query->paginate($limit);
             $roles = Role::all();
 
-            return view('pages.admin.user.index', compact('users', 'roles'));
+            return view('pages.admin.user.index', compact('users', 'roles', 'sortOrder'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;
@@ -182,5 +204,30 @@ class UserAdminController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $currentUser = Auth::user();
+
+            // Vérifier si l'utilisateur tente de supprimer son propre compte
+            if ($currentUser->id == $id) {
+                return response()->json(['ok' => false, 'message' => 'Vous ne pouvez pas supprimer votre propre compte.']);
+            }
+
+            // Vérifier si l'utilisateur est associé à un article
+            $userHasArticle = Article::where('user_id', $id)->exists();
+            // Vérifier si l'utilisateur est associé à un articleUser
+            $userHasArticleUser = ArticleUser::where('user_id', $id)->exists();
+
+            // Si l'utilisateur est associé à un article ou articleUser, refuser la suppression
+            if ($userHasArticle || $userHasArticleUser) {
+                return response()->json(['ok' => false, 'message' => 'L\'utilisateur est associé à un article en tant qu\auteur ou a en a publié et ne peut pas être supprimé.']);
+            }
+
+            // Supprimer l'utilisateur s'il n'est pas lié à un article ou à un articleUser
+            DB::table('users')->where('id', $id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'L\'utilisateur a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+        }
     }
 }

@@ -11,6 +11,8 @@ use App\Models\File;
 use App\Models\Issue;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ArticleAdminController extends Controller
@@ -33,22 +35,26 @@ class ArticleAdminController extends Controller
     {
         try {
             $search = $request->input('search');
-            // $sortOrder = $request->input('sort_order', 'asc');
 
-            $query = Article::with(['discipline', 'issue'])->orderBy('created_at', 'desc')->where('status', $status);
+            $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
+            $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
+            $limit = $request->input('limit', 5); // Par défaut 6 articles par page
+            $query = Article::with(['discipline', 'issue'])->where('status', $status);
+            // Application du tri
+            $query->orderBy($sortBy, $sortOrder);
+
             if ($search) {
-                $query->orWhere('title', 'LIKE', '%'.$search.'%');
-                $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
-                $query->orWhere('content', 'LIKE', '%'.$search.'%');
+                $query->Where('title', 'LIKE', '%'.$search.'%');
+                // $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
             }
             if ($status !== 'DRAFT') {
                 $query->Where('state', '=', 'VALID');
             } else {
-                $query->orWhere('state', '=', 'INVALID');
+                $query->Where('state', '=', 'INVALID');
             }
-            $articles = $query->paginate(5);
+            $articles = $query->paginate($limit);
 
-            return view('pages.admin.articles.index', compact('articles', 'status'));
+            return view('pages.admin.articles.index', compact('articles', 'status', 'sortOrder'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;
@@ -62,6 +68,7 @@ class ArticleAdminController extends Controller
     {
         try {
             // Récupérer l'issue_id de la requête
+            // $issue_id = $request->input('issue_id');
             $issue_id = $request->input('issue_id');
 
             // Vérifier si un issue_id est fourni et récupérer l'issue correspondante
@@ -88,9 +95,6 @@ class ArticleAdminController extends Controller
                     'user_id' => $auth_user->id,
                 ]
             );
-
-            // Débugger si nécessaire
-            // dd($article);
 
             // Récupérer les segments de l'URL
             $segments = $request->segments();
@@ -138,9 +142,11 @@ class ArticleAdminController extends Controller
                 // 'prefix' => 'string|max:7',
                 // 'subtitle' => 'string|max:40',
                 // 'keywords' => 'string|max:100',
-                'article_id' => 'required|int',
+                'article_id' => 'required|exists:articles,id',
             ]);
-            $article = Article::find($validatedData['article_id']);
+            $article_id = $request->input('article_id');
+
+            $article = Article::find($article_id);
 
             // Création de l'article
             $article->update([
@@ -165,12 +171,14 @@ class ArticleAdminController extends Controller
     {
         // Valider les fichiers et l'image
         $request->validate([
-            'article_id' => 'required',
+            'article_id' => 'required|exists:articles,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validation pour l'image
             'files.*' => 'mimes:pdf|max:10240', // validation pour les fichiers PDF
         ]);
         // Créer un nouvel article
-        $article = Article::find($request->input('article_id'));
+        $article_id = $request->input('article_id');
+
+        $article = Article::find($article_id);
         // Suppression de l'image existante si demandé
         if ($request->has('delete_image') && $article->image_path) {
             \Storage::delete($article->image_path); // Supprimer l'image existante
@@ -223,14 +231,20 @@ class ArticleAdminController extends Controller
         ], 200);
     }
 
-    public function syncAuthor($article_id, $author_id)
+    public function syncAuthor(Request $request)
     {
         try {
+            $this->validate($request, [
+                'user_id' => 'required',
+                'article_id' => 'required',
+            ]);
+            $article_id = $request->input('article_id');
             ArticleUser::create([
-                'user_id' => $author_id,
+                'user_id' => $request->input('user_id'),
                 'article_id' => $article_id,
                 'role' => 'author',
             ]);
+
             $article = Article::find($article_id);
 
             $this->checkAndUpdateArticleValidity($article);
@@ -249,7 +263,7 @@ class ArticleAdminController extends Controller
             $this->validate($request, [
                 'lastname' => 'required|max:20',
                 'firstname' => 'required|max:20',
-                'article_id' => 'required|max:20',
+                'article_id' => 'required|exists:articles,id',
                 'email' => 'email|unique:users,email',
             ]);
 
@@ -262,12 +276,15 @@ class ArticleAdminController extends Controller
             ]);
 
             $user->syncRoles(['author']);
+            $article_id = $request->input('article_id');
+
+            $article = Article::find($article_id);
             ArticleUser::create([
                 'user_id' => $user->id,
-                'article_id' => $request->input('article_id'),
+                'article_id' => $article_id,
                 'role' => 'author',
             ]);
-            $article = Article::find($request->input('article_id'));
+
             $this->checkAndUpdateArticleValidity($article);
 
             return response()->json(['ok' => true, 'message' => 'Auteur créé et associé avec succès !'], 200);
@@ -289,7 +306,9 @@ class ArticleAdminController extends Controller
         ]);
 
         try {
-            $article = Article::find($request->input('article_id'));
+            $article_id = Crypt::decryptString($request->input('article_id'));
+
+            $article = Article::find($article_id);
             $article->status = 'SUBMITTED';
             $article->save();
 
@@ -304,16 +323,13 @@ class ArticleAdminController extends Controller
     public function publish($article_id)
     {
         try {
+            $article_id = Crypt::decryptString($article_id);
+
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
                 'status' => 'PUBLISHED',
             ]);
-
-            // Redirection avec message de succès
-            // return response()->json(['message' => 'Article publié avec succès.', 'ok' => true, 'article_id' => $article->id]);
-
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return to_route('admin.articles.list', 'SUBMITTED');
         } catch (\Throwable $th) {
@@ -325,6 +341,8 @@ class ArticleAdminController extends Controller
     public function hide($article_id)
     {
         try {
+            $article_id = Crypt::decryptString($article_id);
+
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
@@ -337,6 +355,32 @@ class ArticleAdminController extends Controller
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return to_route('admin.articles.list', 'PUBLISHED');
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
+    public function destroy(string $id)
+    {
+        try {
+            $article_id = Crypt::decryptString($id);
+
+            DB::table('articles')->where('id', $article_id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'L\'article a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        }
+    }
+
+    public function detachAuthor(string $id)
+    {
+        try {
+            DB::table('article_users')->where('id', $id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'L\'auteur a été retiré avec succès.']);
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);

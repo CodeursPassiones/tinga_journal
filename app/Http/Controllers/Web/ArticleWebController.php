@@ -72,7 +72,7 @@ class ArticleWebController extends Controller
                     }
                 });
             }
-            // dd($issue_id);
+
             $issue = null;
             if ($issue_id) {
                 $query->where('issue_id', $issue_id);

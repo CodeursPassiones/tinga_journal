@@ -97,7 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/publish/{articleId}', [ArticleAdminController::class, 'publish'])->name('admin.articles.publish');
             Route::get('/hide/{articleId}', [ArticleAdminController::class, 'hide'])->name('admin.articles.hide');
             Route::post('/submit', [ArticleAdminController::class, 'submit'])->name('admin.articles.submit');
-
+            Route::delete('/author/detach/{id}', [ArticleAdminController::class, 'detachAuthor'])->name('admin.articles.author.detach');
+            Route::delete('/delete/{id}', [ArticleAdminController::class, 'destroy'])->name('admin.articles.delete');
             Route::prefix('/view')->group(function () {
                 Route::get('/files/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.files');
                 Route::get('/authors/{matricule?}', [ArticleAdminController::class, 'article'])->name('admin.articles.view.authors');
@@ -118,6 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [UserAdminController::class,  'index'])->name('admin.users.list');
             Route::post('/store', [UserAdminController::class,  'store'])->name('admin.users.store');
             Route::post('/update', [UserAdminController::class,  'update'])->name('admin.users.update');
+            Route::delete('/delete/{userId}', [UserAdminController::class,  'destroy'])->name('admin.users.delete');
         });
 
         /*
@@ -128,6 +130,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [DisciplineAdminController::class,  'index'])->name('admin.disciplines.list');
             Route::post('/store', [DisciplineAdminController::class,  'store'])->name('admin.disciplines.store');
             Route::post('/update', [DisciplineAdminController::class,  'update'])->name('admin.disciplines.update');
+            Route::delete('/delete/{disciplineId}', [DisciplineAdminController::class,  'destroy'])->name('admin.disciplines.delete');
         });
 
         /*
@@ -138,6 +141,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list/{volumeID}', [IssueAdminController::class,  'index'])->name('admin.issues.list');
             Route::post('/store', [IssueAdminController::class,  'store'])->name('admin.issues.store');
             Route::post('/update', [IssueAdminController::class,  'update'])->name('admin.issues.update');
+            Route::delete('/delete/{issueId}', [IssueAdminController::class,  'destroy'])->name('admin.issues.delete');
         });
 
         /*
@@ -148,6 +152,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/list', [VolumeAdminController::class,  'index'])->name('admin.volumes.list');
             Route::post('/store', [VolumeAdminController::class,  'store'])->name('admin.volumes.store');
             Route::post('/update', [VolumeAdminController::class,  'update'])->name('admin.volumes.update');
+            Route::delete('/delete/{volumeID}', [VolumeAdminController::class,  'destroy'])->name('admin.volumes.delete');
         });
         /*
          * Account

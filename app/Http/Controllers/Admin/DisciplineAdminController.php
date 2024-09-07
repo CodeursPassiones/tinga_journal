@@ -3,25 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Discipline;
 use App\Models\Journal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class DisciplineAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $disciplines = Discipline::paginate(6);
+            $search = $request->input('search');
+
+            $sortOrder = $request->input('sort_order', 'asc');
+            $sortBy = $request->input('sort_by', 'name');
+            $limit = $request->input('limit', 6);
+            $query = Discipline::with(['journal']);
+            if ($search) {
+                $query->where('name', 'LIKE', '%'.$search.'%');
+            }
+
+            $query->orderBy($sortBy, $sortOrder);
+
+            $disciplines = $query->paginate($limit);
             $journal = Journal::first();
 
-            return view('pages.admin.disciplines.index', compact('disciplines', 'journal'));
+            return view('pages.admin.disciplines.index', compact('disciplines', 'journal', 'sortOrder'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
             dd($th->getMessage());
 
             return view('errors.500');
@@ -46,7 +59,7 @@ class DisciplineAdminController extends Controller
 
                 'journal_id' => 'required|exists:journals,id',
             ]);
-
+            // $journal_id = Crypt::decryptString($request->input('journal_id'));
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'journal_id' => $request->input('journal_id'),
@@ -84,14 +97,12 @@ class DisciplineAdminController extends Controller
             $this->validate($request, [
                 'name' => 'required|max:20',
 
-                'journal_id' => 'required',
-                'id' => 'required',
+                'discipline_id' => 'required',
             ]);
-            $discipline = Discipline::find($request->input('id'));
+            $discipline_id = Crypt::decryptString($request->input('discipline_id'));
+            $discipline = Discipline::find($discipline_id);
             $discipline->update([
                 'name' => $request->input('name'),
-                'journal_id' => $request->input('journal_id'),
-
                 'description' => $request->input('description', ''),
             ]);
 
@@ -107,5 +118,20 @@ class DisciplineAdminController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $discipline_id = Crypt::decryptString($id);
+
+            $disciplineHasArticle = Article::where('discipline_id', $discipline_id)->exists();
+
+            if ($disciplineHasArticle) {
+                return response()->json(['ok' => false, 'message' => 'La discipline est associé à des articles et ne peut pas être supprimé.']);
+            }
+
+            DB::table('disciplines')->where('id', $discipline_id)->delete();
+
+            return response()->json(['ok' => true, 'message' => 'La discipline a été supprimé avec succès.']);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+        }
     }
 }
