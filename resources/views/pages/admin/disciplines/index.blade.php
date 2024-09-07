@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,74 +19,68 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
 
     <div id="sj-contentvtwo" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
         <div class="sj-dashboardboxtitle sj-titlewithform">
             <h2>Manager Diciplines</h2>
-            <form class="sj-formtheme sj-formsearchvtwo">
+            <form class="sj-formtheme sj-formsearchvtwo" id="searchForm"
+                data-model-url="{{ route('admin.disciplines.list') }}">
                 <div class="sj-sortupdown">
-                    <a href="javascript:void(0);"><i class="fa fa-sort-amount-up"></i></a>
+                    <a href="javascript:void(0);" id="sortOrder" data-name="sort_order"
+                        data-sortOrder={{ $sortOrder }}><i
+                            class="fa fa-sort-amount-{{ $sortOrder === 'asc' ? 'down' : 'up' }}"></i></a>
                 </div>
                 <fieldset>
-                    <input type="search" name="search" class="form-control" placeholder="Rechercher" disabled>
-                    <button type="submit" class="sj-btnsearch" disabled><i class="lnr lnr-magnifier"></i></button>
+                    <input type="search" name="search" class="form-control" placeholder="Rechercher"
+                        value="{{ request('search') }}">
+                    <button type="submit" class="sj-btnsearch" id="searchBtn"><i class="lnr lnr-magnifier"></i></button>
                 </fieldset>
             </form>
         </div>
         <div class="sj-manageallsession">
+            <form class="sj-formtheme sj-managesessionform">
+                <fieldset>
+                    <div class="form-group">
+                        <button type="button" class="sj-btn sj-btnactive" data-toggle="modal"
+                            data-target="#addDisciplineModal">Créer</button>
+                    </div>
 
+                </fieldset>
+            </form>
             <ul class="sj-allcategorys">
-                <li class="sj-addcategorys">
-                    <form class="sj-formtheme sj-categorysform" id="disciplineAddForm">
-                        <input type="hidden" name="journal_id" value={{ $journal->id }}>
-                        <fieldset>
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control"
-                                    placeholder="Ajouter une Disciple">
-                            </div>
 
-
-                            <div class="form-group sj-categorysbtn">
-                                <button class="sj-btn sj-checkbtn" type="submit" id="disciplineAddBtn">
-                                    <span class="normal-status">
-                                        <i class="ti-check"></i>
-                                    </span>
-                                    <span class="indicateur d-none">
-                                        <span><i class="fa fa-spinner text-secondary"></i>
-                                            Chargement...
-                                        </span>
-
-                                </button>
-                                <button class="" type="cancel">
-                                    <span class="sj-btndecline">
-                                        Annuler
-                                    </span>
-
-
-                                </button>
-
-
-                            </div>
-                        </fieldset>
-                    </form>
-                </li>
                 @if ($disciplines->isEmpty())
                     <p>Aucune Disciplines Trouvée :)</p>
                 @else
                     @foreach ($disciplines as $discipline)
-                        <li class="sj-categorysinfo">
+                        @php
+                            $discipline_id = Illuminate\Support\Facades\Crypt::encryptString($discipline->id);
+                        @endphp
+                        <li class="sj-categorysinfo parent">
                             <div class="sj-title">
-                                <h3>{{ $discipline->name }}</h3>
+                                <h3 class="model-value">{{ $discipline->name }}</h3>
                             </div>
                             <div class="sj-categorysrightarea">
-                                <a href="javascript:void(0);" class="sj-pencilbtn"><i class="ti-pencil"></i></a>
-                                {{-- <a href="javascript:void(0);" class="sj-trashbtn"><i class="ti-trash"></i></a> --}}
+                                <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
+                                    data-target="#UpdateDisciplineModal{{ $discipline_id }}"><i class="ti-pencil"></i></a>
+                                <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $discipline_id }}"
+                                    data-model-action="delete"
+                                    data-model-delete-url="{{ route('admin.disciplines.delete', $discipline_id) }}"
+                                    data-model-parent-selector="li.parent"><i class="ti-trash normal-status"></i>
+                                    </span>
+                                    <span class="indicateur d-none">
+                                        <span class="spinner-border spinner-border-sm me-1" role="status"
+                                            aria-hidden="true"></span>
+                                        Loading...
+                                    </span>
+                                </a>
                             </div>
                         </li>
+                        @include('pages.admin.disciplines.update')
                     @endforeach
                 @endif
 
@@ -97,7 +91,11 @@
             </nav>
         </div>
     </div>
+    @include('pages.admin.disciplines.create')
 @endsection
 @push('js')
-    <script src={{ asset('app-js/admin/general/add.js') }}></script>
+    <script src={{ asset('app-js/filter/filter.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    <script src={{ asset('app-js/crud/delete.js') }}></script>
 @endpush

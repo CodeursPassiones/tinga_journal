@@ -1,3 +1,6 @@
+@php
+    $article_id = Illuminate\Support\Facades\Crypt::encryptString($article->id);
+@endphp
 <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 float-right">
     <aside id="sj-sidebarvtwo" class="sj-sidebar">
         <div class="sj-profilestrenght">
@@ -52,7 +55,7 @@
                 </li>
             </ul>
             <form action="" id="submitArticleForm">
-                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                <input type="hidden" name="article_id" value="{{ $article_id }}">
                 <div class="sj-headerhold">
                     @if ($article->state === 'VALID' && $article->status === 'DRAFT')
                         <input type="checkbox" name="agree">

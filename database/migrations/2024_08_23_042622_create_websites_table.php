@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->text('description');
             $table->string('copyright_author');
             $table->string('copyright_year');
-            $table->foreignIdFor(Journal::class);
+            $table->foreignIdFor(Journal::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
