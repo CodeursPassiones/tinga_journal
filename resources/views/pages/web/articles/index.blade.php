@@ -1,30 +1,6 @@
 @extends('base')
 @section('banner')
-    <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
-    <div class="sj-innerbanner">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="sj-innerbannercontent">
-                        <h1>Liste Articles @if ($issue)
-                                du Numéro : {{ $issue->number }}.
-                            @endif
-                        </h1>
-
-                        <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Article/Liste</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+    <x-banner title="{{ 'Liste Articles' . ($issue ? 'du Numéro : ' . $issue->number : '') }}" main="Articles/Liste" />
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -163,8 +139,8 @@
                                                     )</em></label>
                                         </span>
                                         <span class="sj-checkbox">
-                                            <input id="sj-last10years" type="checkbox" name="period[]"
-                                                value="last_10_years" @if (request()->has('period') && in_array('last_10_years', request()->get('period', []))) checked @endif>
+                                            <input id="sj-last10years" type="checkbox" name="period[]" value="last_10_years"
+                                                @if (request()->has('period') && in_array('last_10_years', request()->get('period', []))) checked @endif>
                                             <label for="sj-last10years">10 Dernières années<em>(
                                                     {{ $counts['last_10_years'] }} )</em></label>
                                         </span>

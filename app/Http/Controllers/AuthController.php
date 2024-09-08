@@ -60,7 +60,7 @@ class AuthController extends Controller
 
     public function forgotPasswordFormGet()
     {
-        return view('authentification.sign-in.password-reset');
+        return view('pages.auth.password-forgot.index');
     }
 
     public function sendEmail(Request $request)
@@ -86,7 +86,7 @@ class AuthController extends Controller
 
     public function resetPass($token)
     {
-        return view('authentification.sign-in.new-password', ['token' => $token]);
+        return view('pages.auth.reset-password.index', ['token' => $token]);
     }
 
     public function changePassword(Request $request)
