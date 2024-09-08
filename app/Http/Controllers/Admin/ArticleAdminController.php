@@ -45,7 +45,6 @@ class ArticleAdminController extends Controller
 
             if ($search) {
                 $query->Where('title', 'LIKE', '%'.$search.'%');
-                // $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
             }
             if ($status !== 'DRAFT') {
                 $query->Where('state', '=', 'VALID');
@@ -56,9 +55,7 @@ class ArticleAdminController extends Controller
 
             return view('pages.admin.articles.index', compact('articles', 'status', 'sortOrder'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
-            dd($th->getMessage());
+            // dd($th->getMessage());
 
             return view('errors.500');
         }
@@ -68,7 +65,7 @@ class ArticleAdminController extends Controller
     {
         try {
             // Récupérer l'issue_id de la requête
-            // $issue_id = $request->input('issue_id');
+
             $issue_id = $request->input('issue_id');
 
             // Vérifier si un issue_id est fourni et récupérer l'issue correspondante
@@ -85,7 +82,7 @@ class ArticleAdminController extends Controller
             $auth_user = auth()->user();
 
             // Créer ou récupérer le premier article basé sur le matricule, l'issue_id et l'user_id
-            // dd($matricule);
+
             $article = Article::firstOrCreate(
                 [
                     'matricule' => $matricule,
@@ -124,7 +121,7 @@ class ArticleAdminController extends Controller
             }
         } catch (\Throwable $th) {
             // En cas d'exception, afficher un message d'erreur pour le débogage
-            dd($th->getMessage(), $th->getLine());
+            // dd($th->getMessage(), $th->getLine());
 
             return view('errors.500');
         }
@@ -135,13 +132,11 @@ class ArticleAdminController extends Controller
         try {
             // Validation des données du formulaire
             $validatedData = $request->validate([
-                'title' => 'required|string|max:100',
+                'title' => 'required|string|min:2',
                 'discipline' => 'required|exists:disciplines,id',
 
-                'abstract' => 'required|string|max:255',
-                // 'prefix' => 'string|max:7',
-                // 'subtitle' => 'string|max:40',
-                // 'keywords' => 'string|max:100',
+                'abstract' => 'required|string',
+
                 'article_id' => 'required|exists:articles,id',
             ]);
             $article_id = $request->input('article_id');
@@ -169,66 +164,73 @@ class ArticleAdminController extends Controller
 
     public function storeFiles(Request $request, Article $article)
     {
-        // Valider les fichiers et l'image
-        $request->validate([
-            'article_id' => 'required|exists:articles,id',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validation pour l'image
-            'files.*' => 'mimes:pdf|max:10240', // validation pour les fichiers PDF
-        ]);
-        // Créer un nouvel article
-        $article_id = $request->input('article_id');
+        try {
+            // code...
 
-        $article = Article::find($article_id);
-        // Suppression de l'image existante si demandé
-        if ($request->has('delete_image') && $article->image_path) {
-            \Storage::delete($article->image_path); // Supprimer l'image existante
-            $article->image_path = '/assets/images/thumbnails/img-02.jpg'; // Mettre à jour le champ dans la base de données
-        }
+            // Valider les fichiers et l'image
+            $request->validate([
+                'article_id' => 'required|exists:articles,id',
+                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validation pour l'image
+                'files.*' => 'mimes:pdf|max:10240', // validation pour les fichiers PDF
+            ]);
+            // Créer un nouvel article
+            $article_id = $request->input('article_id');
 
-        // Upload de la nouvelle image si fournie
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images/articles');
-            $article->image_path = $imagePath;
-        }
+            $article = Article::find($article_id);
+            // Suppression de l'image existante si demandé
+            if ($request->has('delete_image') && $article->image_path) {
+                \Storage::delete($article->image_path); // Supprimer l'image existante
+                $article->image_path = '/assets/images/thumbnails/img-02.jpg'; // Mettre à jour le champ dans la base de données
+            }
 
-        $article->save(); // Mettre à jour l'article
+            // Upload de la nouvelle image si fournie
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('public/images/articles');
+                $article->image_path = $imagePath;
+            }
 
-        // Suppression des fichiers PDF existants si demandé
-        if ($request->has('delete_files')) {
-            foreach ($request->input('delete_files') as $fileId) {
-                $file = File::find($fileId);
-                if ($file) {
-                    \Storage::delete($file->path); // Supprimer le fichier PDF du stockage
-                    $file->delete(); // Supprimer l'entrée de la base de données
+            $article->save(); // Mettre à jour l'article
+
+            // Suppression des fichiers PDF existants si demandé
+            if ($request->has('delete_files')) {
+                foreach ($request->input('delete_files') as $fileId) {
+                    $file = File::find($fileId);
+                    if ($file) {
+                        \Storage::delete($file->path); // Supprimer le fichier PDF du stockage
+                        $file->delete(); // Supprimer l'entrée de la base de données
+                    }
                 }
             }
-        }
 
-        // Upload des nouveaux fichiers PDF
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $pdfFile) {
-                $pdfPath = $pdfFile->store('public/files/articles');
+            // Upload des nouveaux fichiers PDF
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $pdfFile) {
+                    $pdfPath = $pdfFile->store('public/files/articles');
 
-                // Créer une nouvelle entrée pour chaque fichier PDF
-                // Créer une entrée dans la table 'files'
-                File::create([
-                    'mime_type' => $pdfFile->getMimeType(),
-                    'path' => $pdfPath,
-                    'url' => \Storage::url($pdfPath), // Générer l'URL publique
-                    'name' => $pdfFile->getClientOriginalName(),
-                    'description' => $request->input('description') ?? '', // Description facultative
-                    'article_id' => $article->id, // Lier le fichier à l'article
-                    'category_file_id' => $request->input('category_file_id'), // Lier la catégorie de fichier, si disponible
-                ]);
+                    // Créer une nouvelle entrée pour chaque fichier PDF
+                    // Créer une entrée dans la table 'files'
+                    File::create([
+                        'mime_type' => $pdfFile->getMimeType(),
+                        'path' => $pdfPath,
+                        'url' => \Storage::url($pdfPath), // Générer l'URL publique
+                        'name' => $pdfFile->getClientOriginalName(),
+                        'description' => $request->input('description') ?? '', // Description facultative
+                        'article_id' => $article->id, // Lier le fichier à l'article
+                        'category_file_id' => $request->input('category_file_id'), // Lier la catégorie de fichier, si disponible
+                    ]);
+                }
             }
+
+            $this->checkAndUpdateArticleValidity($article);
+
+            return response()->json([
+                'message' => 'Fichiers mis à jour avec succès',
+                'ok' => true,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
-
-        $this->checkAndUpdateArticleValidity($article);
-
-        return response()->json([
-            'message' => 'Fichiers mis à jour avec succès',
-            'ok' => true,
-        ], 200);
     }
 
     public function syncAuthor(Request $request)
@@ -261,8 +263,8 @@ class ArticleAdminController extends Controller
     {
         try {
             $this->validate($request, [
-                'lastname' => 'required|max:20',
-                'firstname' => 'required|max:20',
+                'lastname' => 'required',
+                'firstname' => 'required',
                 'article_id' => 'required|exists:articles,id',
                 'email' => 'email|unique:users,email',
             ]);
@@ -297,7 +299,7 @@ class ArticleAdminController extends Controller
     public function submit(Request $request)
     {
         // Validation des données du formulaire
-        $validatedData = $request->validate([
+        $request->validate([
             'agree' => 'required',
             'article_id' => 'required',
         ], [

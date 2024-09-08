@@ -91,15 +91,13 @@ class ArticleWebController extends Controller
             // Paginer les résultats
             $articles = $query->paginate($limit);
 
-            // Récupération des catégories pour le filtre
-
             // Récupération de toutes les disciplines pour le filtre
             $disciplines = Discipline::orderBy('name')->get();
             $latestIssues = Issue::orderBy('publication_date', 'desc')->take(4)->get();
 
             return view('pages.web.articles.index', compact('articles', 'disciplines', 'counts', 'latestIssues', 'issue'));
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            // dd($th->getMessage());
 
             return view('errors.500');
         }
@@ -113,9 +111,7 @@ class ArticleWebController extends Controller
 
             return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
-            dd($th->getMessage(), $th->getLine());
+            // dd($th->getMessage(), $th->getLine());
 
             return view('errors.500');
         }

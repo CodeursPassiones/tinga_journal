@@ -25,9 +25,7 @@ class IssueWebController extends Controller
 
             return view('pages.web.issues.volumes', compact('result'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
-            dd($th->getMessage());
+            // dd($th->getMessage());
 
             return view('errors.500');
         }
@@ -46,12 +44,11 @@ class IssueWebController extends Controller
                 // Convertir la date en une chaîne formatée avec le mois en lettres et l'année
                 return Carbon::parse($issue->publication_date)->translatedFormat('F Y');
             });
-            // dd($volume_id, $volume);
 
             return view('pages.web.issues.index', compact('result', 'volume'));
         } catch (\Throwable $th) {
             // Afficher l'erreur en mode débogage
-            dd($th->getMessage());
+            // dd($th->getMessage());
 
             // Retourner une vue d'erreur si nécessaire
             return view('errors.500');
