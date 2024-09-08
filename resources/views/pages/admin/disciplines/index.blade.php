@@ -1,17 +1,17 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="sj-innerbannercontent">
-                        <h1>Paramettres</h1>
+                        <h1>Paramètres</h1>
                         <ol class="sj-breadcrumb">
                             <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Paramettres</a></li>
+                            <li><a href="javascript:void(0);">Paramètres</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,14 +19,14 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
 
     <div id="sj-contentvtwo" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
         <div class="sj-dashboardboxtitle sj-titlewithform">
-            <h2>Manager Diciplines</h2>
+            <h2>Manager Discipline</h2>
             <form class="sj-formtheme sj-formsearchvtwo" id="searchForm"
                 data-model-url="{{ route('admin.disciplines.list') }}">
                 <div class="sj-sortupdown">

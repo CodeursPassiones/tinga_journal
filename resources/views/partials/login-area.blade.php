@@ -25,7 +25,7 @@
             </li>
             <li class="  {{ Request::is('admin/account/settings') ? 'sj-active' : '' }}">
                 <a href={{ route('admin.account.settings') }}><i class="lnr lnr-lock"></i>
-                    <span>Paramettres Compte
+                    <span>Paramètres Compte
 
                     </span>
                 </a>
