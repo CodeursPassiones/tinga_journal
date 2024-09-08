@@ -9,10 +9,13 @@
 
                         <div class="sj-widget sj-widgetsinginwith">
                             <div class="sj-widgetcontent">
-                                {{-- <strong class="sj-logo"><a href={{ route('home') }}><img
-                                            src={{ asset('assets/images/logo-templates/logo.png') }}
-                                            alt="Tɩ́ɩ́ŋá Logo"></a></strong> --}}
-                                <a href="" class="Tɩ́ɩ́ŋá"></a>
+                                <strong class="sj-logo">
+                                    <a href="{{ route('home') }}">
+                                        <img src="{{ asset('assets/images/logo.png') }}" alt="revue"
+                                            style="height: 50px; width:50px">
+                                    </a>
+                                </strong>
+                                <a href="" class="tinga"></a>
                             </div>
                         </div>
                     </aside>
