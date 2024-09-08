@@ -11,19 +11,19 @@ class WebsiteWebController extends Controller
     public function home()
     {
         try {
-            $lastArticle = Article::orderBy('publication_date', 'desc')->where('status', 'PUBLISHED')->first();
+            $lastArticle = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->first();
             $latestIssues = Issue::with(['articles' => function ($query) {
-                $query->orderBy('publication_date', 'desc');
+                $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
             }])
             ->whereHas('articles', function ($query) {
-                $query->where('status', 'PUBLISHED');
+                $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
             })
             ->orderBy('publication_date', 'desc')
             ->take(6)
             ->get();
 
-            $threeLatest = Article::orderBy('publication_date', 'desc')->take(3)->get();
-            $latestArticles = Article::orderBy('publication_date', 'desc')->where('status', 'PUBLISHED')->take(6)->get()->chunk(3);
+            $threeLatest = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(3)->get();
+            $latestArticles = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(6)->get()->chunk(3);
 
             return view('pages.web.home.index', compact('lastArticle', 'latestIssues', 'threeLatest', 'latestArticles'));
         } catch (\Throwable $th) {
