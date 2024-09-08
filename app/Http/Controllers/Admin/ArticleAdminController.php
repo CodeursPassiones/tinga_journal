@@ -11,7 +11,6 @@ use App\Models\File;
 use App\Models\Issue;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -308,7 +307,7 @@ class ArticleAdminController extends Controller
         ]);
 
         try {
-            $article_id = Crypt::decryptString($request->input('article_id'));
+            $article_id = $request->input('article_id');
 
             $article = Article::find($article_id);
             $article->status = 'SUBMITTED';
@@ -325,8 +324,6 @@ class ArticleAdminController extends Controller
     public function publish($article_id)
     {
         try {
-            $article_id = Crypt::decryptString($article_id);
-
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
@@ -343,8 +340,6 @@ class ArticleAdminController extends Controller
     public function hide($article_id)
     {
         try {
-            $article_id = Crypt::decryptString($article_id);
-
             $article = Article::find($article_id);
             // Création de l'article
             $article->update([
@@ -366,9 +361,7 @@ class ArticleAdminController extends Controller
     public function destroy(string $id)
     {
         try {
-            $article_id = Crypt::decryptString($id);
-
-            DB::table('articles')->where('id', $article_id)->delete();
+            DB::table('articles')->where('id', $id)->delete();
 
             return response()->json(['ok' => true, 'message' => 'L\'article a été supprimé avec succès.']);
         } catch (\Throwable $th) {

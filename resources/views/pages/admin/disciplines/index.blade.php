@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
 
@@ -57,19 +57,16 @@
                     <p>Aucune Disciplines Trouvée :)</p>
                 @else
                     @foreach ($disciplines as $discipline)
-                        @php
-                            $discipline_id = Illuminate\Support\Facades\Crypt::encryptString($discipline->id);
-                        @endphp
                         <li class="sj-categorysinfo parent">
                             <div class="sj-title">
                                 <h3 class="model-value">{{ $discipline->name }}</h3>
                             </div>
                             <div class="sj-categorysrightarea">
                                 <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
-                                    data-target="#UpdateDisciplineModal{{ $discipline_id }}"><i class="ti-pencil"></i></a>
-                                <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $discipline_id }}"
+                                    data-target="#UpdateDisciplineModal{{ $discipline->id }}"><i class="ti-pencil"></i></a>
+                                <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $discipline->id }}"
                                     data-model-action="delete"
-                                    data-model-delete-url="{{ route('admin.disciplines.delete', $discipline_id) }}"
+                                    data-model-delete-url="{{ route('admin.disciplines.delete', $discipline->id) }}"
                                     data-model-parent-selector="li.parent"><i class="ti-trash normal-status"></i>
                                     </span>
                                     <span class="indicateur d-none">

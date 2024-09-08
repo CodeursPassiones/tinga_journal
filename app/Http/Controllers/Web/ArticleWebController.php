@@ -111,7 +111,7 @@ class ArticleWebController extends Controller
 
             return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {
-            // dd($th->getMessage(), $th->getLine());
+            dd($th->getMessage(), $th->getLine());
 
             return view('errors.500');
         }

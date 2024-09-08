@@ -7,7 +7,6 @@ use App\Models\Issue;
 use App\Models\Journal;
 use App\Models\Volume;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class VolumeAdminController extends Controller
@@ -96,7 +95,7 @@ class VolumeAdminController extends Controller
     public function destroy(string $id)
     {
         try {
-            $volume_id = Crypt::decryptString($id);
+            $volume_id = $id;
 
             $volumeHasIssue = Issue::where('volume_id', $volume_id)->exists();
 

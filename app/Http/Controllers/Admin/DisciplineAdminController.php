@@ -7,7 +7,6 @@ use App\Models\Article;
 use App\Models\Discipline;
 use App\Models\Journal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class DisciplineAdminController extends Controller
@@ -52,7 +51,7 @@ class DisciplineAdminController extends Controller
 
                 'journal_id' => 'required|exists:journals,id',
             ]);
-            // $journal_id = Crypt::decryptString($request->input('journal_id'));
+
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'journal_id' => $request->input('journal_id'),
@@ -78,7 +77,7 @@ class DisciplineAdminController extends Controller
 
                 'discipline_id' => 'required',
             ]);
-            $discipline_id = Crypt::decryptString($request->input('discipline_id'));
+            $discipline_id = $request->input('discipline_id');
             $discipline = Discipline::find($discipline_id);
             $discipline->update([
                 'name' => $request->input('name'),
@@ -98,7 +97,7 @@ class DisciplineAdminController extends Controller
     public function destroy(string $id)
     {
         try {
-            $discipline_id = Crypt::decryptString($id);
+            $discipline_id = $id;
 
             $disciplineHasArticle = Article::where('discipline_id', $discipline_id)->exists();
 
