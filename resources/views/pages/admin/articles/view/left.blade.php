@@ -26,7 +26,7 @@
                         class="  {{ Str::startsWith(request()->path(), 'admin/articles/view/authors') ? 'sj-active' : '' }}">
                         <a href={{ route('admin.articles.view.authors', $article->matricule) }}><i
                                 class="lnr lnr-sync"></i>
-                            <span>Auteurs
+                            <span>Auteur(s)
                             </span>
                         </a>
                     </li>

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make('secret'),
         ]);
-        $users = User::factory(2)->create();
+        $users = User::factory(1)->create();
 
         $this->call([
             RoleSeeder::class,

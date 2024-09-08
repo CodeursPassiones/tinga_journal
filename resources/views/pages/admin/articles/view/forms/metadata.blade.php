@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="subtitle" class="">Sous-Titre </label>
                             <input type="text" name="subtitle" class="form-control "
-                                placeholder="Sous-Titre de l'article*" id="subtitle" value="{{ $article->subtitle }}">
+                                placeholder="Sous-Titre de l'article" id="subtitle" value="{{ $article->subtitle }}">
                         </div>
                         <div class="form-group">
                             <label for="keywords" class="">Mots clés </label>
@@ -44,11 +44,11 @@
                                 id="keywords" value="{{ $article->keywords }}">
                         </div>
                         <div class="form-group">
-                            <label for="discipline" class="required">Catégorie </label>
+                            <label for="discipline" class="required">Discipline</label>
 
                             <span class="sj-select">
                                 <select name="discipline" id="discipline">
-                                    <option value="">Choirsir la catégorie </option>
+                                    <option value="">Choirsir la discipline </option>
                                     @foreach ($disciplines as $discipline)
                                         <option value={{ $discipline->id }}
                                             {{ $article->discipline_id === $discipline->id ? 'selected' : '' }}>
@@ -62,7 +62,7 @@
 
                         <div class="form-group">
                             <label for="abstract" class="required">Résumé</label>
-                            <textarea id="abstract" name="abstract" style="text-transform: none">{!! $article->abstract !!}</textarea>
+                            <textarea id="abstract" name="abstract">{{ $article->abstract }}</textarea>
 
                         </div>
                     </fieldset>
