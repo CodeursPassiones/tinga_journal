@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Carbon\Carbon;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,11 +30,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             JournalSeeder::class,
-            VolumeSeeder::class,
-            IssueSeeder::class,
+            // VolumeSeeder::class,
+            // IssueSeeder::class,
             DisciplineSeeder::class,
-            ArticleSeeder::class,
-            ArticleUserSeeder::class,
+            // ArticleSeeder::class,
+            // ArticleUserSeeder::class,
         ]);
 
         $admin_role = Role::where('name', 'admin')->first();

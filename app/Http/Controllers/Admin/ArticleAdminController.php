@@ -38,17 +38,19 @@ class ArticleAdminController extends Controller
             $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
             $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
             $limit = $request->input('limit', 5); // Par défaut 6 articles par page
-            $query = Article::with(['discipline', 'issue'])->where('status', $status);
+            $query = Article::with(['discipline', 'issue']);
             // Application du tri
             $query->orderBy($sortBy, $sortOrder);
 
             if ($search) {
-                $query->Where('title', 'LIKE', '%'.$search.'%');
+                $query->where('title', 'LIKE', '%'.$search.'%');
             }
             if ($status !== 'DRAFT') {
-                $query->Where('state', '=', 'VALID');
+                $query->where('status', $status);
+                $query->where('state', '=', 'VALID');
             } else {
-                $query->Where('state', '=', 'INVALID');
+                // $query->where('status', $status);
+                $query->where('state', '=', 'INVALID');
             }
             $articles = $query->paginate($limit);
 
@@ -348,8 +350,7 @@ class ArticleAdminController extends Controller
 
             // Redirection avec message de succès
             // return response()->json(['message' => 'Article publié avec succès.', 'ok' => true, 'article_id' => $article->id]);
-
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
+            Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return to_route('admin.articles.list', 'PUBLISHED');
         } catch (\Throwable $th) {

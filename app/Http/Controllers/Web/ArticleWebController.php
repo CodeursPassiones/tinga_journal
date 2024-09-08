@@ -106,12 +106,12 @@ class ArticleWebController extends Controller
     public function show($article_id)
     {
         try {
-            $article = Article::find($article_id);
+            $article = Article::with(['issue', 'issue.volume', 'files', 'articleUsers', 'user'])->find($article_id);
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {
-            dd($th->getMessage(), $th->getLine());
+            // dd($th->getMessage(), $th->getLine());
 
             return view('errors.500');
         }

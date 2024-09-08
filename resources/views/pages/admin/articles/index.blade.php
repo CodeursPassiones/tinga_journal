@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent">
@@ -115,63 +115,67 @@
                                 <div class="sj-userbtnarea">
 
                                     <div class="sj-categorysrightarea">
-                                        @switch($article->status)
-                                            @case('SUBMITTED')
-                                                <a href={{ route('admin.articles.publish', $article->id) }}>
-                                                    <i class="fa fa-share" id="shareArticle"></i>
-                                                </a>
-                                                <a href={{ route('admin.articles.view.metadata', $article->matricule) }}
-                                                    class="sj-pencilbtn">
-                                                    <i class="ti-pencil"></i>
-                                                </a>
+                                        @if ($article->state === 'VALID')
+                                            @switch($article->status)
+                                                @case('SUBMITTED')
+                                                    <a href={{ route('admin.articles.publish', $article->id) }}>
+                                                        <i class="fa fa-share" id="shareArticle"></i>
+                                                    </a>
+                                                    <a href={{ route('admin.articles.view.metadata', $article->matricule) }}
+                                                        class="sj-pencilbtn">
+                                                        <i class="ti-pencil"></i>
+                                                    </a>
 
-                                                <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
-                                                    target="_blank">
-                                                    <i class="ti-eye"></i>
-                                                </a>
-                                                <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
-                                                    data-model-action="delete" data-model-parent-selector="div.parent"
-                                                    data-model-delete-url="{{ route('admin.articles.delete', $article->id) }}"><i
-                                                        class="ti-trash normal-status"></i>
-
-
-
-                                                    <span class="indicateur d-none">
-                                                        <span><i class="fa fa-spinner text-secondary"></i>
-                                                            Chargement...
-                                                        </span>
-
-                                                </a>
-                                            @break
-
-                                            @case('PUBLISHED')
-                                                <a href={{ route('admin.articles.hide', $article->id) }}>
-                                                    <i class="fa fa-lock" id="hideArticle"></i>
-                                                </a>
-                                                <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
-                                                    target="_blank">
-                                                    <i class="ti-eye"></i>
-                                                </a>
-                                            @break
-
-                                            @default
-                                                <a href={{ route('admin.articles.view.metadata', $article->matricule) }}><i
-                                                        class="fa fa-pencil" id="hideArticle"></i>
-                                                </a>
-                                                <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
-                                                    data-model-action="delete" data-model-parent-selector="div.parent"
-                                                    data-model-delete-url="{{ route('admin.articles.delete', $article->id) }}"><i
-                                                        class="ti-trash normal-status"></i>
+                                                    <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
+                                                        target="_blank">
+                                                        <i class="ti-eye"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
+                                                        data-model-action="delete" data-model-parent-selector="div.parent"
+                                                        data-model-delete-url="{{ route('admin.articles.delete', $article->id) }}"><i
+                                                            class="ti-trash normal-status"></i>
 
 
 
-                                                    <span class="indicateur d-none">
-                                                        <span><i class="fa fa-spinner text-secondary"></i>
-                                                            Chargement...
-                                                        </span>
+                                                        <span class="indicateur d-none">
+                                                            <span><i class="fa fa-spinner text-secondary"></i>
+                                                                Chargement...
+                                                            </span>
 
-                                                </a>
-                                        @endswitch
+                                                    </a>
+                                                @break
+
+                                                @case('PUBLISHED')
+                                                    <a href={{ route('admin.articles.hide', $article->id) }}>
+                                                        <i class="fa fa-lock" id="hideArticle"></i>
+                                                    </a>
+                                                    <a href={{ route('web.articles.show', $article->id) }} class="sj-eyebtn"
+                                                        target="_blank">
+                                                        <i class="ti-eye"></i>
+                                                    </a>
+                                                @break
+
+                                                @default
+                                            @endswitch
+                                        @else
+                                            <a href={{ route('admin.articles.view.metadata', $article->matricule) }}><i
+                                                    class="fa fa-pencil" id="hideArticle"></i>
+                                            </a>
+                                            <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
+                                                data-model-action="delete" data-model-parent-selector="div.parent"
+                                                data-model-delete-url="{{ route('admin.articles.delete', $article->id) }}"><i
+                                                    class="ti-trash normal-status"></i>
+
+
+
+                                                <span class="indicateur d-none">
+                                                    <span><i class="fa fa-spinner text-secondary"></i>
+                                                        Chargement...
+                                                    </span>
+
+                                            </a>
+                                        @endif
+
 
 
                                     </div>

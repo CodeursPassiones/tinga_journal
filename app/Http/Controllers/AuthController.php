@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,10 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-
+            $user = User::where('email', '=', $request->input('email'))->first();
+            if (!$user->hasRole('admin')) {
+                return response()->json(['ok' => false, 'message' => "Vous n'avez pas le droit de vous connecter"]);
+            }
             if (Auth::attempt($attributes, $request->input('remember'))) {
                 session()->regenerate();
 
