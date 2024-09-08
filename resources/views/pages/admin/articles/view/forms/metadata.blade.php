@@ -62,8 +62,18 @@
 
 
                         <div class="form-group">
+                            <label for="citation" class="">Citation</label>
+                            <textarea id="citation" name="citation" class="summernotes">{!! $article->citation !!}</textarea>
+
+                        </div>
+                        <div class="form-group">
                             <label for="abstract" class="required">Résumé</label>
-                            <textarea id="abstract" name="abstract">{!! $article->abstract !!}</textarea>
+                            <textarea id="abstract" name="abstract" class="summernotes">{!! $article->abstract !!}</textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="en_abstract" class="required">Résumé En Anglais</label>
+                            <textarea id="en_abstract" name="en_abstract" class="summernotes">{!! $article->en_abstract !!}</textarea>
 
                         </div>
                     </fieldset>

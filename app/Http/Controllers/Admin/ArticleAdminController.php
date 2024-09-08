@@ -148,8 +148,10 @@ class ArticleAdminController extends Controller
             $article->update([
                 'title' => $request->input('title'),
                 'abstract' => $request->input('abstract'),
+                'en_abstract' => $request->input('en_abstract'),
                 'prefix' => $request->input('prefix'),
                 'subtitle' => $request->input('subtitle'),
+                'citation' => $request->input('citation'),
                 'keywords' => $request->input('keywords'),
                 'discipline_id' => $request->input('discipline'),
             ]);
@@ -330,9 +332,10 @@ class ArticleAdminController extends Controller
             // Création de l'article
             $article->update([
                 'status' => 'PUBLISHED',
+                'publication_date' => now(),
             ]);
 
-            return to_route('admin.articles.list', 'SUBMITTED');
+            return to_route('admin.articles.list', 'PUBLISHED');
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
@@ -352,7 +355,7 @@ class ArticleAdminController extends Controller
             // return response()->json(['message' => 'Article publié avec succès.', 'ok' => true, 'article_id' => $article->id]);
             Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
-            return to_route('admin.articles.list', 'PUBLISHED');
+            return to_route('admin.articles.list', 'SUBMITTED');
         } catch (\Throwable $th) {
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
@@ -362,6 +365,18 @@ class ArticleAdminController extends Controller
     public function destroy(string $id)
     {
         try {
+            $article = Article::find($id);
+            if ($article->image_path !== '/assets/images/thumbnails/img-02.jpg') {
+                \Storage::delete($article->image_path); // Supprimer l'image existante
+            }
+
+            foreach ($article->files as $file) {
+                $file = File::find($file->id);
+                if ($file) {
+                    \Storage::delete($file->path); // Supprimer le fichier PDF du stockage
+                    $file->delete(); // Supprimer l'entrée de la base de données
+                }
+            }
             DB::table('articles')->where('id', $id)->delete();
 
             return response()->json(['ok' => true, 'message' => 'L\'article a été supprimé avec succès.']);
