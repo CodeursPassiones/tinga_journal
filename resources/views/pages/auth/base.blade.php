@@ -7,15 +7,18 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                     <aside id="sj-sidebarvtwo" class="sj-sidebar">
 
-                        <div class="sj-widget sj-widgetsinginwith">
+                        <div class="sj-widget sj-widgetsinginwith" style="margin-top:125px; margin-left:80px">
                             <div class="sj-widgetcontent">
-                                <strong class="sj-logo">
+                                <strong class="sj-logo" style="display: flex; gap:15px">
                                     <a href="{{ route('home') }}">
                                         <img src="{{ asset('assets/images/logo.png') }}" alt="revue"
-                                            style="height: 50px; width:50px">
+                                            style="height: 60px; width:60px;">
+                                    </a>
+                                    <a href="{{ route('home') }}">
+                                        <img src="{{ asset('assets/images/labo.jpg') }}" alt="revue"
+                                            style="height: 60px; width:170px;">
                                     </a>
                                 </strong>
-                                <a href="" class="tinga"></a>
                             </div>
                         </div>
                     </aside>

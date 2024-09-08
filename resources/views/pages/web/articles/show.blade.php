@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -21,8 +21,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 
 @section('web-content')
@@ -34,9 +34,16 @@
                     <div id="sj-content" class="sj-content">
                         <div class="sj-articledetail">
                             <!-- Barre d'action -->
+                            <span style="text-align: center">
+                                <h3><strong>Volume : {{ $volume->title }} ({{ $volume->year }})</strong></h3>
+                            </span>
+                            <span style="text-align: center">
+                                <h4>Numéro : {{ $numero->title }}
+                                    ({{ \Carbon\Carbon::parse($numero->publication_date)->locale('fr')->isoFormat('D MMMM YYYY') }}
+                                    )</h4>
+                            </span>
                             <ul class="sj-downloadprint">
-                                <li><a href="javascript:void(0);" class="sj-action-link"><i
-                                            class="fa fa-print"></i><span>Imprimer</span></a></li>
+
 
                                 @auth
 
@@ -62,7 +69,7 @@
                                 <style>
                                     #artId {
                                         width: 100%;
-                                        height: 250px;
+                                        height: 350px;
                                         object-fit: cover;
                                         border-radius: 8px;
                                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -72,26 +79,111 @@
 
                             <!-- Détails de l'article -->
                             <div class="sj-articledescription sj-sectioninnerspace">
-                                <h4 class="article-title">{{ $article->title }}</h4>
+                                <h3 class="article-title"
+                                    style="font-family: 'Times New Roman', Times, serif; text-align:center; font-size:25px">
+                                    <strong>Titre : {{ $article->title }}</strong>
+                                </h3>
+                                <style>
+                                    .mt-100 {
+                                        margin-top: 100px;
+                                    }
 
-                                <!-- Auteurs de l'article -->
-                                <div class="sj-articleauthors">
-                                    @foreach ($article->articleUsers as $author)
-                                        <span class="sj-username"><a
-                                                href="javascript:void(0);">{{ $author->user->firstname . ' ' . $author->user->lastname }}</a></span>
-                                    @endforeach
-                                </div>
+                                    .mb-100 {
+                                        margin-bottom: 100px;
+                                    }
 
-                                <!-- Résumé et Contenu de l'article -->
-                                <div class="sj-description">
-                                    <h5><i class="fa fa-file-text"></i> Résumé</h5>
-                                    <p>{!! $article->abstract !!}</p>
+                                    .card {
+                                        position: relative;
+                                        display: -webkit-box;
+                                        display: -ms-flexbox;
+                                        display: flex;
+                                        -webkit-box-orient: vertical;
+                                        -webkit-box-direction: normal;
+                                        -ms-flex-direction: column;
+                                        flex-direction: column;
+                                        min-width: 0;
+                                        word-wrap: break-word;
+                                        background-color: #fff;
+                                        background-clip: border-box;
+                                        border: 0px solid transparent;
+                                        border-radius: 0px;
+                                    }
 
-                                    {{-- <h5><i class="fa fa-file"></i> Contenu</h5>
-                                    <p>{!! $article->content !!}</p> --}}
-                                </div>
+                                    .card-body {
+                                        -webkit-box-flex: 1;
+                                        -ms-flex: 1 1 auto;
+                                        flex: 1 1 auto;
+                                        padding: 1.25rem;
+                                    }
 
-                                <!-- Informations supplémentaires -->
+                                    ul.list-style-none li {
+                                        list-style: none;
+                                    }
+
+                                    ul.list-style-none li a {
+                                        color: #673AB7;
+                                        padding: 8px 0px;
+                                        display: block;
+                                        text-decoration: none;
+                                    }
+
+                                    .m-t-5 {
+                                        margin-top: 5px;
+                                    }
+
+                                    .w-30px {
+                                        width: 30px;
+                                    }
+                                </style>
+                                <div class="card">
+                                    <ul class="list-style-none">
+                                        <li class="d-flex no-block card-body border-top">
+                                            <i class="ti-id-badge w-30px m-t-5"></i>
+                                            <div>
+                                                <p class="m-b-0 font-medium p-0" data-abc="true">Informations
+                                                    sur l'auteur</p>
+                                                @foreach ($article->articleUsers as $author)
+                                                    <p class="text-muted lnr lnr-user">
+                                                        Nom :
+                                                        {{ $author->user->firstname . ' ' . $author->user->lastname }}</p>
+                                                    <p class="text-muted lnr lnr-envelope"> Email :
+                                                        {{ $author->user->email }}
+                                                    </p>
+                                                @endforeach
+                                            </div>
+                                            <div class="ml-auto">
+                                                <div class="tetx-right">
+                                                    <span>Publier le :
+                                                        {{ \Carbon\Carbon::parse($article->publication_date)->locale('fr')->isoFormat('D MMMM YYYY') }}
+                                                    </span>
+                                                    <h6> A :
+                                                        {{ \Carbon\Carbon::parse($article->publication_date)->locale('fr')->isoFormat('HH:mm') }}
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex no-block card-body border-top">
+                                            <i class="ti-agenda w-30px m-t-5"></i>
+                                            <div>
+                                                <p class="m-b-0 font-medium p-0" data-abc="true" style="margin-left: 20px">
+                                                    Le résumé</p>
+                                                <p class="text-muted">
+                                                    {{ $article->abstract }}
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex no-block card-body border-top">
+                                            <i class="fa fa-tags w-30px m-t-5"></i>
+                                            <div>
+                                                <p class="m-b-0 font-medium p-0" data-abc="true" style="margin-left: 20px">
+                                                    Les mots clés</p>
+                                                <p class="text-muted">
+                                                    {{ $article->keywords }}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div> <!-- Informations supplémentaires -->
                                 <div class="sj-extrainfo">
                                     @if ($article->doi)
                                         <p><i class="fa fa-link"></i> <strong>DOI : </strong><a
@@ -99,11 +191,13 @@
                                                 target="_blank">{{ $article->doi }}</a></p>
                                     @endif
                                     @if ($article->keywords)
-                                        <p><i class="fa fa-tags"></i> <strong>Mots-clés : </strong>{{ $article->keywords }}
+                                        <p><i class="fa fa-tags"></i> <strong>Mots-clés :
+                                            </strong>{{ $article->keywords }}
                                         </p>
                                     @endif
                                     @if ($article->references)
-                                        <p><i class="fa fa-book"></i> <strong>Références : </strong>{!! $article->references !!}
+                                        <p><i class="fa fa-book"></i> <strong>Références :
+                                            </strong>{!! $article->references !!}
                                         </p>
                                     @endif
                                     @if ($article->files->isNotEmpty())
@@ -117,16 +211,14 @@
                                         </ul>
                                     @endif
                                     @if ($article->prefix)
-                                        <p><i class="fa fa-tag"></i> <strong>Préfixe : </strong>{{ $article->prefix }}</p>
+                                        <p><i class="fa fa-tag"></i> <strong>Préfixe :
+                                            </strong>{{ $article->prefix }}</p>
                                     @endif
                                     @if ($article->comment)
                                         <p><i class="fa fa-comments"></i> <strong>Commentaires :
                                             </strong>{!! $article->comment !!}</p>
                                     @endif
-                                    @if ($article->matricule)
-                                        <p><i class="fa fa-id-badge"></i> <strong>Matricule :
-                                            </strong>{{ $article->matricule }}</p>
-                                    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -143,7 +235,7 @@
                                 <div class="sj-widgetheading">
                                     <h3><i class="fa fa-lightbulb-o"></i> Articles Similaires</h3>
                                 </div>
-                                <div class="sj-widgetcontent">
+                                <div class="sj-widgetcontent" style="margin-left:50px">
                                     <ul class="sj-relatedarticles">
                                         @foreach ($similors as $simArticle)
                                             <li>
@@ -196,7 +288,7 @@
         }
 
         .sj-articleauthors .sj-username a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
 
         .sj-description h5 {

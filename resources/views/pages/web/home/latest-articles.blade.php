@@ -30,7 +30,7 @@
                                 <span class="sj-username">
                                     <a href={{ route('web.articles.show', $article->id) }}>
                                         @foreach ($article->articleUsers as $author)
-                                            {{ $author->user->firstname . ' ' . $author->user->lastnmae }} |
+                                            {{ $author->user->firstname . ' ' . $author->user->lastname }} |
                                         @endforeach
                                     </a>
                                 </span>
@@ -39,7 +39,7 @@
                                 </h3>
                             </div>
                             <div class="sj-description">
-                                <p>{{ Str::limit($article->abstract, 100) }}...</p>
+                                <p>{{ Str::limit($article->abstract, 200) }}...</p>
                             </div>
                             <a class="sj-btn" href={{ route('web.articles.show', $article->id) }}>Voir l'Article
                                 Complet</a>

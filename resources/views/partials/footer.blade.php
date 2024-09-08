@@ -34,7 +34,7 @@ Footer Start
                             <p>
                             <p>La revue Tɩ́ɩ́ŋá est le fruit d'une initiative académique portée par le Laboratoire
                                 Langues, Littératures...</p>
-                            <a href="{{ route('web.administration.about') }}">Lire la suite</a></p>
+                            <strong><a href="{{ route('web.administration.about') }}">Lire la suite</a></strong></p>
                         </div>
                         <ul class="sj-socialicons sj-socialiconssimple">
                             <li class="sj-facebook"><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
@@ -42,8 +42,7 @@ Footer Start
                             <li class="sj-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
                             <li class="sj-linkedin"><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a>
                             </li>
-                            <li class="sj-googleplus"><a href="javascript:void(0);"><i
-                                        class="fab fa-google-plus-g"></i></a>
+                            <li class="sj-googleplus"><a href="javascript:void(0);"><i class="fab fa-instagram"></i></a>
                             </li>
                             <li class="sj-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
                         </ul>
@@ -58,12 +57,12 @@ Footer Start
                         </div>
                         <div class="sj-widgetcontent">
                             <ul>
-                                <li><a href="#">Nous contacter</a></li>
-                                <li><a href="#">Ligne éditoriales</a></li>
-                                <li><a href="#">Articles récent</a></li>
-                                <li><a href="#">Les numéros</a></li>
+                                <li><a href="mailto:mailto:tiingalald@gmail.com">Nous contacter</a></li>
+                                <li><a href={{ route('web.volumes.list') }}>Archives par décennie</a></li>
+                                <li><a href={{ route('web.articles.list') }}>Articles récents</a></li>
+                                <li><a href={{ route('web.volumes.list') }}>Les numéros </a></li>
                                 <li><a href="#">Droits & Permissions</a></li>
-                                <li class="sj-more"><a href="javascript:void(0);">Plus</a></li>
+                                <li class="sj-more"><strong><a href="javascript:void(0);">Plus</a></strong></li>
                             </ul>
                         </div>
                     </div>
@@ -77,11 +76,12 @@ Footer Start
                         </div>
                         <div class="sj-widgetcontent">
                             <ul>
-                                <li><a href="#">Auteurs</a></li>
-                                <li><a href="#">Bibliothécaires</a></li>
-                                <li><a href="#">Sponsors & Annonceurs</a></li>
-                                <li><a href="#">Presse & Médias</a></li>
-                                <li class="sj-more"><a href="javascript:void(0);">Plus</a></li>
+                                <li><a href={{ route('web.instructions.normes') }}>Ligne éditoriale</a></li>
+                                <li><a href={{ route('web.instructions.rapporteurs') }}>Instructions</a></li>
+                                <li><a href={{ route('web.administration.redaction') }}>Administration</a></li>
+                                <li><a href={{ route('web.administration.gestion') }}>Comité de gestion</a></li>
+                                <li><a href={{ route('web.administration.scientifique') }}>Comité de Lecture</a></li>
+                                <li class="sj-more"><strong><a href="javascript:void(0);">Plus</a></strong></li>
                             </ul>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ Footer Start
                         </div>
                         <div class="sj-widgetcontent">
                             <ul>
-                                <li><i class="lnr lnr-home"></i>
+                                <li><i class="lnr lnr-apartment"></i>
                                     <address>Laboratoire Langues, Littératures et Développement (LaLD); UK.</address>
                                 </li>
                                 <li><a href="tel:+22892181969"><i class="lnr lnr-phone"></i><span>(+228)
@@ -108,16 +108,16 @@ Footer Start
                                             90122337</span></a>
                                 </li>
 
-                                <li><a href="mailto:mailto:tiingalald@gmail.com"><i
-                                            class="lnr lnr-envelope"></i><span>tiingalald@gmail.com</span></a></li>
+                                <li><a href="mailto:mailto:tiingalald@gmail.com"><i class="lnr lnr-envelope"></i><span
+                                            style="text-transform: lowercase">tiingalald@gmail.com</span></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <hr>
             <!-- Copyright -->
-            <div class="sj-footerbottom">
+            <div>
                 <p class="sj-copyrights">© {{ date('Y') }} <span>Tɩ́ɩ́ŋá</span>. Tous droits réservés</p>
             </div>
         </div>

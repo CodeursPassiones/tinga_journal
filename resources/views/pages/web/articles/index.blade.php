@@ -1,16 +1,16 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="sj-innerbannercontent">
-                        <h1>Liste Articles @if ($issue)
-                                du Numéro : {{ $issue->title }} | du
-                                {{ \Carbon\Carbon::parse($issue->publication_date)->translatedFormat('d F Y') }}.
+                        <h1>Liste des articles @if ($issue)
+                                du Numéro {{ $issue->title }}
+                                ({{ \Carbon\Carbon::parse($issue->publication_date)->translatedFormat('d F Y') }}).
                             @endif
                         </h1>
 
@@ -24,8 +24,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -85,6 +85,7 @@
                                                         Numéro Courant
                                                     @else
                                                         @formatDateOnly($latestIssue->publication_date)
+                                                        ({{ $latestIssue->title }})
                                                     @endif
                                                 </span>
                                                 <em>({{ $latestIssue->articles->count() }})</em>
@@ -192,7 +193,8 @@
 
                                 <div class="sj-uploadarticle">
                                     <figure class="sj-uploadarticleimg">
-                                        <img src={{ asset('assets/images/upload-articlebg.jpg') }} alt="image description">
+                                        <img src={{ asset('assets/images/aside.jpg') }} alt="image description"
+                                            style="height: 300px">
                                         <figcaption>
                                             <div class="sj-uploadcontent">
                                                 <span>Voulez vous publier un article pour ce numéro ?</span>
@@ -209,9 +211,47 @@
                         @endif
                         <div class="sj-articles">
                             <form class="sj-formtheme sj-formsortitems" id="sortForm">
-                                <fieldset>
+                                <fieldset class="humm">
+                                    <style>
+                                        .humm {
+                                            display: grid;
+                                            grid-template-columns: repeat(2, 1fr);
+                                            gap: 15px;
+                                        }
+
+                                        .form-group {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            padding: 10px;
+                                            border-radius: 5px;
+                                            background-color: #badcf0;
+                                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                                        }
+
+                                        .form-group em {
+                                            font-style: normal;
+                                            font-weight: bold;
+                                            color: #333;
+                                            margin-right: 10px;
+                                        }
+
+                                        .sj-select select {
+                                            width: 200px;
+                                            padding: 8px;
+                                            border-radius: 5px;
+                                            border: 1px solid #ccc;
+                                            background-color: #fff;
+                                            color: #333;
+                                            font-size: 14px;
+                                            appearance: none;
+                                            outline: none;
+                                            transition: border-color 0.3s ease;
+                                        }
+                                    </style>
+
                                     <div class="form-group">
-                                        <em>Ordonner par: </em>
+                                        <em>Ordonner par:</em>
                                         <span class="sj-select">
                                             <select name="sort_by" id="sortBy">
                                                 <option value=""></option>
@@ -240,6 +280,7 @@
                                             </select>
                                         </span>
                                     </div>
+
                                     <div class="form-group">
                                         <em>Afficher: </em>
                                         <span class="sj-select">
@@ -254,8 +295,10 @@
                                             </select>
                                         </span>
                                     </div>
+
                                 </fieldset>
                             </form>
+
 
                             @if ($articles->isEmpty())
                                 <h3>Aucun article trouvé :(</h3>
@@ -301,8 +344,7 @@
                                                 <p>>{{ Str::limit($article->abstract, 100) }}...</p>
                                             </div>
                                             <a class="sj-btn" href={{ route('web.articles.show', $article->id) }}>Voir
-                                                tout
-                                                l'article</a>
+                                                le contenu</a>
                                         </div>
                                     </article>
                                 @endforeach

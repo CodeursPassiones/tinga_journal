@@ -44,10 +44,10 @@ a:active,
 .sj-formaddnewfield .form-group .sj-radio input[type=radio] + label:before,
 .sj-formaddnewfield .form-group .sj-checkbox input[type=checkbox] + label:before
 
-{ color: #3d7751; }
+{ color: rgb(4, 137, 4); }
 .sj-assignedinfo
-{ color: #3d7751 !important;}
-.sj-viewchart .ct-bar:hover {stroke: #3d7751;}
+{ color: rgb(33, 214, 33) !important;}
+.sj-viewchart .ct-bar:hover {stroke: rgb(16, 31, 54);}
 /*=============================================
 			Theme Background Color
 =============================================*/
@@ -74,7 +74,7 @@ a:active,
 .sj-formaddnewfield .form-group .sj-checkbox input[type=checkbox] + label:after,
 .chosen-container .chosen-results li.highlighted
 
-{ background:linear-gradient(225deg, #3A985Eff, #09973Bff, #039B33ff, #000001ff, #2F4BAAff);}
+{ background:rgb(4, 107, 216)}
 /*=============================================
 			Theme Border Color
 =============================================*/

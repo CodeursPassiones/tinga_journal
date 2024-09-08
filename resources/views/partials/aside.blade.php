@@ -30,7 +30,7 @@
                 </li>
                 <li class="  {{ Request::is('admin/articles/list/PUBLISHED') ? 'sj-active' : '' }}">
                     <a href={{ route('admin.articles.list', 'PUBLISHED') }}><i class="lnr lnr-sync"></i>
-                        <span>Liste
+                        <span>Articles
                             Publiés
                         </span>
                     </a>

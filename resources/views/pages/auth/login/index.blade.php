@@ -1,8 +1,8 @@
 @extends('pages.auth.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
@@ -59,7 +59,7 @@
                                                 <button class="sj-btn sj-btnactive" type="submit" id="submitBtn">
                                                     <span class="normal-status">
                                                         Se
-                                                        connester
+                                                        Connecter
                                                     </span>
                                                     <span class="indicateur d-none">
                                                         <span><i class="fa fa-spinner text-secondary"></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Volume;
 use App\Models\Discipline;
 use App\Models\Issue;
 use Carbon\Carbon;
@@ -108,10 +109,12 @@ class ArticleWebController extends Controller
     public function show($article_id)
     {
         try {
+            $numero = Issue::orderBy('number','desc')->first();
+            $volume = Volume::orderBy('year', 'desc')->first();
             $article = Article::find($article_id);
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
+            $similors = Article::where('discipline_id', $article->discipline_id)->take(5)->get();
 
-            return view('pages.web.articles.show', compact('article', 'similors'));
+            return view('pages.web.articles.show', compact('article', 'similors', 'volume', 'numero'));
         } catch (\Throwable $th) {
             // throw $th;
             // throw $th;

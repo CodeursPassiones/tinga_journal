@@ -30,7 +30,7 @@
             </ul>
         </li>
         <li class="  {{ Request::is('web/volumes/list') ? 'current-menu-item' : '' }}">
-            <a href={{ route('web.volumes.list') }}>Volumes</a>
+            <a href={{ route('web.volumes.list') }}>Archives</a>
         </li>
 
         <li
