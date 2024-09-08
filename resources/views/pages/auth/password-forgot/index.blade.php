@@ -17,7 +17,7 @@
 
                                 <div class="sj-widgetcontent">
                                     <form class="sj-formtheme sj-formlogin" id="modelAddForm"
-                                        data-model-add-url="{{ route('password.reset') }}">
+                                        data-model-add-url="{{ route('send.mail') }}">
                                         @csrf
                                         <fieldset>
                                             <div class="form-group">
