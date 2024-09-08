@@ -101,8 +101,8 @@ class UserAdminController extends Controller
             $this->validate($request, [
                 'role' => 'required',
 
-                'lastname' => 'required|max:20',
-                'firstname' => 'required|max:20',
+                'lastname' => 'required',
+                'firstname' => 'required',
 
                 'email' => 'email|unique:users,email',
                 'password' => 'required|min:8|confirmed']);
@@ -142,8 +142,8 @@ class UserAdminController extends Controller
         try {
             $this->validate($request, [
                 'role' => 'required',
-                'lastname' => 'required|max:20',
-                'firstname' => 'required|max:20',
+                'lastname' => 'required',
+                'firstname' => 'required',
                 'email' => [
                     'email',
                     Rule::unique('users', 'email')->ignore($request->input('user_id')),
@@ -172,6 +172,32 @@ class UserAdminController extends Controller
             // }
 
             return response()->json(['ok' => true, 'message' => 'Utilisateur Mis à jour avec succès !'], 200);
+        } catch (\Exception $e) {
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function updatePersonalInfo(Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'lastname' => 'required',
+                'firstname' => 'required',
+                'id' => 'required|exists:users,id',
+            ]);
+            $user = User::find($request->input('id'));
+            $user->update([
+                'lastname' => $request->input('lastname'),
+                'firstname' => $request->input('firstname'),
+                'bio' => $request->input('bio'),
+                'salutation' => $request->input('salutation'),
+                'birthdate' => $request->input('birthdate'),
+                'gender' => $request->input('gender'),
+                'username' => $request->input('username'),
+            ]);
+
+            return response()->json(['ok' => true, 'message' => 'Informations mises à jour avec succès !'], 200);
         } catch (\Exception $e) {
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
             return response()->json(['ok' => false, 'message' => $e->getMessage()]);

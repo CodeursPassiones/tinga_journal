@@ -20,7 +20,7 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-4">
                                 <div class="form-group"></div>
                                 <label for="prefix" class="">Préfix </label>
-                                <input type="text" name="prefix" class="form-control " placeholder="Titre de l'article*"
+                                <input type="text" name="prefix" class="form-control " placeholder="Préfix"
                                     id="prefix" value="{{ $article->prefix }}">
                                 <label class="f6">exemple : "Un","Le"</label>
                             </div>
@@ -54,6 +54,7 @@
                                             {{ $article->discipline_id === $discipline->id ? 'selected' : '' }}>
                                             {{ $discipline->name }}</option>
                                     @endforeach
+                                </select>
                             </span>
                         </div>
 

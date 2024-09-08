@@ -160,6 +160,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::prefix('/account')->group(function () {
             Route::get('/settings', [UserAdminController::class, 'settings'])->name('admin.account.settings');
             Route::post('/password/update', [UserAdminController::class, 'updatePassword'])->name('admin.account.update.password');
+            Route::post('/personal-info/update', [UserAdminController::class, 'updatePersonalInfo'])->name('admin.account.update.info');
         });
     });
     /*
