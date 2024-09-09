@@ -13,7 +13,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 class ArticleAdminController extends Controller
 {
@@ -341,22 +340,7 @@ class ArticleAdminController extends Controller
             return response()->json(['ok' => false, 'message' => $th->getMessage()]);
             // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
-
-    //     // Mise à jour de l'article avec le statut "PUBLISHED" et la date de publication
-    //     $article->update([
-    //         'status' => 'PUBLISHED',
-    //         'publication_date' => $request->has('publication_date') ? Carbon::parse($request->publication_date) : now(),
-    //     ]);
-
-    //     // Redirection après succès
-    //     return to_route('admin.articles.list', ['status' => 'SUBMITTED'])
-    //         ->with('success', 'L\'article a été publié avec succès.');
-    // } catch (\Throwable $th) {
-    //     // Gestion des exceptions
-    //     return response()->json(['ok' => false, 'message' => $th->getMessage()], 500);
-    // }
-}
-
+    }
 
     public function hide($article_id)
     {
