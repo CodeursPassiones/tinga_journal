@@ -17,13 +17,13 @@ class ArticleWebController extends Controller
         try {
             // Calculer le nombre d'articles pour chaque période
             $counts = [
-                'all' => Article::count(),
-                'today' => Article::whereDate('created_at', Carbon::today())->count(),
-                'this_week' => Article::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count(),
-                'this_month' => Article::whereMonth('created_at', Carbon::now()->month)->count(),
-                'this_year' => Article::whereYear('created_at', Carbon::now()->year)->count(),
-                'last_year' => Article::whereYear('created_at', Carbon::now()->subYear()->year)->count(),
-                'last_10_years' => Article::whereYear('created_at', '>=', Carbon::now()->subYears(10)->year)->count(),
+                'all' => Article::where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
+                'today' => Article::whereDate('created_at', Carbon::today())->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
+                'this_week' => Article::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
+                'this_month' => Article::whereMonth('created_at', Carbon::now()->month)->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
+                'this_year' => Article::whereYear('created_at', Carbon::now()->year)->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
+                'last_year' => Article::whereYear('created_at', Carbon::now()->subYear()->year)->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
+                'last_10_years' => Article::whereYear('created_at', '>=', Carbon::now()->subYears(10)->year)->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->count(),
             ];
             // Récupération des filtres depuis la requête
             $filterDiscipline = $request->input('discipline');
@@ -77,7 +77,12 @@ class ArticleWebController extends Controller
             $issue = null;
             if ($issue_id) {
                 $query->where('issue_id', $issue_id);
-                $issue = Issue::find($issue_id);
+                $issue = Issue::with(['articles' => function ($query) {
+                    $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+                }])
+                ->whereHas('articles', function ($query) {
+                    $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+                })->find($issue_id);
             }
             if ($search) {
                 // dd($search);
@@ -92,15 +97,23 @@ class ArticleWebController extends Controller
             // Paginer les résultats
             $articles = $query->paginate($limit);
 
-            // Récupération des catégories pour le filtre
-
             // Récupération de toutes les disciplines pour le filtre
-            $disciplines = Discipline::orderBy('name')->get();
-            $latestIssues = Issue::orderBy('publication_date', 'desc')->take(4)->get();
+            $disciplines = Discipline::with(['articles' => function ($query) {
+                $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+            }])
+            ->whereHas('articles', function ($query) {
+                $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+            })->orderBy('name')->get();
+            $latestIssues = Issue::with(['articles' => function ($query) {
+                $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+            }])
+            ->whereHas('articles', function ($query) {
+                $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+            })->orderBy('publication_date', 'desc')->take(4)->get();
 
             return view('pages.web.articles.index', compact('articles', 'disciplines', 'counts', 'latestIssues', 'issue'));
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            // dd($th->getMessage());
 
             return view('errors.500');
         }
@@ -109,16 +122,12 @@ class ArticleWebController extends Controller
     public function show($article_id)
     {
         try {
-            $numero = Issue::orderBy('number','desc')->first();
-            $volume = Volume::orderBy('year', 'desc')->first();
-            $article = Article::find($article_id);
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(5)->get();
+            $article = Article::with(['issue', 'issue.volume', 'files', 'articleUsers', 'user'])->find($article_id);
+            $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
             return view('pages.web.articles.show', compact('article', 'similors', 'volume', 'numero'));
         } catch (\Throwable $th) {
-            // throw $th;
-            // throw $th;
-            dd($th->getMessage(), $th->getLine());
+            // dd($th->getMessage(), $th->getLine());
 
             return view('errors.500');
         }

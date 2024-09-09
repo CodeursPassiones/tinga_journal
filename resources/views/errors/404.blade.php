@@ -1,17 +1,17 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                 Inner Banner Start
-               *************************************-->
+                                     Inner Banner Start
+                                   *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="sj-innerbannercontent">
-                        <h1>Become A Member</h1>
+                        <h1>Ressoucre Introuvable</h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Home</a></li>
-                            <li><a href="javascript:void(0);">Login/Register</a></li>
+                            <li><a href="javascript:void(0);">Acceuil</a></li>
+                            <li><a href="javascript:void(0);">404</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                 Inner Banner End
-               *************************************-->
+                                     Inner Banner End
+                                   *************************************-->
 @endsection
 @section('web-content')
     <div class="sj-404error">
@@ -33,8 +33,7 @@
                             <h3>Page Not Found :(</h3>
                         </div>
                         <div class="sj-description">
-                            <p>Consectetur adipisicing elied dotaem eiusmod incididunt ulabore etoimisi dolore magna aliqua
-                                aenimalie admie veniam aistrud exrcittion ullamco laboris.</p>
+                            <p>LA page recherchée est introuvable</p>
                         </div>
                         <span class="sj-gobackhome">Go back to <a href={{ route('home') }}>Hompage</a></span>
                     </div>

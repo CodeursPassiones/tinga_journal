@@ -1,6 +1,3 @@
-@php
-    $article_id = Illuminate\Support\Facades\Crypt::encryptString($article->id);
-@endphp
 <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 float-right">
     <aside id="sj-sidebarvtwo" class="sj-sidebar">
         <div class="sj-profilestrenght">
@@ -44,18 +41,19 @@
                     <i class="ti-{{ $article->abstract !== null ? 'check' : 'close' }}"></i><span>Résumé de
                         l'article</span>
                 </li>
-                <li class="sj-profile{{ !$article->articleUsers->isEmpty() ? 'completed' : 'error' }}">
-                    <i class="ti-{{ !$article->articleUsers->isEmpty() ? 'check' : 'close' }}"></i><span>Au moins un
-                        auteur</span>
-                </li>
 
                 <li class="sj-profile{{ !$article->files->isEmpty() ? 'completed' : 'error' }}">
                     <i class="ti-{{ !$article->files->isEmpty() ? 'check' : 'close' }}"></i><span>Fichiers
                         chargés</span>
                 </li>
+                <li class="sj-profile{{ !$article->articleUsers->isEmpty() ? 'completed' : 'error' }}">
+                    <i class="ti-{{ !$article->articleUsers->isEmpty() ? 'check' : 'close' }}"></i><span>Au moins un
+                        auteur</span>
+                </li>
+
             </ul>
             <form action="" id="submitArticleForm">
-                <input type="hidden" name="article_id" value="{{ $article_id }}">
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
                 <div class="sj-headerhold">
                     @if ($article->state === 'VALID' && $article->status === 'DRAFT')
                         <input type="checkbox" name="agree">

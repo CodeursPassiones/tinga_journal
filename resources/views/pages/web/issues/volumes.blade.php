@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -33,8 +33,7 @@
                         <div class="sj-issuesyears">
                             <div id="sj-accordion" class="sj-accordion" role="tablist" aria-multiselectable="true">
 
-
-                                @foreach ($result as $decade => $volumes)
+                                @forelse  ($result as $decade => $volumes)
                                     <div class="sj-panel">
                                         <h4>{{ $decade }}<i class="fa fa-angle-down"></i></h4>
                                         <div class="sj-panelcontent">
@@ -48,7 +47,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+
+                                @empty
+                                    Aucun Volume publié
+                                @endforelse
+
 
 
                             </div>

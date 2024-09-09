@@ -1,26 +1,6 @@
 @extends('pages.auth.base')
 @section('banner')
-    <!--************************************
-                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                           *************************************-->
-    <div class="sj-innerbanner">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="sj-innerbannercontent">
-                        <h1>Connexion</h1>
-                        <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Login</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--************************************
-                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                           *************************************-->
+    <x-banner title="'Connexion" main="Connexion" />
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
@@ -36,7 +16,9 @@
                             <div class="sj-widget sj-widgetlogin">
 
                                 <div class="sj-widgetcontent">
-                                    <form class="sj-formtheme sj-formlogin" id="loginForm">
+                                    <form class="sj-formtheme sj-formlogin" id="modelAddForm"
+                                        data-model-add-url="{{ route('login') }}">
+                                        @csrf
                                         <fieldset>
                                             <div class="form-group">
                                                 <input type="email" name="email" class="form-control"
@@ -51,12 +33,13 @@
                                                     <input type="checkbox" id="login">
                                                     <label for="login">Se souvenir de moi</label>
                                                 </div>
-                                                <a class="sj-forgorpass" href="javascript:void(0);">Mot de passe oublié
+                                                <a class="sj-forgorpass" href="{{ route('forgot-password') }}">Mot de passe
+                                                    oublié
                                                     ?</a>
                                             </div>
                                             <div class="sj-btnarea">
                                                 {{-- <a class="sj-btn sj-btnactive" href="javascript:void(0);">Connexion</a> --}}
-                                                <button class="sj-btn sj-btnactive" type="submit" id="submitBtn">
+                                                <button class="sj-btn sj-btnactive" type="submit" id="modelAddBtn">
                                                     <span class="normal-status">
                                                         Se
                                                         Connecter
@@ -101,5 +84,5 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('app-js/auth/login.js') }}"></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script>
 @endpush

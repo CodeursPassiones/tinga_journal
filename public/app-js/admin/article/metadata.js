@@ -4,8 +4,8 @@ let AppAdminArticleMetadataMAnager = (function () {
     let articleAddForm;
     let articleAddBtn;
     const initSummerNote = () => {
-        jQuery("#abstract").summernote({
-            height: 300, // set editor height
+        jQuery(".summernotes").summernote({
+            // height: 300, // set editor height
             minHeight: null, // set minimum height of editor
             maxHeight: null, // set maximum height of editor
             lang: "fr-FR",
@@ -19,7 +19,7 @@ let AppAdminArticleMetadataMAnager = (function () {
             e.preventDefault();
             const formData = new FormData(articleAddForm);
             console.log(formData);
-            
+
             AppModules.submitFromBtn(
                 articleAddBtn,
                 formData,
@@ -29,13 +29,13 @@ let AppAdminArticleMetadataMAnager = (function () {
         });
     };
     let addNatureCallback = () => {
-        window.location.href = "/admin/articles/view/files/"+window.articleMtl;
+        window.location.href =
+            "/admin/articles/view/files/" + window.articleMtl;
     };
     return {
         init: () => {
-
             initSummerNote();
-            
+
             articleAddForm = document.querySelector("#articleMetadataForm");
 
             if (!articleAddForm) {

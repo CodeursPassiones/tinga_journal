@@ -20,7 +20,7 @@
                             <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-4">
                                 <div class="form-group"></div>
                                 <label for="prefix" class="">Préfix </label>
-                                <input type="text" name="prefix" class="form-control " placeholder="Titre de l'article*"
+                                <input type="text" name="prefix" class="form-control " placeholder="Préfix"
                                     id="prefix" value="{{ $article->prefix }}">
                                 <label class="f6">exemple : "Un","Le"</label>
                             </div>
@@ -54,6 +54,7 @@
                                             {{ $article->discipline_id === $discipline->id ? 'selected' : '' }}>
                                             {{ $discipline->name }}</option>
                                     @endforeach
+                                </select>
                             </span>
                         </div>
 
@@ -61,8 +62,18 @@
 
 
                         <div class="form-group">
+                            <label for="citation" class="">Citation</label>
+                            <textarea id="citation" name="citation" class="summernotes">{!! $article->citation !!}</textarea>
+
+                        </div>
+                        <div class="form-group">
                             <label for="abstract" class="required">Résumé</label>
-                            <textarea id="abstract" name="abstract">{{ $article->abstract }}</textarea>
+                            <textarea id="abstract" name="abstract" class="summernotes">{!! $article->abstract !!}</textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="en_abstract" class="required">Résumé En Anglais</label>
+                            <textarea id="en_abstract" name="en_abstract" class="summernotes">{!! $article->en_abstract !!}</textarea>
 
                         </div>
                     </fieldset>

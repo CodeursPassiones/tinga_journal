@@ -34,7 +34,8 @@ class User extends Authenticatable
         'city',
         'state',
         'username',
-
+        'salutation',
+        'bio',
         'phone',
         'gender',
         'birthdate',

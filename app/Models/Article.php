@@ -28,18 +28,13 @@ class Article extends Model
         'comment',
         'doi',
         'matricule',
-        "state"
+        'state',
+        'en_abstract',
+        'citation',
     ];
     protected $casts = [
         'publication_date' => 'datetime',
     ];
-
-    /**
-     * The storage format of the model's date columns.
-     *
-     * @var string
-     */
-    protected $dateFormat = 'Y-m-d H:i:sO';
 
     public function issue(): BelongsTo
     {

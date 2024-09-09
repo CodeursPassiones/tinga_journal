@@ -1,7 +1,7 @@
  <!--************************************
    Add Discipline	Popup Start
  *************************************-->
- <div class="sj-modalboxarea modal fade " tabindex="-1" role="dialog" id="UpdateDisciplineModal{{ $discipline_id }}">
+ <div class="sj-modalboxarea modal fade " tabindex="-1" role="dialog" id="UpdateDisciplineModal{{ $discipline->id }}">
      <div class="modal-dialog" role="document">
          <div class="sj-modalcontent modal-content">
              <div class="sj-popuptitle">
@@ -12,7 +12,7 @@
              <div class="modal-body">
                  <form class="sj-formtheme sj-formregister sj-formregistervtwo modelUpdateForm"
                      data-model-update-url={{ route('admin.disciplines.update') }}>
-                     <input type="hidden" name="discipline_id" value={{ $discipline_id }}>
+                     <input type="hidden" name="discipline_id" value={{ $discipline->id }}>
                      <fieldset>
                          <div class="form-group">
                              <label for="name" class="required">Libéllé :</label>

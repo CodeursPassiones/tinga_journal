@@ -1,0 +1,80 @@
+@extends('pages.auth.base')
+@section('banner')
+    <x-banner title="'Mot de passe oublié" main="Forgot Passxword" />
+@endsection
+@section('guest-content')
+    <div id="sj-content" class="sj-content">
+        <div class="sj-registerarea">
+            <div class="registernow ">
+                <div class="sj-borderheading">
+                    <h3>Resevoir un mail</h3>
+                </div>
+                <div class="sj-registerformholder">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+
+                            <div class="sj-widget sj-widgetlogin">
+
+                                <div class="sj-widgetcontent">
+                                    <form class="sj-formtheme sj-formlogin" id="modelAddForm"
+                                        data-model-add-url="{{ route('send.mail') }}">
+                                        @csrf
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <input type="email" name="email" class="form-control"
+                                                    placeholder="email">
+                                            </div>
+
+                                            <div class="form-group sj-forgotpass">
+
+                                                <a class="sj-forgorpass" href="{{ route('login') }}">Se connecter
+                                                    ?</a>
+                                            </div>
+                                            <div class="sj-btnarea">
+                                                {{-- <a class="sj-btn sj-btnactive" href="javascript:void(0);">Connexion</a> --}}
+                                                <button class="sj-btn sj-btnactive" type="submit" id="submitBtn">
+                                                    <span class="normal-status">
+                                                        Envoyer
+                                                    </span>
+                                                    <span class="indicateur d-none">
+                                                        <span><i class="fa fa-spinner text-secondary"></i>
+                                                            Loading...
+                                                        </span>
+
+                                                </button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Section d'informations sur la page de connexion -->
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                            <div class="sj-howtoregister">
+                                <h3>Bienvenue sur notre plateforme de connexion</h3>
+                                <div class="sj-description">
+                                    <p>Nous vous invitons à vous connecter pour accéder à vos fonctionnalités
+                                        personnalisées. Si vous n'avez pas encore de compte, vous pouvez contacter le
+                                        support pour en avoir.</p>
+                                </div>
+                                <ul class="sj-liststyle">
+                                    <li><span>Publier des arcticles</span></li>
+
+                                    <li><span>Gérez vos préférences</span></li>
+                                    <li><span>Contactez notre support</span></li>
+                                    <li><span>Accédez à vos documents</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+@endsection
+@push('js')
+    <script src={{ asset('app-js/crud/post.js') }}></script>
+@endpush

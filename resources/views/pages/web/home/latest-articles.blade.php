@@ -22,8 +22,8 @@
                     <article class="sj-post sj-editorchoice">
 
                         <figure class="sj-postimg">
-                            <img src="{{ asset($article->image_path) }}" alt="image description"
-                                class="figureLatestThree">
+                            <img src="{{ $article->image_path === 'assets/images/thumbnails/img-02.jpg' ? asset($article->image_path) : Storage::url($article->image_path) }}"
+                                alt="image description" class="figureLatestThree">
                         </figure>
                         <div class="sj-postcontent">
                             <div class="sj-head">
@@ -39,7 +39,7 @@
                                 </h3>
                             </div>
                             <div class="sj-description">
-                                <p>{{ Str::limit($article->abstract, 200) }}...</p>
+                                <p>{!! Str::limit($article->abstract, 100) !!}...</p>
                             </div>
                             <a class="sj-btn" href={{ route('web.articles.show', $article->id) }}>Voir l'Article
                                 Complet</a>

@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content">
@@ -36,5 +36,8 @@
     </div>
 @endsection
 @push('js')
-    <script src={{ asset('app-js/admin/account/update-pass.js') }}></script>
+    {{-- <script src={{ asset('app-js/filter/filter.js') }}></script>
+    <script src={{ asset('app-js/crud/post.js') }}></script> --}}
+    <script src={{ asset('app-js/crud/put.js') }}></script>
+    {{-- <script src={{ asset('app-js/crud/delete.js') }}></script> --}}
 @endpush

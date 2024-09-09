@@ -23,6 +23,8 @@ return new class extends Migration {
 
             $table->string('title')->nullable();
             $table->text('abstract')->nullable();
+            $table->text('citation')->nullable();
+            $table->text('en_abstract')->nullable();
             $table->text('content')->nullable();
             $table->string('keywords')->nullable();
             $table->string('subtitle')->nullable();

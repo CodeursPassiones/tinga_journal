@@ -1,7 +1,7 @@
  <!--************************************
    Add Discipline	Popup Start
  *************************************-->
- <div class="sj-modalboxarea modal fade " tabindex="-1" role="dialog" id="UpdateVolumeModal{{ $volume_id }}">
+ <div class="sj-modalboxarea modal fade " tabindex="-1" role="dialog" id="UpdateVolumeModal{{ $volume->id }}">
      <div class="modal-dialog" role="document">
          <div class="sj-modalcontent modal-content">
              <div class="sj-popuptitle">

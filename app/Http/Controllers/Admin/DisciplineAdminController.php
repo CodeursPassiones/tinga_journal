@@ -7,7 +7,6 @@ use App\Models\Article;
 use App\Models\Discipline;
 use App\Models\Journal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class DisciplineAdminController extends Controller
@@ -42,13 +41,6 @@ class DisciplineAdminController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -59,7 +51,7 @@ class DisciplineAdminController extends Controller
 
                 'journal_id' => 'required|exists:journals,id',
             ]);
-            // $journal_id = Crypt::decryptString($request->input('journal_id'));
+
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'journal_id' => $request->input('journal_id'),
@@ -75,20 +67,6 @@ class DisciplineAdminController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
@@ -99,7 +77,7 @@ class DisciplineAdminController extends Controller
 
                 'discipline_id' => 'required',
             ]);
-            $discipline_id = Crypt::decryptString($request->input('discipline_id'));
+            $discipline_id = $request->input('discipline_id');
             $discipline = Discipline::find($discipline_id);
             $discipline->update([
                 'name' => $request->input('name'),
@@ -119,7 +97,7 @@ class DisciplineAdminController extends Controller
     public function destroy(string $id)
     {
         try {
-            $discipline_id = Crypt::decryptString($id);
+            $discipline_id = $id;
 
             $disciplineHasArticle = Article::where('discipline_id', $discipline_id)->exists();
 
