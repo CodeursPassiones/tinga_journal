@@ -1,13 +1,13 @@
 @extends('pages.auth.base')
 @section('banner')
-    <x-banner title="'Mot de passe oublié" main="Forgot Passxword" />
+    <x-banner title="Mot de passe oublié" main="réinitialisation de mot de passe" />
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
         <div class="sj-registerarea">
             <div class="registernow ">
                 <div class="sj-borderheading">
-                    <h3>Resevoir un mail</h3>
+                    <h3>Reçevoir un mail</h3>
                 </div>
                 <div class="sj-registerformholder">
                     <div class="row">

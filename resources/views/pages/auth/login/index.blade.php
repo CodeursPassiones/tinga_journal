@@ -1,6 +1,6 @@
 @extends('pages.auth.base')
 @section('banner')
-    <x-banner title="'Connexion" main="Connexion" />
+    <x-banner title="Connexion" main="Connexion" />
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
