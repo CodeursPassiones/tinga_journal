@@ -125,7 +125,7 @@ class ArticleWebController extends Controller
             $article = Article::with(['issue', 'issue.volume', 'files', 'articleUsers', 'user'])->find($article_id);
             $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
 
-            return view('pages.web.articles.show', compact('article', 'similors', 'volume', 'numero'));
+            return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {
             // dd($th->getMessage(), $th->getLine());
 
