@@ -1,6 +1,8 @@
 @extends('base')
 @section('banner')
-    <x-banner title="{{ 'Liste Articles' . ($issue ? 'du Numéro : ' . $issue->number : '') }}" main="Articles/Liste" />
+    <x-banner
+        title="{{ 'Liste des articles' .($issue? ' du Numéro : ' .$issue->title .' (' .\Carbon\Carbon::parse($issue->publication_date)->locale('fr')->isoFormat('D MMMM YYYY') .')': '') }}"
+        main="Articles/Liste" />
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
