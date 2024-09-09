@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -21,8 +21,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 
 @section('web-content')
@@ -88,6 +88,13 @@
                                     style="font-family: 'Times New Roman', Times, serif; text-align:center; font-size:25px">
                                     <strong>Titre : {{ $article->title }}</strong>
                                 </h3>
+                                {{-- <h5 style="text-align: center">
+                                    @foreach ($article->files as $file)
+                                        <li><a href="{{ Storage::url($file->path) }}" download class="sj-file-link"><i
+                                                    class="fa fa-download"></i>
+                                                {{ $file->name }}</a></li>
+                                    @endforeach
+                                </h5 style="text-align: center"> --}}
                                 <style>
                                     .mt-100 {
                                         margin-top: 100px;
@@ -173,56 +180,95 @@
                                                 <p class="m-b-0 font-medium p-0" data-abc="true" style="margin-left: 20px">
                                                     Le résumé</p>
                                                 <p class="text-muted">
-                                                    {{ $article->abstract }}
+                                                    {!! $article->abstract !!}
                                                 </p>
                                             </div>
                                         </li>
+                                        @if ($article->en_abstract)
+                                            <li class="d-flex no-block card-body border-top">
+                                                <i class="lnr lnr-book w-30px m-t-5"></i>
+                                                <div>
+                                                    <p class="m-b-0 font-medium p-0" data-abc="true"
+                                                        style="margin-left: 20px">
+                                                        Abstract</p>
+                                                    <p class="text-muted">
+                                                        {!! $article->en_abstract !!}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        @endif
+                                        @if ($article->files->isNotEmpty())
+                                            <li class="d-flex no-block card-body border-top">
+                                                <i class="fa fa-paperclip w-30px m-t-5"></i>
+                                                <div>
+                                                    <p class="m-b-0 font-medium p-0" data-abc="true">
+                                                        fichier(s) associé(s)</p>
+                                                    <p class="text-muted">
+                                                    <ul>
+                                                        @foreach ($article->files as $file)
+                                                            <li><a href="{{ Storage::url($file->path) }}" download
+                                                                    class="sj-file-link"><i class="fa fa-download"></i>
+                                                                    {{ $file->name }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        @endif
                                         <li class="d-flex no-block card-body border-top">
                                             <i class="fa fa-tags w-30px m-t-5"></i>
                                             <div>
-                                                <p class="m-b-0 font-medium p-0" data-abc="true" style="margin-left: 20px">
+                                                <p class="m-b-0 font-medium p-0" data-abc="true">
                                                     Les mots clés</p>
                                                 <p class="text-muted">
                                                     {{ $article->keywords }}
                                                 </p>
                                             </div>
+                                            <div class="ml-auto">
+                                                <div class="tetx-right">
+                                                    <span><i class="fa fa-id-badge"></i> Matricule :
+                                                        {{ $article->matricule }}
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </li>
+                                        @if ($article->citation)
+                                            <li class="d-flex no-block card-body border-top">
+                                                <i class="lnr lnr-pencil w-30px m-t-5"></i>
+                                                <div>
+                                                    <p class="m-b-0 font-medium p-0" data-abc="true">
+                                                        Comment citer l'article</p>
+                                                    <p class="text-muted">
+                                                        {!! $article->citation !!}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div> <!-- Informations supplémentaires -->
                                 <div class="sj-extrainfo">
-                                    @if ($article->doi)
-                                        <p><i class="fa fa-link"></i> <strong>DOI : </strong><a
-                                                href="https://doi.org/{{ $article->doi }}"
-                                                target="_blank">{{ $article->doi }}</a></p>
-                                    @endif
-                                    @if ($article->keywords)
-                                        <p><i class="fa fa-tags"></i> <strong>Mots-clés :
-                                            </strong>{{ $article->keywords }}
-                                        </p>
-                                    @endif
-                                    @if ($article->references)
-                                        <p><i class="fa fa-book"></i> <strong>Références :
-                                            </strong>{!! $article->references !!}
-                                        </p>
-                                    @endif
-                                    @if ($article->files->isNotEmpty())
-                                        <p><i class="fa fa-paperclip"></i> <strong>Fichiers associés :</strong></p>
-                                        <ul>
-                                            @foreach ($article->files as $file)
-                                                <li><a href="{{ Storage::url($file->path) }}" download
-                                                        class="sj-file-link"><i class="fa fa-download"></i>
-                                                        {{ $file->name }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                    @if ($article->prefix)
-                                        <p><i class="fa fa-tag"></i> <strong>Préfixe :
-                                            </strong>{{ $article->prefix }}</p>
-                                    @endif
-                                    @if ($article->comment)
-                                        <p><i class="fa fa-comments"></i> <strong>Commentaires :
-                                            </strong>{!! $article->comment !!}</p>
-                                    @endif
+                                    <!-- Informations supplémentaires -->
+                                    <div class="sj-extrainfo">
+                                        @if ($article->doi)
+                                            <p><i class="fa fa-link"></i> <strong>DOI : </strong><a
+                                                    href="https://doi.org/{{ $article->doi }}"
+                                                    target="_blank">{{ $article->doi }}</a></p>
+                                        @endif
+
+                                        @if ($article->references)
+                                            <p><i class="fa fa-book"></i> <strong>Références :
+                                                </strong>{!! $article->references !!}
+                                            </p>
+                                        @endif
+                                        @if ($article->prefix)
+                                            <p><i class="fa fa-tag"></i> <strong>Préfixe : </strong>{{ $article->prefix }}
+                                            </p>
+                                        @endif
+                                        @if ($article->comment)
+                                            <p><i class="fa fa-comments"></i> <strong>Commentaires :
+                                                </strong>{!! $article->comment !!}</p>
+                                        @endif
+                                    </div>
 
                                 </div>
                             </div>
