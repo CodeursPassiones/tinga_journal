@@ -32,7 +32,7 @@ class ArticleWebController extends Controller
             $filterPeriods = $request->input('period');
             $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
             $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
-            $limit = $request->input('limit', 5); // Par défaut 6 articles par page
+            $limit = $request->input('limit', 10); // Par défaut 6 articles par page
 
             // Initialisation de la requête de base pour les articles
             $query = Article::with(['user', 'discipline'])->where('status', 'PUBLISHED')->where('state', 'VALID');
@@ -109,7 +109,7 @@ class ArticleWebController extends Controller
             }])
             ->whereHas('articles', function ($query) {
                 $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
-            })->orderBy('publication_date', 'desc')->take(4)->get();
+            })->orderBy('publication_date', 'desc')->take(6)->get();
 
             return view('pages.web.articles.index', compact('articles', 'disciplines', 'counts', 'latestIssues', 'issue'));
         } catch (\Throwable $th) {
@@ -123,7 +123,7 @@ class ArticleWebController extends Controller
     {
         try {
             $article = Article::with(['issue', 'issue.volume', 'files', 'articleUsers', 'user'])->find($article_id);
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(3)->get();
+            $similors = Article::where('discipline_id', $article->discipline_id)->take(10)->get();
 
             return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {

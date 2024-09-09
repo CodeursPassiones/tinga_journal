@@ -1,8 +1,8 @@
 <!--************************************
 Footer Start
 *************************************-->
-<div class="sj-contentwrapper">
-    <footer id="sj-footer" class="sj-footer sj-haslayout" style="padding: 10px">
+<div class="">
+    <footer id="sj-footer" class="sj-footer sj-haslayout " style="padding: 10px">
         <div class="container" style="padding: 15px">
             <div class="row">
                 <!-- Retour en haut -->

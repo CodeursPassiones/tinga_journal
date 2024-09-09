@@ -23,14 +23,25 @@
 
                         <figure class="sj-postimg">
                             <img src="{{ $article->image_path === 'assets/images/thumbnails/img-02.jpg' ? asset($article->image_path) : Storage::url($article->image_path) }}"
-                                alt="image description" class="figureLatestThree">
+                                alt="image description" class="artImg">
+                            <style>
+                                .artImg {
+                                    width: 300px;
+                                    height: 170px;
+                                    min-width: 300px;
+                                    max-width: 300px;
+                                    min-height: 170px;
+                                    max-height: 170px;
+                                    object-fit: fill !important;
+                                }
+                            </style>
                         </figure>
                         <div class="sj-postcontent">
                             <div class="sj-head">
                                 <span class="sj-username">
                                     <a href={{ route('web.articles.show', $article->id) }}>
                                         @foreach ($article->articleUsers as $author)
-                                            {{ $author->user->firstname . ' ' . $author->user->lastname }} |
+                                            {{ $author->user->lastname }} |
                                         @endforeach
                                     </a>
                                 </span>

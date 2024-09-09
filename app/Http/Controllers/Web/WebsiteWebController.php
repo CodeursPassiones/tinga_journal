@@ -22,8 +22,8 @@ class WebsiteWebController extends Controller
             ->take(6)
             ->get();
 
-            $threeLatest = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(3)->get();
-            $latestArticles = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(6)->get()->chunk(3);
+            $threeLatest = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(7)->get();
+            $latestArticles = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(25)->get()->chunk(6);
 
             return view('pages.web.home.index', compact('lastArticle', 'latestIssues', 'threeLatest', 'latestArticles'));
         } catch (\Throwable $th) {

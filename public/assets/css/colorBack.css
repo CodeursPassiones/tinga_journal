@@ -1,5 +1,5 @@
 /*==========================================================================================
-								Primery Theme Colors										
+								Primery Theme Colors
 ==========================================================================================*/
 /*=============================================
 			Theme Text Color
@@ -57,6 +57,7 @@ a:active,
 .sj-btn:hover:before,
 .sj-btn.sj-btnactive:before,
 .sj-bannercontent h1:before,
+.sj-bannercontent h3:before,
 .sj-btnvideo,
 .sj-editorchoice:hover .sj-postcontent .sj-btn:before,
 .sj-prev:hover,

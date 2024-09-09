@@ -288,12 +288,12 @@
                                             <style>
                                                 .artImg {
                                                     width: 200px;
-                                                    height: 170px;
+                                                    height: 140px;
                                                     min-width: 200px;
                                                     max-width: 200px;
-                                                    min-height: 170px;
-                                                    max-height: 170px;
-                                                    object-fit: fill !important;
+                                                    min-height: 140px;
+                                                    max-height: 140px;
+                                                    /* object-fit: fill !important; */
                                                 }
                                             </style>
                                         </figure>
@@ -305,7 +305,7 @@
                                                     <span class="sj-username">
                                                         <a href="javascript:void(0);">
                                                             @foreach ($article->articleUsers as $author)
-                                                                {{ $author->user->firstname . ' ' . $author->user->lastname }}
+                                                                {{ $author->user->lastname }}
                                                                 |
                                                             @endforeach
                                                         </a>

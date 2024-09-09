@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                 Home Banner Start
-                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                 Home Banner Start
+                                                                                                                                                                                                                                                               *************************************-->
     @if ($lastArticle)
         <div id="sj-homebanner" class="sj-homebanner">
             <div class="container">
@@ -18,13 +18,10 @@
                                             alt="image description" id="bannerImgArt">
                                         <style>
                                             #bannerImgArt {
-                                                width: 443px;
+                                                width: 552px;
                                                 height: 552px;
-                                                min-width: 443px;
-                                                max-width: 443px;
-                                                min-height: 552px;
-                                                max-height: 552px;
-                                                object-fit: contain !important;
+                                                border-radius: 5px;
+                                                /* object-fit: contain !important; */
                                             }
                                         </style>
                                     </div>
@@ -34,7 +31,8 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="sj-bannercontent">
-                            <h1>{{ $lastArticle->title }}</h1>
+                            <h1 style="font-style: italic; font-family:'Times New Roman', Times, serif;">
+                                {{ $lastArticle->title }}</h1>
                             <div class="sj-description">
                                 <p>{!! Str::limit($lastArticle->abstract, 250) !!}<strong>... <a
                                             href={{ route('web.articles.show', $lastArticle->id) }}>Lire
@@ -48,8 +46,8 @@
     @endif
 
     <!--************************************
-                                                                                                                                                                                 Home Banner End
-                                                                                                                                                                               *************************************-->
+                                                                                                                                                                                                                                                                 Home Banner End
+                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('web-content')
     @include('pages.web.home.salutation')
@@ -59,19 +57,19 @@
                 <div class="col-12 col-sm-12 col-md-7 col-lg-9">
                     <div id="sj-content" class="sj-content">
                         <!--************************************
-                                                                                                                                                                                                Editor's Pick Start
-                                                                                                                                                                                        *************************************-->
+                                                                                                                                                                                                                                                                                Editor's Pick Start
+                                                                                                                                                                                                                                                                        *************************************-->
                         @include('pages.web.home.latest-articles')
                         <!--************************************
-                                                                                                                                                                                                Editor's Pick End
-                                                                                                                                                                                        *************************************-->
+                                                                                                                                                                                                                                                                                Editor's Pick End
+                                                                                                                                                                                                                                                                        *************************************-->
                         <!--************************************
-                                                                                                                                                                                                Previous Posts Start
-                                                                                                                                                                                        *************************************-->
+                                                                                                                                                                                                                                                                                Previous Posts Start
+                                                                                                                                                                                                                                                                        *************************************-->
                         @include('pages.web.home.lates-issues')
                         <!--************************************
-                                                                                                                                                                                                Previous Posts End
-                                                                                                                                                                                        *************************************-->
+                                                                                                                                                                                                                                                                                Previous Posts End
+                                                                                                                                                                                                                                                                        *************************************-->
 
                     </div>
                 </div>
