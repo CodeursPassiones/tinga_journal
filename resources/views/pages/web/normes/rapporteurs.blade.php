@@ -27,9 +27,32 @@
                                 <img src="{{ asset('assets/images/A propos/rapporteurs2.jpg') }}" style="height: 500px;"
                                     alt="image description">
                             </figure>
-                            <a href="{{ asset('storage/normes.pdf') }}" download="normes.pdf">Télécharger le
-                                PDF</a>
-
+                            <div style="margin-top:550px">
+                                <style>
+                                    .ok {
+                                        font-style: italic;
+                                        background-color: #f0f8ff;
+                                        border: 1px solid #0876e4;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                        color: #333;
+                                        font-size: 1.1em;
+                                        max-width: 600px;
+                                        margin: 20px auto;
+                                        text-align: center;
+                                    }
+                                </style>
+                                <h4 class="ok"> Cliquez sur le lien suivant pour télécharger la version Pdf des
+                                    instructions pour les
+                                    rapporteurs :
+                                    <i class="ti-hand-point-right"></i>
+                                    <a href="{{ asset('storage/Instructions aux rapporteurs.pdf') }}"
+                                        download="Instructions aux rapporteurs.pdf"
+                                        style="color: #0876e4; text-decoration: none; font-weight: bold;">Télécharger le PDF
+                                    </a>
+                                </h4>
+                            </div>
                             <div class="sj-introduction sj-sectioninnerspace">
                                 <div style="font-family: 'Times New Roman', serif; font-size: 12px; line-height: 1.15;"
                                     class="sj-description">
@@ -37,7 +60,6 @@
                                     <h4 style="text-align: center;">Numéro d'anonymat :</h4>
                                 </div>
                             </div>
-
                             <div class="sj-ourhistory sj-sectioninnerspace">
                                 <div class="sj-borderheading">
                                     <div class="sj-description" style="margin-left: 250px">
@@ -47,8 +69,7 @@
                                         <p><strong>Intérêt et originalité du texte :</strong></p>
                                         <p><strong>Appréciation détaillée sur le texte :</strong></p>
                                         <p><strong>Cocher la case correspondant au critère retenu (X). Une seule case doit
-                                                être
-                                                cochée pour chaque critère.</strong></p>
+                                                être cochée pour chaque critère.</strong></p>
                                     </div>
                                 </div>
                                 <table class=" table-bordered">
@@ -164,8 +185,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
-
                             </div>
                             <div class="sj-ourhistory sj-sectioninnerspace">
                                 <div class="sj-borderheading">
@@ -181,9 +200,8 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Article accepté avec corrections importantes.
-                                            Dans ce cas, accepteriez-vous de relire l’article corrigé ?
-                                        </td>
+                                        <td>Article accepté avec corrections importantes. Dans ce cas,
+                                            accepteriez-vous de relire l’article corrigé ? </td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -193,15 +211,13 @@
                                 </table>
                                 <p><strong>Auteur de la fiche :</strong></p>
                                 <p><strong>Date de retour de la fiche : </strong></p>
-                                <h5><i><strong>A renvoyer à l’adresse mail de la revue </strong></i></h5>
-
+                                <h5><strong><a href="mailto:mailto:tiingalald@gmail.com">A renvoyer
+                                            à l’adresse mail de la revue ( <i class="ti-email"></i> ) : cliquez pour envoyer
+                                        </a></strong></h5>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

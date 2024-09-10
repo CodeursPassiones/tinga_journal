@@ -35,8 +35,10 @@
                         <h2 style="text-align: center"> Comité scientifique et de lecture </h2>
                         <style>
                             .contact-info {
-                                display: table;
-                                width: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                /* Les éléments peuvent se répartir sur plusieurs lignes */
+                                justify-content: space-between;
                                 background-color: #fff;
                                 padding: 10px 20px;
                                 border-radius: 8px;
@@ -45,394 +47,262 @@
                             }
 
                             .contact-info .row {
-                                display: table-row;
-                            }
-
-                            .contact-info .cell {
-                                display: table-cell;
-                                padding: 10px;
-                                border: 1px solid #ddd;
-                                /* Bordure autour de chaque cellule */
+                                display: flex;
+                                width: calc(50% - 20px);
+                                margin-bottom: 10px;
                                 background-color: #f9f9f9;
-                                /* Fond légèrement gris */
-                                text-align: center;
-                                /* Centrer le texte dans chaque cellule */
-                                vertical-align: middle;
-                                /* Aligner verticalement au centre */
+                                border: 1px solid #ddd;
+                                padding: 15px;
+                                border-radius: 8px;
+                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                                /* Légère ombre */
                             }
 
-                            .contact-info .cell:first-child {
-                                font-weight: bold;
-                                /* Rendre le premier champ (nom) plus gras */
+                            .contact-info .row span {
+                                text-align: left;
+                                line-height: 1.5;
+                            }
+
+                            @media (max-width: 600px) {
+                                .contact-info .row {
+                                    width: 100%;
+                                }
                             }
                         </style>
 
                         <div class="contact-info">
                             <div class="row">
-                                <div class="cell"><strong>Nom</strong></div>
-                                <div class="cell"><strong>Titre</strong></div>
-                                <div class="cell"><strong>Université</strong></div>
-                                <div class="cell"><strong>Pays</strong></div>
-                            </div>
-                            <div class="row">
-                                <div class="cell">Issa TAKASSI</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Issa TAKASSI</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kossi Antoine AFELI</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kossi Antoine AFELI</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Komla Messan NUBUKPO</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Komla Messan NUBUKPO</strong>, Prof. titulaire, Université de Lomé,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kokou Essodina PERE-KEWEZIMA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kokou Essodina PERE-KEWEZIMA</strong>, Prof. titulaire, Université de Lomé,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Alou KEITA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Ouagadougou</div>
-                                <div class="cell"></div>
+                                <span><strong>Alou KEITA</strong>, Prof. titulaire, Université de Ouagadougou</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Bernard KABORE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Ouagadougou</div>
-                                <div class="cell"></div>
+                                <span><strong>Bernard KABORE</strong>, Prof. titulaire, Université de Ouagadougou</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Laré KANTCHOA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Laré KANTCHOA</strong>, Prof. titulaire, Université de Kara, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Coffi SAMBIENI</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université d’Abomey-Calavi</div>
-                                <div class="cell"></div>
+                                <span><strong>Coffi SAMBIENI</strong>, Prof. titulaire, Université d’Abomey-Calavi</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Akayaou Méterwa OURSO</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Akayaou Méterwa OURSO</strong>, Prof. titulaire, Université de Lomé,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Komlan E. ESSIZEWA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Komlan E. ESSIZEWA</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Minlipe M. GANGUE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Minlipe M. GANGUE</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Améyo S. AWUKU</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Améyo S. AWUKU</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Léa Marie-Laurence N’GORAN</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université Alassane Ouattara</div>
-                                <div class="cell">Côte d’Ivoire</div>
+                                <span><strong>Léa Marie-Laurence N’GORAN</strong>, Professeure Titulaire, Université
+                                    Alassane Ouattara, Côte d’Ivoire</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Tchaa PALI</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Tchaa PALI</strong>, Prof. titulaire, Université de Kara, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Gratien Gualbert ATINDOGE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Buea</div>
-                                <div class="cell">Cameroun</div>
+                                <span><strong>Gratien Gualbert ATINDOGE</strong>, Prof. titulaire, Université de Buea,
+                                    Cameroun</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Abou NAPON</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Ouagadougou</div>
-                                <div class="cell">Burkina Faso</div>
+                                <span><strong>Abou NAPON</strong>, Prof. titulaire, Université de Ouagadougou, Burkina
+                                    Faso</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Boussanlègue TCHABLE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Boussanlègue TCHABLE</strong>, Prof. titulaire, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Larry AMIN</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Larry AMIN</strong>, Prof. titulaire, Université de Kara, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Gregory SIMIRE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lagos</div>
-                                <div class="cell">Nigéria</div>
+                                <span><strong>Gregory SIMIRE</strong>, Prof. titulaire, Université de Lagos, Nigéria</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Ataféi PEWISSI</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Ataféi PEWISSI</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kodjo AFAGLA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kodjo AFAGLA</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Musanji N’GALASSO-MWATHA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université Michel de Montaigne</div>
-                                <div class="cell">Bordeaux 3</div>
+                                <span><strong>Musanji N’GALASSO-MWATHA</strong>, Prof. titulaire, Université Michel de
+                                    Montaigne, Bordeaux 3</span>
+                            </div>
+                            <div class="row">
+                                <span><strong>Akoété AMOUZOU</strong>, Prof. titulaire, Université de Kara, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Akoété AMOUZOU</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Flavien GBETO</strong>, Prof. titulaire, Université d’Abomey-Calavi,
+                                    Bénin</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Flavien GBETO</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université d’Abomey-Calavi</div>
-                                <div class="cell">Bénin</div>
+                                <span><strong>Martin GBENOUGAN</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Martin GBENOUGAN</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Charles Atiyihwe AWESSO</strong>, Prof. titulaire, Université de Lomé,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Charles Atiyihwe AWESSO</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Bernard KABORE</strong>, Prof. titulaire, Université de Koudougou, Burkina
+                                    Faso</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Bernard KABORE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Koudougou</div>
-                                <div class="cell">Burkina Faso</div>
-                            </div>
-                            <div class="row">
-                                <div class="cell">Koutchoukalo TCHASSIM</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Koutchoukalo TCHASSIM</strong>, Prof. titulaire, Université de Lomé,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kossi TITRIKOU</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kossi TITRIKOU</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Didier AMELA</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Didier AMELA</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kouméalo ANATE</div>
-                                <div class="cell">Prof. titulaire</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kouméalo ANATE</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Balaïbaou KASSAN</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Balaïbaou KASSAN</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Komi KPATCHA</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Komi KPATCHA</strong>, Maître de conférences, Université de Kara, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Mimboabe BAKPA</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Mimboabe BAKPA</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Palakyém MOUZOU</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Palakyém MOUZOU</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Bawa KAMMANPOAL</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Bawa KAMMANPOAL</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Baguissoga SATRA</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Baguissoga SATRA</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Yentougle MOUTORE</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Yentougle MOUTORE</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Essohouna TANANG</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Essohouna TANANG</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Tchilabalo ADI</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Tchilabalo ADI</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kodjo Biava KLUTSE</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kodjo Biava KLUTSE</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Panaewazibiou DADJA-TIOU</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Panaewazibiou DADJA-TIOU</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Kpatcha Essobozou AWESSO</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Kara</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kpatcha Essobozou AWESSO</strong>, Maître de conférences, Université de Kara,
+                                    Togo</span>
                             </div>
                             <div class="row">
-                                <div class="cell">Kokou AZAMEDE</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Kokou AZAMEDE</strong>, Maître de conférences, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Koffi M. L. MOLLEY</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Koffi M. L. MOLLEY</strong>, Maître de conférences, Université de Lomé,
+                                    Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Charles Dossou LIGAN</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université d’Abomey-Calavi</div>
-                                <div class="cell">Bénin</div>
+                                <span><strong>Charles Dossou LIGAN</strong>, Maître de conférences, Université
+                                    d’Abomey-Calavi, Bénin</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Idrissou ZIME YERIMA</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université d’Abomey-Calavi</div>
-                                <div class="cell">Bénin</div>
+                                <span><strong>Idrissou ZIME YERIMA</strong>, Maître de conférences, Université
+                                    d’Abomey-Calavi, Bénin</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Gbandi ADOUNA</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Gbandi ADOUNA</strong>, Maître de conférences, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Mawaya TAKAO</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Mawaya TAKAO</strong>, Maître de conférences, Université de Lomé, Togo</span>
                             </div>
 
                             <div class="row">
-                                <div class="cell">Gnabana PIDABI</div>
-                                <div class="cell">Maître de conférences</div>
-                                <div class="cell">Université de Lomé</div>
-                                <div class="cell">Togo</div>
+                                <span><strong>Gnabana PIDABI</strong>, Maître de conférences, Université de Lomé,
+                                    Togo</span>
                             </div>
-
-
-
                         </div>
-
-
                     </div>
                 </div>
-                {{-- <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ml-auto ">
+            </div>
+            {{-- <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 ml-auto ">
                     @include('partials.right-aside')
                 </div> --}}
-            </div>
         </div>
+    </div>
     </div>
 @endsection

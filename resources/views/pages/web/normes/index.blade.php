@@ -27,6 +27,30 @@
                                 <img src="{{ asset('assets/images/A propos/normes.jpg') }}" style="height: 350px;"
                                     alt="image description">
                             </figure>
+                            <div style="margin-top:400px">
+                                <style>
+                                    .ok {
+                                        font-style: italic;
+                                        background-color: #bdf7d9;
+                                        border: 1px solid #0876e4;
+                                        padding: 20px;
+                                        border-radius: 8px;
+                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                        color: #333;
+                                        font-size: 1.1em;
+                                        max-width: 600px;
+                                        margin: 20px auto;
+                                        text-align: center;
+                                    }
+                                </style>
+                                <h4 class="ok"> Veuillez Cliquez sur le lien suivant pour télécharger la version Pdf de
+                                    la ligne éditoriale de la révue :
+                                    <i class="ti-hand-point-right"></i>
+                                    <a href="{{ asset('storage/Ligne éditoriale.pdf') }}" download="Ligne éditoriale.pdf"
+                                        style="color: #0876e4; text-decoration: none; font-weight: bold;">Télécharger le PDF
+                                    </a>
+                                </h4>
+                            </div>
 
                             <div class="sj-introduction sj-sectioninnerspace">
                                 <div style="font-family: 'Times New Roman', serif; font-size: 12px; line-height: 1.15;"
