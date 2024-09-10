@@ -16,6 +16,8 @@ let AppAdminModelDeleteManager = (function () {
                 const parentSelector = thisElement.getAttribute(
                     "data-model-parent-selector"
                 );
+                console.log(parentSelector);
+
                 const parent = thisElement.closest(parentSelector);
                 console.log(parent);
 
