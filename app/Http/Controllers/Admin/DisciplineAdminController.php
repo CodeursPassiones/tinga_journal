@@ -24,7 +24,7 @@ class DisciplineAdminController extends Controller
             $limit = $request->input('limit', 6);
             $query = Discipline::with(['journal']);
             if ($search) {
-                $query->where('name', 'LIKE', '%'.$search.'%');
+                $query->where('name', 'ILIKE', '%'.$search.'%');
             }
 
             $query->orderBy($sortBy, $sortOrder);

@@ -45,7 +45,7 @@ class ArticleAdminController extends Controller
             $query->orderBy($sortBy, $sortOrder);
 
             if ($search) {
-                $query->where('title', 'LIKE', '%'.$search.'%');
+                $query->where('title', 'ILIKE', '%'.$search.'%');
             }
             if ($status !== 'DRAFT') {
                 $query->where('status', $status);

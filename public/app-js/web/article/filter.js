@@ -26,7 +26,8 @@ let AppWebArticleFilter = (function () {
                 e.preventDefault();
                 const formData = new FormData(issueForm);
                 const issue = formData.get("issue");
-                window.location.href = "/web/articles/list?issue_id=" + issue;
+                window.location.href =
+                    "/web/articles/list?issue_title=" + issue;
             });
         }
     };

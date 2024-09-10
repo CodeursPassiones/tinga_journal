@@ -26,8 +26,8 @@ class IssueAdminController extends Controller
 
             if ($search) {
                 // dd($search);
-                $query->where('number', 'LIKE', '%'.$search.'%');
-                $query->orWhere('title', 'LIKE', '%'.$search.'%');
+                $query->where('number', 'ILIKE', '%'.$search.'%');
+                $query->orWhere('title', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri

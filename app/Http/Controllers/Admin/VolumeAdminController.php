@@ -23,8 +23,8 @@ class VolumeAdminController extends Controller
 
             if ($search) {
                 // dd($search);
-                $query->where('title', 'LIKE', '%'.$search.'%');
-                $query->orWhere('year', 'LIKE', '%'.$search.'%');
+                $query->where('title', 'ILIKE', '%'.$search.'%');
+                $query->orWhere('year', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri
