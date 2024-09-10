@@ -32,9 +32,9 @@ class UserAdminController extends Controller
             $query = User::with(['roles']);
             if ($search) {
                 // dd($search);
-                $query->where('firstname', 'LIKE', '%'.$search.'%');
-                $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
-                $query->orWhere('email', 'LIKE', '%'.$search.'%');
+                $query->where('firstname', 'ILIKE', '%'.$search.'%');
+                $query->orWhere('lastname', 'ILIKE', '%'.$search.'%');
+                $query->orWhere('email', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri

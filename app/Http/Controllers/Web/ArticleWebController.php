@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Models\Volume;
 use App\Models\Discipline;
 use App\Models\Issue;
 use Carbon\Carbon;
@@ -29,6 +28,7 @@ class ArticleWebController extends Controller
             $filterDiscipline = $request->input('discipline');
             $search = $request->input('search');
             $issue_id = $request->input('issue_id');
+            $issue_title = $request->input('issue_title');
             $filterPeriods = $request->input('period');
             $sortOrder = $request->input('sort_order', 'asc'); // Par défaut ascendant
             $sortBy = $request->input('sort_by', 'title'); // Par défaut tri par titre
@@ -84,11 +84,19 @@ class ArticleWebController extends Controller
                     $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
                 })->find($issue_id);
             }
+            if ($issue_title) {
+                $issue = Issue::with(['articles' => function ($query) {
+                    $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+                }])
+                ->whereHas('articles', function ($query) {
+                    $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
+                })->where('title', '=', $issue_title)->first();
+                $query->where('issue_id', $issue->id);
+            }
             if ($search) {
-                // dd($search);
-                $query->where('title', 'LIKE', '%'.$search.'%');
-                $query->orWhere('abstract', 'LIKE', '%'.$search.'%');
-                $query->orWhere('content', 'LIKE', '%'.$search.'%');
+                $query->where('title', 'ILIKE', '%'.$search.'%');
+                $query->orWhere('abstract', 'ILIKE', '%'.$search.'%');
+                $query->orWhere('content', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri

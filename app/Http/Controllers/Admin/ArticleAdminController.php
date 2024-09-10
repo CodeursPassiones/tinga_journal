@@ -13,6 +13,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ArticleAdminController extends Controller
 {
@@ -43,7 +45,7 @@ class ArticleAdminController extends Controller
             $query->orderBy($sortBy, $sortOrder);
 
             if ($search) {
-                $query->where('title', 'LIKE', '%'.$search.'%');
+                $query->where('title', 'ILIKE', '%'.$search.'%');
             }
             if ($status !== 'DRAFT') {
                 $query->where('status', $status);
@@ -206,21 +208,32 @@ class ArticleAdminController extends Controller
             }
 
             // Upload des nouveaux fichiers PDF
+
             if ($request->hasFile('files')) {
                 foreach ($request->file('files') as $pdfFile) {
-                    $pdfPath = $pdfFile->store('public/files/articles');
+                    // Générer un nom de fichier unique en conservant l'extension
+                    $originalName = pathinfo($pdfFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $extension = $pdfFile->getClientOriginalExtension();
+                    $filename = Str::slug($originalName).'_'.uniqid().'_'.time().'.'.$extension;
 
-                    // Créer une nouvelle entrée pour chaque fichier PDF
-                    // Créer une entrée dans la table 'files'
-                    File::create([
-                        'mime_type' => $pdfFile->getMimeType(),
-                        'path' => $pdfPath,
-                        'url' => \Storage::url($pdfPath), // Générer l'URL publique
-                        'name' => $pdfFile->getClientOriginalName(),
-                        'description' => $request->input('description') ?? '', // Description facultative
-                        'article_id' => $article->id, // Lier le fichier à l'article
-                        'category_file_id' => $request->input('category_file_id'), // Lier la catégorie de fichier, si disponible
-                    ]);
+                    // Sauvegarder le fichier dans le dossier public
+                    $pdfPath = $pdfFile->storeAs('public/files/articles', $filename);
+
+                    // Vérifier si l'article existe avant de créer l'entrée
+                    if (isset($article)) {
+                        File::create([
+                            'mime_type' => $pdfFile->getMimeType(),
+                            'path' => $pdfPath,
+                            'url' => Storage::url($pdfPath), // Générer l'URL publique
+                            'name' => $pdfFile->getClientOriginalName(),
+                            'description' => $request->input('description', ''), // Description facultative
+                            'article_id' => $article->id, // Lier le fichier à l'article
+                            'category_file_id' => $request->input('category_file_id'), // Lier la catégorie de fichier, si disponible
+                        ]);
+                    } else {
+                        // Gérer le cas où l'article n'existe pas
+                        return response()->json(['error' => 'Article not found.'], 404);
+                    }
                 }
             }
 
@@ -257,8 +270,8 @@ class ArticleAdminController extends Controller
             // Redirection avec message de succès
             return response()->json(['message' => 'Auteur associé avec succès.', 'ok' => true]);
         } catch (\Throwable $th) {
-            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            // return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 
