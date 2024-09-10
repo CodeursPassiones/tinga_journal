@@ -270,8 +270,8 @@ class ArticleAdminController extends Controller
             // Redirection avec message de succès
             return response()->json(['message' => 'Auteur associé avec succès.', 'ok' => true]);
         } catch (\Throwable $th) {
-            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            // return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+            return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 
