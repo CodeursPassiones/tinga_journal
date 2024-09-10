@@ -1,16 +1,24 @@
+@php
+    $lastArticle = App\BladeDirectives\CustomDirectives::getLastArticle();
+
+@endphp
 <aside id="sj-sidebar" class="sj-sidebar">
     <div class="sj-widget sj-widgetimpactfector">
         <div class="sj-widgetcontent">
             <ul>
-                <li>
-                    <h3>Volume en cours<span> : 001 Année 2024</span></h3>
-                    <h3>N° courant <span> : 001 </span></h3>
-                </li>
+                @if ($lastArticle)
+                    <li>
+                        <h3>Volume en cours<span> : {{ $lastArticle->issue->volume->title }} Année
+                                {{ $lastArticle->issue->volume->year }}</span></h3>
+                        <h3>N° courant <span> : {{ $lastArticle->issue->title }} </span></h3>
+                    </li>
+                @endif
+
                 <li>
                     <h3 style="text-align: center">Le Code ISSN de la revue</h3>
                     <div class="sj-description">
-                        <p>En attente. <a href="javascript:void(0)">
-                                lire plus</a></p>
+                        {{-- <p>En attente. <a href="javascript:void(0)">
+                                lire plus</a></p> --}}
                     </div>
                 </li>
             </ul>

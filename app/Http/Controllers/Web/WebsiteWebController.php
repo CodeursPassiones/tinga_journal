@@ -12,6 +12,7 @@ class WebsiteWebController extends Controller
     {
         try {
             $lastArticle = Article::orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->first();
+
             $latestIssues = Issue::with(['articles' => function ($query) {
                 $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
             }])
