@@ -26,7 +26,7 @@ p {
 	width: 250px;
 	max-width: 100%;
 	text-align: center;
-	min-height: 150px; /* Contrôle la hauteur minimale des cartes */
+	min-height: 250px; /* Contrôle la hauteur minimale des cartes */
 }
 
 .card-container .round {
@@ -56,6 +56,17 @@ button.primary.ghost {
 	text-align: left;
 	padding: 10px; /* Réduit le padding pour une plus petite hauteur */
 	margin-top: 20px; /* Ajuste l'espacement en fonction de la hauteur réduite */
+}
+@media (max-width: 800px) {
+    .row {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour les écrans moyens */
+    }
+}
+
+@media (max-width: 768px) {
+    .row {
+        grid-template-columns: repeat(1, 1fr); /* 1 colonne pour les petits écrans */
+    }
 }
 
 
