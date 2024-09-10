@@ -35,13 +35,15 @@
                                     <h3>Comité de rédaction </h3>
                                 </div>
                                 <div class="container" style="margin-top: 30px">
-                                    <div class="row">
+                                    <div class="row"
+                                        style="display: grid;
+                                            grid-template-columns: repeat(3, 1fr);">
                                         <div class="col" style="margin-top: 20px">
                                             <div class="card-container">
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3>Directeur scientifique </h3>
+                                                <h3 style="font-size:20px">Directeur scientifique </h3>
                                                 <h6>Professeur KANTCHOA Laré</h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -61,7 +63,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Directeur de publication </h3>
+                                                <h3 style="font-size:20px"> Directeur de publication </h3>
                                                 <h6> Docteur KPATCHA Komi </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -81,7 +83,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Rédacteur en chef </h3>
+                                                <h3 style="font-size:20px"> Rédacteur en chef </h3>
                                                 <h6>Docteur BAKPA Mimboabe </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -101,7 +103,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Secrétariat </h3>
+                                                <h3 style="font-size:20px"> Secrétaire </h3>
                                                 <h6>Docteur AWIZOBA Essobozouwè </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -121,7 +123,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Secrétariat </h3>
+                                                <h3 style="font-size:20px"> Secrétaire </h3>
                                                 <h6>Docteur HALOUBIYOU Assolissim </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -141,7 +143,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Secrétariat </h3>
+                                                <h3 style="font-size:20px"> Secrétaire </h3>
                                                 <h6>Docteur TCHENDO Yao </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -161,7 +163,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Secrétariat </h3>
+                                                <h3 style="font-size:20px"> Secrétaire </h3>
                                                 <h6>Docteur TAKOUGNADI Yoma </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -181,7 +183,7 @@
                                                 <img class="round" style="width: 100px; height: 100px;"
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}" alt="user" />
 
-                                                <h3> Secrétariat </h3>
+                                                <h3 style="font-size:20px"> Secrétaire </h3>
                                                 <h6>Docteur GAWA Djahéma </h6>
                                                 <div class="buttons">
                                                     <button class="primary">
@@ -202,7 +204,7 @@
                                                     src="{{ asset('assets/images/A propos/user.jpg') }}"
                                                     alt="user" />
 
-                                                <h3> Secrétariat </h3>
+                                                <h3 style="font-size:20px"> Secrétaire </h3>
                                                 <h6>Docteur AGNALA Essoron </h6>
                                                 <div class="buttons">
                                                     <button class="primary">

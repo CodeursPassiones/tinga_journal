@@ -32,6 +32,9 @@
                             </figure>
                         </div>
                         <div class="container" style="margin-top: 400px;">
+                            <div class="sj-borderheading" style="margin-top: 40px;">
+                                <h3>Comité de gestion </h3>
+                            </div>
                             <div class="row" style="margin-top: 550px;">
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="our-team">
@@ -80,20 +83,6 @@
                                             <img class="img-fluid" src="{{ asset('assets/images/A propos/user.jpg') }}">
                                         </div>
                                         <div class="team-content">
-                                            <h3 class="name">Docteur ADI Tchilabalo </h3>
-                                            <h4 class="title">membre du Laboratoire</h4>
-                                        </div>
-                                        <ul class="social">
-                                            Maître de Conférences
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                    <div class="our-team">
-                                        <div class="picture">
-                                            <img class="img-fluid" src="{{ asset('assets/images/A propos/user.jpg') }}">
-                                        </div>
-                                        <div class="team-content">
                                             <h3 class="name">Docteur TAKAO Mawaya </h3>
                                             <h4 class="title">membre du Laboratoire</h4>
                                         </div>
@@ -123,10 +112,24 @@
                                         </div>
                                         <div class="team-content">
                                             <h3 class="name">Mme BILAO </h3>
-                                            <h4 class="title">comptable de la FLESH</h4>
+                                            <h4 class="title">comptable de la FLESH UK</h4>
                                         </div>
                                         <ul class="social">
                                             comptable de la FLESH
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="our-team">
+                                        <div class="picture">
+                                            <img class="img-fluid" src="{{ asset('assets/images/A propos/user.jpg') }}">
+                                        </div>
+                                        <div class="team-content">
+                                            <h3 class="name">Docteur ADI Tchilabalo </h3>
+                                            <h4 class="title">membre du Laboratoire</h4>
+                                        </div>
+                                        <ul class="social">
+                                            Maître de Conférences
                                         </ul>
                                     </div>
                                 </div>
