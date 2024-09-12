@@ -10,11 +10,14 @@ use App\Models\Discipline;
 use App\Models\File;
 use App\Models\Issue;
 use App\Models\User;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class ArticleAdminController extends Controller
 {
@@ -161,9 +164,18 @@ class ArticleAdminController extends Controller
 
             // Redirection avec message de succès
             return response()->json(['message' => 'Article créé avec succès.', 'ok' => true]);
-        } catch (\Throwable $th) {
-            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+        } catch (ValidationException $e) {
+            // Gestion des erreurs de validation
+            // return response()->json(['ok' => false, 'errors' => $e->errors(), 'message' => 'Données invalides. Veuillez vérifier votre saisie.']);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()]);
+        } catch (ModelNotFoundException $e) {
+            // Gestion des erreurs si l'article ou la discipline n'est pas trouvé
+            return response()->json(['ok' => false, 'message' => 'Article ou discipline non trouvé.']);
+        } catch (\Exception $e) {
+            // return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+
+            // Gestion des autres erreurs
+            return response()->json(['ok' => false, 'message' => 'Une erreur inattendue s\'est produite. Veuillez réessayer.']);
         }
     }
 
@@ -270,8 +282,9 @@ class ArticleAdminController extends Controller
             // Redirection avec message de succès
             return response()->json(['message' => 'Auteur associé avec succès.', 'ok' => true]);
         } catch (\Throwable $th) {
-            // return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-            return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
+
+            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
         }
     }
 

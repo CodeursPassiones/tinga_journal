@@ -86,7 +86,7 @@
                                 <div class="sj-title model-value">
                                     <h3>{{ $articleUsers->user->firstname . ' ' . $articleUsers->user->lastname }}
                                         <span class="sj-assignedinfo" data-toggle="modal" data-target="#feedbackmodal">(
-                                            {{ $articleUsers->user->articles->count() }}
+                                            {{ $articleUsers->user->articleUsers->count() }}
                                             Articles publiées )</span>
                                     </h3>
                                 </div>

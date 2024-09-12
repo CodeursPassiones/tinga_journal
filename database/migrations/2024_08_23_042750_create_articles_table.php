@@ -16,7 +16,7 @@ return new class extends Migration {
         Schema::create('articles', function (Blueprint $table) {
             // auto
             $table->id();
-            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED'])->default('DRAFT');
+            $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED', 'INCOMING'])->default('DRAFT');
             $table->enum('state', ['INVALID', 'VALID'])->default('INVALID');
             $table->string('image_path')->default('assets/images/thumbnails/img-02.jpg');
             // Metadata
