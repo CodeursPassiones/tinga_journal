@@ -197,14 +197,30 @@ class ArticleAdminController extends Controller
             $article = Article::find($article_id);
             // Suppression de l'image existante si demandé
             if ($request->has('delete_image') && $article->image_path) {
-                \Storage::delete($article->image_path); // Supprimer l'image existante
+                Storage::delete($article->image_path); // Supprimer l'image existante
                 $article->image_path = '/assets/images/thumbnails/img-02.jpg'; // Mettre à jour le champ dans la base de données
             }
+            /**
+             *        if ($request->hasFile('signature')) {
+             * $image = $request->file('signature');
+             * $imageName = time().'.'.$image->getClientOriginalExtension();.
+             *
+             * // Stockez l'image dans le répertoire storage/app/public/images
+             * $image->storeAs('public/signatures', $imageName);
+             *
+             * // Enregistrez le chemin relatif de l'image dans la base de données
+             * $chemin = 'storage/signatures/'.$imageName;
+             * }
+             */
 
             // Upload de la nouvelle image si fournie
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('public/images/articles');
-                $article->image_path = $imagePath;
+                $image = $request->file('image');
+
+                $image_name = time().'.'.$image->getClientOriginalExtension();
+
+                $image->storeAs('public/images/articles', $image_name);
+                $article->image_path = 'storage/images/articles/'.$image_name;
             }
 
             $article->save(); // Mettre à jour l'article
@@ -236,7 +252,7 @@ class ArticleAdminController extends Controller
                     if (isset($article)) {
                         File::create([
                             'mime_type' => $pdfFile->getMimeType(),
-                            'path' => $pdfPath,
+                            'path' => 'storage/files/articles/'.$filename,
                             'url' => Storage::url($pdfPath), // Générer l'URL publique
                             'name' => $pdfFile->getClientOriginalName(),
                             'description' => $request->input('description', ''), // Description facultative

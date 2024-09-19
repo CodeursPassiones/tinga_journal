@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\VolumeAdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Web\ArticleWebController;
+use App\Http\Controllers\Web\FileWebController;
 use App\Http\Controllers\Web\IssueWebController;
 use App\Http\Controllers\Web\WebsiteWebController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,13 @@ Route::prefix('/web')->group(function () {
     Route::prefix('/issues')->group(function () {
         Route::get('/list/{volumeID}', [IssueWebController::class, 'index']
         )->name('web.issues.list');
+    });
+    /*
+     * Files
+     */
+    Route::prefix('/files')->group(function () {
+        Route::get('/download/{file}', [FileWebController::class, 'download']
+        )->name('web.files.download');
     });
 });
 

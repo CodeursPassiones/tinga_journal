@@ -80,10 +80,10 @@ class ArticleWebController extends Controller
                 $issue = Issue::with(['articles' => function ($query) {
                     $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
                 }])
-                ->whereHas('articles', function ($query) {
-                    $query->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
-                })->find($issue_id);
+               ->find($issue_id);
+                // dd($issue);
             }
+            // dd($issue);
             if ($issue_title) {
                 $issue = Issue::with(['articles' => function ($query) {
                     $query->orderBy('publication_date', 'desc')->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID');
@@ -136,7 +136,7 @@ class ArticleWebController extends Controller
     {
         try {
             $article = Article::with(['issue', 'issue.volume', 'files', 'articleUsers', 'user'])->find($article_id);
-            $similors = Article::where('discipline_id', $article->discipline_id)->take(10)->get();
+            $similors = Article::where('discipline_id', $article->discipline_id)->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(10)->get();
 
             return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {

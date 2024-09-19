@@ -18,13 +18,12 @@
                     <input type="hidden" name="article_id" value="{{ $article->id }}">
 
                     <!-- Affichage de l'image existante -->
-                    @if ($article->image_path && $article->image_path !== 'assets/images/thumbnails/img-02.jpg')
+                    @if ($article->image_path && $article->image_path !== '/assets/images/thumbnails/img-02.jpg')
                         <fieldset>
                             <div class="form-group">
                                 <label>Image actuelle :</label>
                                 <div class="current-image">
-                                    <img src="{{ Storage::url($article->image_path) }}" alt="Image de l'article"
-                                        class="img-fluid"
+                                    <img src="{{ asset($article->image_path) }}" alt="Image de l'article" class="img-fluid"
                                         style="max-width: 100%; height: auto; border: 1px solid #ccc; padding: 5px; margin-bottom: 10px;">
                                 </div>
                                 <label>
@@ -61,8 +60,7 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
 
                                             <i class="fa fa-file"></i>
-                                            <a href="{{ Storage::url($file->path) }}"
-                                                target="_blank">{{ $file->name }}</a>
+                                            <a href="{{ asset($file->path) }}" target="_blank">{{ $file->name }}</a>
                                             <label class="form-check-label">
                                                 <input type="checkbox" name="delete_files[]" value="{{ $file->id }}"
                                                     class="form-check-input">

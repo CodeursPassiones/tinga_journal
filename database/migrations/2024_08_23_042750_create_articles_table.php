@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->id();
             $table->enum('status', ['IN_REVIEW', 'PUBLISHED', 'SUBMITTED', 'REJECTED', 'DRAFT', 'ARCHIVED', 'INCOMING'])->default('DRAFT');
             $table->enum('state', ['INVALID', 'VALID'])->default('INVALID');
-            $table->string('image_path')->default('assets/images/thumbnails/img-02.jpg');
+            $table->string('image_path')->default('/assets/images/thumbnails/img-02.jpg');
             // Metadata
 
             $table->string('title')->nullable();

@@ -67,7 +67,7 @@
 
                             <!-- Image de l'article -->
                             <figure class="sj-postimg">
-                                <img src="{{ Storage::url($article->image_path) }}" alt="Image de l'article" id="artId">
+                                <img src="{{ asset($article->image_path) }}" alt="Image de l'article" id="artId">
                                 <style>
                                     #artId {
                                         width: 800px;
@@ -90,7 +90,7 @@
                                 </h3>
                                 {{-- <h5 style="text-align: center">
                                     @foreach ($article->files as $file)
-                                        <li><a href="{{ Storage::url($file->path) }}" download class="sj-file-link"><i
+                                        <li><a href="{{ asset($file->path) }}" download class="sj-file-link"><i
                                                     class="fa fa-download"></i>
                                                 {{ $file->name }}</a></li>
                                     @endforeach
@@ -206,7 +206,7 @@
                                                     <p class="text-muted">
                                                     <ul>
                                                         @foreach ($article->files as $file)
-                                                            <li><a href="{{ Storage::url($file->path) }}" download
+                                                            <li><a href="{{ asset($file->path) }}" download
                                                                     class="sj-file-link"><i class="fa fa-download"></i>
                                                                     {{ $file->name }}</a></li>
                                                         @endforeach
