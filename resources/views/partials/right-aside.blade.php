@@ -1,16 +1,17 @@
 @php
-    $lastArticle = App\BladeDirectives\CustomDirectives::getLastArticle();
+
+    $lastIssue = App\BladeDirectives\CustomDirectives::getLastIssue();
 
 @endphp
 <aside id="sj-sidebar" class="sj-sidebar">
     <div class="sj-widget sj-widgetimpactfector">
         <div class="sj-widgetcontent">
             <ul>
-                @if ($lastArticle)
+                @if ($lastIssue)
                     <li>
-                        <h3>Volume en cours<span> : {{ $lastArticle->issue->volume->title }} Année
-                                {{ $lastArticle->issue->volume->year }}</span></h3>
-                        <h3>N° courant <span> : {{ $lastArticle->issue->title }} </span></h3>
+                        <h3>Volume en cours<span> : {{ $lastIssue->volume->title }} Année
+                                {{ $lastIssue->volume->year }}</span></h3>
+                        <h3>N° courant <span> : {{ $lastIssue->title }} </span></h3>
                     </li>
                 @endif
 
