@@ -183,89 +183,70 @@ class ArticleAdminController extends Controller
     public function storeFiles(Request $request, Article $article)
     {
         try {
-            // code...
-
             // Valider les fichiers et l'image
             $request->validate([
                 'article_id' => 'required|exists:articles,id',
-                'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validation pour l'image
-                'files.*' => 'mimes:pdf|max:10240', // validation pour les fichiers PDF
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // validation pour l'image
+                'files.*' => 'nullable|mimes:pdf|max:10240', // validation pour les fichiers PDF
+                'delete_files' => 'nullable|array', // Valider que c'est un tableau
+                'delete_files.*' => 'exists:files,id', // Chaque élément doit exister dans la table 'files'
             ]);
-            // Créer un nouvel article
-            $article_id = $request->input('article_id');
 
-            $article = Article::find($article_id);
+            // Récupérer l'article à mettre à jour
+            $article_id = $request->input('article_id');
+            $article = Article::findOrFail($article_id); // Utiliser findOrFail pour gérer l'exception
+
             // Suppression de l'image existante si demandé
             if ($request->has('delete_image') && $article->image_path) {
-                Storage::delete($article->image_path); // Supprimer l'image existante
-                $article->image_path = '/assets/images/thumbnails/img-02.jpg'; // Mettre à jour le champ dans la base de données
+                Storage::delete($article->image_path); // Supprimer l'image existante du stockage
+                $article->image_path = '/assets/images/thumbnails/img-02.jpg'; // Remplacer par une image par défaut
             }
-            /**
-             *        if ($request->hasFile('signature')) {
-             * $image = $request->file('signature');
-             * $imageName = time().'.'.$image->getClientOriginalExtension();.
-             *
-             * // Stockez l'image dans le répertoire storage/app/public/images
-             * $image->storeAs('public/signatures', $imageName);
-             *
-             * // Enregistrez le chemin relatif de l'image dans la base de données
-             * $chemin = 'storage/signatures/'.$imageName;
-             * }
-             */
 
             // Upload de la nouvelle image si fournie
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-
-                $image_name = time().'.'.$image->getClientOriginalExtension();
-
-                $image->storeAs('public/images/articles', $image_name);
-                $article->image_path = 'storage/images/articles/'.$image_name;
+                $image_name = time().'_'.$image->getClientOriginalName();
+                $image_path = $image->storeAs('images/articles', $image_name, 'public'); // Stocker l'image
+                $article->image_path = '/storage/'.$image_path;
             }
 
-            $article->save(); // Mettre à jour l'article
+            // Sauvegarder l'article mis à jour
+            $article->save();
 
             // Suppression des fichiers PDF existants si demandé
             if ($request->has('delete_files')) {
                 foreach ($request->input('delete_files') as $fileId) {
                     $file = File::find($fileId);
                     if ($file) {
-                        \Storage::delete($file->path); // Supprimer le fichier PDF du stockage
-                        $file->delete(); // Supprimer l'entrée de la base de données
+                        Storage::delete($file->path); // Supprimer le fichier PDF du stockage
+                        $file->delete(); // Supprimer l'entrée dans la base de données
                     }
                 }
             }
 
             // Upload des nouveaux fichiers PDF
-
             if ($request->hasFile('files')) {
                 foreach ($request->file('files') as $pdfFile) {
                     // Générer un nom de fichier unique en conservant l'extension
-                    $originalName = pathinfo($pdfFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    $extension = $pdfFile->getClientOriginalExtension();
-                    $filename = Str::slug($originalName).'_'.uniqid().'_'.time().'.'.$extension;
+                    $filename = Str::slug(pathinfo($pdfFile->getClientOriginalName(), PATHINFO_FILENAME)).'_'.uniqid().'.'.$pdfFile->getClientOriginalExtension();
 
                     // Sauvegarder le fichier dans le dossier public
-                    $pdfPath = $pdfFile->storeAs('public/files/articles', $filename);
+                    $pdfPath = $pdfFile->storeAs('files/articles', $filename, 'public');
 
-                    // Vérifier si l'article existe avant de créer l'entrée
-                    if (isset($article)) {
-                        File::create([
-                            'mime_type' => $pdfFile->getMimeType(),
-                            'path' => 'storage/files/articles/'.$filename,
-                            'url' => Storage::url($pdfPath), // Générer l'URL publique
-                            'name' => $pdfFile->getClientOriginalName(),
-                            'description' => $request->input('description', ''), // Description facultative
-                            'article_id' => $article->id, // Lier le fichier à l'article
-                            'category_file_id' => $request->input('category_file_id'), // Lier la catégorie de fichier, si disponible
-                        ]);
-                    } else {
-                        // Gérer le cas où l'article n'existe pas
-                        return response()->json(['error' => 'Article not found.'], 404);
-                    }
+                    // Créer une nouvelle entrée pour chaque fichier téléchargé
+                    File::create([
+                        'mime_type' => $pdfFile->getMimeType(),
+                        'path' => '/storage/'.$pdfPath,
+                        'url' => Storage::url($pdfPath), // Générer l'URL publique
+                        'name' => $pdfFile->getClientOriginalName(),
+                        'description' => $request->input('description', ''), // Description facultative
+                        'article_id' => $article->id,
+                        'category_file_id' => $request->input('category_file_id'), // Catégorie du fichier
+                    ]);
                 }
             }
 
+            // Valider ou mettre à jour l'article (fonction personnalisée)
             $this->checkAndUpdateArticleValidity($article);
 
             return response()->json([
@@ -273,8 +254,7 @@ class ArticleAdminController extends Controller
                 'ok' => true,
             ], 200);
         } catch (\Throwable $th) {
-            return response()->json(['ok' => false, 'message' => $th->getMessage()]);
-            // return response()->json(['ok' => false, 'message' => 'Une erreur s\'est produite. Veuillez réessayer.']);
+            return response()->json(['ok' => false, 'message' => $th->getMessage()], 500);
         }
     }
 

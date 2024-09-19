@@ -3,12 +3,22 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\File;
 use Illuminate\Support\Facades\Storage;
 
 class FileWebController extends Controller
 {
-    public function download($file)
+    public function download($id)
     {
-        return Storage::download($file);
+        // Récupérer le fichier par son ID
+        $file = File::findOrFail($id);
+        dd($file);
+        // Vérifier si le fichier existe sur le disque
+        if (Storage::exists($file->path)) {
+            // Télécharger le fichier
+            return response()->download(public_path($file->path));
+        } else {
+            return redirect()->back()->withErrors('Fichier non trouvé.');
+        }
     }
 }

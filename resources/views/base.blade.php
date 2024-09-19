@@ -58,7 +58,15 @@
      Main Start
    *************************************-->
             <main id="sj-main" class="sj-main sj-haslayout sj-sectionspace">
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 @yield('web-content')
 

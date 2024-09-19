@@ -8,6 +8,8 @@
 @section('web-content')
     @auth
         <div class="container">
+
+
             <div class="row">
                 <div id="sj-twocolumns" class="sj-twocolumns">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 float-left">
