@@ -67,7 +67,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $dateFormat = 'Y-m-d H:i:sO';
+    // protected $dateFormat = 'Y-m-d H:i:sO';
 
     public function comments(): HasMany
     {
