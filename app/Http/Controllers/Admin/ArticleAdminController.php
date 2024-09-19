@@ -205,7 +205,7 @@ class ArticleAdminController extends Controller
             // Upload de la nouvelle image si fournie
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $image_name = time().'_'.$image->getClientOriginalName();
+                $image_name = time().'.'.$image->getClientOriginalExtension();
                 $image_path = $image->storeAs('images/articles', $image_name, 'public'); // Stocker l'image
                 $article->image_path = '/storage/'.$image_path;
             }
@@ -236,8 +236,8 @@ class ArticleAdminController extends Controller
                     // Créer une nouvelle entrée pour chaque fichier téléchargé
                     File::create([
                         'mime_type' => $pdfFile->getMimeType(),
-                        'path' => '/storage/'.$pdfPath,
-                        'url' => Storage::url($pdfPath), // Générer l'URL publique
+                        'path' => Storage::url($pdfPath),
+                        'url' => '/public/'.$pdfPath, // Générer l'URL publique
                         'name' => $pdfFile->getClientOriginalName(),
                         'description' => $request->input('description', ''), // Description facultative
                         'article_id' => $article->id,

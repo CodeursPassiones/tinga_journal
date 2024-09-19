@@ -12,9 +12,12 @@ class FileWebController extends Controller
     {
         // Récupérer le fichier par son ID
         $file = File::findOrFail($id);
-        dd($file);
+
+        // dd($file);
+        // return response()->download(public_path($file->path));
+
         // Vérifier si le fichier existe sur le disque
-        if (Storage::exists($file->path)) {
+        if (Storage::exists($file->url)) {
             // Télécharger le fichier
             return response()->download(public_path($file->path));
         } else {
