@@ -207,7 +207,7 @@ class ArticleAdminController extends Controller
                 $image = $request->file('image');
                 $image_name = time().'.'.$image->getClientOriginalExtension();
                 $image_path = $image->storeAs('images/articles', $image_name, 'public'); // Stocker l'image
-                $article->image_path = '/storage/'.$image_path;
+                $article->image_path = Storage::url($image_path);
             }
 
             // Sauvegarder l'article mis à jour
