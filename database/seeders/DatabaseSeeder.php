@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Journal;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -22,26 +23,43 @@ class DatabaseSeeder extends Seeder
             'username' => 'Admin',
             'birthdate' => Carbon::now(),
             'gender' => 'Male',
-            'email' => 'test@example.com',
-            'password' => Hash::make('secret'),
+            'email' => 'admin@revue-tinga.com',
+            'password' => Hash::make('tinga@2024Admin'),
         ]);
-        $users = User::factory(1)->create();
+        $maintainer = User::create([
+            'firstname' => 'Maintainer',
+            'lastname' => 'Maintainer',
+            'username' => 'Maintainer',
+            'birthdate' => Carbon::now(),
+            'gender' => 'Male',
+            'email' => 'maintainer@revue-tinga.com',
+            'password' => Hash::make('tinga@2024Maintainer'),
+        ]);
+
+        $journal = User::create([
+            'firstname' => 'Journal',
+            'lastname' => 'Journal',
+            'username' => 'Journal',
+            'birthdate' => Carbon::now(),
+            'gender' => 'Male',
+            'email' => 'journal@revue-tinga.com',
+            'password' => Hash::make('tinga@2024Journal'),
+        ]);
+
+        Journal::create([
+            'title' => 'Tinga',
+            'description' => '',
+            'issn' => '',
+            'logo_path' => '',
+        ]);
 
         $this->call([
             RoleSeeder::class,
-            JournalSeeder::class,
-            // VolumeSeeder::class,
-            // IssueSeeder::class,
-            DisciplineSeeder::class,
-            // ArticleSeeder::class,
-            // ArticleUserSeeder::class,
         ]);
 
         $admin_role = Role::where('name', 'admin')->first();
-        $author = Role::where('name', 'author')->first();
         $admin->assignRole([$admin_role->id]);
-        foreach ($users as $user) {
-            $user->assignRole($author->id);
-        }
+        $maintainer->assignRole([$admin_role->id]);
+        $journal->assignRole([$admin_role->id]);
     }
 }

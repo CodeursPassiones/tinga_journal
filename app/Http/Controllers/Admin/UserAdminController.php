@@ -31,10 +31,18 @@ class UserAdminController extends Controller
             $limit = $request->input('limit', 5); // Par défaut 6 articles par page
             $query = User::with(['roles']);
             if ($search) {
+                $query->insensitiveLike('firstname', $search)
+                ->orWhere(function ($q) use ($search) {
+                    $q->insensitiveLike('lastname', $search);
+                })
+                ->orWhere(function ($q) use ($search) {
+                    $q->insensitiveLike('email', $search);
+                });
+
                 // dd($search);
-                $query->where('firstname', 'ILIKE', '%'.$search.'%');
-                $query->orWhere('lastname', 'ILIKE', '%'.$search.'%');
-                $query->orWhere('email', 'ILIKE', '%'.$search.'%');
+                // $query->where('firstname', 'ILIKE', '%'.$search.'%');
+                // $query->orWhere('lastname', 'ILIKE', '%'.$search.'%');
+                // $query->orWhere('email', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri

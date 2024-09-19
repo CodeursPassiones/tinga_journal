@@ -25,9 +25,14 @@ class IssueAdminController extends Controller
             $query = Issue::where('volume_id', '=', $volume_id);
 
             if ($search) {
-                // dd($search);
-                $query->where('number', 'ILIKE', '%'.$search.'%');
-                $query->orWhere('title', 'ILIKE', '%'.$search.'%');
+                $query->insensitiveLike('number', $search)
+                      ->orWhere(function ($q) use ($search) {
+                          $q->insensitiveLike('title', $search);
+                      });
+
+                // // dd($search);
+                // $query->where('number', 'ILIKE', '%'.$search.'%');
+                // $query->orWhere('title', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri

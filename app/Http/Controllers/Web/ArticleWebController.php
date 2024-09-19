@@ -94,9 +94,14 @@ class ArticleWebController extends Controller
                 $query->where('issue_id', $issue->id);
             }
             if ($search) {
-                $query->where('title', 'ILIKE', '%'.$search.'%');
-                $query->orWhere('abstract', 'ILIKE', '%'.$search.'%');
-                $query->orWhere('content', 'ILIKE', '%'.$search.'%');
+                // $query->where('title', 'ILIKE', '%'.$search.'%');
+                // $query->orWhere('abstract', 'ILIKE', '%'.$search.'%');
+                // $query->orWhere('content', 'ILIKE', '%'.$search.'%');
+
+                $query->insensitiveLike('title', $search)
+                ->orWhere(function ($q) use ($search) {
+                    $q->insensitiveLike('abstract', $search);
+                });
             }
 
             // Application du tri

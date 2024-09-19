@@ -22,9 +22,13 @@ class VolumeAdminController extends Controller
             $query = Volume::with(['journal']);
 
             if ($search) {
+                $query->insensitiveLike('year', $search)
+                ->orWhere(function ($q) use ($search) {
+                    $q->insensitiveLike('title', $search);
+                });
                 // dd($search);
-                $query->where('title', 'ILIKE', '%'.$search.'%');
-                $query->orWhere('year', 'ILIKE', '%'.$search.'%');
+                // $query->where('title', 'ILIKE', '%'.$search.'%');
+                // $query->orWhere('year', 'ILIKE', '%'.$search.'%');
             }
 
             // Application du tri
