@@ -47,7 +47,7 @@
                                     instructions pour les
                                     rapporteurs :
                                     <i class="ti-hand-point-right"></i>
-                                    <a href="{{ asset('storage/Instructions aux rapporteurs.pdf') }}"
+                                    <a href="{{ asset('assets/media/grille.pdf') }}"
                                         download="Instructions aux rapporteurs.pdf"
                                         style="color: #0876e4; text-decoration: none; font-weight: bold;">Télécharger le PDF
                                     </a>

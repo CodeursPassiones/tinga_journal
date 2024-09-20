@@ -25,8 +25,10 @@ class AuthController extends Controller
                 'password' => 'required',
             ]);
             $user = User::where('email', '=', $request->input('email'))->first();
-            if (!$user->hasRole('admin')) {
-                return response()->json(['ok' => false, 'message' => "Vous n'avez pas le droit de vous connecter"]);
+            if ($user) {
+                if (!$user->hasRole('admin')) {
+                    return response()->json(['ok' => false, 'message' => "Vous n'avez pas le droit de vous connecter"]);
+                }
             }
             if (Auth::attempt($attributes, $request->input('remember'))) {
                 session()->regenerate();

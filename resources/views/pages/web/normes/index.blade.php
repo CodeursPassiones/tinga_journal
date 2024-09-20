@@ -46,7 +46,7 @@
                                 <h4 class="ok"> Veuillez Cliquez sur le lien suivant pour télécharger la version Pdf de
                                     la ligne éditoriale de la révue :
                                     <i class="ti-hand-point-right"></i>
-                                    <a href="{{ asset('storage/Ligne éditoriale.pdf') }}" download="Ligne éditoriale.pdf"
+                                    <a href="{{ asset('assets/media/normes.pdf') }}" download="Ligne éditoriale.pdf"
                                         style="color: #0876e4; text-decoration: none; font-weight: bold;">Télécharger le PDF
                                     </a>
                                 </h4>
