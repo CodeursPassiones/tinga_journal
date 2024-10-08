@@ -1,4 +1,9 @@
 @extends('base')
+@section('title', 'Tɩ́ɩ́ŋá-articles')
+@section('description',
+    'La revue Tɩ́ɩ́ŋá est le fruit d\'une initiative académique portée par le Laboratoire Langues,
+    Littératures et Développement (LaLD)')
+@section('keywords', 'tinga,revue tinga,"la Revue Langues, Littératures, Arts et Culture", LaLD, "CAMES" ')
 @section('banner')
     <x-banner
         title="{{ 'Liste des articles' .($issue? ' du Numéro : ' .$issue->title .' (' .\Carbon\Carbon::parse($issue->publication_date)->locale('fr')->isoFormat('D MMMM YYYY') .')': '') }}"

@@ -1,4 +1,10 @@
 @extends('base')
+@section('title', 'Tɩ́ɩ́ŋá-Instructions')
+@section('description', 'Instructions aux rapporteurs la revue Tɩ́ɩ́ŋá ')
+@section('keywords',
+    'tinga, revue tinga,Instructions aux rapporteurs,comité de gestion, "la Revue Langues, Littératures, Arts et
+    Culture", LaLD,
+    "CAMES" ')
 @section('banner')
     <div class="sj-innerbanner">
         <div class="container">
@@ -7,7 +13,7 @@
                     <div class="sj-innerbannercontent">
                         <h1>Instructions </h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="#">Instructions au rapporteurs</a></li>
+                            <li><a href="#">Instructions aux rapporteurs</a></li>
                             <li><a href="#">Rapporteurs</a></li>
                         </ol>
                     </div>

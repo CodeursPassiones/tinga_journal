@@ -1,8 +1,14 @@
 @extends('base')
+@section('title', 'Tɩ́ɩ́ŋá-présentation')
+@section('description',
+    'La revue Tɩ́ɩ́ŋá est le fruit d\'une initiative académique portée par le Laboratoire Langues,
+    Littératures et Développement (LaLD)')
+@section('keywords', 'tinga, revue tinga, "la Revue Langues, Littératures, Arts et Culture", LaLD, "CAMES" ')
+
 @section('banner')
     <!--************************************
-                                                                                                         Inner Banner Start
-                                                                                                       *************************************-->
+                                                                                                                             Inner Banner Start
+                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +25,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                         Inner Banner End
-                                                                                                       *************************************-->
+                                                                                                                             Inner Banner End
+                                                                                                                           *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">
@@ -113,7 +119,8 @@
 
 
                                         <p class="sj-firstletter">L</p>
-                                        <p>parutions sont semestrielles, soit deux numéros par an, notamment ceux de juin et
+                                        <p> es parutions sont semestrielles, soit deux numéros par an, notamment ceux de
+                                            juin et
                                             décembre de chaque année.
                                             Avant d’être publié, tout article est préalablement soumis au logiciel
                                             anti-plagiat. A cet effet, aucun article ne peut être publié si son taux de

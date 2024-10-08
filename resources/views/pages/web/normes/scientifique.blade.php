@@ -1,4 +1,9 @@
 @extends('base')
+@section('title', 'Tɩ́ɩ́ŋá-comité scientifique')
+@section('description', 'le comité scientifique de la revue Tɩ́ɩ́ŋá ')
+@section('keywords',
+    'tinga, revue tinga,comité scientifique, "la Revue Langues, Littératures, Arts et Culture", LaLD,
+    "CAMES" ')
 @section('style')
     <link rel="stylesheet" href={{ asset('assets/css/css_custom/scientifique.css') }}>
 @endsection
@@ -71,10 +76,6 @@
                         </style>
 
                         <div class="contact-info">
-                            <div class="row">
-                                <span><strong>Issa TAKASSI</strong>, Prof. titulaire, Université de Lomé, Togo</span>
-                            </div>
-
                             <div class="row">
                                 <span><strong>Kossi Antoine AFELI</strong>, Prof. titulaire, Université de Lomé, Togo</span>
                             </div>

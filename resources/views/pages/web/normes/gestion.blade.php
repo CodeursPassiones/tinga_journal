@@ -1,4 +1,9 @@
 @extends('base')
+@section('title', 'Tɩ́ɩ́ŋá-comité de gestion')
+@section('description', 'le comité de gestion de la revue Tɩ́ɩ́ŋá ')
+@section('keywords', 'tinga, revue tinga,comité de gestion, "la Revue Langues, Littératures, Arts et Culture", LaLD,
+    "CAMES" ')
+
 @section('style')
     <link rel="stylesheet" href={{ asset('assets/css/css_custom/gestion.css') }}>
 @endsection
