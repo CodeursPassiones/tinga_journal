@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title', 'Tɩ́ɩ́ŋás')</title>
+    <title>@yield('title', 'Tɩ́ɩ́ŋá')</title>
     <meta name="description" content="@yield('description', 'les dernières revues littéraires')">
     <meta name="keywords" content="@yield('keywords', 'tinga, revue tinga,2LAC,lald,laboratoire langues,langues, littérature,')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
