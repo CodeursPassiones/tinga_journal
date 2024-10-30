@@ -18,8 +18,7 @@
                 <li>
                     <h3 style="text-align: center">Le Code ISSN de la revue</h3>
                     <div class="sj-description">
-                        {{-- <p>En attente. <a href="javascript:void(0)">
-                                lire plus</a></p> --}}
+                        <p>3078 - 3992</p>
                     </div>
                 </li>
             </ul>
