@@ -18,7 +18,7 @@
                 <li>
                     <h3 style="text-align: center">Le Code ISSN de la revue</h3>
                     <div class="sj-description" style="text-align: center">
-                        3078 - 3992
+                        <H3>3078 - 3992</H3>
                     </div>
                 </li>
             </ul>
