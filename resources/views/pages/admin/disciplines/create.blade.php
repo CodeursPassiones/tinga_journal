@@ -5,7 +5,7 @@
      <div class="modal-dialog" role="document">
          <div class="sj-modalcontent modal-content">
              <div class="sj-popuptitle">
-                 <h2>Ajouter une disciplien</h2>
+                 <h2>Ajouter une discipline</h2>
                  <a href="javascript;void(0);" class="sj-closebtn close"><i class="lnr lnr-cross" data-dismiss="modal"
                          aria-label="Close"></i></a>
              </div>
