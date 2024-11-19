@@ -3,12 +3,12 @@ jQuery(document).on('ready', function() {
 	/* -------------------------------------
 			PRELOADER
 	-------------------------------------- */
-		jQuery(document).ready(function($){	   
+		jQuery(document).ready(function($){
 		    jQuery(".preloader-outer").delay(1000).fadeOut();
-			jQuery(".loader").delay(500).fadeOut("slow");		
+			jQuery(".loader").delay(500).fadeOut("slow");
 		});
 	/*--------------------------------------
-			MOBILE MENU						
+			MOBILE MENU
 	--------------------------------------*/
 	function collapseMenu(){
 		jQuery('.sj-navigation ul li.menu-item-has-children, .sj-navigation ul li.page_item_has_children, .sj-navigation ul li.menu-item-has-mega-menu').prepend('<span class="sj-dropdowarrow"><i class="fa fa-angle-down"></i></span>');
@@ -29,7 +29,7 @@ jQuery(document).on('ready', function() {
 					width: jQuery(this).find('.sj-skillholder').attr('data-percent')
 				}, 2500);
 			});
-			
+
 		},
 	});
 	/* -------------------------------------
@@ -40,7 +40,7 @@ jQuery(document).on('ready', function() {
 		jQuery('.sj-languages > ul').slideToggle();
 	});
 	/*--------------------------------------
-			COUNTER							
+			COUNTER
 	--------------------------------------*/
 	if(jQuery('#sj-counters').length > 0){
 		var _tg_counters = jQuery('#sj-counters');
@@ -49,7 +49,7 @@ jQuery(document).on('ready', function() {
 		});
 	}
 	/*--------------------------------------
-			THEME ACCORDION 				
+			THEME ACCORDION
 	--------------------------------------*/
 	if(jQuery('.sj-panelheading').length > 0){
 		var _tg_panelheading = jQuery('.sj-panelheading');
@@ -84,6 +84,7 @@ jQuery(document).on('ready', function() {
 	if(_sj_editorchoiceslider.hasClass('sj-editorschoice')){
 		_sj_editorchoiceslider.owlCarousel({
 			items: 1,
+            autoplayTimeout: 25000,
 			nav:true,
 			loop:true,
 			dots: false,
@@ -182,7 +183,7 @@ jQuery(document).on('ready', function() {
 		});
 	}
 	/*--------------------------------------
-			PRETTY PHOTO GALLERY			
+			PRETTY PHOTO GALLERY
 	--------------------------------------*/
 	if(jQuery('#sj-prettyphoto').length > 0){
 		jQuery("a[data-rel]").each(function () {
@@ -282,7 +283,7 @@ jQuery(document).on('ready', function() {
 	}
 	focusSlider();
 	/*--------------------------------------
-			TOTAL VIEWS CHART				
+			TOTAL VIEWS CHART
 	--------------------------------------*/
 	if(jQuery('#sj-viewchart').length > 0){
 		var chart = new Chartist.Bar('#sj-viewchart', {
@@ -305,7 +306,7 @@ jQuery(document).on('ready', function() {
 			}
 		});
 	});
-	
+
 	/* ---------------------------------------
 			SEARCH
 	 -------------------------------------- */
@@ -326,7 +327,7 @@ jQuery(document).on('ready', function() {
 		})
 	});
 	/*--------------------------------------
-			THEME VERTICAL SCROLLBAR		
+			THEME VERTICAL SCROLLBAR
 	--------------------------------------*/
 	if(jQuery('.sj-verticalscrollbar').length > 0){
 		var _sj_verticalscrollbar = jQuery('.sj-verticalscrollbar');

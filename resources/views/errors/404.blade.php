@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                     Inner Banner Start
-                                   *************************************-->
+                                         Inner Banner Start
+                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                     Inner Banner End
-                                   *************************************-->
+                                         Inner Banner End
+                                       *************************************-->
 @endsection
 @section('web-content')
     <div class="sj-404error">
@@ -33,7 +33,7 @@
                             <h3>Page Not Found :(</h3>
                         </div>
                         <div class="sj-description">
-                            <p>LA page recherchée est introuvable</p>
+                            <p>La page recherchée est introuvable</p>
                         </div>
                         <span class="sj-gobackhome">Go back to <a href={{ route('home') }}>Hompage</a></span>
                     </div>
