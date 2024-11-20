@@ -49,7 +49,7 @@ class DisciplineAdminController extends Controller
     {
         try {
             $this->validate($request, [
-                'name' => 'required|max:20',
+                'name' => 'required',
 
                 'journal_id' => 'required|exists:journals,id',
             ]);
