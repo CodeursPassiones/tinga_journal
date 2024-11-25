@@ -33,16 +33,11 @@
 </head>
 
 <body class="sj-home @auth sj-userlogin @endauth">
-
     @include('partials.preloader')
-
     <div id="sj-wrapper" class="sj-wrapper">
-
         <div class="sj-contentwrapper">
             @include('partials.header')
             @yield('banner')
-
-
             <main id="sj-main" class="sj-main sj-haslayout sj-sectionspace">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -57,18 +52,9 @@
                 @yield('web-content')
 
             </main>
-
             @include('partials.footer')
         </div>
-
     </div>
-
-
-
-
-
-
-
     @include('partials.search')
     <script src="{{ asset('assets/js/vendor/jquery-3.3.1.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-library.js') }}"></script>
