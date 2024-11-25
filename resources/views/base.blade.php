@@ -1,9 +1,6 @@
 <!doctype html>
-<!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>			<html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="zxx"> <!--<![endif]-->
+
+<html class="no-js" lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -25,7 +22,7 @@
     <link rel="stylesheet" href={{ asset('assets/css/chartist.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/main.css') }}>
 
-    @yield('style') <!-- Pour les styles spécifiques aux pages -->
+    @yield('style')
 
     <link rel="stylesheet" href={{ asset('assets/css/color.css') }}>
     <link rel="stylesheet" href={{ asset('assets/css/transitions.css') }}>
@@ -36,24 +33,16 @@
 </head>
 
 <body class="sj-home @auth sj-userlogin @endauth">
-    <!--[if lt IE 8]>
-  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
- <![endif]-->
+
     @include('partials.preloader')
-    <!--************************************
-   Wrapper Start
- *************************************-->
+
     <div id="sj-wrapper" class="sj-wrapper">
-        <!--************************************
-    Content Wrapper Start
-  *************************************-->
+
         <div class="sj-contentwrapper">
             @include('partials.header')
             @yield('banner')
 
-            <!--************************************
-     Main Start
-   *************************************-->
+
             <main id="sj-main" class="sj-main sj-haslayout sj-sectionspace">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -68,22 +57,11 @@
                 @yield('web-content')
 
             </main>
-            <!--************************************
-     Main End
-     *************************************-->
+
             @include('partials.footer')
         </div>
-        <!--************************************
-    Content Wrapper End
-  *************************************-->
+
     </div>
-    <!--************************************
-   Wrapper End
- *************************************-->
-
-
-
-
 
 
 
