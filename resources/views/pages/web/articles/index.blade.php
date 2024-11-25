@@ -1,5 +1,6 @@
 @extends('base')
 @section('title', 'Tɩ́ɩ́ŋá-articles')
+
 @section('description',
     'La revue Tɩ́ɩ́ŋá est le fruit d\'une initiative académique portée par le Laboratoire Langues,
     Littératures et Développement (LaLD)')
@@ -13,7 +14,7 @@
     <div id="sj-twocolumns" class="sj-twocolumns">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
                     <aside id="sj-sidebarvtwo" class="sj-sidebar">
                         <div class="sj-widget sj-widgetsearch">
                             <div class="sj-widgetcontent">
@@ -163,7 +164,7 @@
 
                     </aside>
                 </div>
-                <div class="col-12 col-sm-12 col-md-7 col-lg-4 col-xl-6">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-6">
                     <div id="sj-content" class="sj-content">
 
                         <span class="sj-showitems">
@@ -341,7 +342,7 @@
 
 
                 </div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
                     @include('partials.right-aside')
                 </div>
             </div>

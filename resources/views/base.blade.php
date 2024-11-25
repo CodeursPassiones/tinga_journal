@@ -9,27 +9,27 @@
     <meta name="description" content="@yield('description', 'les dernières revues littéraires')">
     <meta name="keywords" content="@yield('keywords', 'tinga, revue tinga,2LAC,lald,laboratoire langues,langues, littérature,')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href={{ asset('assets/apple-touch-icon.png') }}>
-    <link rel="icon" href={{ asset('assets/images/favicon.png') }} type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('assets/apple-touch-icon.png') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
 
-    <link rel="stylesheet" href={{ asset('assets/css/bootstrap.min.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/normalize.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/fontawesome/fontawesome-all.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/font-awesome.min.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/linearicons.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/themify-icons.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/owl.carousel.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/chartist.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/main.css') }}>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/linearicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/chartist.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
     @yield('style')
 
-    <link rel="stylesheet" href={{ asset('assets/css/color.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/transitions.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/responsive.css') }}>
-    <link rel="stylesheet" href={{ asset('assets/css/custom.css') }}>
+    <link rel="stylesheet" href="{{ asset('assets/css/color.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/transitions.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
-    <script src={{ asset('assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
 </head>
 
 <body class="sj-home @auth sj-userlogin @endauth">
@@ -70,17 +70,17 @@
 
 
     @include('partials.search')
-    <script src={{ asset('assets/js/vendor/jquery-3.3.1.js') }}></script>
-    <script src={{ asset('assets/js/vendor/jquery-library.js') }}></script>
+    <script src="{{ asset('assets/js/vendor/jquery-3.3.1.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-library.js') }}"></script>
 
-    <script src={{ asset('assets/js/vendor/bootstrap.min.js') }}></script>
-    <script src={{ asset('assets/js/owl.carousel.min.js') }}></script>
-    <script src={{ asset('assets/js/circle-progress.js') }}></script>
-    <script src={{ asset('assets/js/scrollbar.min.js') }}></script>
-    <script src={{ asset('assets/js/chartist.min.js') }}></script>
-    <script src={{ asset('assets/js/countdown.js') }}></script>
-    <script src={{ asset('assets/js/appear.js') }}></script>
-    <script src={{ asset('assets/js/main.js') }}></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/circle-progress.js') }}"></script>
+    <script src="{{ asset('assets/js/scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/chartist.min.js') }}"></script>
+    <script src="{{ asset('assets/js/countdown.js') }}"></script>
+    <script src="{{ asset('assets/js/appear.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/custom/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom/axios.min.js') }}"></script>
     <script src="{{ asset('app-js/modules.js') }}"></script>
