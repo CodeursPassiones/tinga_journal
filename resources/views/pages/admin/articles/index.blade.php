@@ -39,17 +39,7 @@
             </form>
         </div>
         <ul id="accordion" class="sj-articledetails sj-articledetailsvtwo">
-            <style>
-                .userArticleListAdminImg {
-                    width: 70px;
-                    height: 70px;
-                    min-width: 70px;
-                    max-width: 70px;
-                    min-height: 70px;
-                    max-height: 70px;
-                    object-fit: fill !important;
-                }
-            </style>
+
             @if ($articles->isEmpty())
                 <h3>Aucun article trouvé :(</h3>
             @else

@@ -3,9 +3,7 @@
 @section('description', '{{ $article->title }}')
 @section('keywords', 'tinga, revue tinga, "la Revue Langues, Littératures, Arts et Culture", LaLD, "CAMES" ')
 @section('banner')
-    <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -23,9 +21,7 @@
             </div>
         </div>
     </div>
-    <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *************************************-->
+
 @endsection
 
 @section('web-content')
@@ -38,7 +34,7 @@
                         <div class="sj-articledetail">
                             <!-- Barre d'action -->
                             <span style="text-align: center;">
-                                <h4 style="font-family:'Times New Roman', Times, serif"><strong>Volume :
+                                <h4 class="article-tnr"><strong>Volume :
                                         {{ $article->issue->volume->title }}
                                         ({{ $article->issue->volume->year }})</strong></h4>
                             </span>
@@ -71,18 +67,7 @@
                             <!-- Image de l'article -->
                             <figure class="sj-postimg">
                                 <img src="{{ asset($article->image_path) }}" alt="Image de l'article" id="artId">
-                                <style>
-                                    #artId {
-                                        width: 800px;
-                                        height: 460px;
-                                        min-width: 200px;
-                                        /* object-fit: fill !important; */
-                                        min-height: 460px;
-                                        max-height: 460px;
-                                        border-radius: 8px;
-                                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                                    }
-                                </style>
+
                             </figure>
 
                             <!-- Détails de l'article -->
@@ -98,58 +83,7 @@
                                                 {{ $file->name }}</a></li>
                                     @endforeach
                                 </h5 style="text-align: center"> --}}
-                                <style>
-                                    .mt-100 {
-                                        margin-top: 100px;
-                                    }
 
-                                    .mb-100 {
-                                        margin-bottom: 100px;
-                                    }
-
-                                    .card {
-                                        position: relative;
-                                        display: -webkit-box;
-                                        display: -ms-flexbox;
-                                        display: flex;
-                                        -webkit-box-orient: vertical;
-                                        -webkit-box-direction: normal;
-                                        -ms-flex-direction: column;
-                                        flex-direction: column;
-                                        min-width: 0;
-                                        word-wrap: break-word;
-                                        background-color: #fff;
-                                        background-clip: border-box;
-                                        border: 0px solid transparent;
-                                        border-radius: 0px;
-                                    }
-
-                                    .card-body {
-                                        -webkit-box-flex: 1;
-                                        -ms-flex: 1 1 auto;
-                                        flex: 1 1 auto;
-                                        padding: 1.25rem;
-                                    }
-
-                                    ul.list-style-none li {
-                                        list-style: none;
-                                    }
-
-                                    ul.list-style-none li a {
-                                        color: #673AB7;
-                                        padding: 8px 0px;
-                                        display: block;
-                                        text-decoration: none;
-                                    }
-
-                                    .m-t-5 {
-                                        margin-top: 5px;
-                                    }
-
-                                    .w-30px {
-                                        width: 30px;
-                                    }
-                                </style>
                                 <div class="card">
                                     <ul class="list-style-none">
                                         <li class="d-flex no-block card-body border-top">
@@ -323,58 +257,5 @@
         </div>
     </div>
 
-    <style>
-        .sj-action-link {
-            color: #007bff;
-            text-decoration: none;
-        }
 
-        .sj-action-link:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
-
-        .article-title {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .sj-articleauthors .sj-username a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .sj-articleauthors .sj-username a:hover {
-            text-decoration: none;
-        }
-
-        .sj-description h5 {
-            color: #0056b3;
-            margin-top: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .sj-extrainfo p {
-            margin-bottom: 0.5rem;
-        }
-
-        .sj-file-link {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .sj-file-link:hover {
-            text-decoration: underline;
-        }
-
-        .sj-widgetheading h3 {
-            color: #0056b3;
-            font-size: 1.2rem;
-        }
-
-        .sj-relatedarticles li {
-            margin-bottom: 1rem;
-        }
-    </style>
 @endsection

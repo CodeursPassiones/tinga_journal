@@ -5,7 +5,7 @@
     'tinga, revue tinga,comité de rédaction, "la Revue Langues, Littératures, Arts et Culture", LaLD,
     "CAMES" ')
 @section('style')
-    <link rel="stylesheet" href={{ asset('assets/css/css_custom/redaction.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/custom/redaction.css') }}>
 @endsection
 @section('banner')
     <div class="sj-innerbanner">

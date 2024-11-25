@@ -195,43 +195,7 @@
                         <div class="sj-articles">
                             <form class="sj-formtheme sj-formsortitems" id="sortForm">
                                 <fieldset class="humm">
-                                    <style>
-                                        .humm {
-                                            display: grid;
-                                            grid-template-columns: repeat(2, 1fr);
-                                            gap: 15px;
-                                        }
 
-                                        .form-group {
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: space-between;
-                                            padding: 10px;
-                                            border-radius: 5px;
-                                            background-color: #badcf0;
-                                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                                        }
-
-                                        .form-group em {
-                                            font-style: normal;
-                                            font-weight: bold;
-                                            color: #333;
-                                            margin-right: 10px;
-                                        }
-
-                                        .sj-select select {
-                                            width: 200px;
-                                            padding: 8px;
-                                            border-radius: 5px;
-                                            border: 1px solid #ccc;
-                                            background-color: #fff;
-                                            color: #333;
-                                            font-size: 14px;
-                                            appearance: none;
-                                            outline: none;
-                                            transition: border-color 0.3s ease;
-                                        }
-                                    </style>
 
                                     <div class="form-group">
                                         <em>Ordonner par:</em>
@@ -291,17 +255,6 @@
                                         <figure class="sj-postimg">
                                             <img src="{{ asset($article->image_path) }}" alt="image description"
                                                 class="artImg">
-                                            <style>
-                                                .artImg {
-                                                    width: 200px;
-                                                    height: 140px;
-                                                    min-width: 200px;
-                                                    max-width: 200px;
-                                                    min-height: 140px;
-                                                    max-height: 140px;
-                                                    /* object-fit: fill !important; */
-                                                }
-                                            </style>
                                         </figure>
                                         <div class="sj-postcontent">
                                             <div class="sj-head">
