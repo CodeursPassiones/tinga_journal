@@ -262,7 +262,7 @@
                                                     <time datetime="2018-12-12"
                                                         class="sj-posttimedate">@formatDate($article->publication_date)</time>
                                                     <span class="sj-username">
-                                                        <a href="javascript:void(0);">
+                                                        <a href="#">
                                                             @foreach ($article->articleUsers as $author)
                                                                 {{ $author->user->lastname }}
                                                                 |

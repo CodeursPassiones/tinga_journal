@@ -13,8 +13,8 @@
                         </h1>
 
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Article/Détails </a></li>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">Article/Détails </a></li>
                         </ol>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                     @endswitch
                                 @endauth
 
-                                {{-- <li><a href="javascript:void(0);" class="sj-action-link"><i
+                                {{-- <li><a href="#" class="sj-action-link"><i
                                             class="fa fa-download"></i><span>Télécharger</span></a></li> --}}
                             </ul>
 
@@ -72,8 +72,7 @@
 
                             <!-- Détails de l'article -->
                             <div class="sj-articledescription sj-sectioninnerspace">
-                                <h3 class="article-title"
-                                    style="font-family: 'Times New Roman', Times, serif; text-align:center; font-size:25px">
+                                <h3 class="article-title">
                                     <strong>Titre : {{ $article->title }}</strong>
                                 </h3>
                                 {{-- <h5 style="text-align: center">

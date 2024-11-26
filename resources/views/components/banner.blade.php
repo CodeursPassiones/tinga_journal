@@ -9,7 +9,7 @@
                         <h1>{{ $title }}</h1>
                         <ol class="sj-breadcrumb">
                             <li><a href="{{ $parentRoute ?? route('home') }}">{{ $parent ?? 'Acceuil' }}</a></li>
-                            <li><a href="javascript:void(0);">{{ $main }}</a></li>
+                            <li><a href="#">{{ $main }}</a></li>
                         </ol>
                     </div>
                 </div>

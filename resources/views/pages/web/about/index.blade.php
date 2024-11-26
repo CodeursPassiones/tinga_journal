@@ -7,8 +7,8 @@
 
 @section('banner')
     <!--************************************
-                                                                                                                             Inner Banner Start
-                                                                                                                           *************************************-->
+                                                                                                                                 Inner Banner Start
+                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -16,8 +16,8 @@
                     <div class="sj-innerbannercontent">
                         <h1>A Propos</h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">A Propos</a></li>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">A Propos</a></li>
                         </ol>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                             Inner Banner End
-                                                                                                                           *************************************-->
+                                                                                                                                 Inner Banner End
+                                                                                                                               *************************************-->
 @endsection
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">

@@ -1,8 +1,8 @@
 @extends('pages.auth.base')
 @section('banner')
     <!--************************************
-                                                                                                                     Inner Banner Start
-                                                                                                                   *************************************-->
+                                                                                                                         Inner Banner Start
+                                                                                                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -10,8 +10,8 @@
                     <div class="sj-innerbannercontent">
                         <h1>Créer un compte</h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Register</a></li>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">Register</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                     Inner Banner End
-                                                                                                                   *************************************-->
+                                                                                                                         Inner Banner End
+                                                                                                                       *************************************-->
 @endsection
 @section('guest-content')
     <div id="sj-content" class="sj-content">
@@ -49,12 +49,12 @@
                                         <div class="sj-checkbox">
                                             <input type="checkbox" id="register">
                                             <label for="register">En créer le compte voua acceptez nos <a
-                                                    href="javascript:void(0);">Termes &amp;
+                                                    href="#">Termes &amp;
                                                     Conditions</a></label>
                                         </div>
                                     </div>
                                     <div class="sj-btnarea">
-                                        <a class="sj-btn sj-btnactive" href="javascript:void(0);">Soumettre</a>
+                                        <a class="sj-btn sj-btnactive" href="#">Soumettre</a>
                                     </div>
                                 </fieldset>
                             </form>

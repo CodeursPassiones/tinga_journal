@@ -60,8 +60,7 @@
                                 </h4>
                             </div>
                             <div class="sj-introduction sj-sectioninnerspace">
-                                <div style="font-family: 'Times New Roman', serif; font-size: 12px; line-height: 1.15;"
-                                    class="sj-description">
+                                <div class="sj-description">
                                     <h1 style="text-align: center;">Grille d’évaluation </h1>
                                     <h4 style="text-align: center;">Numéro d'anonymat :</h4>
                                 </div>

@@ -38,7 +38,7 @@
                                                     ?</a>
                                             </div>
                                             <div class="sj-btnarea">
-                                                {{-- <a class="sj-btn sj-btnactive" href="javascript:void(0);">Connexion</a> --}}
+                                                {{-- <a class="sj-btn sj-btnactive" href="#">Connexion</a> --}}
                                                 <button class="sj-btn sj-btnactive" type="submit" id="modelAddBtn">
                                                     <span class="normal-status">
                                                         Se

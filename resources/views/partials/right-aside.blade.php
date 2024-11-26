@@ -30,11 +30,11 @@
         </div>
         <div class="sj-widgetcontent">
             <ul>
-                <li><a href="javascript:void(0);">Les articles doivent répondre au critère d’originalité et n’avoir été
+                <li><a href="#">Les articles doivent répondre au critère d’originalité et n’avoir été
                         publié dans aucune revue antérieurement. </a></li>
-                <li><a href="javascript:void(0);">Les articles sont soumis avant publication au logiciel
+                <li><a href="#">Les articles sont soumis avant publication au logiciel
                         antiplagiat.</a></li>
-                <li><a href="javascript:void(0);">Aucun article contenant des éléments contrevenant à la loi ne peut
+                <li><a href="#">Aucun article contenant des éléments contrevenant à la loi ne peut
                         être publié par la revue tɩ́ɩ́ŋa.</a></li>
             </ul>
         </div>
@@ -79,7 +79,7 @@
                         <label for="sj-qfour">Pleural fluid cytology</label>
                     </span>
                 </div>
-                <a class="sj-btn" href="javascript:void(0);">Lire</a>
+                <a class="sj-btn" href="#">Lire</a>
             </div>
         </div> --}}
     </div>

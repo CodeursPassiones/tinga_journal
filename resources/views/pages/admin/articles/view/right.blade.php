@@ -57,7 +57,7 @@
                 <div class="sj-headerhold">
                     @if ($article->state === 'VALID' && $article->status === 'DRAFT')
                         <input type="checkbox" name="agree">
-                        <span>J'accepte tous les <a href="javascript:void(0);">Termes et Conditions</a> de soumission de
+                        <span>J'accepte tous les <a href="#">Termes et Conditions</a> de soumission de
                             l'article</span>
                     @endif
 

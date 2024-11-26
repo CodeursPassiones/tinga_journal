@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -10,8 +10,8 @@
                     <div class="sj-innerbannercontent">
                         <h1>Paramètres</h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">Paramètres</a></li>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">Paramètres</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content sj-addarticleholdcontent sj-addarticleholdvtwo">
@@ -28,8 +28,7 @@
             <h2>Gestion Volumes</h2>
             <form class="sj-formtheme sj-formsearchvtwo" id="searchForm" data-model-url="{{ route('admin.volumes.list') }}">
                 <div class="sj-sortupdown">
-                    <a href="javascript:void(0);" id="sortOrder" data-name="sort_order"
-                        data-sortOrder={{ $sortOrder }}><i
+                    <a href="#" id="sortOrder" data-name="sort_order" data-sortOrder={{ $sortOrder }}><i
                             class="fa fa-sort-amount-{{ $sortOrder === 'asc' ? 'down' : 'up' }}"></i></a>
                 </div>
                 <fieldset>
@@ -83,7 +82,7 @@
                             <div class="sj-categorysrightarea">
                                 <a href="{{ route('admin.issues.list', $volume->id) }}" class="sj-eyebtn"><i
                                         class="ti-eye"></i></a>
-                                <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
+                                <a href="#" class="sj-pencilbtn" data-toggle="modal"
                                     data-target="#UpdateVolumeModal{{ $volume->id }}"><i class="ti-pencil"></i></a>
                                 <a class="sj-trashbtn modelDeleteBtn" href="#" id="{{ $volume->id }}"
                                     data-model-action="delete" data-model-parent-selector="li.parent"

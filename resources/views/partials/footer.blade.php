@@ -6,7 +6,7 @@ Footer Start
     <div class="container" style="padding: 15px">
         <div class="row">
             <!-- Retour en haut -->
-            <a class="sj-btnscrolltotop" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
+            <a class="sj-btnscrolltotop" href="#"><i class="fa fa-angle-up"></i></a>
 
             <!-- Section à propos -->
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 float-left">
@@ -37,14 +37,14 @@ Footer Start
                         <strong><a href="{{ route('web.administration.about') }}">Lire la suite</a></strong></p>
                     </div>
                     <ul class="sj-socialicons sj-socialiconssimple">
-                        <li class="sj-facebook"><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
+                        <li class="sj-facebook"><a href="#"><i class="fab fa-facebook-f"></i></a>
                         </li>
-                        <li class="sj-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
-                        <li class="sj-linkedin"><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a>
+                        <li class="sj-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="sj-linkedin"><a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </li>
-                        <li class="sj-googleplus"><a href="javascript:void(0);"><i class="fab fa-instagram"></i></a>
+                        <li class="sj-googleplus"><a href="#"><i class="fab fa-instagram"></i></a>
                         </li>
-                        <li class="sj-rss"><a href="javascript:void(0);"><i class="fa fa-rss"></i></a></li>
+                        <li class="sj-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -62,7 +62,7 @@ Footer Start
                             <li><a href={{ route('web.articles.list') }}>Articles récents</a></li>
                             <li><a href={{ route('web.volumes.list') }}>Les numéros </a></li>
                             <li><a href="#">Droits & Permissions</a></li>
-                            <li class="sj-more"><strong><a href="javascript:void(0);">Plus</a></strong></li>
+                            <li class="sj-more"><strong><a href="#">Plus</a></strong></li>
                         </ul>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ Footer Start
                             <li><a href={{ route('web.administration.redaction') }}>Administration</a></li>
                             <li><a href={{ route('web.administration.gestion') }}>Comité de gestion</a></li>
                             <li><a href={{ route('web.administration.scientifique') }}>Comité de Lecture</a></li>
-                            <li class="sj-more"><strong><a href="javascript:void(0);">Plus</a></strong></li>
+                            <li class="sj-more"><strong><a href="#">Plus</a></strong></li>
                         </ul>
                     </div>
                 </div>

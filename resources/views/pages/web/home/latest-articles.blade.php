@@ -29,7 +29,7 @@
                                 </h3>
                             </div>
                             <div class="sj-description">
-                                <p>{!! Str::limit($article->abstract, 170) !!}...</p>
+                                <p>{{ Str::limit($article->abstract, 170) }}...</p>
                             </div>
                             <a class="sj-btn" href={{ route('web.articles.show', $article->id) }}>Voir l'Article
                                 Complet</a>

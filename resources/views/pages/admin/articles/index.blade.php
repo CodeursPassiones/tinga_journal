@@ -8,10 +8,10 @@
                         <h1>Gestion Articles</h1>
                         <ol class="sj-breadcrumb">
                             <li>
-                                <a href="javascript:void(0);">Acceuil</a>
+                                <a href="#">Acceuil</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">Admin/Article/Liste</a>
+                                <a href="#">Admin/Article/Liste</a>
                             </li>
                         </ol>
                     </div>
@@ -27,8 +27,7 @@
             <form class="sj-formtheme sj-formsearchvtwo" id="searchForm"
                 data-model-url="{{ route('admin.articles.list', $status) }}">
                 <div class="sj-sortupdown">
-                    <a href="javascript:void(0);" id="sortOrder" data-name="sort_order"
-                        data-sortOrder={{ $sortOrder }}><i
+                    <a href="#" id="sortOrder" data-name="sort_order" data-sortOrder={{ $sortOrder }}><i
                             class="fa fa-sort-amount-{{ $sortOrder === 'asc' ? 'down' : 'up' }}"></i></a>
                 </div>
                 <fieldset>
@@ -118,8 +117,8 @@
                                                         target="_blank">
                                                         <i class="ti-eye"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
-                                                        data-model-action="delete" data-model-parent-selector="li.parent"
+                                                    <a href="#" class="sj-trashbtn modelDeleteBtn" data-model-action="delete"
+                                                        data-model-parent-selector="li.parent"
                                                         data-model-delete-url="{{ route('admin.articles.delete', $article->id) }}"><i
                                                             class="ti-trash normal-status"></i>
 
@@ -149,8 +148,8 @@
                                             <a href={{ route('admin.articles.view.metadata', $article->matricule) }}><i
                                                     class="fa fa-pencil" id="hideArticle"></i>
                                             </a>
-                                            <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
-                                                data-model-action="delete" data-model-parent-selector="li.parent"
+                                            <a href="#" class="sj-trashbtn modelDeleteBtn" data-model-action="delete"
+                                                data-model-parent-selector="li.parent"
                                                 data-model-delete-url="{{ route('admin.articles.delete', $article->id) }}"><i
                                                     class="ti-trash normal-status"></i>
 

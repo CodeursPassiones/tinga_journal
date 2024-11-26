@@ -10,7 +10,7 @@
                 <h2>Auteurs</h2>
                 <form class="sj-formtheme sj-formsearchvtwo">
                     <div class="sj-sortupdown">
-                        <a href="javascript:void(0);"><i class="fa fa-sort-amount-up" disabled></i></a>
+                        <a href="#"><i class="fa fa-sort-amount-up" disabled></i></a>
                     </div>
                     <fieldset>
                         <input type="search" name="search" class="form-control" placeholder="Recherche" disabled>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="form-group sj-categorysbtn">
-                                    <a href="javascript:void(0);" class="sj-checkbtn modelUpdateBtn" id="">
+                                    <a href="#" class="sj-checkbtn modelUpdateBtn" id="">
 
 
 
@@ -93,11 +93,11 @@
                                 <div class="sj-categorysrightarea">
 
                                     <div class="sj-addremove">
-                                        {{-- <a href="javascript:void(0);" class="sj-pencilbtn" data-toggle="modal"
+                                        {{-- <a href="#" class="sj-pencilbtn" data-toggle="modal"
                                             data-target="#updateAuthorModal{{ $articleUsers->user->id }}"><i
                                                 class="ti-pencil"></i></a> --}}
-                                        <a href="javascript:void(0);" class="sj-trashbtn modelDeleteBtn"
-                                            data-model-action="delete" data-model-parent-selector="li.parent"
+                                        <a href="#" class="sj-trashbtn modelDeleteBtn" data-model-action="delete"
+                                            data-model-parent-selector="li.parent"
                                             data-model-delete-url="{{ route('admin.articles.author.detach', $articleUsers->id) }}"><i
                                                 class="ti-trash normal-status"></i>
 

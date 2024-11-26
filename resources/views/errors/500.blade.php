@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                     Inner Banner Start
-                                   *************************************-->
+                                         Inner Banner Start
+                                       *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -10,8 +10,8 @@
                     <div class="sj-innerbannercontent">
                         <h1>Problème Serveur</h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Accueil</a></li>
-                            <li><a href="javascript:void(0);">500</a></li>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">500</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                     Inner Banner End
-                                   *************************************-->
+                                         Inner Banner End
+                                       *************************************-->
 @endsection
 @section('web-content')
     <div class="sj-404error">

@@ -261,7 +261,7 @@
                                                     <time datetime="2018-12-12"
                                                         class="sj-posttimedate">@formatDate($article->publication_date)</time>
                                                     <span class="sj-username">
-                                                        <a href="javascript:void(0);">
+                                                        <a href="#">
                                                             @foreach ($article->articleUsers as $author)
                                                                 {{ $author->user->lastname }}
                                                                 |
@@ -276,7 +276,7 @@
                                                 </h3>
                                             </div>
                                             <div class="sj-description">
-                                                <p>{!! Str::limit($article->abstract, 100) !!}...</p>
+                                                <p>{{ Str::limit($article->abstract, 100) }}...</p>
                                             </div>
                                             <a class="sj-btn" href={{ route('web.articles.show', $article->id) }}>Voir
                                                 le contenu</a>

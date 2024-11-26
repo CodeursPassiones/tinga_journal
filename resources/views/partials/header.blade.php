@@ -7,14 +7,11 @@
                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                            <div class="sj-topbar">
                                <ul class="sj-socialicons sj-socialiconssimple">
-                                   <li class="sj-facebook"><a href="javascript:void(0);"><i
-                                               class="fa fa-facebook-f"></i></a></li>
-                                   <li class="sj-twitter"><a href="javascript:void(0);"><i
-                                               class="fab fa-twitter"></i></a></li>
-                                   <li class="sj-linkedin"><a href="javascript:void(0);"><i
-                                               class="fab fa-linkedin-in"></i></a></li>
-                                   <li class="sj-googleplus"><a href="javascript:void(0);"><i
-                                               class="fab fa-google-plus-g"></i></a></li>
+                                   <li class="sj-facebook"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                                   <li class="sj-twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                   <li class="sj-linkedin"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                   <li class="sj-googleplus"><a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                   </li>
                                </ul>
                                <div class="sj-languagelogin">
                                    @guest

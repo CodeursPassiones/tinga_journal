@@ -1,8 +1,8 @@
 @extends('pages.admin.base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner Start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner Start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
     <div class="sj-innerbanner">
         <div class="container">
             <div class="row">
@@ -10,8 +10,8 @@
                     <div class="sj-innerbannercontent">
                         <h1>Mon compte</h1>
                         <ol class="sj-breadcrumb">
-                            <li><a href="javascript:void(0);">Acceuil</a></li>
-                            <li><a href="javascript:void(0);">Compte/Parametres</a></li>
+                            <li><a href="#">Acceuil</a></li>
+                            <li><a href="#">Compte/Parametres</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
         </div>
     </div>
     <!--************************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             Inner Banner End
-                                                                                                                                                                                                                                                                                                                                                                                                                                                           *************************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Inner Banner End
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               *************************************-->
 @endsection
 @section('admin-content')
     <div id="sj-content" class="sj-content">

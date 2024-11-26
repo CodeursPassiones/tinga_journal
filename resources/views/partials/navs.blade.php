@@ -18,7 +18,7 @@
         </li>
         <li
             class="menu-item-has-children page_item_has_children {{ Str::startsWith(request()->path(), 'web/articles') ? 'current-menu-item' : '' }}"">
-            <a href="javascript:void(0);">Articles</a>
+            <a href="#">Articles</a>
             <ul class="sub-menu">
 
                 <li><a href={{ route('web.articles.list') }}>Liste</a></li>

@@ -1,5 +1,5 @@
 <div class="sj-userloginarea">
-    <a href="javascript:void(0);">
+    <a href="#">
         <i class="fa fa-angle-down"></i>
         <img src={{ asset('assets/images/user-img.jpg') }} alt="image description">
         <div class="sj-loginusername">
