@@ -4,7 +4,7 @@
 @section('keywords', 'tinga, revue tinga, "la Revue Langues, Littératures, Arts et Culture", LaLD, "CAMES" ')
 @section('banner')
 
-    <div class="sj-innerbanner">
+    <div class="sj-innerbanner show-article">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">

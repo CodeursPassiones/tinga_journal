@@ -12,7 +12,7 @@
                     <article class="sj-post sj-editorchoice">
 
                         <figure class="sj-postimg">
-                            <img src="{{ asset($article->image_path) }}" alt="image description" class="artImg">
+                            <img src="{{ asset($article->image_path) }}" alt="image description" class="art-img-home">
 
                         </figure>
                         <div class="sj-postcontent">

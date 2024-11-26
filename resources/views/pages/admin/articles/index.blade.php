@@ -76,7 +76,7 @@
                             <div class="sj-userinfoimgname">
                                 <figure class="sj-userinfimg">
                                     <img src={{ asset($article->image_path) }} alt="img description"
-                                        class="userArticleListAdminImg">
+                                        class="user-article-list-admin-img">
                                 </figure>
                                 <div class="sj-userinfoname">
                                     <span>

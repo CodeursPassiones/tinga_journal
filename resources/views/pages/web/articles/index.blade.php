@@ -194,53 +194,52 @@
                         @endif
                         <div class="sj-articles">
                             <form class="sj-formtheme sj-formsortitems" id="sortForm">
-                                <fieldset class="humm">
+                                <fieldset class="tri-articles">
 
 
                                     <div class="form-group">
-                                        <em>Ordonner par:</em>
-                                        <span class="sj-select">
-                                            <select name="sort_by" id="sortBy">
-                                                <option value=""></option>
-                                                <option value="publication_date"
-                                                    {{ request('sort_by') == 'publication_date' ? 'selected' : '' }}>
-                                                    Date de publication
-                                                </option>
-                                                <option value="title"
-                                                    {{ request('sort_by') == 'title' ? 'selected' : '' }}>
-                                                    Titre
-                                                </option>
-                                            </select>
-                                        </span>
+                                        <label>Ordonner par:</label>
+
+                                        <select name="sort_by" id="sortBy">
+                                            <option value=""></option>
+                                            <option value="publication_date"
+                                                {{ request('sort_by') == 'publication_date' ? 'selected' : '' }}>
+                                                Date de publication
+                                            </option>
+                                            <option value="title" {{ request('sort_by') == 'title' ? 'selected' : '' }}>
+                                                Titre
+                                            </option>
+                                        </select>
+
                                     </div>
                                     <div class="form-group">
-                                        <em>Arrangement: </em>
-                                        <span class="sj-select">
-                                            <select name="sort_order" id="sortOrder">
-                                                <option value=""></option>
-                                                <option value="desc"
-                                                    {{ request('sort_order') == 'desc' ? 'selected' : '' }}>Décroissant
-                                                </option>
-                                                <option value="asc"
-                                                    {{ request('sort_order') == 'asc' ? 'selected' : '' }}>Croissant
-                                                </option>
-                                            </select>
-                                        </span>
+                                        <label>Arrangement: </label>
+
+                                        <select name="sort_order" id="sortOrder">
+                                            <option value=""></option>
+                                            <option value="desc"
+                                                {{ request('sort_order') == 'desc' ? 'selected' : '' }}>Décroissant
+                                            </option>
+                                            <option value="asc" {{ request('sort_order') == 'asc' ? 'selected' : '' }}>
+                                                Croissant
+                                            </option>
+                                        </select>
+
                                     </div>
 
                                     <div class="form-group">
-                                        <em>Afficher: </em>
-                                        <span class="sj-select">
-                                            <select name="limit" id="sortLimit">
-                                                <option value=""></option>
-                                                <option value="1" {{ request('limit') == 1 ? 'selected' : '' }}>1
-                                                </option>
-                                                <option value="2" {{ request('limit') == 2 ? 'selected' : '' }}>2
-                                                </option>
-                                                <option value="3" {{ request('limit') == 3 ? 'selected' : '' }}>3
-                                                </option>
-                                            </select>
-                                        </span>
+                                        <label>Afficher: </label>
+
+                                        <select name="limit" id="sortLimit">
+                                            <option value=""></option>
+                                            <option value="1" {{ request('limit') == 1 ? 'selected' : '' }}>1
+                                            </option>
+                                            <option value="2" {{ request('limit') == 2 ? 'selected' : '' }}>2
+                                            </option>
+                                            <option value="3" {{ request('limit') == 3 ? 'selected' : '' }}>3
+                                            </option>
+                                        </select>
+
                                     </div>
 
                                 </fieldset>
@@ -254,7 +253,7 @@
                                     <article class="sj-post sj-editorchoice">
                                         <figure class="sj-postimg">
                                             <img src="{{ asset($article->image_path) }}" alt="image description"
-                                                class="artImg">
+                                                class="art-img-web">
                                         </figure>
                                         <div class="sj-postcontent">
                                             <div class="sj-head">
