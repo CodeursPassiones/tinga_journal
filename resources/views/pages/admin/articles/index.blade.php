@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <div class="sj-description">
-                                    <p>{!! Str::limit($article->abstract, 100) !!}...</p>
+                                    <p>{{ Str::limit($article->abstract, 100) }}...</p>
                                 </div>
 
                             </div>
