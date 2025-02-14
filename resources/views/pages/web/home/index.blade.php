@@ -1,8 +1,8 @@
 @extends('base')
 @section('banner')
     <!--************************************
-                                                                                                                                                                                                                                                                                                     Home Banner Start
-                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                         Home Banner Start
+                                                                                                                                                                                                                                                                                                       *************************************-->
     @if ($lastArticle)
         <div id="sj-homebanner" class="sj-homebanner">
             <div class="container">
@@ -25,7 +25,7 @@
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="sj-bannercontent">
                             <h1 class="article-tnr">
-                                {{ Str::limit($lastArticle->abstract, 125) }}</h1>
+                                {{ Str::limit($lastArticle->title, 125) }}</h1>
                             <div class="sj-description">
                                 <p>{{ Str::limit($lastArticle->abstract, 250) }}<strong>...
                                         <a href={{ route('web.articles.show', $lastArticle->id) }}>Lire
@@ -42,8 +42,8 @@
     @endif
 
     <!--************************************
-                                                                                                                                                                                                                                                                                                     Home Banner End
-                                                                                                                                                                                                                                                                                                   *************************************-->
+                                                                                                                                                                                                                                                                                                         Home Banner End
+                                                                                                                                                                                                                                                                                                       *************************************-->
 @endsection
 @section('web-content')
     @include('pages.web.home.salutation')
@@ -53,19 +53,19 @@
                 <div class="col-12 col-sm-12 col-md-7 col-lg-9">
                     <div id="sj-content" class="sj-content">
                         <!--************************************
-                                                                                                                                                                                                                                                                                                                    Editor's Pick Start
-                                                                                                                                                                                                                                                                                                            *************************************-->
+                                                                                                                                                                                                                                                                                                                        Editor's Pick Start
+                                                                                                                                                                                                                                                                                                                *************************************-->
                         @include('pages.web.home.latest-articles')
                         <!--************************************
-                                                                                                                                                                                                                                                                                                                    Editor's Pick End
-                                                                                                                                                                                                                                                                                                            *************************************-->
+                                                                                                                                                                                                                                                                                                                        Editor's Pick End
+                                                                                                                                                                                                                                                                                                                *************************************-->
                         <!--************************************
-                                                                                                                                                                                                                                                                                                                    Previous Posts Start
-                                                                                                                                                                                                                                                                                                            *************************************-->
+                                                                                                                                                                                                                                                                                                                        Previous Posts Start
+                                                                                                                                                                                                                                                                                                                *************************************-->
                         @include('pages.web.home.lates-issues')
                         <!--************************************
-                                                                                                                                                                                                                                                                                                                    Previous Posts End
-                                                                                                                                                                                                                                                                                                            *************************************-->
+                                                                                                                                                                                                                                                                                                                        Previous Posts End
+                                                                                                                                                                                                                                                                                                                *************************************-->
 
                     </div>
                 </div>
