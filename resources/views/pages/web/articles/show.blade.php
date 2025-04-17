@@ -75,13 +75,13 @@
                                 <h3 class="article-title">
                                     <strong>Titre : {{ $article->title }}</strong>
                                 </h3>
-                                {{-- <h5 style="text-align: center">
+                                <h5 style="text-align: center">
                                     @foreach ($article->files as $file)
                                         <li><a href="{{ asset($file->path) }}" download class="sj-file-link"><i
                                                     class="fa fa-download"></i>
                                                 {{ $file->name }}</a></li>
                                     @endforeach
-                                </h5 style="text-align: center"> --}}
+                                </h5 style="text-align: center">
 
                                 <div class="card">
                                     <ul class="list-style-none">
