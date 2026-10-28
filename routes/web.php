@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Web\ArticleWebController;
 use App\Http\Controllers\Web\FileWebController;
 use App\Http\Controllers\Web\IssueWebController;
+use App\Http\Controllers\Web\SitemapWebController;
 use App\Http\Controllers\Web\WebsiteWebController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WebsiteWebController::class, 'home'])->name('home');
+Route::get('/sitemap.xml', [SitemapWebController::class, 'index'])->name('sitemap');
 
 Route::prefix('/web')->group(function () {
     /*
