@@ -27,7 +27,7 @@ class IssueWebController extends Controller
         } catch (\Throwable $th) {
             // dd($th->getMessage());
 
-            return view('errors.500');
+            return response()->view('errors.500', [], 500);
         }
     }
 
@@ -39,6 +39,9 @@ class IssueWebController extends Controller
                 // Trier les issues par date de publication en ordre croissant
                 $query->orderBy('publication_date', 'asc');
             }])->find($volume_id);
+            if (!$volume) {
+                return response()->view('errors.404', [], 404);
+            }
             // Regrouper les issues par mois (avec mois en lettres)
             $result = $volume->issues->groupBy(function ($issue) {
                 // Convertir la date en une chaîne formatée avec le mois en lettres et l'année
@@ -51,7 +54,7 @@ class IssueWebController extends Controller
             // dd($th->getMessage());
 
             // Retourner une vue d'erreur si nécessaire
-            return view('errors.500');
+            return response()->view('errors.500', [], 500);
         }
     }
 }

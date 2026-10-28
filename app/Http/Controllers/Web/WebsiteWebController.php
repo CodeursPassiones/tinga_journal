@@ -30,7 +30,7 @@ class WebsiteWebController extends Controller
         } catch (\Throwable $th) {
             // dd($th->getMessage());
 
-            return view('errors.404');
+            return response()->view('errors.404', [], 404);
         }
     }
 
@@ -41,7 +41,7 @@ class WebsiteWebController extends Controller
         } catch (\Throwable $th) {
             // dd($th->getMessage());
 
-            return view('errors.404');
+            return response()->view('errors.404', [], 404);
         }
     }
 }

@@ -128,7 +128,7 @@ class ArticleWebController extends Controller
         } catch (\Throwable $th) {
             // dd($th->getMessage());
 
-            return view('errors.500');
+            return response()->view('errors.500', [], 500);
         }
     }
 
@@ -136,13 +136,16 @@ class ArticleWebController extends Controller
     {
         try {
             $article = Article::with(['issue', 'issue.volume', 'files', 'articleUsers', 'user'])->find($article_id);
+            if (!$article || (!auth()->check() && ($article->status !== 'PUBLISHED' || $article->state !== 'VALID'))) {
+                return response()->view('errors.404', [], 404);
+            }
             $similors = Article::where('discipline_id', $article->discipline_id)->where('status', '=', 'PUBLISHED')->where('state', '=', 'VALID')->take(10)->get();
 
             return view('pages.web.articles.show', compact('article', 'similors'));
         } catch (\Throwable $th) {
             // dd($th->getMessage(), $th->getLine());
 
-            return view('errors.500');
+            return response()->view('errors.500', [], 500);
         }
     }
 }
