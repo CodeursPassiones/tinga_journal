@@ -1,7 +1,64 @@
 @extends('base')
-@section('title', 'Tɩ́ɩ́ŋá-article-détails')
-@section('description', '{{ $article->title }}')
-@section('keywords', 'tinga, revue tinga, "la Revue Langues, Littératures, Arts et Culture", LaLD, "CAMES" ')
+@section('title', $article->title . ' | Tɩ́ɩ́ŋá')
+@section('description', \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($article->abstract ?? $article->title)))), 160))
+@section('keywords', $article->keywords ?: 'tinga, revue tinga, "la Revue Langues, Littératures, Arts et Culture", LaLD, "CAMES" ')
+@section('og_type', 'article')
+@section('og_image', $article->image_path ? asset($article->image_path) : asset('assets/images/logo.png'))
+@push('head')
+    @php
+        $authors = $article->articleUsers->map(fn ($a) => trim($a->user->lastname . ', ' . $a->user->firstname))->filter()->values();
+        $pubDate = $article->publication_date;
+        $pdf = $article->files->first(fn ($f) => str_ends_with(strtolower($f->path ?? ''), '.pdf'));
+        $abstractText = trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags($article->abstract ?? ''))));
+        $ld = [
+            '@context' => 'https://schema.org',
+            '@type' => 'ScholarlyArticle',
+            'headline' => $article->title,
+            'name' => $article->title,
+            'url' => route('web.articles.show', $article->id),
+            'inLanguage' => 'fr',
+            'abstract' => $abstractText ?: null,
+            'keywords' => $article->keywords ?: null,
+            'datePublished' => $pubDate?->toIso8601String(),
+            'image' => $article->image_path ? asset($article->image_path) : null,
+            'author' => $authors->map(fn ($n) => ['@type' => 'Person', 'name' => $n])->all(),
+            'isPartOf' => [
+                '@type' => 'PublicationIssue',
+                'name' => $article->issue->title,
+                'isPartOf' => [
+                    '@type' => 'PublicationVolume',
+                    'name' => $article->issue->volume->title,
+                    'isPartOf' => ['@type' => 'Periodical', 'name' => 'Tɩ́ɩ́ŋá'],
+                ],
+            ],
+            'identifier' => $article->doi ? 'https://doi.org/' . $article->doi : null,
+        ];
+        $ld = array_filter($ld, fn ($v) => $v !== null && $v !== []);
+    @endphp
+    {{-- Google Scholar (Highwire Press tags) --}}
+    <meta name="citation_title" content="{{ $article->title }}">
+    @foreach ($authors as $name)
+        <meta name="citation_author" content="{{ $name }}">
+    @endforeach
+    @if ($pubDate)
+        <meta name="citation_publication_date" content="{{ $pubDate->format('Y/m/d') }}">
+    @endif
+    <meta name="citation_journal_title" content="Tɩ́ɩ́ŋá">
+    <meta name="citation_volume" content="{{ $article->issue->volume->title }}">
+    <meta name="citation_issue" content="{{ $article->issue->title }}">
+    <meta name="citation_language" content="fr">
+    <meta name="citation_abstract_html_url" content="{{ route('web.articles.show', $article->id) }}">
+    @if ($pdf)
+        <meta name="citation_pdf_url" content="{{ asset($pdf->path) }}">
+    @endif
+    @if ($article->doi)
+        <meta name="citation_doi" content="{{ $article->doi }}">
+    @endif
+    @if ($article->keywords)
+        <meta name="citation_keywords" content="{{ $article->keywords }}">
+    @endif
+    <script type="application/ld+json">{!! json_encode($ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) !!}</script>
+@endpush
 @section('banner')
 
     <div class="sj-innerbanner show-article">
