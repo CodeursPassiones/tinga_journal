@@ -1,2 +1,10 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /login
+Disallow: /logout
+Disallow: /reset-password
+Disallow: /pass/
+Disallow: /web/files/download/
+Allow: /
+
+Sitemap: https://revue-tinga.com/sitemap.xml
