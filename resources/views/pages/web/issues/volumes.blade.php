@@ -1,4 +1,6 @@
 @extends('base')
+@section('title', 'Volumes | Tɩ́ɩ́ŋá')
+@section('description', 'Tous les volumes de la revue Tɩ́ɩ́ŋá, classés par décennie.')
 @section('banner')
     <!--************************************
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      Inner Banner Start

@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tɩ́ɩ́ŋá-présentation')
+@section('title', 'Présentation | Tɩ́ɩ́ŋá')
 @section('description',
     'La revue Tɩ́ɩ́ŋá est le fruit d\'une initiative académique portée par le Laboratoire Langues,
     Littératures et Développement (LaLD)')

@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tɩ́ɩ́ŋá-Normes Editoriales')
+@section('title', 'Normes éditoriales | Tɩ́ɩ́ŋá')
 @section('description', 'Normes Editoriales de la revue Tɩ́ɩ́ŋá ')
 @section('keywords',
     'tinga, revue tinga,Normes Editoriales de la revue tinga,comité de gestion, "la Revue Langues, Littératures, Arts et
