@@ -1,4 +1,5 @@
 @extends('base')
+@section('robots', 'noindex,nofollow')
 @section('style')
     @auth
         <link rel="stylesheet" href={{ asset('assets/css/dashboard.css') }}>

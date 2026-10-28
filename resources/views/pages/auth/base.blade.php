@@ -1,4 +1,5 @@
 @extends('base')
+@section('robots', 'noindex,nofollow')
 
 @section('web-content')
     <div id="sj-twocolumns" class="sj-twocolumns">

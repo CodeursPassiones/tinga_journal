@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tɩ́ɩ́ŋá-Instructions')
+@section('title', 'Instructions aux rapporteurs | Tɩ́ɩ́ŋá')
 @section('description', 'Instructions aux rapporteurs la revue Tɩ́ɩ́ŋá ')
 @section('keywords',
     'tinga, revue tinga,Instructions aux rapporteurs,comité de gestion, "la Revue Langues, Littératures, Arts et

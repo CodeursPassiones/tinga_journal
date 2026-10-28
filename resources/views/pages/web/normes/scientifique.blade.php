@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Tɩ́ɩ́ŋá-comité scientifique')
+@section('title', 'Comité scientifique | Tɩ́ɩ́ŋá')
 @section('description', 'le comité scientifique de la revue Tɩ́ɩ́ŋá ')
 @section('keywords',
     'tinga, revue tinga,comité scientifique, "la Revue Langues, Littératures, Arts et Culture", LaLD,

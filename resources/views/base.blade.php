@@ -5,10 +5,23 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title', 'Tɩ́ɩ́ŋá')</title>
-    <meta name="description" content="@yield('description', 'les dernières revues littéraires')">
-    <meta name="keywords" content="@yield('keywords', 'tinga, revue tinga,2LAC,lald,laboratoire langues,langues, littérature,')">
+    <title>@yield('title', 'Tɩ́ɩ́ŋá - Revue Langues, Littératures, Arts et Culture')</title>
+    <meta name="description" content="@yield('description', 'Tɩ́ɩ́ŋá, revue scientifique du Laboratoire Langues, Littératures et Développement (LaLD) : articles et numéros en langues, littératures, arts et culture.')">
+    <meta name="keywords" content="@yield('keywords', 'tinga, revue tinga, 2LAC, lald, laboratoire langues, langues, littérature')">
+    <meta name="robots" content="@yield('robots', 'index,follow,max-image-preview:large')">
+    <link rel="canonical" href="@yield('canonical', url()->current())">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:site_name" content="Tɩ́ɩ́ŋá">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:title" content="@yield('title', 'Tɩ́ɩ́ŋá - Revue Langues, Littératures, Arts et Culture')">
+    <meta property="og:description" content="@yield('description', 'Tɩ́ɩ́ŋá, revue scientifique du Laboratoire Langues, Littératures et Développement (LaLD).')">
+    <meta property="og:url" content="@yield('canonical', url()->current())">
+    <meta property="og:image" content="@yield('og_image', asset('assets/images/logo.png'))">
+    <meta name="twitter:card" content="summary">
+
+    @stack('head')
     <link rel="apple-touch-icon" href="{{ asset('assets/apple-touch-icon.png') }}">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
 

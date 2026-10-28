@@ -1,4 +1,5 @@
 @extends('base')
+@section('robots', 'noindex,nofollow')
 @section('banner')
     <!--************************************
                                          Inner Banner Start

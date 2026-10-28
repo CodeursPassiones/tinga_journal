@@ -1,5 +1,12 @@
 @extends('base')
-@section('title', 'Tɩ́ɩ́ŋá-articles')
+@section('title', 'Articles | Tɩ́ɩ́ŋá')
+@php
+    $filtered = request()->hasAny(['discipline', 'search', 'issue_id', 'issue_title', 'period', 'sort_order', 'sort_by', 'limit']);
+@endphp
+@section('canonical', route('web.articles.list') . (!$filtered && (int) request('page', 1) > 1 ? '?page=' . (int) request('page') : ''))
+@if ($filtered)
+    @section('robots', 'noindex,follow')
+@endif
 
 @section('description',
     'La revue Tɩ́ɩ́ŋá est le fruit d\'une initiative académique portée par le Laboratoire Langues,
